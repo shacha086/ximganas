@@ -31,15 +31,15 @@ permissions:
   contents: write
   actions: write
 
-concurrency:
-  group: xigmanas-build-main
-  cancel-in-progress: false
-
 jobs:
   build:
     if: >-
       github.ref == 'refs/heads/main' &&
+      (inputs.source_sha == '' || inputs.source_sha == github.sha) &&
       (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    concurrency:
+      group: xigmanas-build-main
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 350
     env:
@@ -148,6 +148,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          latest="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)"
+          if [[ "$latest" != "$BUILD_SHA" ]]; then
+            echo "Checkpoint saved. A newer main commit takes precedence over this continuation." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           if (( SLICE >= 12 )); then
             echo "::error::Build exceeded 12 slices. Inspect diagnostics before continuing manually."
             exit 1

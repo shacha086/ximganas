@@ -54,6 +54,9 @@ A build slice runs for at most 210 minutes. On a normal timeout, the runner
 saves a checkpoint and dispatches another slice for the same Git commit.
 At most 12 slices are started automatically. A genuine compiler error stops
 the chain and is reported as a failed run.
+If a newer commit reaches `main`, the older build saves its checkpoint but
+does not start more slices. Stale continuation jobs are skipped before
+entering the build queue.
 
 The runner's hard time limit, infrastructure loss, or a failed checkpoint
 upload cannot guarantee preservation of the current slice. The previous
