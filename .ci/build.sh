@@ -80,9 +80,8 @@ install() {
 }
 trap 'printf "Build failed at line %s: %s\n" "$LINENO" "$BASH_COMMAND" >&2' ERR
 create_checksum_file() {
-  (cd "$root" && find . -maxdepth 1 -type f \
-    -name '*-LiveCD-*.iso' \
-    -exec sha512 {} + > SHA512-CHECKSUM)
+  # The upstream builders call this separately; hash each artifact once below.
+  return 0
 }
 
 input_hash() {
@@ -171,12 +170,22 @@ add_libs
 use_svn
 unset TINY_ISO
 create_iso
-create_checksum_file
-find "$root" -maxdepth 1 -type f \
-  \( -name '*-LiveCD-*.iso' -o -name 'SHA512-CHECKSUM' \) \
-  -exec cp -p {} "$root/artifacts/" \;
-test -n "$(find "$root/artifacts" -name '*-LiveCD-*.iso' -size +100M)"
-printf 'target=LiveCD-ISO\ngit_sha=%s\nsvn_revision=%s\nfreebsd_src=%s\nfreebsd_ports=%s\n' \
-  "$BUILD_SHA" "$svn_revision" "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV" \
-  > "$root/artifacts/build-info.txt"
+create_usb_gpt
+pigz -t "$root"/*-LiveUSB-GPT-*.img.gz
+for target in LiveCD LiveUSB-GPT; do
+  case "$target" in
+    LiveCD) pattern='*-LiveCD-*.iso' ;;
+    LiveUSB-GPT) pattern='*-LiveUSB-GPT-*.img.gz' ;;
+  esac
+  destination="$root/artifacts/$target"
+  mkdir -p "$destination"
+  find "$root" -maxdepth 1 -type f -name "$pattern" \
+    -exec cp -p {} "$destination/" \;
+  test -n "$(find "$destination" -name "$pattern" -size +100M)"
+  (cd "$destination" && find . -maxdepth 1 -type f -name "$pattern" \
+    -exec sha512 {} + > SHA512-CHECKSUM)
+  printf 'target=%s\ngit_sha=%s\nsvn_revision=%s\nfreebsd_src=%s\nfreebsd_ports=%s\n' \
+    "$target" "$BUILD_SHA" "$svn_revision" "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV" \
+    > "$destination/build-info.txt"
+done
 ccache --show-stats

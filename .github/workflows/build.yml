@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Prepare the cached environment, or build the LiveCD ISO
+        description: Prepare the cached environment, or build LiveCD and LiveUSB images
         type: choice
         options: [build, environment]
         default: build
@@ -126,6 +126,7 @@ jobs:
           if [[ '${{ steps.compile.outputs.rc }}' == 0 && "$CI_MODE" == build ]]; then
             rsync -a freebsd:/usr/local/xigmanas/artifacts/ artifacts/
             test -n "$(find artifacts -name '*-LiveCD-*.iso' -print -quit)"
+            test -n "$(find artifacts -name '*-LiveUSB-GPT-*.img.gz' -print -quit)"
           fi
       - uses: actions/upload-artifact@v4
         if: always()
@@ -138,7 +139,15 @@ jobs:
         if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
         with:
           name: xigmanas-LiveCD-amd64-${{ steps.meta.outputs.short_sha }}
-          path: artifacts/
+          path: artifacts/LiveCD/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
+        with:
+          name: xigmanas-LiveUSB-GPT-amd64-${{ steps.meta.outputs.short_sha }}
+          path: artifacts/LiveUSB-GPT/
           if-no-files-found: error
           compression-level: 0
           retention-days: 14

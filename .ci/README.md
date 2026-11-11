@@ -8,21 +8,26 @@ the initial r10655 import is refused if source patches have already been made.
 ## Normal Use
 
 Push patches to `main`. `Build XigmaNAS` checks out that exact commit and
-builds a LiveCD ISO on a FreeBSD 14.3 VM hosted by GitHub Actions. The local computer is
-not used to fetch the complete source tree or compile anything.
+builds LiveCD and LiveUSB images on a FreeBSD 14.3 VM hosted by GitHub Actions.
+The local computer is not used to fetch the complete source tree or compile anything.
 
-Successful builds publish an `xigmanas-LiveCD-amd64-<commit>` artifact containing
-the LiveCD ISO, SHA512 checksums, and `build-info.txt`. Artifacts
-expire after 14 days. Diagnostics are retained for 7 days.
+Successful builds publish two separate artifacts:
+
+- `xigmanas-LiveCD-amd64-<commit>`: the normal LiveCD ISO.
+- `xigmanas-LiveUSB-GPT-amd64-<commit>`: the GPT LiveUSB `.img.gz` disk image.
+
+Each includes its own SHA512 checksums and `build-info.txt`. Artifacts expire
+after 14 days. Diagnostics are retained for 7 days.
 
 The workflow can also be started manually. Leave `source_sha` empty and
 `slice` at `1`. Select `environment` to prepare and cache the toolchain
-without building the ISO.
+without building the images.
 
-The selected upstream operation is **Create 'LiveCD' (ISO) file** (`create_iso`,
-menu item 13), not LiveCD-Tin or Create All. The normal LiveCD includes an
-embedded installation image, so upstream still creates that necessary
-intermediate file inside the VM. It is not published as a separate artifact.
+The selected upstream operations are **Create 'LiveCD' (ISO) file** (`create_iso`,
+menu item 13) and **Create 'LiveUSB.img.gz GPT' file** (`create_usb_gpt`, menu
+item 12), not LiveCD-Tin or Create All. Both share the same kernel and compiled
+components. Upstream still creates the necessary embedded installation image
+inside the VM. It is not published as a separate artifact.
 
 ## Cached Work
 
