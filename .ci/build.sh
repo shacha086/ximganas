@@ -150,7 +150,10 @@ for port in "$source"/build/ports/*; do
   fi
 done
 
-cp -p /var/db/pkg/local.sqlite "$root/work/pkg/local.sqlite"
+if [[ "$(cat "$state/pkg-db-sha" 2>/dev/null || true)" != "$BUILD_SHA" ]]; then
+  cp -p /var/db/pkg/local.sqlite "$root/work/pkg/local.sqlite"
+  printf '%s\n' "$BUILD_SHA" > "$state/pkg-db-sha"
+fi
 for port in "$source"/build/ports/*; do
   [[ -f "$port/pkg-state" ]] || continue
   [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
