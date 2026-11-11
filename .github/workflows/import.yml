@@ -1,0 +1,51 @@
+name: Import XigmaNAS SVN
+
+on:
+  push:
+    paths:
+      - .github/workflows/import.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: xigmanas-svn-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Import once, without overwriting Git patches
+        env:
+          SVN_URL: https://svn.code.sf.net/p/xigmanas/code/branches/14.3.0.5/
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -f .ci/svn-import.json || test -f build/make.sh; then
+            echo "Source is already imported. Git is authoritative; skipping SVN."
+            exit 0
+          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends subversion
+          revision="$(svn info --non-interactive --show-item revision "$SVN_URL")"
+          svn checkout --non-interactive --ignore-externals -r "$revision" \
+            "$SVN_URL" "$RUNNER_TEMP/svn-source"
+          rsync -a --exclude='.svn/' --exclude='.git/' --exclude='.github/' \
+            "$RUNNER_TEMP/svn-source/" ./
+          mkdir -p .ci
+          jq -n --arg url "$SVN_URL" --arg revision "$revision" \
+            '{url:$url,revision:$revision}' > .ci/svn-import.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git diff --cached --quiet && exit 0
+          git commit -m "Import XigmaNAS 14.3.0.5 from SVN r$revision"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "## SVN import" >> "$GITHUB_STEP_SUMMARY"
+          echo "Imported revision $revision. Future builds use Git, not SVN." >> "$GITHUB_STEP_SUMMARY"
