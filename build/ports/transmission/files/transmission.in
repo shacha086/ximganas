@@ -1,0 +1,325 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# transmission service
+#
+
+# PROVIDE: transmission
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+# XQUERY: --if "count(//bittorrent/enable) > 0" --output "0" --else --output "1" --break
+# RCVAR: transmission
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="transmission"
+desc="transmission service"
+rcvar=transmission_enable
+
+load_rc_config "${name}"
+
+#	custom commands
+start_precmd="transmission_prestart"
+start_postcmd="transmission_poststart"
+stop_precmd="transmission_prestop"
+
+#	defaults
+transmission_enable=${transmission_enable:-"NO"}
+transmission_allowed=${transmission_allowed:-"*.*.*.*"}
+transmission_user=${transmission_user:-"transmission"}
+transmission_umask=${transmission_umask:-"0002"}
+transmission_preallocation=${transmission_preallocation:-"1"}
+transmission_messagelevel=${transmission_messagelevel:-"2"}
+transmission_rpchostwhitelistenabled=${transmission_rpchostwhitelistenabled:-"true"}
+transmission_rpchostwhitelist=${transmission_rpchostwhitelist:-""}
+transmission_web_home="/usr/local/share/transmission/web/"
+
+command="/usr/local/bin/${name}-daemon"
+command_args="-a ${transmission_allowed}"
+
+safe_shellquote()
+{
+	local _result
+
+#	replace inside quote " => "\\\"", ' => '\''
+	_result=`echo "$@" | sed -e 's/"/"\\\\\\\\\\\\""/g' -e "s/'/'\\\\\\''/g"`
+#	return quoted string
+	echo "\"\\\"\"${_result}\"\\\"\""
+}
+
+safe_xmlescape()
+{
+	local _result
+
+	_result="$@"
+#	replace < > & => &lt;&gt;&amp;
+#	_result=`echo "${_result}" | sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' -e 's/\&/\&amp;/g'`
+#	replace inside XPath " => &quot;, ' => ',"'",';,
+#	_result=`echo "${_result}" | sed -e 's/"/\&quot;/g' -e "s/'/',\&quot;'\&quot;,'/g"`
+#	return escaped string
+	echo "${_result}"
+}
+
+transmission_prestart()
+{
+	local _command_args
+	local _umask _preallocation _messagelevel _rpchostwhitelistenabled _rpchostwhitelist _jsonkey _jsonval
+	local _homedir _configfile
+	local _downloaddir _configdir _watchdir _incompletedir
+
+#	get user's homedirectory
+	_homedir=`su -l "${transmission_user}" -c 'echo $HOME'`
+	[ -z "${_homedir}" ] && _homedir="/home/transmission"
+#	save quotes in rc script and login shell and sh
+	_downloaddir=`configxml_get "//bittorrent/downloaddir"`
+	_configdir=`configxml_get "//bittorrent/configdir"`
+	if [ -z "${_configdir}" ]; then
+#		use default directory
+		_configdir="${_homedir}/.config/${name}-daemon"
+	fi
+	if [ ! -d "${_configdir}" ]; then
+#		create config directory
+		eval "su -m \"${transmission_user}\" -c 'sh -c \"mkdir -p `safe_shellquote "${_configdir}"`\"'"
+		if [ ! -d "${_configdir}" ]; then
+			echo "configdir fail: ${_configdir}" 1>&2
+			exit 1
+		fi
+	fi
+	_watchdir=`configxml_get "//bittorrent/watchdir"`
+	_incompletedir=`configxml_get "//bittorrent/incompletedir"`
+#	quote directories
+	_downloaddir=`safe_shellquote "${_downloaddir}"`
+	_configdir=`safe_shellquote "${_configdir}"`
+	_watchdir=`safe_shellquote "${_watchdir}"`
+	_incompletedir=`safe_shellquote "${_incompletedir}"`
+#	escape XML/XSLT/XPath special
+	_downloaddir=`safe_xmlescape "${_downloaddir}"`
+	_configdir=`safe_xmlescape "${_configdir}"`
+	_watchdir=`safe_xmlescape "${_watchdir}"`
+	_incompletedir=`safe_xmlescape "${_incompletedir}"`
+#	create command args line.
+	_command_args=$( /usr/local/bin/xml sel --text --template \
+		--match "//bittorrent" \
+			--if "count(authrequired) > 0 and string-length(username) > 0 and string-length(password) > 0" \
+				--value-of "concat(' -t -u ',username,' -v ',password)" \
+			--else \
+				--output " -T" \
+			--break \
+			--if "string-length(downloaddir) > 0" \
+				--output " -w ${_downloaddir}" \
+			--break \
+			--if "string-length(port) > 0" \
+				--value-of "concat(' -p ',port)" \
+			--else \
+				--output " -p 9091" \
+			--break \
+			--output " -g ${_configdir}" \
+			--if "string-length(peerport) > 0" \
+				--value-of "concat(' -P ',peerport)" \
+			--else \
+				--output " -P 51413" \
+			--break \
+			--if "count(portforwarding) > 0" \
+				--output " -m" \
+			--else \
+				--output " -M" \
+			--break \
+			--if "string-length(watchdir) > 0" \
+				--output " -c ${_watchdir}" \
+			--else \
+				--output " -C" \
+			--break \
+			--if "string-length(incompletedir) > 0" \
+				--output " --incomplete-dir ${_incompletedir}" \
+			--else \
+				--output " --no-incomplete-dir" \
+			--break \
+		--break \
+		${configxml_file} | /usr/local/bin/xml unesc )
+#	check the effective user.
+	debug "command_args: $_command_args"
+	if [ "${transmission_user}" = "`/usr/bin/id -un`" ]; then
+#		eval first level quote
+		_command_args=`eval echo "${_command_args}"`
+		debug "command_args: $_command_args"
+	fi
+	command_args="${command_args} ${_command_args}"
+#	calculate the configuration directory.
+	_configdir=`configxml_get "//bittorrent/configdir"`
+	[ -z "${_configdir}" ] && _configdir="${_homedir}/.config/${name}-daemon"
+#	calculate configuration filename
+	_configfile="${_configdir}/settings.json"
+	if [ ! -f "${_configfile}" ]; then
+#		create default settings
+		if [ "${transmission_user}" = "`/usr/bin/id -un`" ]; then
+			eval 'sh -c "${command} -d ${command_args} > "${_configfile}.new" 2>&1"'
+		else
+			eval "su -m \"${transmission_user}\" -c 'sh -c \"${command} -d ${command_args} > `safe_shellquote "${_configfile}.new"` 2>&1\"'"
+		fi
+		if [ ! -f "${_configfile}" ]; then
+#			copy config
+			chmod 600 "${_configfile}.new"
+			mv "${_configfile}.new" "${_configfile}"
+		else
+#			use new created file
+			rm -f "${_configfile}.new"
+		fi
+	fi
+#	apply settings which cannot be configured from the command line
+	if [ -f "${_configfile}" ]; then
+#		presets
+#			_jsonkey=json key to be matched
+#			_jsonval=new value of the json key
+#		overwrite boolean/numeric template
+#			_ere="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)(.*[^,])(.*)$/\1${_jsonval}\3/"
+#		overwrite string template
+#			_ere="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*\")(.*)(\",?$)/\1${_jsonval}\3/"
+#
+#		previous filter
+#		overwrite boolean template
+#			_ere="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)(true|false)(.*)/\1${_jsonval}\3/"
+#		overwrite integer template
+#			_ere="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)([0-9][0-9]*)(.*)/\1${_jsonval}\3/"
+#		overwrite string template
+#			_ere="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*\")(.*)(\"[[:space:]]*,?$)/\1${_jsonval}\3/"
+#
+#		overwrite umask (octal)
+		_jsonkey='umask'
+		_jsonval=`configxml_get "//bittorrent/umask"`
+		_jsonval=${_jsonval:-"${transmission_umask}"}
+#		octal to decimal conversion because of json
+		_jsonval=`printf "%d" "0${_jsonval}"`
+		_umask="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)(.*[^,])(.*)$/\1${_jsonval}\3/"
+		debug "replacing ${_jsonkey}: ${_jsonval}"
+#		overwrite preallocation (int)
+		_jsonkey='preallocation'
+		_jsonval=`configxml_get "//bittorrent/preallocation"`
+		_jsonval=${_jsonval:-"${transmission_preallocation}"}
+		_preallocation="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)(.*[^,])(.*)$/\1${_jsonval}\3/"
+		debug "replacing ${_jsonkey}: ${_jsonval}"
+#		overwrite message-level (int)
+		_jsonkey='message-level'
+		_jsonval=`configxml_get "//bittorrent/messagelevel"`
+		_jsonval=${_jsonval:-"${transmission_messagelevel}"}
+		_messagelevel="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)(.*[^,])(.*)$/\1${_jsonval}\3/"
+		debug "replacing ${_jsonkey}: ${_jsonval}"
+#		overwrite rpc-host-whitelist-enabled (boolean)
+		_jsonkey='rpc-host-whitelist-enabled'
+		_jsonval=`configxml_get "//bittorrent/rpchostwhitelistenabled"`
+		_jsonval=${_jsonval:-"${transmission_rpchostwhitelistenabled}"}
+		_rpchostwhitelistenabled="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*)(.*[^,])(.*)$/\1${_jsonval}\3/"
+		debug "replacing ${_jsonkey}: ${_jsonval}"
+#		overwrite rpc-host-whitelist (string)
+		_jsonkey='rpc-host-whitelist'
+		_jsonval=`configxml_get "//bittorrent/rpchostwhitelist"`
+		_jsonval=${_jsonval:-"${transmission_rpchostwhitelist}"}
+		_rpchostwhitelist="s/^([[:space:]]*\"${_jsonkey}\":[[:space:]]*\")(.*)(\",?$)/\1${_jsonval}\3/"
+		debug "replacing ${_jsonkey}: ${_jsonval}"
+#		execute
+		/usr/bin/sed -i.bak -E -e "${_umask}" -e "${_preallocation}" -e "${_messagelevel}" -e "${_rpchostwhitelistenabled}" -e "${_rpchostwhitelist}" "${_configfile}" && rm "${_configfile}.bak"
+	fi
+	if [ -n "$transmission_web_home" ]; then
+		TRANSMISSION_WEB_HOME=$transmission_web_home
+		export TRANSMISSION_WEB_HOME
+	fi
+}
+
+transmission_poststart()
+{
+	local _command_args _exitstatus _retry _retry_loops _retry_zzz
+
+#	set retry counter, wait interval and max retries for transmission-daemon web interface to become ready
+	_retry=0
+	_retry_zzz=1
+	_retry_loops=15
+
+	_command_args=$( /usr/local/bin/xml sel --text --template \
+		--match "//bittorrent" \
+			--if "string-length(port) > 0" \
+				--value-of "concat(' ',port)" \
+			--break \
+			--if "count(authrequired) > 0 and string-length(username) > 0 and string-length(password) > 0" \
+				--value-of "concat(' -n ',username,':',password)" \
+			--break \
+			--if "count(pex) > 0" \
+				--output " -x" \
+			--else \
+				--output " -X" \
+			--break \
+			--if "count(dht) > 0" \
+				--output " -o" \
+			--else \
+				--output " -O" \
+			--break \
+			--if "count(lpd) > 0" \
+				--output ' -y' \
+			--else \
+				--output ' -Y' \
+			--break \
+			--if "count(utp) > 0" \
+				--output ' --utp' \
+			--else \
+				--output ' --no-utp' \
+			--break \
+			--if "encryption[. = '0']" \
+				--output " -et" \
+			--elif "encryption[. = '1']" \
+				--output " -ep" \
+			--elif "encryption[. = '2']" \
+				--output " -er" \
+			--break \
+			--if "string-length(uplimit) > 0" \
+				--value-of "concat(' -u ',uplimit)" \
+			--else \
+				--output " -U" \
+			--break \
+			--if "string-length(downlimit) > 0" \
+				--value-of "concat(' -d ',downlimit)" \
+			--else \
+				--output " -D" \
+			--break \
+			--if "count(startafterstart) > 0" \
+				--output " -tall -s" \
+			--break \
+			--if "string-length(extraoptions) > 0" \
+				--value-of "concat(' ',extraoptions)" \
+			--break \
+		--break \
+		${configxml_file} | /usr/local/bin/xml unesc )
+#	wait for transmission-remote to finish successfully or exit after retries exhausted.
+	while true; do
+		/usr/local/bin/transmission-remote${_command_args} >/dev/null 2>&1
+		_exitstatus=$?
+		if [ "${_exitstatus}" -eq 0 ]; then
+			break
+		elif [ "${_retry}" -ge "${_retry_loops}" ]; then
+			break
+		fi
+		_retry=$(/bin/expr ${_retry} + 1)
+		sleep ${_retry_zzz}
+	done
+}
+
+transmission_prestop() {
+	local _command_args
+
+	if configxml_isset //bittorrent/stopbeforestop; then
+		_command_args=$( /usr/local/bin/xml sel --text --template \
+			--match "//bittorrent" \
+				--if "count(authrequired) > 0 and string-length(username) > 0 and string-length(password) > 0" \
+					--value-of "concat(' -n ',username,':',password)" \
+				--break \
+				--output ' -tall -S' \
+			--break \
+			${configxml_file} | /usr/local/bin/xml unesc )
+		/usr/local/bin/transmission-remote${_command_args} >/dev/null 2>&1
+		sleep 1
+	fi
+}
+
+run_rc_command "$1"

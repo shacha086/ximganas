@@ -1,0 +1,171 @@
+/*
+	tabs.css
+
+	Part of XigmaNAS® (https://www.xigmanas.com).
+	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies
+	of XigmaNAS®, either expressed or implied.
+
+* tabs styles, based on http://www.alistapart.com/articles/slidingdoors
+*/
+:root
+{
+/*
+	bgc-: background color
+	bgi-: background image
+	txc-: text color
+	boc-: border color
+	bos-: border style
+	bow-: border width
+	bop-: border properties => [border width] [border style] [border color]
+*/
+/*	global */
+	--bow-tnt-global: 0px;
+	--bos-tnt-global: solid;
+	--boc-tnt-global: #444444;
+/*	inactive */
+	--bgc-tnt: darkgray;
+	--bgi-tnt: linear-gradient(#9C9C9C,black);
+	--bow-tnt: var(--bow-tnt-global);
+	--bos-tnt: var(--bos-tnt-global);
+	--boc-tnt: var(--boc-tnt-global);
+	--bop-tnt: var(--bow-tnt) var(--bos-tnt) var(--boc-tnt);
+	--txc-tnt: grey;
+/*	active */
+	--bgc-tnt-active: lightgray;
+	--bgi-tnt-active: linear-gradient(#9C9C9C,black);
+	--bow-tnt-active: var(--bow-tnt-global);
+	--bos-tnt-active: var(--bos-tnt-global);
+	--boc-tnt-active: var(--boc-tnt-global);
+	--bop-tnt-active: var(--bow-tnt-active) var(--bos-tnt-active) var(--boc-tnt-active);
+	--txc-tnt-active: white;
+/*	inactive hovered */
+	--bgc-tnt-hovered: black;
+	--bgi-tnt-hovered: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	--bow-tnt-hovered: var(--bow-tnt-global);
+	--bos-tnt-hovered: var(--bos-tnt-global);
+	--boc-tnt-hovered: var(--boc-tnt-global);
+	--bop-tnt-hovered: var(--bow-tnt-hovered) var(--bos-tnt-hovered) var(--boc-tnt-hovered);
+	--txc-tnt-hovered: black;
+/*	active hovered */
+	--bgc-tnt-active-hovered: black;
+	--bgi-tnt-active-hovered: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	--bow-tnt-active-hovered: var(--bow-tnt-global);
+	--bos-tnt-active-hovered: var(--bos-tnt-global);
+	--boc-tnt-active-hovered: var(--boc-tnt-global);
+	--bop-tnt-active-hovered: var(--bow-tnt-active-hovered) var(--bos-tnt-active-hovered) var(--boc-tnt-active-hovered);
+	--txc-tnt-active-hovered: gray;
+}
+div#area_tabnav
+{
+	padding: 0 2rem;
+}
+td.tabnavtbl
+{
+	float: left;
+	width: 100%;
+	padding: 0;
+}
+td.tabnavtbl ul
+{
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+td.tabnavtbl li
+{
+	display: inline;
+}
+td.tabnavtbl a
+{
+	float: left;
+	font-size: 0.9375rem;
+	font-weight: bold;
+	text-decoration: none;
+}
+td.tabnavtbl span
+{
+	float: left;
+	display: block;
+	padding: 0.25rem 0.625rem 0.0625rem 0.625rem;
+	white-space: nowrap;
+	height: 1.4375rem;
+}
+td.tabnavtbl td
+{
+	font-size: 0.9375rem;
+	font-weight: bold;
+	text-decoration: none;
+}
+/*	inactive */
+td.tabnavtbl li.tabinact span
+{
+	color: grey;
+	color: var(--txc-tnt);
+	background-color: darkgray;
+	background-color: var(--bgc-tnt);
+	background-image: linear-gradient(#9C9C9C,black);
+	background-image: var(--bgi-tnt);
+	border: 0px solid #444444;
+	border: var(--bop-tnt);
+}
+/*	active */
+td.tabnavtbl li.tabact span
+{
+	color: white;
+	color: var(--txc-tnt-active);
+	background-color: lightgray;
+	background-color: var(--bgc-tnt-active);
+	background-image: linear-gradient(#9C9C9C,black);
+	background-image: var(--bgi-tnt-active);
+	border: 0px solid #444444;
+	border: var(--bop-tnt-active);
+}
+/*	inactive hovered */
+td.tabnavtbl li.tabinact a:hover span
+{
+	color: black;
+	color: var(--txc-tnt-hovered);
+	background-color: black;
+	background-color: var(--bgc-tnt-hovered);
+	background-image: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	background-image: var(--bgi-tnt-hovered);
+	border: 0px solid #444444;
+	border: var(--bop-tnt-hovered);
+}
+/*	active hovered */
+td.tabnavtbl li.tabact a:hover span
+{
+	color: gray;
+	color: var(--txc-tnt-active-hovered);
+	background-color: black;
+	background-color: var(--bgc-tnt-active-hovered);
+	background-image: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	background-image: var(--bgi-tnt-active-hovered);
+	border: 0px solid #444444;
+	border: var(--bop-tnt-active-hovered);
+}

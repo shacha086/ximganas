@@ -1,0 +1,45 @@
+/usr/local/bin/rrdtool graph $WORKING_DIR/rrd/rrd-${GRAPH}_${GRAPH_NAME}.png \
+"-v Efficiency [%]" \
+"-s" "$START_TIME" \
+"-t" "$TITLE_STRING" \
+$BACKGROUND \
+"-a" "PNG" \
+"-h ${GRAPH_H}" \
+"-w ${GRAPH_W}" \
+"--alt-autoscale-max" \
+"DEF:EFF_ARC=$STORAGE_PATH/rrd/${GRAPH}.rrd:EFF_ARC:AVERAGE" \
+"DEF:EFF_DEMAND=$STORAGE_PATH/rrd/${GRAPH}.rrd:EFF_DEMAND:AVERAGE" \
+"DEF:EFF_PREFETCH=$STORAGE_PATH/rrd/${GRAPH}.rrd:EFF_PREFETCH:AVERAGE" \
+"DEF:EFF_METADATA=$STORAGE_PATH/rrd/${GRAPH}.rrd:EFF_METADATA:AVERAGE" \
+"DEF:EFF_L2ARC=$STORAGE_PATH/rrd/${GRAPH}.rrd:EFF_L2ARC:AVERAGE" \
+"LINE3:EFF_ARC#00FF00:ARC       " \
+"GPRINT:EFF_ARC:MIN:Min\\:% 5.1lf%%" \
+"GPRINT:EFF_ARC:MAX:Max\\:% 5.1lf%%" \
+"GPRINT:EFF_ARC:AVERAGE:Avg\\:% 5.1lf%%" \
+"GPRINT:EFF_ARC:LAST:Last\\:% 5.1lf%%" \
+"COMMENT:\n" \
+"LINE1:EFF_ARC#FF0000:Demand    " \
+"GPRINT:EFF_DEMAND:MIN:Min\\:% 5.1lf%%" \
+"GPRINT:EFF_DEMAND:MAX:Max\\:% 5.1lf%%" \
+"GPRINT:EFF_DEMAND:AVERAGE:Avg\\:% 5.1lf%%" \
+"GPRINT:EFF_DEMAND:LAST:Last\\:% 5.1lf%%" \
+"COMMENT:\n" \
+"LINE1:EFF_PREFETCH#00FFFF:Prefetch  " \
+"GPRINT:EFF_PREFETCH:MIN:Min\\:% 5.1lf%%" \
+"GPRINT:EFF_PREFETCH:MAX:Max\\:% 5.1lf%%" \
+"GPRINT:EFF_PREFETCH:AVERAGE:Avg\\:% 5.1lf%%" \
+"GPRINT:EFF_PREFETCH:LAST:Last\\:% 5.1lf%%" \
+"COMMENT:\n" \
+"LINE1:EFF_METADATA#FFFF00:Metadata  " \
+"GPRINT:EFF_METADATA:MIN:Min\\:% 5.1lf%%" \
+"GPRINT:EFF_METADATA:MAX:Max\\:% 5.1lf%%" \
+"GPRINT:EFF_METADATA:AVERAGE:Avg\\:% 5.1lf%%" \
+"GPRINT:EFF_METADATA:LAST:Last\\:% 5.1lf%%" \
+"COMMENT:\n" \
+"LINE1:EFF_L2ARC#FF00FF:L2ARC     " \
+"GPRINT:EFF_L2ARC:MIN:Min\\:% 5.1lf%%" \
+"GPRINT:EFF_L2ARC:MAX:Max\\:% 5.1lf%%" \
+"GPRINT:EFF_L2ARC:AVERAGE:Avg\\:% 5.1lf%%" \
+"GPRINT:EFF_L2ARC:LAST:Last\\:% 5.1lf%%" \
+"COMMENT:\n" \
+"TEXTALIGN:right" "COMMENT:Last Update\: $LAST_UPDATE"

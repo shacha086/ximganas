@@ -1,0 +1,97 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# msmtp configuration
+#
+
+# PROVIDE: msmtp
+# REQUIRE: FILESYSTEMS
+# BEFORE: DAEMON
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="msmtp"
+desc="msmtp configuration"
+load_rc_config "${name}"
+
+# Defaults
+msmtp_config=${msmtp_config:-"/var/etc/msmtp.conf"}
+msmtp_tlstrustfile=${msmtp_tlstrustfile:-"/usr/local/share/certs/ca-root-nss.crt"}
+msmtprc=${msmtprc:-"/usr/local/etc/msmtprc"}
+
+# Create msmtp.conf configuration
+/usr/local/bin/xml sel --text --template \
+	--output "account default" --nl \
+	--if "string-length(//system/domain) > 0" \
+		--if "string-length(//system/hostname) > 0" \
+			--value-of "concat('domain ',//system/hostname,'.',//system/domain)" --nl \
+		--else \
+			--value-of "concat('domain ',//system/domain)" --nl \
+		--break \
+	--break \
+	--if "string-length(//system/email/server) > 0" \
+		--value-of "concat('host ',//system/email/server)" --nl \
+	--break \
+	--if "string-length(//system/email/port) > 0" \
+		--value-of "concat('port ',//system/email/port)" --nl \
+	--break \
+	--output "protocol smtp" --nl \
+	--if "string-length(//system/email/from) > 0" \
+		--value-of "concat('from ',//system/email/from)" --nl \
+	--break \
+	--if "count(//system/email/auth) > 0" \
+		--if "string-length(//system/email/authmethod) > 0" \
+			--value-of "concat('auth ',//system/email/authmethod)" --nl \
+		--break \
+		--if "string-length(//system/email/username) > 0" \
+			--value-of "concat('user ',//system/email/username)" --nl \
+		--break \
+		--if "string-length(//system/email/password) > 0" \
+			--value-of "concat('password ',//system/email/password)" --nl \
+		--break \
+	--break \
+	--if "count(//system/email/security) > 0" \
+		--output "tls on" --nl \
+		--if "count(//system/email/starttls) > 0" \
+			--output "tls_starttls on" --nl \
+		--else \
+			--output "tls_starttls off" --nl \
+		--break \
+		--if "count(//system/email/tls_certcheck) > 0" \
+			--if "count(//system/email/tls_use_default_trust_file) > 0" \
+				--output "tls_trust_file ${msmtp_tlstrustfile}" --nl \
+			--elif "string-length(//system/email/tls_trust_file) > 0" \
+				--value-of "concat('tls_trust_file ',//system/email/tls_trust_file)" --nl \
+			--break \
+			--if "string-length(//system/email/tls_fingerprint) > 0" \
+				--value-of "concat('tls_fingerprint ',//system/email/tls_fingerprint)" --nl \
+			--break \
+			--if "string-length(//system/email/tls_crl_file) > 0" \
+				--value-of "concat('tls_crl_file ',//system/email/tls_crl_file)" --nl \
+			--break \
+		--else \
+			--output "tls_certcheck off" --nl \
+		--break \
+		--if "string-length(//system/email/tls_cert_file) > 0" \
+			--value-of "concat('tls_cert_file ',//system/email/tls_cert_file)" --nl \
+		--break \
+		--if "string-length(//system/email/tls_key_file) > 0" \
+			--value-of "concat('tls_key_file ',//system/email/tls_key_file)" --nl \
+		--break \
+	--else \
+		--output "tls off" --nl \
+		--output "tls_starttls off" --nl \
+	--break \
+	--output "syslog LOG_MAIL" --nl \
+	${configxml_file} | /usr/local/bin/xml unesc > ${msmtp_config}
+
+# Set user permissions
+chmod 0600 ${msmtp_config}
+# for PHP mail()
+cp ${msmtp_config} ${msmtprc}
+chown root:www ${msmtprc}
+chmod 0640 ${msmtprc}

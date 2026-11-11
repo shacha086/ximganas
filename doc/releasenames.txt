@@ -1,0 +1,28 @@
+All XigmaNAS® release names are taken from the novel 'Dune' from Frank Herbert.
+
+Used Names	release
+
+Sandstorm  	/  9.0.0.1
+Shigawire  	/  9.2.0.1
+Nayla      	/  9.3.0.1
+Prescience 	/ 10.1.0.2
+Prester    	/ 10.2.0.2
+Pilingitam 	/ 10.3.0.3
+Sayyadina  	/ 11.0.0.3
+Atomics    	/ 11.1.0.4
+Omnius     	/ 11.2.0.4
+Parmentier 	/ 11.3.0.4
+Accadia	/ 11.4.0.4
+Reticulus  	/ 12.0.0.4
+Ingva		/ 12.1.0.4
+Ornithopter	/ 12.2.0.4
+Artisia	/ 12.3.0.4
+Glowpanel	/ 13.1.0.5
+Heighliner	/ 13.2.0.5
+Hesterion	/ 13.3.0.5
+Jalanto		/ 14.3.0.5
+
+
+Also see:
+https://dune.wikia.com/wiki/Category:Original_Dune
+https://dune.wikia.com/wiki/Category:Expanded_Dune

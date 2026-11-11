@@ -1,0 +1,37 @@
+--- upnphttp.c.orig	2025-07-25 03:55:58.000000000 +0200
++++ upnphttp.c	2025-10-13 16:57:02.000000000 +0200
+@@ -630,10 +630,10 @@
+ 	strcatf(&str,
+ 		"<HTML><HEAD><TITLE>" SERVER_NAME " " MINIDLNA_VERSION "</TITLE><meta http-equiv=\"refresh\" content=\"20\"></HEAD>"
+ 		"<BODY><div style=\"text-align: center\">"
+-		"<h2>" SERVER_NAME " status</h2></div>");
++		"<h2>XigmaNAS " SERVER_NAME " Status</h2></div>");
+ 
+ 	strcatf(&str,
+-		"<h3>Media library</h3>"
++		"<h3>Media Library</h3>"
+ 		"<table border=1 cellpadding=10>"
+ 		"<tr><td>Audio files</td><td>%d</td></tr>"
+ 		"<tr><td>Video files</td><td>%d</td></tr>"
+@@ -642,10 +642,10 @@
+ 
+ 	if (GETFLAG(SCANNING_MASK))
+ 		strcatf(&str,
+-			"<br><i>* Media scan in progress</i><br>");
++			"<br><i>* Scanning media containers, Updating library in progress</i><br>");
+ 
+ 	strcatf(&str,
+-		"<h3>Connected clients</h3>"
++		"<h3>Connection Overview</h3>"
+ 		"<table border=1 cellpadding=10>"
+ 		"<tr><td>ID</td><td>Type</td><td>IP Address</td><td>HW Address</td><td>Connections</td></tr>");
+ 	for (i = 0; i < CLIENT_CACHE_SLOTS; i++)
+@@ -989,7 +989,7 @@
+ 					friendly_name[i] = '\0';
+ 				memcpy(modelnumber, model_sav, 2);
+ 			}
+-			else if( h->req_client && h->req_client->type->flags & FLAG_SAMSUNG_DCM10 )
++			else if( h->req_client && (h->req_client->type->flags & FLAG_SAMSUNG_DCM10) )
+ 			{
+ 				sendXMLdesc(h, genRootDescSamsung);
+ 			}

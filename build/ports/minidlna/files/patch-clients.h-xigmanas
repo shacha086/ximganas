@@ -1,0 +1,12 @@
+--- clients.h.orig	2025-07-25 03:55:58.000000000 +0200
+--- clients.h	2025-10-13 06:42:31.000000000 +0200
+@@ -86,7 +86,8 @@
+ 	EKodi,
+ 	EMovian,
+ 	EStandardDLNA150,
+-	EStandardUPnP
++	EStandardUPnP,
++	EDenonHeos
+ };
+ 
+ struct client_type_s {

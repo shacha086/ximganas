@@ -1,0 +1,160 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# zfs
+#
+# XigmaNAS® Checked: stable/14 /libexec/rc/rc.d/zfs		943ad2ce59887a63182e5e26ea6962e978ac59bd
+# XigmaNAS® Changes: - Add function zfs_init: Import zpool's if necessary
+#
+# Mount and share ZFS datasets
+#
+
+# PROVIDE: zfs
+# REQUIRE: mountcritlocal zfsbe
+# BEFORE: FILESYSTEMS var
+# KEYWORD: shutdown
+# XQUERY: -i "count(//zfs/pools/pool) > 0" -o "0" -b
+# RCVAR: zfs
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="zfs"
+desc="Mount and share ZFS datasets"
+rcvar="zfs_enable"
+start_cmd="zfs_start"
+start_postcmd="zfs_poststart"
+stop_cmd="zfs_stop"
+init_cmd="zfs_init"
+extra_commands="init"
+required_modules="zfs"
+
+# Defaults
+zfs_preferredsearchprovider="${zfs_preferredsearchprovider:-gpt}"
+
+zfs_init()
+{
+	local _aft4kdevs _dev _cmd
+
+	# gnop for 4KB sector
+	if ! /sbin/kldstat -q -m g_nop; then
+		echo "Load NOP GEOM class"
+		/sbin/kldload geom_nop.ko
+	fi
+
+	# Create nop device
+	_aft4kdevs=`/usr/local/bin/xml sel -t \
+	    -m "//zfs/vdevices/vdevice[aft4k]" \
+		-m "device" -v "concat(.,' ')" \
+	    ${configxml_file} | /usr/local/bin/xml unesc`
+	for _dev in $_aft4kdevs
+	do
+		if [ ! -e "${_dev}.nop" ]; then
+			_cmd="gnop create -S 4096 $_dev"
+			eval "$_cmd"
+		fi
+	done
+
+	# Make sure zpool.cache exists. On 'embedded' installations
+	# this file is missing after a reboot => zpools are missing, so we
+	# have to import them to be able to use them.
+	if [ -r /etc/zfs/zpool.cache -o -r /boot/zfs/zpool.cache -o -r /cf/etc/zfs/zpool.cache -o -r /cf/boot/zfs/zpool.cache ]; then
+		# nothing to do
+	else
+		if [ "${zfs_preferredsearchprovider}" = "gpt" -a -d /dev/gpt ]; then
+			info Importing ZFS pools found under /dev/gpt...
+			zpool import -d /dev/gpt -f -a -N
+		elif [ "${zfs_preferredsearchprovider}" = "gptid" -a -d /dev/gptid ]; then
+			info Importing ZFS pools found under /dev/gptid...
+			zpool import -d /dev/gptid -f -a -N
+		elif [ "${zfs_preferredsearchprovider}" = "ufs" -a -d /dev/ufs ]; then
+			info Importing ZFS pools found under /dev/ufs...
+			zpool import -d /dev/ufs -f -a -N
+		elif [ "${zfs_preferredsearchprovider}" = "ufsid" -a -d /dev/ufsid ]; then
+			info Importing ZFS pools found under /dev/ufsid...
+			zpool import -d /dev/ufsid -f -a -N
+		fi
+		info Importing ZFS pools found under /dev...
+		zpool import -d /dev -f -a -N
+		# if cache is created, write it to boot device
+		if [ -d /cf/boot/zfs ]; then
+			if [ -r /etc/zfs/zpool.cache ]; then
+				/sbin/mount -uw /cf
+				cp -p /etc/zfs/zpool.cache /cf/boot/zfs/zpool.cache
+				/sbin/mount -ur /cf
+			elif [ -r /boot/zfs/zpool.cache ]; then
+				/sbin/mount -uw /cf
+				cp -p /boot/zfs/zpool.cache /cf/boot/zfs/zpool.cache
+				/sbin/mount -ur /cf
+			fi
+		fi
+	fi
+}
+
+zfs_start_jail()
+{
+	if check_jail mount_allowed; then
+		zfs mount -a
+	fi
+}
+
+zfs_start_main()
+{
+	zfs mount -va
+	zfs share -a
+	if [ ! -r /etc/zfs/exports ]; then
+		touch /etc/zfs/exports
+	fi
+	if [ -f /etc/rc.d.php/mountzfs ]; then
+		eval /etc/rc.d.php/mountzfs
+	fi
+}
+
+zfs_start()
+{
+	if check_jail jailed; then
+		zfs_start_jail
+	else
+		zfs_init
+		zfs_start_main
+	fi
+}
+
+zfs_poststart()
+{
+	# Some of the keys to decrypt datasets are potentially stored on ZFS
+	# datasets that just got mounted. Let's try to load those keys and
+	# mount the datasets.
+	if checkyesno zfskeys_enable; then
+		/etc/rc.d/zfskeys start
+		zfs_start
+	fi
+}
+
+zfs_stop_jail()
+{
+	if check_jail mount_allowed; then
+		zfs unmount -a
+	fi
+}
+
+zfs_stop_main()
+{
+	zfs unshare -a
+	zfs unmount -a
+}
+
+zfs_stop()
+{
+	if check_jail jailed; then
+		zfs_stop_jail
+	else
+		zfs_stop_main
+	fi
+}
+
+load_rc_config $name
+run_rc_command "$1"

@@ -1,0 +1,16 @@
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+#
+/bin/sh
+/bin/csh
+/bin/tcsh
+/sbin/nologin
+/usr/bin/scp
+/usr/local/bin/scponly
+/bin/bash

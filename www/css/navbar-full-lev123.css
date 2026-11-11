@@ -1,0 +1,205 @@
+/*
+	navbar.css
+
+	Part of XigmaNAS® (https://www.xigmanas.com).
+	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies
+	of XigmaNAS®, either expressed or implied.
+*/
+:root
+{
+/*
+	bgc-: background color
+	bgi-: background image
+	txc-: text color
+	boc-: border color
+	bos-: border style
+	bow-: border width
+	bop-: border properties => [border width] [border style] [border color]
+*/
+	--txc-nav: #777777;
+	--bgc-nav: transparent;
+	--bop-nav: 0.0625rem solid black;
+
+	--txc-nav-sub: white;
+	--bgc-nav-sub: #95A7C0;
+	--bgc-nav-sub-hovered: white;
+	--bgi-nav-sub-hovered: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	--txc-nav-sub-hovered: black;
+
+	--bgc-nav-sub-sub: #6A83A7;
+
+	--bgc-nav-sub-separator: #AAAAAA;
+}
+
+#navhdr
+{
+	position: absolute;
+	z-index: 10;
+	font-size: 1.25rem;
+	font-weight: normal;
+}
+
+#navhdr ul
+{
+	list-style: none;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	flex-flow: column wrap;
+}
+
+#navhdr ul.lev1
+{
+	z-index: 10;
+}
+
+#navhdr ul.lev2,
+#navhdr ul.lev3
+{
+	display: none;
+	left: 100%;
+	top: 0;
+	opacity: 97%;
+}
+
+#navhdr ul.lev2
+{
+	max-height: 70vh;
+	z-index: 20;
+}
+
+#navhdr ul.lev3
+{
+	max-height: 45vh;
+	z-index: 30;
+}
+
+#navhdr li
+{
+	position: relative;
+	width: 100%;
+}
+
+#navhdr li.lev1
+{
+	width: 2rem;
+/*
+	padding: 0 0.1875rem;
+*/
+	background-color: transparent;
+	background-color: var(--bgc-nav);
+	text-align: center;
+}
+
+#navhdr li.lev2
+{
+	padding: 0.1875rem 0.5rem;
+	background-color: #95A7C0;
+	background-color: var(--bgc-nav-sub);
+}
+
+#navhdr li.lev2so
+{
+	text-align: center;
+}
+
+#navhdr li.lev2st
+{
+	text-align: left;
+}
+
+#navhdr li.lev2to
+{
+	text-align: left;
+}
+
+#navhdr li.lev3
+{
+	padding: 0.1875rem 0.5rem;
+	background-color: #6A83A7;
+	background-color: var(--bgc-nav-sub-sub);
+	text-align: left;
+}
+
+#navhdr li.lev3.tabseparator
+{
+	padding: 0 0.5rem;
+}
+
+#navhdr a
+{
+	display: block;
+	width: 100%;
+	background-color: transparent;
+	background-color: var(--bgc-nav);
+	white-space: nowrap;
+	text-decoration: none;
+}
+
+#navhdr a.lev1
+{
+	color: #777777;
+	color: var(--txc-nav);
+}
+
+#navhdr a.lev2,
+#navhdr a.lev3
+{
+	color: white;
+	color: var(--txc-nav-sub);
+}
+
+
+#navhdr span.tabseparator
+{
+	display: block;
+	background-color: #AAAAAA;
+	background-color: var(--bgc-nav-sub-separator);
+	line-height: 0.125rem;
+	height: 0.125rem;
+}
+
+#navhdr li:not(.tabseparator):hover
+{
+	background-color: white;
+	background-color: var(--bgc-nav-sub-hovered);
+	background-image: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	background-image: var(--bgi-nav-sub-hovered);
+}
+
+#navhdr li:not(.tabseparator):hover > a
+{
+	color: black;
+	color: var(--txc-nav-sub-hovered);
+}
+
+#navhdr li:not(.tabseparator):hover > ul,
+#navhdr li:not(.tabseparator):focus > ul
+{
+	display: flex;
+}

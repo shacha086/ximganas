@@ -1,0 +1,932 @@
+### TODO: use tar packages in /var/cache/pkgs
+# files=$(tar tf /var/cache/pkgs/${port}*~*.pkg | grep '/foo.so|/bar.so')
+# tar xpf /var/cache/pkg/${port}*~*.pkg -C ${XIGMANAS_PKG_STAGE}/${port}/ ${files}
+
+
+XIGMANAS_ROOTFS = /usr/local/xigmanas/rootfs
+XIGMANAS_ROOTDIR = /usr/local/xigmanas
+XIGMANAS_PKG_STAGE = ${XIGMANAS_ROOTDIR}/stage
+
+PREFIX = /usr/local
+XIGMANAS_PORTS = /usr/local/xigmanas/svn/build/ports
+
+NUT_DATADIR = /usr/local/etc/nut
+NUT_DRVDIR = /usr/local/libexec/nut
+MKDIR = mkdir
+
+WWWDIR = /usr/local/www/phpvirtualbox
+
+SITE_PERL = ${PREFIX}/lib/perl5/site_perl
+PYTHON_SITELIBDIR = /usr/local/lib/python3.11/site-packages
+PYTHON_SITELIBDIR = /usr/local/lib/python3.11/site-packages
+
+ECHO_CMD = echo
+XZ_CMD = xz
+TAR = tar
+WRKSRC = /tmp/work-zone
+
+all: pkg-copy phpmyadmin php84-mods mariadb118 vbox py-wsdd minidlna python311 gettext opie #openzfs
+pkg-copy:
+
+### bash/Makefile
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/bash ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${LN} -fsv /usr/local/bin/bash ${XIGMANAS_ROOTFS}/usr/local/bin/rbash
+	@${LN} -fsv /usr/local/bin/bash ${XIGMANAS_ROOTFS}/bin/bash
+
+
+### bsnmp-ucd/Makefile
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/lib/snmp_ucd.so.* ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${LN} -sfv /usr/local/lib/snmp_ucd.so.1 ${XIGMANAS_ROOTFS}/usr/local/lib/snmp_ucd.so
+	@${LN} -sfv /usr/local/lib/snmp_ucd.so.1 ${XIGMANAS_ROOTFS}/usr/lib/snmp_ucd.so.1
+	@${LN} -sfv /usr/local/lib/snmp_ucd.so.1 ${XIGMANAS_ROOTFS}/usr/lib/snmp_ucd.so
+
+#	@${INSTALL_DATA} ${WRKSRC}/UCD-SNMP-MIB.txt ${XIGMANAS_ROOTFS}/usr/share/snmp/mibs
+
+
+### ca_root_nss/Makefile
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/share/certs
+	@${INSTALL_DATA} -v ${PREFIX}/share/certs/ca-root-nss.crt ${XIGMANAS_ROOTFS}${PREFIX}/share/certs
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/etc/ssl
+	@${LN} -fsv ${PREFIX}/share/certs/ca-root-nss.crt ${XIGMANAS_ROOTFS}${PREFIX}/etc/ssl/cert.pem.sample
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/openssl
+	@${LN} -fsv ${PREFIX}/share/certs/ca-root-nss.crt ${XIGMANAS_ROOTFS}${PREFIX}/openssl/cert.pem.sample
+# ETCSYMLINK
+	@${LN} -fsv ${PREFIX}/share/certs/ca-root-nss.crt ${XIGMANAS_ROOTFS}/etc/ssl/cert.pem
+
+
+### cdialog/Makefile
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/cdialog ${XIGMANAS_ROOTFS}${PREFIX}/bin/cdialog
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/libcdialog.so.* ${XIGMANAS_ROOTFS}${PREFIX}/lib
+
+
+### dmidecode/Makefile
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/dmidecode ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/biosdecode ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/ownership ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/vpddecode ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+
+### e2fsprogs-core/Makefile
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/fsck_ext2fs ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/e2fsck ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/badblocks ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/dumpe2fs ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/mke2fs ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/tune2fs ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+	@${LN} -s -f -v /usr/local/sbin/e2fsck ${XIGMANAS_ROOTFS}/sbin/e2fsck
+	@${LN} -s -f -v /usr/local/sbin/fsck_ext2fs ${XIGMANAS_ROOTFS}/sbin/fsck_ext2fs
+# lib
+	@${MKDIR} -vp ${XIGMANAS_ROOTFS}/usr/local/lib/e2fsprogs
+	@${CP} -Rpv /usr/local/lib/e2fsprogs/libe2p.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib/e2fsprogs
+	@${CP} -Rpv /usr/local/lib/e2fsprogs/libext2fs.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib/e2fsprogs
+	@${CP} -Rpv /usr/local/lib/e2fsprogs/libcom_err.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib/e2fsprogs
+
+
+### fusefs-exfat/Makefile
+	@echo "Start install fusefs-exfat to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/mount.exfat-fuse ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${LN} -fsv ${PREFIX}/bin/mount.exfat-fuse ${XIGMANAS_ROOTFS}/usr/local/bin/mount.exfat
+### exfat-utils	
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/exfatfsck ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### fusefs-ntfs/Makefile
+	@echo "Start install fusefs-ntfs to ${XIGMANAS_ROOTFS}"
+# rc
+	@${INSTALL_SCRIPT} -v /root/xigmanas/svn/build/ports/fusefs-ntfs/files/fusefs.in ${XIGMANAS_ROOTFS}/etc/rc.d/fusefs
+# sbin
+	@${CP} -pv /sbin/mount_fusefs ${XIGMANAS_ROOTFS}/sbin
+# bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/ntfs-3g ${XIGMANAS_ROOTFS}/usr/local/bin
+# kernel
+	@${CP} -pv /boot/kernel/fusefs.ko ${XIGMANAS_ROOTFS}/boot/kernel
+# lib
+	@${INSTALL_PROGRAM} -v /usr/local/lib/libntfs-3g.so.89 ${XIGMANAS_ROOTFS}/usr/local/lib
+
+	@${INSTALL_PROGRAM} -v /usr/local/lib/libntfs*.so* ${XIGMANAS_ROOTFS}/usr/local/lib
+# lib dep (libublio)
+# add_libs will find the dep after
+#	@${INSTALL_PROGRAM} -v /usr/local/lib/libubl*.so ${XIGMANAS_ROOTFS}/usr/local/lib
+# link
+	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${XIGMANAS_ROOTFS}/sbin/mount_ntfs
+	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${XIGMANAS_ROOTFS}/sbin/mount_ntfs-3g
+
+### grub2-bhyve/Makefile
+	@echo "Start install grub2-bhyve to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/grub-bhyve ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+
+### gzip/Makefile
+	@echo "Start install gzip to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/gzip ${XIGMANAS_ROOTFS}/usr/bin
+	@${INSTALL_SCRIPT} -v /usr/local/bin/gunzip ${XIGMANAS_ROOTFS}/usr/bin
+	@${INSTALL_SCRIPT} -v /usr/local/bin/zcat ${XIGMANAS_ROOTFS}/usr/bin
+
+
+### icu/Makefile
+	@echo "Start install icu to ${XIGMANAS_ROOTFS}"
+	mkdir -p ${XIGMANAS_PKG_STAGE}/icu/
+	tar xpf $$(ls -t /var/cache/pkg/icu-7*~*.pkg|head -n1) -C ${XIGMANAS_PKG_STAGE}/icu/
+# bin
+.	for file in uconv pkgdata makeconv icuinfo genrb gendict gencnval gencfu genbrk derb
+		@${INSTALL_PROGRAM} -v ${PREFIX}/bin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/bin
+.	endfor
+.	for file in icupkg gensprep gennorm2 gencmn genccode
+		@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/sbin
+.	endfor
+	@${CP} -v ${PREFIX}/bin/icu-config ${XIGMANAS_ROOTFS}${PREFIX}/bin
+# lib
+	${RM} ${XIGMANAS_ROOTFS}${PREFIX}/lib/icu/current
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/icu/${PREFIX}/lib ${XIGMANAS_ROOTFS}${PREFIX}
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/icu/${PREFIX}/libdata ${XIGMANAS_ROOTFS}${PREFIX}
+# include
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/icu/${PREFIX}/include ${XIGMANAS_ROOTFS}${PREFIX}
+# share
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/icu/${PREFIX}/share/icu ${XIGMANAS_ROOTFS}${PREFIX}/share
+
+
+### inadyn/Makefile
+	@echo "Start install inadyn to ${XIGMANAS_ROOTFS}"
+# rc/link
+	@${INSTALL_SCRIPT} -v /usr/local/xigmanas/svn/build/ports/inadyn/files/inadyn.in ${XIGMANAS_ROOTFS}/etc/rc.d/inadyn
+# sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/inadyn ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+
+### iperf3/Makefile
+	@echo "Start install iperf3 to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/iperf3 ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/libiperf.so.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib
+
+
+### ipmitool/Makefile
+	@echo "Start install ipmitool to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/ipmitool ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### istgt/Makefile
+	@echo "Start install istgt to ${XIGMANAS_ROOTFS}"
+# rc
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/istgt/files/iscsi_target.in ${XIGMANAS_ROOTFS}/etc/rc.d/iscsi_target
+# bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/istgt ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/istgtcontrol ${XIGMANAS_ROOTFS}${PREFIX}/bin
+
+
+### lighttpd/Makefile
+# release 2: lighttpd-1.4.67                Secure, fast, compliant, and flexible Web Server
+# quarterly: lighttpd-1.4.75
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/lighttpd ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+	@${MKDIR} -vp ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_accesslog.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_ajp13.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_auth.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_authn_file.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_cgi.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_deflate.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_dirlisting.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_extforward.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_h2.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_openssl.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_proxy.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_rrdtool.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_sockproxy.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_ssi.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_status.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_userdir.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_vhostdb.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_webdav.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+	@${INSTALL_PROGRAM} -v /usr/local/lib/lighttpd/mod_wstunnel.so ${XIGMANAS_ROOTFS}/usr/local/lib/lighttpd
+
+
+### mDNSResponder/Makefile
+	@${INSTALL_SCRIPT} -v /usr/local/xigmanas/svn/build/ports/mDNSResponder/files/mdnsresponder.in ${XIGMANAS_ROOTFS}/etc/rc.d/mdnsresponder
+	@${INSTALL_PROGRAM} -v /usr/local/lib/libdns_sd.so ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${INSTALL_PROGRAM} -v /usr/local/bin/mDNSClientPosix ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/mDNSNetMonitor ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/mDNSProxyResponderPosix ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/mDNSResponderPosix ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/mdnsd ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+
+
+
+
+### msmtp/Makefile
+	@echo "Start install msmtp to ${XIGMANAS_ROOTFS}"
+# rc/link
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/msmtp/files/msmtp.in ${XIGMANAS_ROOTFS}/etc/rc.d/msmtp
+# bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/msmtp ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### nano/Makefile
+	@echo "Start install nano to ${XIGMANAS_ROOTFS}"
+	${INSTALL_PROGRAM} -v /usr/local/bin/nano ${XIGMANAS_ROOTFS}/usr/local/bin;
+
+
+### netatalk4/Makefile
+# upgrade
+	@echo "Start install netatalk4 to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/netatalk4/files/netatalk.in ${XIGMANAS_ROOTFS}/etc/rc.d/netatalk
+
+	@${INSTALL_PROGRAM} -v /usr/local/bin/dbd ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/afpd ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/cnid_metad ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/cnid_dbd ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/netatalk ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_LIB} -v /usr/local/lib/libatalk.so* ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${INSTALL_DATA} -v /usr/local/etc/extmap.conf.sample ${XIGMANAS_ROOTFS}/usr/local/etc/extmap.conf
+
+	@${MKDIR} -vp ${XIGMANAS_ROOTFS}/etc/uams
+	#@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_dhx_pam.so ${XIGMANAS_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_dhx_passwd.so ${XIGMANAS_ROOTFS}/etc/uams
+	#@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_dhx2_pam.so ${XIGMANAS_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_dhx2_passwd.so ${XIGMANAS_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_guest.so ${XIGMANAS_ROOTFS}/etc/uams
+	#@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_pam.so ${XIGMANAS_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_passwd.so ${XIGMANAS_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/netatalk-uams/uams_randnum.so ${XIGMANAS_ROOTFS}/etc/uams
+
+	@cd ${XIGMANAS_ROOTFS}/etc/uams && ${LN} -fsv uams_passwd.so uams_clrtxt.so && ${LN} -fsv uams_dhx_passwd.so uams_dhx.so && ${LN} -fsv uams_dhx2_passwd.so uams_dhx2.so
+
+
+### nss_ldap/Makefile
+	@echo "Start install nss_ldap to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/lib/nss_ldap.so.1 ${XIGMANAS_ROOTFS}/usr/local/lib/nss_ldap.so.1
+	@${LN} -fsv /var/etc/ldap.conf ${XIGMANAS_ROOTFS}/usr/local/etc/nss_ldap.conf
+	@${LN} -fsv /var/etc/ldap.secret ${XIGMANAS_ROOTFS}/usr/local/etc/nss_ldap.secret
+
+
+### nut-devel/Makefile
+# nut-devel-2022.12.08_1
+# nut-devel-2024.04.02
+
+	@echo "Start install nut-devel to ${XIGMANAS_ROOTFS}"
+	@${MKDIR} -pv ${XIGMANAS_ROOTFS}${PREFIX}/etc/devd
+	@${INSTALL_SCRIPT} -v ${PREFIX}/etc/devd/nut-usb.conf ${XIGMANAS_ROOTFS}${PREFIX}/etc/devd/nut-usb.conf
+
+	@${MKDIR} -pv ${XIGMANAS_ROOTFS}/${NUT_DATADIR}
+	@${INSTALL_DATA} -v ${NUT_DATADIR}/cmdvartab ${XIGMANAS_ROOTFS}${NUT_DATADIR}
+	@${INSTALL_DATA} -v ${NUT_DATADIR}/driver.list ${XIGMANAS_ROOTFS}${NUT_DATADIR}
+
+	@${MKDIR} -pv ${XIGMANAS_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/adelsystem_cbi ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/al175 ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/apcsmart ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/apcsmart-old ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/apcupsd-ups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/bcmxcp ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/bcmxcp_usb ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/belkin ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/belkinunv ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/bestfcom ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/bestfortress ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/bestuferrups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/bestups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/blazer_ser ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/blazer_usb ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/clone ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/clone-outlet ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/dummy-ups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/etapro ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/everups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/gamatronic ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/generic_modbus ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/genericups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/huawei-ups2000 ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/isbmex ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/ivtscd ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/liebert ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/liebert-esp2 ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/masterguard ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/metasys ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/mge-shut ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/mge-utalk ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/microdowell ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/microsol-apc ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/netxml-ups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/nutdrv_atcl_usb ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/nutdrv_qx ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/nutdrv_siemens-sitop ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	#@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/nut-ipmipsu ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/oneac ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/optiups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/phoenixcontact_modbus ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/powercom ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/powerpanel ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/rhino ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/richcomm_usb ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/riello_ser ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/riello_usb ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/safenet ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/skel ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/snmp-ups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/socomec_jbus ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/sms_ser ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/solis ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/tripplite ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/tripplite_usb ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/tripplitesu ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/upscode2 ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/usbhid-ups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${NUT_DRVDIR}/victronups ${XIGMANAS_ROOTFS}${NUT_DRVDIR}
+
+	@${INSTALL_PROGRAM} -v /usr/local/lib/libupsclient.so.7.0.0 ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${LN} -f -v -s /usr/local/lib/libupsclient.so.7.0.0 ${XIGMANAS_ROOTFS}/usr/local/lib/libupsclient.so.7
+	@${LN} -f -v -s /usr/local/lib/libupsclient.so.7.0.0 ${XIGMANAS_ROOTFS}/usr/local/lib/libupsclient.so
+#	@${INSTALL_PROGRAM} -v ${WRKSRC}/tools/nut-scanner/.libs/libnutscan.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib
+#	@${LN} -f -v -s /usr/local/lib/libnutscan.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib/libupsclient.so
+
+	@${INSTALL_PROGRAM} -v /usr/local/bin/upsc ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/upscmd ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/upslog ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/upsmon ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/upsrw ${XIGMANAS_ROOTFS}/usr/local/bin
+#	@${INSTALL_PROGRAM} -v ${WRKSRC}/tools/nut-scanner/.libs/nut-scanner ${XIGMANAS_ROOTFS}/usr/local/bin
+
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/upsd ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/upsdrvctl ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/upssched ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/nut-devel/files/nut.in ${XIGMANAS_ROOTFS}/etc/rc.d/nut
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/nut-devel/files/nut_upslog.in ${XIGMANAS_ROOTFS}/etc/rc.d/nut_upslog
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/nut-devel/files/nut_upsmon.in ${XIGMANAS_ROOTFS}/etc/rc.d/nut_upsmon
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/nut-devel/files/upssched-cmd.in ${XIGMANAS_ROOTFS}/usr/local/bin/upssched-cmd
+
+
+### open-vm-tools/Makefile
+	@echo "Start install open-vm-tools to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/libguestlib.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib
+	@${LN} -f -v -s libguestlib.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libguestlib.so.0
+	@${LN} -f -v -s libguestlib.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libguestlib.so
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/libhgfs.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib
+	@${LN} -f -v -s libhgfs.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libhgfs.so.0
+	@${LN} -f -v -s libhgfs.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libhgfs.so
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/libvmtools.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib
+	@${LN} -f -v -s libvmtools.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libvmtools.so.0
+	@${LN} -f -v -s libvmtools.so.0.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libvmtools.so
+
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/common
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/vmsvc
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/open-vm-tools/plugins/vmsvc/libguestInfo.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/vmsvc
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/open-vm-tools/plugins/common/libhgfsServer.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/common
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/open-vm-tools/plugins/vmsvc/libpowerOps.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/vmsvc
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/open-vm-tools/plugins/vmsvc/libtimeSync.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/vmsvc
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/open-vm-tools/plugins/common/libvix.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/common
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/open-vm-tools/plugins/vmsvc/libvmbackup.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/open-vm-tools/plugins/vmsvc
+
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/vmware-tools/modules/drivers
+	@${INSTALL_KLD} -v /boot/modules/vmblock.ko ${XIGMANAS_ROOTFS}/boot/modules/vmblock.ko
+	@${INSTALL_KLD} -v /boot/modules/vmmemctl.ko ${XIGMANAS_ROOTFS}/boot/modules/vmmemctl.ko
+
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/vmtoolsd ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_SCRIPT} -v ${PREFIX}/bin/vmware-checkvm ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/vmware-hgfsclient ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/vmware-rpctool ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/vmware-toolbox-cmd ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/vmware-vmblock-fuse ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_SCRIPT} -v ${PREFIX}/bin/vmware-xferlogs ${XIGMANAS_ROOTFS}${PREFIX}/bin
+
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${INSTALL_SCRIPT} -v ${PREFIX}/share/vmware-tools/poweroff-vm-default ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${INSTALL_SCRIPT} -v ${PREFIX}/share/vmware-tools/poweron-vm-default ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${INSTALL_SCRIPT} -v ${PREFIX}/share/vmware-tools/resume-vm-default ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${INSTALL_SCRIPT} -v ${PREFIX}/share/vmware-tools/suspend-vm-default ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${INSTALL_SCRIPT} -v ${PREFIX}/bin/vm-support ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${INSTALL_SCRIPT} -v ${PREFIX}/share/vmware-tools/statechange.subr ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools/scripts/vmware
+	@${INSTALL_SCRIPT} -v ${PREFIX}/share/vmware-tools/scripts/vmware/network ${XIGMANAS_ROOTFS}${PREFIX}/share/vmware-tools/scripts/vmware
+
+
+### openssh-portable/Makefile
+	@echo "Start install openssh-portable to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/sshd ${XIGMANAS_ROOTFS}/usr/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/ssh ${XIGMANAS_ROOTFS}/usr/bin
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/sshd-session ${XIGMANAS_ROOTFS}/usr/local/libexec
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/sshd-auth ${XIGMANAS_ROOTFS}/usr/local/libexec
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/sftp-server ${XIGMANAS_ROOTFS}/usr/local/libexec
+	@${CP} -pv ${PREFIX}/etc/ssh/moduli.sample ${XIGMANAS_ROOTFS}/etc/ssh/moduli
+
+# Create link to moduli file to prevent log entry:
+# WARNING: /usr/local/etc/ssh/moduli does not exist, using fixed modulus
+	@${MKDIR} -vp ${XIGMANAS_ROOTFS}/usr/local/etc/ssh
+	@${LN} -fsv /etc/ssh/moduli ${XIGMANAS_ROOTFS}/usr/local/etc/ssh/moduli
+
+
+### pam_ldap/Makefile
+	@echo "Start install pam_ldap to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/lib/pam_ldap.so ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${LN} -fsv /var/etc/ldap.conf ${XIGMANAS_ROOTFS}/usr/local/etc/ldap.conf
+	@${LN} -fsv /var/etc/ldap.secret ${XIGMANAS_ROOTFS}/usr/local/etc/ldap.secret
+
+
+### pam_mkhomedir/Makefile
+	@echo "Start install pam_mkhomedir to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/lib/pam_mkhomedir.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${LN} -fsv /usr/local/lib/pam_mkhomedir.so.2 ${XIGMANAS_ROOTFS}/usr/local/lib/pam_mkhomedir.so
+
+
+### php84/Makefile
+	@echo "Start install php84 to ${XIGMANAS_ROOTFS}"
+	#@${INSTALL_SCRIPT} -v ${PREFIX}/bin/php-cgi-websrv ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${CP} -pv ${XIGMANAS_PORTS}/php84/files/php.ini ${XIGMANAS_ROOTFS}${PREFIX}/etc
+
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/php-cgi ${XIGMANAS_ROOTFS}${PREFIX}/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/php ${XIGMANAS_ROOTFS}${PREFIX}/bin
+
+### php84-opcache
+	@echo "Start install php84-opcache to ${XIGMANAS_ROOTFS}"
+#	 @${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/extensions/no-debug-non-zts-20220829
+#	 ${INSTALL_DATA} ${PREFIX}/lib/php/20240924/opcache.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/extensions/no-debug-non-zts-20220829
+
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+	${INSTALL_DATA} ${PREFIX}/lib/php/20240924/opcache.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+#	@${CP} -pv ${XIGMANAS_PORTS}/php84/files/opcache.ini ${XIGMANAS_ROOTFS}${PREFIX}/etc/php
+	@${CP} -pv ${XIGMANAS_PORTS}/php84/files/opcache.ini ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/ext-10-opcache.ini
+
+### php84-pecl-APCu
+	@echo "Start install php84-pecl-APCu to ${XIGMANAS_ROOTFS}"
+	@${CP} -pv ${XIGMANAS_PORTS}/php84-APCu/files/apcu.ini ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/ext-20-apcu.ini
+
+#	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/extensions/no-debug-non-zts-20220829
+#	${INSTALL_DATA} ${PREFIX}/lib/php/20240924/apcu.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/extensions/no-debug-non-zts-20220829
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+	${INSTALL_DATA} ${PREFIX}/lib/php/20240924/apcu.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+
+
+### phpvirtualbox/Makefile
+
+	@echo "Start install phpvirtualbox to ${XIGMANAS_ROOTFS}"
+	${CP} -Rpv /usr/local/www/phpvirtualbox-72 ${XIGMANAS_ROOTFS}${PREFIX}/www/phpvirtualbox
+	${RM} -f ${XIGMANAS_ROOTFS}${PREFIX}/www/*.txt
+	${RM} -f ${XIGMANAS_ROOTFS}${PREFIX}/www/*.bak
+
+
+### proftpd/Makefile
+	@echo "Start install proftpd to ${XIGMANAS_ROOTFS}"
+# rc/link
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/proftpd/files/proftpd.in ${XIGMANAS_ROOTFS}/etc/rc.d/proftpd
+	@${LN} -fsv /var/etc/proftpd.conf ${XIGMANAS_ROOTFS}/usr/local/etc/proftpd.conf
+# sbin
+.for file in proftpd
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/${file} ${XIGMANAS_ROOTFS}/usr/local/sbin
+.endfor
+# bin
+.for file in ftpdctl ftptop ftpwho
+	@${INSTALL_PROGRAM} -v /usr/local/bin/${file} ${XIGMANAS_ROOTFS}/usr/local/bin
+.endfor
+
+
+### rrdtool/Makefile
+# rrdtool-1.8.0_2
+# rrdtool-1.8.0_4
+	@echo "Start install rrdtool to ${XIGMANAS_ROOTFS}"
+# share
+	@${MKDIR} -pv ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/rrd-graph.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/rrd-graph.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/rrd-start.php ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/rrd-start.php
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/rrd-update.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/rrd-update.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/cpu.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/cpu.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/cpu_frequency.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/cpu_frequency.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/cpu_temperature.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/cpu_temperature.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/disk_usage.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/disk_usage.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/latency.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/latency.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/load_averages.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/load_averages.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/memory.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/memory.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/memory-detailed.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/memory-detailed.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/network_traffic.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/network_traffic.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/processes.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/processes.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/ups.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/ups.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/uptime.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/uptime.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/zfs_arc.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/zfs_arc.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/zfs_arceff.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/zfs_arceff.sh
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/rrdtool/files/templates/zfs_l2arc.sh ${XIGMANAS_ROOTFS}/usr/local/share/rrdgraphs/templates/zfs_l2arc.sh
+
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rrdcached ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rrdcgi ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rrdcreate ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rrdinfo ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rrdtool ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rrdupdate ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/lib/librrd.so.8.3.0 ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${LN} -fsv /usr/local/lib/librrd.so.8.3.0 ${XIGMANAS_ROOTFS}/usr/local/lib/librrd.so
+	@${LN} -fsv /usr/local/lib/librrd.so.8.3.0 ${XIGMANAS_ROOTFS}/usr/local/lib/librrd.so.8
+# bindings
+
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${SITE_PERL}/mach/5.42/auto/RRDs
+	@${CP} -pv ${SITE_PERL}/mach/5.42/auto/RRDs/RRDs.so ${XIGMANAS_ROOTFS}${SITE_PERL}/mach/5.42/auto/RRDs/
+	@${CP} -pv ${SITE_PERL}/mach/5.42/RRDs.pm ${XIGMANAS_ROOTFS}${SITE_PERL}/mach/5.42
+	@${CP} -pv ${SITE_PERL}/RRDp.pm ${XIGMANAS_ROOTFS}${SITE_PERL}
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PYTHON_SITELIBDIR}
+
+## py311-rrdtool
+
+	@${INSTALL_PROGRAM} -v ${PYTHON_SITELIBDIR}/rrdtool.cpython-311.so ${XIGMANAS_ROOTFS}${PYTHON_SITELIBDIR}
+
+## dejavu
+# fonts
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/share/fonts
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts/conf.avail
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts/conf.d
+	@${RM} -rf ${XIGMANAS_ROOTFS}${PREFIX}/share/fonts/dejavu
+	@${CP} -Rpv ${PREFIX}/share/fonts/dejavu ${XIGMANAS_ROOTFS}${PREFIX}/share/fonts
+	@${CP} -pv ${PREFIX}/etc/fonts/fonts.conf ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts
+## fontconfig	
+	@${CP} -pv ${PREFIX}/etc/fonts/fonts.dtd ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts
+
+	@${CP} -pv ${PREFIX}/etc/fonts/conf.avail/57-dejavu-sans-mono.conf ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts/conf.avail
+	@${CP} -pv ${PREFIX}/etc/fonts/conf.avail/57-dejavu-sans.conf ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts/conf.avail
+	@${CP} -pv ${PREFIX}/etc/fonts/conf.avail/57-dejavu-serif.conf ${XIGMANAS_ROOTFS}${PREFIX}/etc/fonts/conf.avail
+	@${LN} -fsv ${PREFIX}/etc/fonts/conf.avail/57-dejavu-sans-mono.conf ${XIGMANAS_ROOTFS}/usr/local/etc/fonts/conf.d/
+	@${LN} -fsv ${PREFIX}/etc/fonts/conf.avail/57-dejavu-sans.conf ${XIGMANAS_ROOTFS}/usr/local/etc/fonts/conf.d/
+	@${LN} -fsv ${PREFIX}/etc/fonts/conf.avail/57-dejavu-serif.conf ${XIGMANAS_ROOTFS}/usr/local/etc/fonts/conf.d/
+
+
+### rsync/Makefile
+	@echo "Start install rsync to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/rsync ${XIGMANAS_ROOTFS}/usr/local/bin
+
+### samba422/Makefile
+	@echo "Start install samba422 to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/samba422/files/xigmanas-samba.in ${XIGMANAS_ROOTFS}/etc/rc.d/samba
+# rc/link
+	@${LN} -fsv /var/etc/smb4.conf ${XIGMANAS_ROOTFS}${PREFIX}/etc/smb4.conf
+# sbin
+.for file in eventlogadm nmbd samba smbd winbindd
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/sbin
+.endfor
+.for file in samba-gpupdate samba_dnsupdate samba_downgrade_db samba_kcc samba_spnupdate samba_upgradedns
+	@${INSTALL_SCRIPT} -v ${PREFIX}/sbin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/sbin
+.endfor
+# bin
+.for file in cifsdd dbwrap_tool dumpmscat gentest ldbadd ldbdel ldbedit ldbmodify ldbrename ldbsearch locktest masktest mdsearch mvxattr ndrdump net nmblookup ntlm_auth oLschema2ldif pdbedit profiles regdiff regpatch regshell regtree rpcclient samba-regedit sharesec smbcacls smbclient smbcontrol smbcquotas smbget smbpasswd smbspool smbstatus smbtorture smbtree tdbbackup tdbdump tdbrestore tdbtool testparm vfstest wbinfo wspsearch
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/bin
+.endfor
+.for file in samba-log-parser samba-tool smbtar
+	@${INSTALL_SCRIPT} -v ${PREFIX}/bin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/bin
+.endfor
+# lib
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/samba4
+	for file in ${PREFIX}/lib/samba4/*; do \
+		[ -h "$${file}" ] && continue; \
+		[ -f "$${file}" ] && ${CP} -pv $${file} ${XIGMANAS_ROOTFS}${PREFIX}/lib; \
+		[ -d "$${file}" ] && ${CP} -Rpv $${file} ${XIGMANAS_ROOTFS}${PREFIX}/lib; \
+	done
+	@echo "End install lib for file in ${PREFIX}/lib/*"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/nss_winbind.so.1 ${XIGMANAS_ROOTFS}${PREFIX}/lib/nss_winbind.so.1
+	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/nss_wins.so.1 ${XIGMANAS_ROOTFS}${PREFIX}/lib/nss_wins.so.1
+# 	@${INSTALL_PROGRAM} -v ${PREFIX}/lib/pam_winbind.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/pam_winbind.so
+	@${LN} -f -v -s nss_winbind.so.1 ${XIGMANAS_ROOTFS}${PREFIX}/lib/nss_winbind.so
+	@${LN} -f -v -s nss_wins.so.1 ${XIGMANAS_ROOTFS}${PREFIX}/lib/nss_wins.so
+# share
+	@${CP} -Rpv ${PREFIX}/share/samba422 ${XIGMANAS_ROOTFS}${PREFIX}/share
+# include
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/include
+	@${CP} -Rpv ${PREFIX}/include/samba4 ${XIGMANAS_ROOTFS}${PREFIX}/include/
+
+# python3.11
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+	for file in talloc.cpython-311.so tdb.cpython-311.so ldb.cpython-311.so; do \
+		${CP} -pv ${PREFIX}/lib/python3.11/site-packages/$${file} ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages; \
+	done
+	@${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/dns ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+# copy required modules dns markdown
+	@${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/dns ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+	@${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/markdown ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+### samba-nsupdate	
+	@${CP} -pv ${PREFIX}/bin/samba-nsupdate ${XIGMANAS_ROOTFS}${PREFIX}/bin
+# libexec
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/libexec/samba
+	@${CP} -Rpv ${PREFIX}/libexec/samba ${XIGMANAS_ROOTFS}${PREFIX}/libexec/
+# lib modules
+# ldb/tdb
+
+
+
+### scponly/Makefile
+	@echo "Start install scponly to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/scponly ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### sipcalc/Makefile
+	@echo "Start install sipcalc to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/sipcalc ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### smartmontools/Makefile
+	@echo "Start install smartmontools to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/smartctl ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/smartd ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${CP} -pv ${PREFIX}/etc/smartd_warning.sh ${XIGMANAS_ROOTFS}${PREFIX}/etc
+
+
+### spindown/Makefile
+	@echo "Start install spindown to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/spindown ${XIGMANAS_ROOTFS}/usr/local/sbin
+
+
+### sudo/Makefile
+	@echo "Start install sudo to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -m 4755 -v ${PREFIX}/bin/sudo ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/sudoreplay ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}/usr/local/libexec/sudo
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/sudo/sudo_intercept.so ${XIGMANAS_ROOTFS}/usr/local/libexec/sudo
+	@${INSTALL_PROGRAM} -v /usr/local/sbin/visudo ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${LN} -fsv /usr/local/bin/sudo ${XIGMANAS_ROOTFS}/usr/local/bin/sudoedit
+	@${CP} -Rpv ${PREFIX}/libexec/sudo ${XIGMANAS_ROOTFS}/usr/local/libexec
+	@${INSTALL_DATA} -m 440 -v ${XIGMANAS_PORTS}/sudo/files/sudoers ${XIGMANAS_ROOTFS}/usr/local/etc
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}/usr/local/etc/pam.d
+	@${INSTALL_DATA} -v /usr/local/etc/pam.d/sudo.default ${XIGMANAS_ROOTFS}/usr/local/etc/pam.d/sudo
+
+
+### syncthing/Makefile
+	@echo "Start install syncthing to ${XIGMANAS_ROOTFS}"
+# rc
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/syncthing/files/syncthing.in ${XIGMANAS_ROOTFS}/etc/rc.d/syncthing
+# bin
+	@${INSTALL_PROGRAM} -v /usr/local/bin/syncthing ${XIGMANAS_ROOTFS}${PREFIX}/bin
+
+
+### tftp-hpa/Makefile
+	@echo "Start install tftp-hpa to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/tftp-hpa/files/tftpd.in ${XIGMANAS_ROOTFS}/etc/rc.d/tftpd
+	@${INSTALL_PROGRAM} -v /usr/local/libexec/in.tftpd ${XIGMANAS_ROOTFS}/usr/local/libexec/tftpd
+
+
+### tmux/Makefile
+	@echo "Start install tmux to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/tmux ${XIGMANAS_ROOTFS}/bin
+
+
+### unison/Makefile
+	@echo "Start install unison to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/unison ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### wait_on/Makefile
+	@echo "Start install wait_on to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /usr/local/bin/wait_on ${XIGMANAS_ROOTFS}/usr/local/bin
+
+
+### wol/Makefile
+	@echo "Start install wol to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /${PREFIX}/bin/wol ${XIGMANAS_ROOTFS}/${PREFIX}/bin
+
+
+### xmlstarlet/Makefile
+	@echo "Start install xmlstarlet to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v /${PREFIX}/bin/xml ${XIGMANAS_ROOTFS}/${PREFIX}/bin
+
+
+### zoneinfo/Makefile
+	@${MKDIR} -p ${WRKSRC}
+	# Compress zoneinfo data, exclude some useless files.
+	@${ECHO_CMD} "Factory" > ${WRKSRC}/zoneinfo.exlude
+	@${ECHO_CMD} "posixrules" >> ${WRKSRC}/zoneinfo.exlude
+	@${ECHO_CMD} "zone.tab" >> ${WRKSRC}/zoneinfo.exlude
+
+	@echo "Start install zoneinfo to ${XIGMANAS_ROOTFS}"
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}/usr/share
+#	Copy into temporary folder without hardlinks
+	cp -RLpf /usr/share/zoneinfo ${WRKSRC}/zoneinfo.tmp
+	${TAR} -c -f/-v -f - -X ${WRKSRC}/zoneinfo.exlude -C ${WRKSRC}/zoneinfo.tmp/ . | ${XZ_CMD} -cv > ${XIGMANAS_ROOTFS}/usr/share/zoneinfo.txz
+	rm -rf ${WRKSRC}/zoneinfo.tmp
+
+### phpmyadmin/Makefile
+WWWDIR = /usr/local/www/phpMyAdmin
+phpmyadmin: 
+	@echo "Start install phpmyadmin to ${XIGMANAS_ROOTFS}" 
+	@${CP} -Rpv ${WWWDIR} ${XIGMANAS_ROOTFS}${PREFIX}/www
+
+
+### mariadb118
+mariadb118:
+	@echo "Start install mariadb118 to ${XIGMANAS_ROOTFS}"
+	mkdir -p ${XIGMANAS_PKG_STAGE}/mariadb118/
+	tar xpf $$(ls -t /var/cache/pkg/mariadb118-server*~*.pkg|head -n1) -C ${XIGMANAS_PKG_STAGE}/mariadb118/
+	tar xpf $$(ls -t /var/cache/pkg/mariadb118-client*~*.pkg|head -n1) -C ${XIGMANAS_PKG_STAGE}/mariadb118/
+#	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/mariadb118/${PREFIX}/share/mariadb118 ${XIGMANAS_ROOTFS}${PREFIX}/share
+# rc
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/mariadb118/files/mysqldb.in ${XIGMANAS_ROOTFS}/etc/rc.d/mysqldb
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/mariadb118/files/mysql-server.in ${XIGMANAS_ROOTFS}${PREFIX}/etc/rc.d/mysql-server
+# bin
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/mariadb118/${PREFIX}/bin ${XIGMANAS_ROOTFS}${PREFIX}
+# share
+	@${RM} -rf  ${XIGMANAS_ROOTFS}${PREFIX}/share/mysql
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/mariadb118/${PREFIX}/share/mysql ${XIGMANAS_ROOTFS}${PREFIX}/share
+# lib
+	@${RM} -rf  ${XIGMANAS_ROOTFS}${PREFIX}/lib/mysql
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/mariadb118/${PREFIX}/lib/mysql ${XIGMANAS_ROOTFS}${PREFIX}/lib
+	@${INSTALL_PROGRAM} -v ${XIGMANAS_PKG_STAGE}/mariadb118/${PREFIX}/libexec/mariadbd ${XIGMANAS_ROOTFS}${PREFIX}/libexec
+	@${LN} -fsv /usr/local/libexec/mariadbd ${XIGMANAS_ROOTFS}${PREFIX}/libexec/mysqld
+
+### vbox/Makefile
+vbox:
+	@echo "Start install vbox ${XIGMANAS_ROOTFS}"
+	mkdir -p ${XIGMANAS_PKG_STAGE}/vbox/
+
+	tar xpf $$(ls -t /var/cache/pkg/virtualbox-ose-nox11-72*~*.pkg|head -n1) -C ${XIGMANAS_PKG_STAGE}/vbox/
+	tar xpf $$(ls -t /var/cache/pkg/virtualbox-ose-kmod-72*~*.pkg|head -n1) -C ${XIGMANAS_PKG_STAGE}/vbox/
+#	tar xpf $$(ls -t /var/cache/pkg/virtualbox-ose-additions-nox11-*~*.pkg|head -n1) -C ${XIGMANAS_PKG_STAGE}/vbox/
+
+# kmod
+.for file in vboxdrv.ko vboxnetadp.ko vboxnetflt.ko
+	@${INSTALL_KLD} -v ${XIGMANAS_PKG_STAGE}/vbox/boot/modules/${file} ${XIGMANAS_ROOTFS}/boot/modules
+.endfor
+# rc
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/etc/rc.d/vboxnet ${XIGMANAS_ROOTFS}/usr/local/etc/rc.d
+.for file in vboxheadless vboxwatchdog vboxwebsrv
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/etc/rc.d/${file} ${XIGMANAS_ROOTFS}/usr/local/etc/rc.d
+.endfor
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/vbox/files/vbox.in ${XIGMANAS_ROOTFS}/etc/rc.d/vbox
+# bin
+.for file in VBoxAutostart VBoxBalloonCtrl VBoxBugReport VBoxHeadless VBoxManage VBoxVRDP vboxautostart vboxballoonctrl vboxbugreport vboxheadless vboximg-mount vboxmanage vboxwebsrv
+	@${LN} -fsv /usr/local/lib/virtualbox/VBox.sh ${XIGMANAS_ROOTFS}/usr/local/bin/${file}
+.endfor
+# lib
+	@${RM} -rf ${XIGMANAS_ROOTFS}/usr/local/lib/virtualbox
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/lib/virtualbox ${XIGMANAS_ROOTFS}/usr/local/lib
+.for file in VBoxHeadless VBoxNetAdpCtl VBoxNetDHCP
+	chown 0:920 ${XIGMANAS_ROOTFS}/usr/local/lib/virtualbox/${file}
+	chmod 4510 ${XIGMANAS_ROOTFS}/usr/local/lib/virtualbox/${file}
+.endfor
+# share
+	@${RM} -rf ${XIGMANAS_ROOTFS}/usr/local/share/virtualbox-ose
+	@${CP} -Rpv ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/share/virtualbox-ose ${XIGMANAS_ROOTFS}/usr/local/share
+# misc
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+	# @${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/vboxapi ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+	# @${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/xpcom ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+	# @${CP} -Rpv ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/lib/python3.11/site-packages/vboxapi ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+	# @${CP} -Rpv ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/lib/python3.11/site-packages/xpcom ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+
+### vbox-additions/Makefile
+vbox-additions:
+	@echo "Start install vbox-additions to ${XIGMANAS_ROOTFS}"
+# kmod
+.for file in vboxguest.ko
+	@${INSTALL_KLD} -v ${XIGMANAS_PKG_STAGE}/vbox/boot/modules/${file} ${XIGMANAS_ROOTFS}/boot/modules
+.endfor
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/sbin/VBoxControl ${XIGMANAS_ROOTFS}${PREFIX}/sbin
+	@${INSTALL_PROGRAM} -v ${XIGMANAS_PKG_STAGE}/vbox/${PREFIX}/sbin/VBoxService ${XIGMANAS_ROOTFS}${PREFIX}/sbin
+
+### py-wsdd/Makefile
+py-wsdd:
+	@echo "Start install py-wsdd to ${XIGMANAS_ROOTFS}"
+# rc/link
+	@${INSTALL_SCRIPT} -v  ${XIGMANAS_PORTS}/py-wsdd/files/wsdd.in ${XIGMANAS_ROOTFS}/etc/rc.d/wsdd
+#bin
+	@${INSTALL_SCRIPT} -v /usr/local/bin/wsdd ${XIGMANAS_ROOTFS}/usr/local/bin/wsdd
+
+### transmission/Makefile
+transmission:
+	@echo "Start install transmission to ${XIGMANAS_ROOTFS}"
+# dir
+	@${MKDIR} -pv ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web/images
+# script
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/transmission/files/transmission.in ${XIGMANAS_ROOTFS}/etc/rc.d/${PORTNAME}
+# bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/transmission-daemon ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/transmission-create ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/transmission-edit ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/transmission-remote ${XIGMANAS_ROOTFS}/usr/local/bin
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/transmission-show ${XIGMANAS_ROOTFS}/usr/local/bin
+# data
+	@${INSTALL_DATA} -v ${PREFIX}/share/transmission/public_html/transmission-app.css ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web
+	@${INSTALL_DATA} -v ${PREFIX}/share/transmission/public_html/index.html ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web
+	@${INSTALL_DATA} -v ${PREFIX}/share/transmission/public_html/transmission-app.js ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web
+	@${INSTALL_DATA} -v ${PREFIX}/share/transmission/public_html/images/favicon.ico ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web/images
+	@${INSTALL_DATA} -v ${PREFIX}/share/transmission/public_html/images/favicon.png ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web/images
+	@${INSTALL_DATA} -v ${PREFIX}/share/transmission/public_html/images/webclip-icon.png ${XIGMANAS_ROOTFS}/usr/local/share/transmission/web/images
+
+
+### minidlna
+minidlna:
+	@echo "Start install minidlna to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/minidlnad ${XIGMANAS_ROOTFS}/usr/local/sbin
+	@${INSTALL_SCRIPT} -v ${XIGMANAS_PORTS}/minidlna/files/minidlna.in ${XIGMANAS_ROOTFS}/etc/rc.d/minidlna
+
+
+### php84 configured modules
+php84-mods:
+	@echo "Start install php84-mods to ${XIGMANAS_ROOTFS}"
+### configure args
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+.	for file in bcmath bz2 ctype curl dom exif filter ftp gd gettext gmp iconv imap intl ldap mbstring mcrypt mysqli pdo pdo_mysql pdo_sqlite session simplexml soap sockets sqlite3 sysvmsg sysvsem sysvshm tokenizer xml zip zlib
+		echo ${file}
+		@${INSTALL_DATA} ${PREFIX}/lib/php/20240924/${file}.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+		@${CP} -pv ${PREFIX}/etc/php/ext-??-${file}.ini.sample ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/		
+.	endfor
+# 18
+.	for file in session
+		echo ${file}
+		@${INSTALL_DATA} ${PREFIX}/lib/php/20240924/${file}.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+		@${CP} -pv ${PREFIX}/etc/php/ext-18-${file}.ini.sample ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/ext-18-${file}.ini		
+.	endfor
+# 20
+.	for file in bcmath bz2 ctype curl dom exif filter ftp gd gettext gmp iconv intl ldap mbstring mcrypt mysqli pdo simplexml soap sockets sqlite3 sysvmsg sysvsem sysvshm tokenizer xml zip zlib
+		echo ${file}
+		@${INSTALL_DATA} ${PREFIX}/lib/php/20240924/${file}.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+		@${CP} -pv ${PREFIX}/etc/php/ext-20-${file}.ini.sample ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/ext-20-${file}.ini
+.	endfor
+# 30
+.	for file in pdo_mysql pdo_sqlite
+		echo ${file}
+		@${INSTALL_DATA} ${PREFIX}/lib/php/20240924/${file}.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/php/20240924
+		@${CP} -pv ${PREFIX}/etc/php/ext-30-${file}.ini.sample ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/ext-30-${file}.ini
+.	endfor
+	@${CP} -pv ${PREFIX}/etc/php/ext-20-imap.ini.sample ${XIGMANAS_ROOTFS}${PREFIX}/etc/php/ext-20-imap.ini
+
+### gettext
+gettext:
+	@echo "Start install gettext to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/bin/gettext ${XIGMANAS_ROOTFS}/usr/local/bin
+
+### python311/Makefile
+python311:
+	@echo "Start install python311 to ${XIGMANAS_ROOTFS}"
+# bin
+.for file in python3.11
+	@${INSTALL_PROGRAM} -v /usr/local/bin/${file} ${XIGMANAS_ROOTFS}/usr/local/bin
+.endfor
+# lib
+	touch ${XIGMANAS_ROOTFS}${PREFIX}/lib/libpython3.11.so.1.0-gdb.py
+.for file in python3.11
+	find ${XIGMANAS_ROOTFS}${PREFIX}/lib/libpython3.11.so.1.0-gdb.py -delete
+.endfor
+	@${INSTALL_PROGRAM} -v /usr/local/lib/libpython3.11.so.1.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib
+	@${LN} -f -v -s libpython3.11.so.1.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libpython3.11.so
+	@${LN} -f -v -s libpython3.11.so.1.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libpython3.11.so.1
+	${CP} -Rpv ${PREFIX}/lib/python3.11 ${XIGMANAS_ROOTFS}/usr/local/lib
+	${RM} -rfv ${XIGMANAS_ROOTFS}/usr/local/lib/python3*/test
+
+### opie
+opie:
+	@echo "Start install opie to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libopie.so* ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${INSTALL_DATA} -v ${PREFIX}/lib/pam_opie.so* ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${INSTALL_DATA} -v ${PREFIX}/lib/pam_opieaccess.so* ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+
+### openzfs
+openzfs: 
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zfs ${XIGMANAS_ROOTFS}/sbin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zpool ${XIGMANAS_ROOTFS}/sbin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zdb ${XIGMANAS_ROOTFS}/usr/bin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zfs_ids_to_path ${XIGMANAS_ROOTFS}${PREFIX}/sbin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zinject ${XIGMANAS_ROOTFS}/usr/bin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zstream ${XIGMANAS_ROOTFS}/usr/bin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/zstreamdump ${XIGMANAS_ROOTFS}/usr/bin/
+	@${INSTALL_PROGRAM} -v ${PREFIX}/sbin/ztest ${XIGMANAS_ROOTFS}/usr/bin/
+
+	#@${INSTALL_DATA} -vd ${PREFIX}/libexec/zfs ${XIGMANAS_ROOTFS}${PREFIX}/libexec/
+	@cp -vrp ${PREFIX}/libexec/zfs ${XIGMANAS_ROOTFS}${PREFIX}/libexec/
+
+	@${INSTALL_DATA} -v ${PREFIX}/libdata/pkgconfig/libzfs*.pc ${XIGMANAS_ROOTFS}${PREFIX}/libdata/pkgconfig/
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libnvpair.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${LN} -fsv libnvpair.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libnvpair.so.3
+	@${LN} -fsv libnvpair.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libnvpair.so.3
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libuutil.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${LN} -fsv libuutil.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libuutil.so.3
+	@${LN} -fsv libuutil.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libuutil.so
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libzfs.so.6.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${LN} -fsv libzfs.so.6.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzfs.so.6
+	@${LN} -fsv libzfs.so.6.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzfs.so
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libzfs_core.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${LN} -fsv libzfs_core.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzfs_core.so.3
+	@${LN} -fsv libzfs_core.so.3.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzfs_core.so
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libzfsbootenv.so.1.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${LN} -fsv libzfsbootenv.so.1.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzfsbootenv.so.1
+	@${LN} -fsv libzfsbootenv.so.1.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzfsbootenv.so
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/libzpool.so.6.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+	@${LN} -fsv libzpool.so.6.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzpool.so.6
+	@${LN} -fsv libzpool.so.6.0.0 ${XIGMANAS_ROOTFS}${PREFIX}/lib/libzpool.so
+
+	#@${INSTALL_DATA} -v ${PREFIX}/etc/zfs ${XIGMANAS_ROOTFS}${PREFIX}/etc/
+	@cp -vrp ${PREFIX}/etc/zfs ${XIGMANAS_ROOTFS}${PREFIX}/etc/
+
+	@${INSTALL_DATA} -v ${PREFIX}/lib/security/pam_zfs_key.so ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+
+	@${INSTALL_DATA} -v /boot/modules/openzfs.ko ${XIGMANAS_ROOTFS}/boot/modules/
+
+
+
+
+.include <bsd.port.mk>

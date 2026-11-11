@@ -1,0 +1,211 @@
+/*
+	navbar-until-2022-12-31.css
+
+	Part of XigmaNAS® (https://www.xigmanas.com).
+	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies
+	of XigmaNAS®, either expressed or implied.
+*/
+:root
+{
+/*
+	bgc-: background color
+	bgi-: background image
+	txc-: text color
+	boc-: border color
+	bos-: border style
+	bow-: border width
+	bop-: border properties => [border width] [border style] [border color]
+*/
+	--bgc-nav: gray;
+	--bgi-nav: linear-gradient(#9C9C9C,#777777 4%,black);
+	--txc-nav: #CCCCCC;
+	--bop-nav: 0.0625rem solid black;
+
+	--txc-nav-hovered: white;
+
+	--bgc-nav-sub: #101010;
+	--bgi-nav-sub: linear-gradient(#101010,#95A7C0 70%);
+	--txc-nav-sub: white;
+
+	--bgc-nav-sub-hovered: white;
+	--bgi-nav-sub-hovered: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	--txc-nav-sub-hovered: black;
+
+	--bgc-nav-sub-separator: #AAAAAA;
+}
+
+#gapheader
+{
+	display: none;
+}
+
+#navhdr
+{
+	background-color: gray;
+	background-color: var(--bgc-nav);
+	background-image: linear-gradient(#9C9C9C,#777777 4%,black);
+	background-image: var(--bgi-nav);
+	position: relative;
+	z-index: 20;
+}
+
+#navhdr ul.lev1
+{
+	margin: 0 0 1rem 0;
+	padding: 0;
+}
+
+#navhdr a.lev1
+{
+	display: none;
+}
+
+#navhdr ul
+{
+	list-style: none;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+#navhdr ul.lev3
+{
+	display: none;
+	flex-direction: column;
+	align-items: stretch;
+	padding: 0;
+	position: absolute;
+	background-color: #101010;
+	background-color: var(--bgc-nav-sub);
+	background-image: linear-gradient(#101010,#95A7C0 70%);
+	background-image: var(--bgi-nav-sub);
+	opacity: 0.98;
+	border: 0.0625rem solid black;
+	border: var(--bop-nav);
+	font-size: 1.25rem;
+	font-weight: normal;
+	min-width: 14rem;
+}
+
+#navhdr ul.lev3 span.tabseparator
+{
+	background-color: #AAAAAA;
+	background-color: var(--bgc-nav-sub-separator);
+	display: block;
+	line-height: 0.125rem;
+	height: 0.125rem;
+}
+
+#navhdr a.lev3
+{
+	display: block;
+	margin: 0;
+	padding: 0.3125rem 0.625rem;
+	width: auto;
+	white-space: nowrap;
+	text-align: left;
+	text-decoration: none;
+	color: white;
+	color: var(--txc-nav-sub);
+	background-color: transparent;
+}
+
+#navhdr ul.lev2
+{
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	margin: 0;
+	padding: 0 2rem;
+}
+
+#navhdr li.lev2
+{
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+
+#navhdr a.lev2
+{
+	display: block;
+	text-decoration: none;
+	padding: 0.3125rem 0.5rem;
+	color: #CCCCCC;
+	color: var(--txc-nav);
+	background-color: transparent;
+}
+
+#navhdr a.lev2so {
+    text-align: center;
+}
+
+#navhdr ul.lev2:hover > li > a
+{
+	color: white;
+	color: var(--txc-nav-hovered);
+}
+
+#navhdr a.lev2 > img
+{
+	vertical-align: text-bottom;
+	-webkit-filter: brightness(80%);
+	filter: brightness(80%);
+}
+
+#navhdr ul.lev2:hover > li > a > img
+{
+	-webkit-filter: brightness(100%);
+	filter: brightness(100%);
+}
+
+#navhdr li.lev2:hover > a > img
+{
+	-webkit-filter: invert(100%);
+	filter: invert(100%);
+}
+
+#navhdr li.lev2:hover > ul,
+#navhdr li.lev2:focus > ul
+{
+	display: flex;
+}
+
+#navhdr li.lev2:hover > a,
+#navhdr li.lev3 a:hover
+{
+	color: black !important;
+	color: var(--txc-nav-sub-hovered) !important;
+	background-color: white;
+	background-color: var(--bgc-nav-sub-hovered);
+	background-image: linear-gradient(white 34%,#CCCCCC 78%,#E1E1E1);
+	background-image: var(--bgi-nav-sub-hovered);
+}
+
+#navhdr li.lev2:hover > a
+{
+	border-radius: 0.9375rem;
+}

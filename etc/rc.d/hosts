@@ -1,0 +1,63 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# Updating hosts
+#
+
+# PROVIDE: hosts
+# REQUIRE: netif
+# BEFORE: NETWORKING
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+echo "Updating hosts."
+
+# LAN IF/ADDR
+_ifn=`configxml_get "//interfaces/lan/if"`
+_ifn=`get_if ${_ifn}`
+_ipaddr=`get_ipaddr inet ${_ifn}`
+
+# Generate /etc/hosts file
+/usr/local/bin/xml sel --template \
+	--match "//system" \
+		--if "string-length(domain) > 0" \
+			--value-of "concat('::1 localhost localhost.',domain)" --nl \
+			--value-of "concat('127.0.0.1 localhost localhost.',domain)" --nl \
+		--else \
+			--output "::1 localhost" --nl \
+			--output "127.0.0.1 localhost" --nl \
+		--break \
+		--if "string-length(hostname) > 0" \
+			--if "//interfaces/lan/ipaddr[. != 'dhcp']" \
+				--if "string-length(domain) > 0" \
+					--value-of "concat(//interfaces/lan/ipaddr,' ',hostname,'.',domain,' ',hostname)" --nl \
+				--else \
+					--value-of "concat(//interfaces/lan/ipaddr,' ',hostname)" --nl \
+				--break \
+			--elif "string-length('${_ipaddr}') > 0" \
+				--if "string-length(domain) > 0" \
+					--value-of "concat('${_ipaddr}',' ',hostname,'.',domain,' ',hostname)" --nl \
+				--else \
+					--value-of "concat('${_ipaddr}',' ',hostname)" --nl \
+				--break \
+			--break \
+		--break \
+		--match "//system/hosts" \
+			--if "string-length(name) > 0" \
+				--value-of "concat(address,' ',name)" --nl \
+			--break \
+		--break \
+	--break \
+	${configxml_file} | /usr/local/bin/xml unesc > /etc/hosts
+
+# Generate /etc/hosts.allow file
+/usr/local/bin/xml sel --template \
+	--match "//system/hostsacl/rule" \
+		--value-of "." --nl \
+	--break \
+	${configxml_file} | /usr/local/bin/xml unesc > /etc/hosts.allow

@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# GELI disk encryption
+#
+
+# PROVIDE: geli2
+# REQUIRE: FILESYSTEMS
+# KEYWORD: nojail
+
+. /etc/rc.subr
+
+name="geli2"
+desc="GELI disk encryption"
+start_cmd="geli2_start"
+stop_cmd=":"
+
+geli2_start()
+{
+	devices=$(geli_make_list)
+
+	for provider in ${devices}; do
+		provider_=$(ltr ${provider} '/-' '_')
+
+		eval "autodetach=\${geli_${provider_}_autodetach}"
+		if [ -z "${autodetach}" ]; then
+			autodetach=${geli_autodetach}
+		fi
+		if checkyesno autodetach && [ -e "/dev/${provider}.eli" ]; then
+			geli detach -l ${provider}
+		fi
+	done
+}
+
+load_rc_config $name
+run_rc_command "$1"

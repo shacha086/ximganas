@@ -1,0 +1,16 @@
+--- clients.c.orig	2025-07-25 03:55:58.000000000 +0200
++++ clients.c	2025-10-13 06:46:38.000000000 +0200
+@@ -153,6 +153,13 @@
+ 	  EUserAgent
+ 	},
+ 
++	{ EDenonHeos,
++	  FLAG_FORCE_SORT | FLAG_AUDIO_ONLY,
++	  "Denon Heos",
++	  " Denon-Heos/",
++	  EUserAgent
++	},
++
+ 	{ EFreeBox,
+ 	  FLAG_RESIZE_THUMBS,
+ 	  "FreeBox",

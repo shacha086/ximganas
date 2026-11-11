@@ -1,0 +1,292 @@
+--- sys/dev/bge/if_bge.c.orig	2025-10-04 23:10:30.724830000 +0200
++++ sys/dev/bge/if_bge.c	2025-10-08 00:28:08.000000000 +0200
+@@ -1,4 +1,4 @@
+-/*-
++/*
+  * SPDX-License-Identifier: BSD-4-Clause
+  *
+  * Copyright (c) 2001 Wind River Systems
+@@ -479,6 +479,8 @@
+ static void bge_stop_fw(struct bge_softc *);
+ static int bge_reset(struct bge_softc *);
+ static void bge_link_upd(struct bge_softc *);
++static void bge_setwol(struct bge_softc *);
++static void bge_clrwol(struct bge_softc *);
+ 
+ static void bge_ape_lock_init(struct bge_softc *);
+ static void bge_ape_read_fw_ver(struct bge_softc *);
+@@ -701,7 +703,7 @@
+ 
+ 	sc->bge_mfw_flags |= BGE_MFW_ON_APE;
+ 
+-	/* Fetch the APE firmware type and version. */
++	/* Fetch the APE firwmare type and version. */
+ 	apedata = APE_READ_4(sc, BGE_APE_FW_VERSION);
+ 	features = APE_READ_4(sc, BGE_APE_FW_FEATURES);
+ 	if ((features & BGE_APE_FW_FEATURE_NCSI) != 0) {
+@@ -888,6 +890,7 @@
+ static void
+ bge_ape_driver_state_change(struct bge_softc *sc, int kind)
+ {
++	struct ifnet *ifp;
+ 	uint32_t apedata, event;
+ 
+ 	if ((sc->bge_mfw_flags & BGE_MFW_ON_APE) == 0)
+@@ -920,8 +923,24 @@
+ 		event = BGE_APE_EVENT_STATUS_STATE_START;
+ 		break;
+ 	case BGE_RESET_SHUTDOWN:
+-		APE_WRITE_4(sc, BGE_APE_HOST_DRVR_STATE,
+-		    BGE_APE_HOST_DRVR_STATE_UNLOAD);
++                /* XXX  Needs rewording
++                 * With the interface we are currently using,
++                 * APE does not track driver state.  Wiping
++                 * out the HOST SEGMENT SIGNATURE forces
++                 * the APE to assume OS absent status.
++                 */
++		APE_WRITE_4(sc, BGE_APE_HOST_SEG_SIG, 0);
++
++		ifp = sc->bge_ifp;
++		if ((if_getcapenable(ifp) & IFCAP_WOL) != 0) {
++		    APE_WRITE_4(sc, BGE_APE_HOST_WOL_SPEED,
++			BGE_APE_HOST_WOL_SPEED_AUTO);
++		    APE_WRITE_4(sc, BGE_APE_HOST_DRVR_STATE,
++			BGE_APE_HOST_DRVR_STATE_WOL);
++		} else {
++		    APE_WRITE_4(sc, BGE_APE_HOST_DRVR_STATE,
++			BGE_APE_HOST_DRVR_STATE_UNLOAD);
++		}
+ 		event = BGE_APE_EVENT_STATUS_STATE_UNLOAD;
+ 		break;
+ 	case BGE_RESET_SUSPEND:
+@@ -2159,7 +2178,7 @@
+ 	 * The BD ring replenish thresholds control how often the
+ 	 * hardware fetches new BD's from the producer rings in host
+ 	 * memory.  Setting the value too low on a busy system can
+-	 * starve the hardware and reduce the throughput.
++	 * starve the hardware and recue the throughpout.
+ 	 *
+ 	 * Set the BD ring replentish thresholds. The recommended
+ 	 * values are 1/8th the number of descriptors allocated to
+@@ -2295,7 +2314,7 @@
+ 	 */
+ 	CSR_WRITE_4(sc, BGE_RXLP_CFG, 0x181);
+ 
+-	/* Initialize RX list placement stats mask. */
++	/* Inialize RX list placement stats mask. */
+ 	CSR_WRITE_4(sc, BGE_RXLP_STATS_ENABLE_MASK, 0x007FFFFF);
+ 	CSR_WRITE_4(sc, BGE_RXLP_STATS_CTL, 0x1);
+ 
+@@ -2699,6 +2718,7 @@
+ static int
+ bge_probe(device_t dev)
+ {
++	char buf[96];
+ 	char model[64];
+ 	const struct bge_revision *br;
+ 	const char *pname;
+@@ -2726,8 +2746,9 @@
+ 				    br != NULL ? br->br_name :
+ 				    "NetXtreme/NetLink Ethernet Controller");
+ 			}
+-			device_set_descf(dev, "%s, %sASIC rev. %#08x",
++			snprintf(buf, sizeof(buf), "%s, %sASIC rev. %#08x",
+ 			    model, br != NULL ? "" : "unknown ", id);
++			device_set_desc_copy(dev, buf);
+ 			return (BUS_PROBE_DEFAULT);
+ 		}
+ 		t++;
+@@ -3534,7 +3555,7 @@
+ 	 * known bug which can't handle TSO if Ethernet header + IP/TCP
+ 	 * header is greater than 80 bytes. A workaround for the TSO
+ 	 * bug exist but it seems it's too expensive than not using
+-	 * TSO at all. Some hardware also have the TSO bug so limit
++	 * TSO at all. Some hardwares also have the TSO bug so limit
+ 	 * the TSO to the controllers that are not affected TSO issues
+ 	 * (e.g. 5755 or higher).
+ 	 */
+@@ -3712,6 +3733,11 @@
+ 
+ 	/* Set up ifnet structure */
+ 	ifp = sc->bge_ifp = if_alloc(IFT_ETHER);
++	if (ifp == NULL) {
++		device_printf(sc->bge_dev, "failed to if_alloc()\n");
++		error = ENXIO;
++		goto fail;
++	}
+ 	if_setsoftc(ifp, sc);
+ 	if_initname(ifp, device_get_name(dev), device_get_unit(dev));
+ 	if_setflags(ifp, IFF_BROADCAST | IFF_SIMPLEX | IFF_MULTICAST);
+@@ -3723,7 +3749,7 @@
+ 	if_setsendqready(ifp);
+ 	if_sethwassist(ifp, sc->bge_csum_features);
+ 	if_setcapabilities(ifp, IFCAP_HWCSUM | IFCAP_VLAN_HWTAGGING |
+-	    IFCAP_VLAN_MTU);
++	    IFCAP_VLAN_MTU | IFCAP_WOL_MAGIC);
+ 	if ((sc->bge_flags & (BGE_FLAG_TSO | BGE_FLAG_TSO3)) != 0) {
+ 		if_sethwassistbits(ifp, CSUM_TSO, 0);
+ 		if_setcapabilitiesbit(ifp, IFCAP_TSO4 | IFCAP_VLAN_HWTSO, 0);
+@@ -3731,6 +3757,8 @@
+ #ifdef IFCAP_VLAN_HWCSUM
+ 	if_setcapabilitiesbit(ifp, IFCAP_VLAN_HWCSUM, 0);
+ #endif
++	if (pci_find_cap(dev, PCIY_PMG, &reg) == 0)
++		if_setcapabilitiesbit(ifp, IFCAP_WOL_MAGIC, 0);
+ 	if_setcapenable(ifp, if_getcapabilities(ifp));
+ #ifdef DEVICE_POLLING
+ 	if_setcapabilitiesbit(ifp, IFCAP_POLLING, 0);
+@@ -3890,6 +3918,12 @@
+ 		    ~BGE_MSIMODE_ONE_SHOT_DISABLE);
+ 		sc->bge_tq = taskqueue_create_fast("bge_taskq", M_WAITOK,
+ 		    taskqueue_thread_enqueue, &sc->bge_tq);
++		if (sc->bge_tq == NULL) {
++			device_printf(dev, "could not create taskqueue.\n");
++			ether_ifdetach(ifp);
++			error = ENOMEM;
++			goto fail;
++		}
+ 		error = taskqueue_start_threads(&sc->bge_tq, 1, PI_NET,
+ 		    "%s taskq", device_get_nameunit(sc->bge_dev));
+ 		if (error != 0) {
+@@ -3910,6 +3944,9 @@
+ 		device_printf(sc->bge_dev, "couldn't set up irq\n");
+ 		goto fail;
+ 	}
++	BGE_LOCK(sc);
++	bge_clrwol(sc);
++	BGE_UNLOCK(sc);
+ 
+ 	/* Attach driver debugnet methods. */
+ 	DEBUGNET_SET(ifp, bge);
+@@ -3937,6 +3974,7 @@
+ 	if (device_is_attached(dev)) {
+ 		ether_ifdetach(ifp);
+ 		BGE_LOCK(sc);
++		bge_setwol(sc);
+ 		bge_stop(sc);
+ 		BGE_UNLOCK(sc);
+ 		callout_drain(&sc->bge_stat_ch);
+@@ -4124,7 +4162,8 @@
+ 	/* Reset some of the PCI state that got zapped by reset. */
+ 	pci_write_config(dev, BGE_PCI_MISC_CTL,
+ 	    BGE_PCIMISCCTL_INDIRECT_ACCESS | BGE_PCIMISCCTL_MASK_PCI_INTR |
+-	    BGE_HIF_SWAP_OPTIONS | BGE_PCIMISCCTL_PCISTATE_RW, 4);
++	    BGE_HIF_SWAP_OPTIONS | BGE_PCIMISCCTL_PCISTATE_RW |
++	    BGE_PCIMISCCTL_CLOCKCTL_RW, 4);
+ 	val = BGE_PCISTATE_ROM_ENABLE | BGE_PCISTATE_ROM_RETRY_ENABLE;
+ 	if (sc->bge_chipid == BGE_CHIPID_BCM5704_A0 &&
+ 	    (sc->bge_flags & BGE_FLAG_PCIX) != 0)
+@@ -5828,6 +5867,9 @@
+ 			}
+ 		}
+ #endif
++		if ((mask & IFCAP_WOL_MAGIC) != 0 &&
++			(if_getcapabilities(ifp) & IFCAP_WOL_MAGIC) != 0)
++				if_togglecapenable(ifp, IFCAP_WOL_MAGIC);
+ 		if ((mask & IFCAP_TXCSUM) != 0 &&
+ 		    (if_getcapabilities(ifp) & IFCAP_TXCSUM) != 0) {
+ 			if_togglecapenable(ifp, IFCAP_TXCSUM);
+@@ -6055,6 +6097,7 @@
+ 
+ 	sc = device_get_softc(dev);
+ 	BGE_LOCK(sc);
++	bge_setwol(sc);
+ 	bge_stop(sc);
+ 	BGE_UNLOCK(sc);
+ 
+@@ -6068,6 +6111,7 @@
+ 
+ 	sc = device_get_softc(dev);
+ 	BGE_LOCK(sc);
++	bge_setwol(sc);
+ 	bge_stop(sc);
+ 	BGE_UNLOCK(sc);
+ 
+@@ -6083,11 +6127,13 @@
+ 	sc = device_get_softc(dev);
+ 	BGE_LOCK(sc);
+ 	ifp = sc->bge_ifp;
++	bge_reset(sc);
+ 	if (if_getflags(ifp) & IFF_UP) {
+ 		bge_init_locked(sc);
+ 		if (if_getdrvflags(ifp) & IFF_DRV_RUNNING)
+ 			bge_start_locked(ifp);
+ 	}
++	bge_clrwol(sc);
+ 	BGE_UNLOCK(sc);
+ 
+ 	return (0);
+@@ -6837,3 +6883,73 @@
+ 	return (0);
+ }
+ #endif /* DEBUGNET */
++
++static void
++bge_setwol(struct bge_softc *sc)
++{
++	struct ifnet *ifp;
++	uint32_t clk;
++	uint16_t pmstat;
++	int pmc;
++
++#ifdef BGE_WOL_DEBUG
++	device_printf(sc->bge_dev, "Entering bge WOL\n");
++#endif
++	ifp = sc->bge_ifp;
++	if ((if_getcapabilities(ifp) & IFCAP_WOL_MAGIC) == 0)
++		return;
++	if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
++		return;
++	if ((if_getcapenable(ifp) & IFCAP_WOL) != 0) {
++#ifdef BGE_WOL_DEBUG
++		device_printf(sc->bge_dev, "Configuring bge WOL\n");
++#endif
++		bge_reset(sc);
++		BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
++		BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_ACPI_PWRON_ENB);
++		BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_PORTMODE);
++		BGE_SETBIT(sc, BGE_MAC_MODE, BGE_PORTMODE_GMII);
++		BGE_SETBIT(sc, BGE_RX_MODE, BGE_RXMODE_ENABLE);
++		clk = CSR_READ_4(sc, BGE_PCI_CLKCTL) |
++			BGE_PCICLOCKCTL_RXCPU_CLK_DIS |
++			BGE_PCICLOCKCTL_ALTCLK |
++			BGE_PCICLOCKCTL_SYSPLL_DISABLE;
++		CSR_WRITE_4(sc, BGE_PCI_CLKCTL, clk);
++	}
++	else {
++#ifdef BGE_WOL_DEBUG
++		device_printf(sc->bge_dev, "Bypassing bge WOL\n");
++#endif
++		BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
++		BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_ACPI_PWRON_ENB);
++	}
++
++	/* Request PME if WOL is requested. */
++	pmstat = pci_read_config(sc->bge_dev, pmc + PCIR_POWER_STATUS, 2);
++	pmstat &= ~(PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE);
++	if ((if_getcapenable(ifp) & IFCAP_WOL) != 0)
++		pmstat |= PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE;
++	pci_write_config(sc->bge_dev, pmc + PCIR_POWER_STATUS, pmstat, 2);
++}
++
++static void
++bge_clrwol(struct bge_softc *sc)
++{
++	struct ifnet *ifp;
++	uint16_t pmstat;
++	int pmc;
++
++	ifp = sc->bge_ifp;
++	if ((if_getcapabilities(ifp) & IFCAP_WOL) == 0)
++		return;
++	if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
++		return;
++	if ((if_getcapenable(ifp) & IFCAP_WOL) == 0)
++		return;
++	BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
++	BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_ACPI_PWRON_ENB);
++
++	pmstat = pci_read_config(sc->bge_dev, pmc + PCIR_POWER_STATUS, 2);
++	pmstat &= ~(PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE);
++	pci_write_config(sc->bge_dev, pmc + PCIR_POWER_STATUS, pmstat, 2);
++}

@@ -1,0 +1,159 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# Simple dynamic dns client
+#
+# $FreeBSD: head/dns/inadyn/files/inadyn.in 529066 2020-03-24 21:43:36Z mandree $
+#
+# PROVIDE: inadyn
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+# XQUERY: --if "count(//inadyn/enable) > 0" --output "0" --else --output "1" --break
+# RCVAR: inadyn
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# inadyn_enable (bool):		Set it to "YES" to enable inadyn
+#				Default is "NO"
+# inadyn_config (str):		Set full path to configuration file.
+#				Default is "%%PREFIX%%/etc/inadyn.conf"
+# inadyn_pidfile (str):		Set full path to pid file.
+#				Default is "/var/run/inadyn/inadyn.pid"
+#
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="inadyn"
+desc="Simple dynamic dns client"
+rcvar=inadyn_enable
+
+start_precmd="inadyn_prestart"
+restart_precmd="inadyn_prerestart"
+reload_precmd="inadyn_prereload"
+mkconf_cmd="inadyn_mkconf"
+configtest_precmd="inadyn_checkconfig"
+extra_commands="reload configtest mkconf"
+
+load_rc_config "${name}"
+
+: ${inadyn_enable:="NO"}
+: ${inadyn_config:="/var/etc/inadyn.conf"}
+: ${inadyn_pidfile:="/var/run/inadyn.pid"}
+
+command=/usr/local/sbin/inadyn
+command_args="-p inadyn:inadyn -f ${inadyn_config} -P ${inadyn_pidfile}"
+pidfile=${inadyn_pidfile}
+
+_loglevel=$( configxml_get "//inadyn/loglevel" )
+if [ -n "${_loglevel}" ]; then
+	command_args="${command_args} -l ${_loglevel}"
+fi
+_startupdelay=$( configxml_get "//inadyn/startupdelay" )
+if [ -n "${_startupdelay}" ]; then
+	command_args="${command_args} -t ${_startupdelay}"
+fi
+_cachedir=$( configxml_get "//inadyn/cachedir" )
+if [ -n "${_cachedir}" ]; then
+	command_args="${command_args} --cache-dir=${_cachedir}"
+fi
+
+inadyn_checkconfig()
+{
+	echo "Performing sanity check on ${name} configuration:"
+	eval ${command} ${command_args} --check-config
+}
+
+inadyn_mkconf()
+{
+	cat /dev/null > ${inadyn_config}
+	chmod 600 ${inadyn_config}
+	/usr/local/bin/xml sel --text --template \
+		--output '# global settings' --nl \
+		--match '//inadyn' \
+			--output 'verify-address = ' --if 'count(verifyaddress) > 0' --output 'true' --else --output 'false' --break --nl \
+			--output 'fake-address = ' --if 'count(fakeaddress) > 0' --output 'true' --else --output 'false' --break --nl \
+			--output 'allow-ipv6 = ' --if 'count(allowipv6) > 0' --output 'true' --else --output 'false' --break --nl \
+			--if 'string-length(iface) > 0' --output 'iface = "' --value-of iface --output '"' --nl --break \
+			--if 'string-length(iterations) > 0' --output 'iterations = ' --value-of iterations --nl --break \
+			--if 'string-length(period) > 0' --output "period = " --value-of period --nl --break \
+			--if 'string-length(forcedupdate) > 0' --output "forced-update = " --value-of forcedupdate --nl --break \
+			--output 'secure-ssl = ' --if 'count(securessl) > 0' --output 'true' --else --output 'false' --break --nl \
+			--output 'broken-rtc = ' --if 'count(brokenrtc) > 0' --output 'true' --else --output 'false' --break --nl \
+			--if 'string-length(catrustfile) > 0' --output 'ca-trust-file = "' --value-of catrustfile --output '"' --nl --break \
+			--if 'string-length(useragent) > 0' --output 'user-agent = "' --value-of useragent --output '"' --nl --break \
+			--match 'auxparam' --if 'position() < last() or string-length(.) > 0' --value-of '.' --nl --break --break \
+		--break \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${inadyn_config}
+	/usr/local/bin/xml sel --text --template \
+		--output '# provider settings' --nl \
+		--match '//inadyn/provider/param[enable and recordtype="provider" and string-length(provider) > 0]' \
+			--value-of recordtype \
+			--output ' ' \
+			--value-of provider \
+			--if 'string-length(identifier) > 0' --output ':' --value-of identifier --break \
+			--output ' {' --nl \
+			--output 'hostname = { ' --value-of hostnames --output ' }' --nl \
+			--if 'string-length(username) > 0' --output 'username = "' --value-of username --output '"' --nl --break \
+			--if 'string-length(password) > 0' --output 'password = "' --value-of password --output '"' --nl --break \
+			--output 'wildcard = ' --if 'count(wildcard) > 0' --output 'true' --else --output 'false' --break --nl \
+			--output 'ssl = ' --if 'count(usessl) > 0' --output 'true' --else --output 'false' --break --nl \
+			--if 'string-length(checkipserver) > 0' --output 'checkip-server = "' --value-of checkipserver --output '"' --nl --break \
+			--if 'string-length(checkippath) > 0' --output 'checkip-path = "' --value-of checkippath --output '"' --nl --break \
+			--output 'checkip-ssl = ' --if 'count(checkipssl) > 0' --output 'true' --else --output 'false' --break --nl \
+			--if 'string-length(checkipcommand) > 0' --output 'checkip-command = "' --value-of checkipcommand --output '"' --nl --break \
+			--if 'string-length(useragent) > 0' --output 'user-agent = "' --value-of useragent --output '"' --nl --break \
+			--match 'auxparam' --if 'position() < last() or string-length(.) > 0' --value-of '.' --nl --break --break \
+			--output '}' --nl \
+		--break \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${inadyn_config}
+	/usr/local/bin/xml sel --text --template \
+		--output '# custom settings' --nl \
+		--match '//inadyn/provider/param[enable and recordtype="custom" and string-length(customprovider) > 0]' \
+			--value-of recordtype \
+			--output ' ' \
+			--value-of customprovider \
+			--if 'string-length(identifier) > 0' --output ':' --value-of identifier --break \
+			--output ' {' --nl \
+			--if 'string-length(ddnsserver) > 0' --output 'ddns-server = "' --value-of ddnsserver --output '"' --nl --break \
+			--if 'string-length(ddnspath) > 0' --output 'ddns-path = "' --value-of ddnspath --output '"' --nl --break \
+			--output 'append-myip = ' --if 'count(appendmyip) > 0' --output 'true' --else --output 'false' --break --nl \
+			--output 'hostname = { ' --value-of hostnames --output ' }' --nl \
+			--if 'string-length(username) > 0' --output 'username = "' --value-of username --output '"' --nl --break \
+			--if 'string-length(password) > 0' --output 'password = "' --value-of password --output '"' --nl --break \
+			--output 'wildcard = ' --if 'count(wildcard) > 0' --output 'true' --else --output 'false' --break --nl \
+			--output 'ssl = ' --if 'count(usessl) > 0' --output 'true' --else --output 'false' --break --nl \
+			--if 'string-length(checkipserver) > 0' --output 'checkip-server = "' --value-of checkipserver --output '"' --nl --break \
+			--if 'string-length(checkippath) > 0' --output 'checkip-path = "' --value-of checkippath --output '"' --nl --break \
+			--output 'checkip-ssl = ' --if 'count(checkipssl) > 0' --output 'true' --else --output 'false' --break --nl \
+			--if 'string-length(checkipcommand) > 0' --output 'checkip-command = "' --value-of checkipcommand --output '"' --nl --break \
+			--if 'string-length(useragent) > 0' --output 'user-agent = "' --value-of useragent --output '"' --nl --break \
+			--match 'auxparam' --if 'position() < last() or string-length(.) > 0' --value-of '.' --nl --break --break \
+			--output '}' --nl \
+		--break \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${inadyn_config}
+}
+
+inadyn_prestart()
+{
+	inadyn_mkconf
+	inadyn_checkconfig
+}
+
+inadyn_prerestart()
+{
+	inadyn_mkconf
+	inadyn_checkconfig
+}
+
+inadyn_prereload()
+{
+	inadyn_mkconf
+	inadyn_checkconfig
+}
+
+run_rc_command "$1"

@@ -1,0 +1,133 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# GEOM commands
+#
+
+# PROVIDE: geom
+# REQUIRE: CONFIG
+# BEFORE: disks
+# KEYWORD: nojail shutdown
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="geom"
+desc="GEOM commands"
+load_rc_config "${name}"
+
+# Custom commands
+extra_commands="load"
+start_cmd="geom_start"
+stop_cmd="geom_stop"
+load_cmd="geom_load"
+
+# Defaults
+geom_classes=${geom_classes:-"vinum mirror stripe concat"}
+geom_load_param=${geom_load_param:-""}
+geom_stop_param=${geom_stop_param:-""}
+
+geom_start()
+{
+	local _classes _class
+
+	_classes=$*
+	_classes=${_classes:-"${geom_classes}"}
+
+	echo "Starting GEOM devices."
+	for _class in ${_classes}; do
+		if configxml_isset //g${_class}/vdisk; then
+			case ${_class} in
+				vinum)
+					_geom_start_vinum;;
+				*)
+					_geom_load ${_class};;
+			esac
+		fi
+	done
+}
+
+geom_stop()
+{
+	local _classes _class
+
+	_classes=$*
+	_classes=${_classes:-"${geom_classes}"}
+
+	echo "Stopping GEOM devices."
+	for _class in ${_classes}; do
+		_geom_stop ${_class}
+		_geom_unload ${_class}
+	done
+}
+
+geom_load()
+{
+	local _classes _class
+
+	_classes=$*
+	_classes=${_classes:-"${geom_classes}"}
+
+	for _class in ${_classes}; do
+		case ${_class} in
+			vinum)
+				;;
+			*)
+				_geom_load ${_class};;
+		esac
+	done
+}
+
+_geom_start_vinum()
+{
+	local _name
+
+	/usr/local/bin/xml sel -t -m "//gvinum/vdisk" \
+		-v "name" \
+		-i "position() <= last()" -n -b \
+		${configxml_file} | /usr/local/bin/xml unesc | \
+		while read _name; do
+			/sbin/gvinum start "${_name}"
+		done
+}
+
+_geom_stop()
+{
+	local _class _name
+
+	_class=$1
+
+#	stop devices.
+	/usr/local/bin/xml sel -t -m "//g${_class}/vdisk" \
+		-v "name" \
+		-i "position() <= last()" -n -b \
+		${configxml_file} | /usr/local/bin/xml unesc | \
+		while read _name; do
+			/sbin/geom ${_class} status "${_name}" 1>/dev/null 2>&1 && /sbin/g${_class} stop ${geom_stop_param} "${_name}"
+		done
+}
+
+_geom_load()
+{
+	local _class
+
+	_class=$1
+
+#	load module.
+	/sbin/kldstat -q -m g_${_class} || /sbin/geom ${_class} load ${geom_load_param}
+}
+
+_geom_unload()
+{
+	local _class
+
+	_class=$1
+
+#	unload module.
+	/sbin/kldstat -q -m g_${_class} && /sbin/geom ${_class} unload
+}
+
+run_rc_command "$@"

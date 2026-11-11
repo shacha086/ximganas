@@ -1,0 +1,651 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# Daemon to execute scheduled commands
+#
+
+# PROVIDE: cron
+# REQUIRE: LOGIN FILESYSTEMS
+# BEFORE: securelevel
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="cron"
+desc="Daemon to execute scheduled commands"
+rcvar="cron_enable"
+
+load_rc_config "$name"
+
+# Defaults
+command="/usr/sbin/${name}"
+pidfile="/var/run/${name}.pid"
+cron_config=${cron_config:-"/etc/crontab"}
+cron_tabspath=${cron_tabspath:-"/var/cron/tabs"}
+cron_allow=${cron_allow:-"/var/cron/allow"}
+
+# Custom commands
+start_precmd="cron_mkconf"
+mkconf_cmd="cron_mkconf"
+extra_commands="mkconf"
+
+_isodate=$( /bin/date "+%FT%T%z" )
+
+# crontab_allowuser [user]
+# Register user to allow them to execute cron jobs.
+crontab_allowuser() {
+	local _user
+
+	_user=$1
+	if [ "${_user}" != "root" ]; then
+		echo "${_user}" >> ${cron_allow}
+#		Remove duplicate entries in /var/cron/allow
+		/usr/bin/sort -u ${cron_allow} -o ${cron_allow}
+	fi
+}
+# crontab_addline [user] [data]
+# Write a job to the corresponding crontab.
+crontab_addline() {
+	local _user _data _home
+
+	_user=$1
+	_data=$2
+	if [ "${_user}" = "root" ]; then
+		echo "${_data}" >> ${cron_config}
+	else
+#		Create user crontab if necessary
+		if [ ! -e "${cron_tabspath}/${_user}" ]; then
+#			get users initial home directory
+			_home=$( pw user show ${_user} -7F | cut -d : -f 6 )
+			if [ ! -d "${_home}" ]; then
+				_home="/var/log"
+			fi
+#			Create /var/cron/tabs/xxx
+			cat <<- EOF > ${cron_tabspath}/${_user}
+				# created: ${_isodate}
+				SHELL=/bin/sh
+				PATH=/etc:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+				HOME=${_home}
+				#
+				#minute	hour	mday	month	wday	who	command
+				#
+			EOF
+		fi
+#		Write crontab line
+		echo "${_data}" >> ${cron_tabspath}/${_user}
+	fi
+}
+#	Time synchronization
+mkconf_ntp() {
+	local _xpaex _interval _seconds
+
+	_xpaex="//system/ntp/enable"
+	if configxml_isset "${_xpaex}"; then
+		_interval=$( configxml_get "//system/ntp/updateinterval" )
+		_seconds=$(( ${_interval} * 60 ))
+		if [ "${_seconds}" -ne "0" ]; then
+			cat <<- EOF >> ${cron_config}
+				#
+				# Perform time synchronization via NTP.
+				@${_seconds}	root	/etc/rc.d/ntpdate restart
+			EOF
+		fi
+	fi
+}
+#	Auto Snapshot every hour
+mkconf_autosnapshot() {
+	local _xpaex _count
+
+	_xpaex="//zfs/autosnapshots/autosnapshot"
+	_count=$( configxml_get_count "${_xpaex}" )
+	if [ ${_count} -gt 0 ]; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# ZFS autosnapshot
+			@hourly	root	/usr/local/sbin/autosnapshot >/dev/null 2>&1
+		EOF
+	fi
+}
+#	Auto Update Monitoring Graphs every 5 minutes
+mkconf_rrdgraphs() {
+	local _xpaex
+
+	_xpaex="//rrdgraphs/enable"
+	if configxml_isset "${_xpaex}"; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# rrdgraphs autoupdate
+			@300	root	/usr/local/share/rrdgraphs/rrd-update.sh
+		EOF
+	fi
+}
+#	RSYNC client
+mkkonf_rsyncclient() {
+	local _xpaex _index _user _data
+
+	_xpaex="//rsync/rsyncclient[enable]"
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		while [ ${_index} -gt 0 ]; do
+#			Get user
+			_user=$( configxml_get "${_xpaex}[position()=${_index}]/who" )
+#			Get crontab data
+			_data=$( /usr/local/bin/xml sel --text --template \
+				--match "${_xpaex}[position()=${_index}]" \
+					--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+					--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+					--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+					--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+					--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+					--else \
+						--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+					--break \
+					--output '&#9;' \
+					--if 'who="root"' --output 'root&#9;' --break \
+					--value-of "concat('/var/run/rsync_client_',uuid,'.sh')" \
+				--break \
+				${configxml_file} | /usr/local/bin/xml unesc )
+#			Register user
+			crontab_allowuser "${_user}"
+#			Write to crontab
+			crontab_addline "${_user}" "${_data}"
+			_index=$(( ${_index} - 1 ))
+		done
+	fi
+}
+#	RSYNC local
+mkconf_rsynclocal() {
+	local _xpaex _index _user _data
+
+	_xpaex="//rsync/rsynclocal[enable]"
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		while [ ${_index} -gt 0 ]; do
+#			Get user
+			_user=$( configxml_get "${_xpaex}[position()=${_index}]/who" )
+#			Get crontab data
+			_data=$( /usr/local/bin/xml sel --text --template \
+				--match "${_xpaex}[position()=${_index}]" \
+					--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+					--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+					--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+					--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+					--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+					--else \
+						--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+					--break \
+					--output '&#9;' \
+					--if 'who="root"' --output 'root&#9;' --break \
+					--value-of "concat('/var/run/rsync_local_',uuid,'.sh')" \
+				--break \
+				${configxml_file} | /usr/local/bin/xml unesc )
+#			Register user
+			crontab_allowuser "${_user}"
+#			Write to crontab
+			crontab_addline "${_user}" "${_data}"
+			_index=$(( ${_index} - 1 ))
+		done
+	fi
+}
+#	ZFS snapshots - create
+mkconf_snapshotcreate() {
+	local _xpaex _index _user _uuid _scriptname _path _command _param
+
+	_xpaex="//zfs/scheduler/snapshotcreate/param[enable]"
+#	check if there are any schedules
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# create ZFS snapshots
+		EOF
+#		root is creating snapshots
+		_user="root"
+		while [ ${_index} -gt 0 ]; do
+			_uuid=$( configxml_get "${_xpaex}[position()=${_index}]/uuid" )
+			_scriptname="/var/run/snapshot_create_${_uuid}.sh"
+			_path=$( configxml_get "${_xpaex}[position()=${_index}]/path" )
+			_command="/sbin/zfs snapshot"
+			_param=""
+			if configxml_isset "${_xpaex}[position()=${_index}]/recursive"; then
+				_param="${_param} -r"
+			fi
+#			create crontab entry
+			/usr/local/bin/xml sel --text --template \
+				--match "${_xpaex}[position()=${_index}]" \
+					--if 'preset="" or preset="custom"' \
+						--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+						--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+						--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+						--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+						--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+						--else \
+							--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+						--break \
+					--elif 'preset="@hourly"' --output '@hourly' \
+					--elif 'preset="@daily"' --output '@daily' \
+					--elif 'preset="@weekly"' --output '@weekly' \
+					--elif 'preset="@monthly"' --output '@monthly' \
+					--elif 'preset="@yearly"' --output '@yearly' \
+					--else \
+						--output '# invalid preset #' \
+					--break \
+					--output "&#9;${_user}&#9;${_scriptname}" \
+					--nl \
+				--break \
+				${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+#			create the script
+			cat <<- EOF > "${_scriptname}"
+				#!/bin/sh
+				# created: ${_isodate}
+				_tag="snapshot"
+				_command="${_command}"
+				_param="${_param}"
+				_path="${_path}"
+				_checkpoint=\$( /bin/date -u "+%Y%m%d-%H%M%S" 2>&1 )
+				if [ \$? -ne 0 ]; then
+					exit
+				fi
+				_fqfn="\${_path}@auto-\${_checkpoint}"
+				/usr/bin/logger -t "\${_tag}" "\${_command}\${_param} \${_fqfn}"
+				\${_command}\${_param} "\${_fqfn}" >/dev/null 2>&1
+			EOF
+#			restrict access to the script
+			chmod 0700 "${_scriptname}"
+			_index=$(( ${_index} - 1 ))
+		done
+	fi
+}
+#	ZFS snapshots - destroy
+mkconf_snapshotdestroy() {
+	local _xpaex _index _user _uuid _scriptname _path _command _param _value1 _value2
+
+	_xpaex="//zfs/scheduler/snapshotdestroy/param[enable]"
+#	check if there are any schedules
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# destroy ZFS snapshots
+		EOF
+#		root is destroying snapshots
+		_user="root"
+		while [ ${_index} -gt 0 ]; do
+			_uuid=$( configxml_get "${_xpaex}[position()=${_index}]/uuid" )
+			_scriptname="/var/run/snapshot_destroy_${_uuid}.sh"
+			_path=$( configxml_get "${_xpaex}[position()=${_index}]/path" )
+			_command="/sbin/zfs destroy"
+			_param=""
+			_value1=$( configxml_get "${_xpaex}[position()=${_index}]/lifetime_val" )
+			_value2=$( configxml_get "${_xpaex}[position()=${_index}]/lifetime_uom" )
+			if configxml_isset "${_xpaex}[position()=${_index}]/recursive"; then
+				_param="${_param} -r"
+			fi
+#			create crontab entry
+			/usr/local/bin/xml sel --text --template \
+				--match "${_xpaex}[position()=${_index}]" \
+					--if 'preset="" or preset="custom"' \
+						--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+						--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+						--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+						--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+						--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+						--else \
+							--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+							--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+						--break \
+					--elif 'preset="@hourly"' --output '@hourly' \
+					--elif 'preset="@daily"' --output '@daily' \
+					--elif 'preset="@weekly"' --output '@weekly' \
+					--elif 'preset="@monthly"' --output '@monthly' \
+					--elif 'preset="@yearly"' --output '@yearly' \
+					--else \
+						--output '# invalid preset #' \
+					--break \
+					--output "&#9;${_user}&#9;${_scriptname}" \
+					--nl \
+				--break \
+				${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+#			create the script
+			cat <<- EOF > "${_scriptname}"
+				#!/bin/sh
+				# created: ${_isodate}
+				_tag="snapshot"
+				_command="${_command}"
+				_param="${_param}"
+				_path="${_path}"
+				_rpval="${_value1}"
+				_rpuom="${_value2}"
+				#	use command date to calculate expiration date
+				_checkpoint=\$( /bin/date -u -v "-\${_rpval}\${_rpuom}" +%s 2>&1 )
+				if [ \$? -ne 0 ]; then
+					exit
+				fi
+				#	get a list of snapshots, oldest first
+				_checklist=\$( /sbin/zfs list -Hp -o creation,name -d 1 -t snapshot -s creation "\${_path}" 2>&1 )
+				if [ \$? -ne 0 ]; then
+					exit
+				fi
+				#	search the latest expired snapshot
+				_fqfn=""
+				_fqfn=\$( echo "\${_checklist}" |
+					{
+						while IFS=\$'\t' read _creation _name; do
+							if [ \${_creation} -le \${_checkpoint} ]; then
+								_fqfn="\${_name}"
+							else
+								break
+							fi
+						done
+						echo "\${_fqfn}"
+					}
+				)
+				if [ -n "\${_fqfn}" ]; then
+				#	add % to destroy older snapshots as well
+					_fqfn=\$( echo "\${_fqfn}" | /usr/bin/sed 's|@|@%|' )
+					/usr/bin/logger -t "\${_tag}" "\${_command}\${_param} \${_fqfn}"
+					\${_command}\${_param} "\${_fqfn}" >/dev/null 2>&1
+				fi
+			EOF
+#			restrict access to the script
+			chmod 0700 "${_scriptname}"
+			_index=$(( ${_index} - 1 ))
+		done
+	fi
+}
+#	ZFS pools - scrub
+mkconf_poolscrub() {
+	local _xpaex _index _user _command
+
+	_xpaex="//zfs/scheduler/poolscrub/param[enable]"
+#	check if there are any schedules
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# scrub ZFS pools
+		EOF
+#		root is scrubbing pools
+		_user="root"
+		_command="/sbin/zpool scrub"
+#		create crontab entry
+		/usr/local/bin/xml sel --text --template \
+			--match "${_xpaex}" \
+				--if 'preset="" or preset="custom"' \
+					--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+					--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+					--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+					--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+					--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+					--else \
+						--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+					--break \
+				--elif 'preset="@hourly"' --output '@hourly' \
+				--elif 'preset="@daily"' --output '@daily' \
+				--elif 'preset="@weekly"' --output '@weekly' \
+				--elif 'preset="@monthly"' --output '@monthly' \
+				--elif 'preset="@yearly"' --output '@yearly' \
+				--else \
+					--output '# invalid preset #' \
+				--break \
+				--output "&#9;${_user}&#9;${_command} " \
+				--output '"' \
+				--value-of poolname \
+				--output '"' \
+				--nl \
+			--break \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+	fi
+}
+#	Scheduled shutdown
+mkconf_shutdown() {
+	local _xpaex _user _command
+
+	_xpaex="//shutdown/enable"
+	if configxml_isset "${_xpaex}"; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# shutdown
+		EOF
+		_user="root"
+		_command="/sbin/shutdown -p now"
+		/usr/local/bin/xml sel --text --template \
+			--match "//shutdown" \
+				--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+				--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+				--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+				--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+				--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+				--else \
+					--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+				--break \
+				--output "&#9;${_user}&#9;${_command}" \
+				--nl \
+			--break \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+	fi
+}
+#	Scheduled reboot (deprecated)
+mkconf_rebootdeprecated() {
+	local _xpaex _user _command
+
+	_xpaex="//reboot/enable"
+	if configxml_isset "${_xpaex}"; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# reboot
+		EOF
+		_user="root"
+		_command="/sbin/shutdown -r now"
+		/usr/local/bin/xml sel --text --template \
+			--match "//reboot" \
+				--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+				--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+				--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+				--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+				--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+				--else \
+					--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+				--break \
+				--output "&#9;${_user}&#9;${_command}" \
+				--nl \
+			--break \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+	fi
+}
+#	Scheduled reboot
+mkconf_reboot() {
+	local _xpaex _index _user _command
+
+	_xpaex="//system/scheduler/reboot/param[enable]"
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# reboot
+		EOF
+		_user="root"
+		_command="/sbin/shutdown -r now"
+#		Get crontab data
+		/usr/local/bin/xml sel --text --template \
+			--match "${_xpaex}" \
+				--if 'preset="" or preset="custom"' \
+					--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+					--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+					--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+					--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+					--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+					--else \
+						--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+					--break \
+				--elif 'preset="@hourly"' --output '@hourly' \
+				--elif 'preset="@daily"' --output '@daily' \
+				--elif 'preset="@weekly"' --output '@weekly' \
+				--elif 'preset="@monthly"' --output '@monthly' \
+				--elif 'preset="@yearly"' --output '@yearly' \
+				--else \
+					--output '# invalid preset #' \
+				--break \
+				--output "&#9;${_user}&#9;${_command}" \
+				--nl \
+			--break \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+	fi
+}
+#	Email status notification
+mkconf_statusreport() {
+	local _xpaex _user _command
+
+	_xpaex="//statusreport/enable"
+	if configxml_isset "${_xpaex}"; then
+		cat <<- EOF >> ${cron_config}
+			#
+			# email status report
+		EOF
+		_user="root"
+		_command="/etc/mail/sendreport"
+		/usr/local/bin/xml sel --text --template \
+			--match "//statusreport" \
+				--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+				--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+				--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+				--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+				--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+				--else \
+					--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+					--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+				--break \
+				--output "&#9;${_user}&#9;${_command}" \
+				--nl \
+			--break \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+	fi
+}
+#	Additional cron jobs
+mkconf_cronjobs() {
+	local _xpaex _index _user _data
+
+	_xpaex="//cron/job[enable]"
+	_index=$( configxml_get_count "${_xpaex}" )
+	if [ ${_index} -gt 0 ]; then
+		while [ ${_index} -gt 0 ]; do
+#			Get user
+			_user=$( configxml_get "${_xpaex}[position()=${_index}]/who" )
+#			Get crontab data
+			_data=$( /usr/local/bin/xml sel --text --template \
+				--match "${_xpaex}[position()=${_index}]" \
+					--if 'all_mins="0" and count(minute)=0' --output '# undefined minutes #' \
+					--elif 'all_hours="0" and count(hour)=0' --output '# undefined hours #' \
+					--elif 'all_days="0" and count(day)=0' --output '# undefined days #' \
+					--elif 'all_months="0" and count(month)=0' --output '# undefined months #' \
+					--elif 'all_weekdays="0" and count(weekday)=0' --output '# undefined weekdays #' \
+					--else \
+						--if 'all_mins="0"' --match minute --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_hours="0"' --match hour --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_days="0"' --match day --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_months="0"' --match month --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break --output '&#9;' \
+						--if 'all_weekdays="0"' --match weekday --if 'position()>1' --output ',' --break --value-of '.' --break --else --output '*' --break \
+					--break \
+					--output '&#9;' \
+					--if 'who="root"' --output 'root&#9;' --break \
+					--value-of command \
+				--break \
+				${configxml_file} | /usr/local/bin/xml unesc )
+#			Register user
+			crontab_allowuser "${_user}"
+#			Write to crontab
+			crontab_addline "${_user}" "${_data}"
+			_index=$(( ${_index} - 1 ))
+		done
+	fi
+}
+
+cron_mkconf() {
+#	Make sure /var/cron/tabs path exists
+	[ ! -d "${cron_tabspath}" ] && mkdir "${cron_tabspath}"
+#	Empty /var/cron/allow
+	cat /dev/null > ${cron_allow}
+#	Remove all existing user crontabs
+	rm ${cron_tabspath}/* > /dev/null 2>&1
+#	Create /etc/newsyslog.conf
+	cat <<- EOF > /etc/newsyslog.conf
+		# logfilename          [owner:group]    mode count size when  flags [/pid_file] [sig_num]
+
+		<include> /etc/newsyslog.conf.d/*
+		<include> /usr/local/etc/newsyslog.conf.d/*
+	EOF
+	cat <<- EOF > ${cron_config}
+		# created: ${_isodate}
+		SHELL=/bin/sh
+		PATH=/etc:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+		HOME=/var/log
+		#
+		#minute	hour	mday	month	wday	who	command
+		#
+		# Rotate log files every hour, if necessary.
+		0	*	*	*	*	root	newsyslog
+		#
+		# Perform daily/weekly/monthly maintenance.
+		1	3	*	*	*	root	periodic daily
+		15	4	*	*	6	root	periodic weekly
+		30	5	1	*	*	root	periodic monthly
+	EOF
+	mkconf_ntp
+	mkconf_autosnapshot
+	mkconf_rrdgraphs
+	mkkonf_rsyncclient
+	mkconf_rsynclocal
+	mkconf_snapshotcreate
+	mkconf_snapshotdestroy
+	mkconf_poolscrub
+	mkconf_shutdown
+	mkconf_rebootdeprecated
+	mkconf_reboot
+	mkconf_statusreport
+	mkconf_cronjobs
+}
+
+load_rc_config $name
+if checkyesno cron_dst
+then
+	cron_flags="$cron_flags -s"
+fi
+run_rc_command "$1"

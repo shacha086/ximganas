@@ -1,0 +1,73 @@
+XigmaNAS® 14.3.0.5 - Jalanto
+----------------------------
+Changes:
+- Upgrade underlying OS to 14.3-RELEASE P5.
+- Update translations.
+- Upgrade rrdtool to v1.9.0.
+- Upgrade exfat to v1.4.0.
+- Upgrade python311 v3.11.10.
+- Upgrade libvncserver v0.9.15.
+- Upgrade rsync to v3.4.1.
+- Upgrade tmux to v3.5a.
+- Upgrade zoneinfo to v2025b.
+- Upgrade smartmontools to v7.5.
+- Upgrade pecl-APCu to v5.1.27.
+- Upgrade sudo to v1.9.17p2.
+- Upgrade bash to v5.3p3.
+- Upgrade microcode amd to v20250729.
+- Upgrade microcode intel to v20250812.
+- Upgrade e2fsprogs to v1.47.3.
+- Upgrade gzip to v1.14.
+- Upgrade proftpd to v1.3.8d.
+- Upgrade transmission to 4.1.0-beta.2
+- Upgrade wsdd to v0.9.0.
+- Upgrade netatalk to v4.3.2.
+- Upgrade mariadb to v11.8.3.
+- Upgrade mDNSResponder to v2600.140.3.
+- Upgrade lighttpd to v1.4.82.
+- Upgrade phpmyadmin to v5.2.3.
+- Upgrade cdialog to v1.3.20251001.
+- Upgrade arconf to vB27960.
+- Upgrade msmtp to v1.8.32.
+- Upgrade virtualbox-ose to 7.2.4.
+- Upgrade php8 to v8.4.14.
+- Upgrade samba to v4.22.6.
+- Upgrade syncthing to v2.0.11.
+- Upgrade nano to v8.7.
+- Upgrade open-vm-tools to v13.0.5.
+- Upgrade iperf3 to v3.20.
+- Upgrade nut to v2025.11.17.
+- Upgrade phpvirtualbox to 7.2-2.
+
+New:
+- New SMB use its own log file.
+- New SMB Server Signing and Server/Client Encryption option settings added WebGUI.
+
+Fixed:
+- Fix start netatalk.
+- Fix missing markdown module.
+- Fix search function in filemanager to avoid crashes.
+- Fix SATA NCQ error recovery after commit 25375b1415.
+- Fix error: IANA PEN registry open failed.
+- Fix incomplete speed coverage ixgbe.
+
+Permanent restrictions:
+- It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
+- It is not possible to encrypt a disk partition, only complete disks are supported.
+- AFP shares with TimeMachine support are limited to max. 4 shares.
+- Upgrade php to 8.0.13.
+Known bugs:
+- If DHCP for IPv4 is used, the IPv6 statically configured DNS server will be
+  overriden by the IPv4 DNS server.
+
+NEED TESTING:
+- IPv6: auto mode.
+- All services using IPv6 address. (NFS, FTP, etc...)
+- Netatalk VFS Samba module (automatically enabled when Netatalk starts) crashes
+  samba when accessing to share.
+- Need to write an online-test procedure.
+
+Help needed:
+- Need help for adding LDAP authentication feature:
+  Main services can be easily authenticated using PAM-LDAP, but is harder for Samba.
+

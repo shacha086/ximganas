@@ -1,0 +1,54 @@
+PORTNAME=		xigmanas-virtualbox
+PORTVERSION=		1.0
+PORTREVISION=		5
+CATEGORIES=		emulators
+
+COMMENT=		VirtualBox
+MAINTAINER=		zoon01@xigmanas.com
+
+DISTFILES=
+NO_BUILD=		yes
+NO_PKG_REGISTER=	yes
+DEPENDS_TARGET=	clean build stage
+
+BUILD_DEPENDS=	${NONEXISTENT}:emulators/virtualbox-ose-72
+BUILD_DEPENDS+=	${NONEXISTENT}:emulators/virtualbox-ose-kmod-72
+DEP_STAGEDIR=	${PORTSDIR}/emulators/virtualbox-ose-72/work/stage
+KMOD_STAGEDIR=	${PORTSDIR}/emulators/virtualbox-ose-kmod-72/work/stage
+
+do-install:
+# XigmaNAS® install
+	@echo "Start install to ${XIGMANAS_ROOTFS}"
+	@${INSTALL_SCRIPT} -v ${FILESDIR}/vbox.in ${XIGMANAS_ROOTFS}/etc/rc.d/vbox
+# DEP_STAGEDIR
+.for file in vboxheadless vboxwatchdog vboxwebsrv
+	@${INSTALL_SCRIPT} -v ${DEP_STAGEDIR}${PREFIX}/etc/rc.d/${file} ${XIGMANAS_ROOTFS}/usr/local/etc/rc.d
+.endfor
+# bin
+.for file in VBoxAutostart VBoxBalloonCtrl VBoxBugReport VBoxHeadless VBoxManage VBoxVRDP vboxautostart vboxballoonctrl vboxbugreport vboxheadless vboximg-mount vboxmanage vboxwebsrv
+	@${LN} -fsv /usr/local/lib/virtualbox/VBox.sh ${XIGMANAS_ROOTFS}/usr/local/bin/${file}
+.endfor
+# lib
+	@${RM} -rf ${XIGMANAS_ROOTFS}/usr/local/lib/virtualbox
+	@${CP} -Rpv ${DEP_STAGEDIR}${PREFIX}/lib/virtualbox ${XIGMANAS_ROOTFS}/usr/local/lib
+.for file in VBoxHeadless VBoxNetAdpCtl VBoxNetDHCP
+	chown 0:920 ${XIGMANAS_ROOTFS}/usr/local/lib/virtualbox/${file}
+	chmod 4510 ${XIGMANAS_ROOTFS}/usr/local/lib/virtualbox/${file}
+.endfor
+# share
+	@${RM} -rf ${XIGMANAS_ROOTFS}/usr/local/share/virtualbox-ose
+	@${CP} -Rpv ${DEP_STAGEDIR}${PREFIX}/share/virtualbox-ose ${XIGMANAS_ROOTFS}/usr/local/share
+# misc
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+	@${CP} -Rpv ${DEP_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/vboxapi ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+	@${CP} -Rpv ${DEP_STAGEDIR}${PREFIX}/lib/python3.11/site-packages/xpcom ${XIGMANAS_ROOTFS}/usr/local/lib/python3.11/site-packages
+# KMOD_STAGEDIR
+	@${INSTALL_SCRIPT} -v ${KMOD_STAGEDIR}${PREFIX}/etc/rc.d/vboxnet ${XIGMANAS_ROOTFS}/usr/local/etc/rc.d
+# boot/modules
+.for file in vboxdrv.ko vboxnetadp.ko vboxnetflt.ko
+	@${INSTALL_KLD} -v ${KMOD_STAGEDIR}/boot/modules/${file} ${XIGMANAS_ROOTFS}/boot/modules
+.endfor
+# XigmaNAS® end install
+	@echo "End install to ${XIGMANAS_ROOTFS}"
+
+.include <bsd.port.mk>

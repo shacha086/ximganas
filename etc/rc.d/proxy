@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# Configure proxy environment
+#
+# changes: Set proxy environment variables in shell settings file (/root/.cshrc).
+#
+
+# PROVIDE: proxy
+# REQUIRE: SYSTEMINIT
+# BEFORE: LOGIN
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+# Defaults
+cshrc_config=${cshrc_config:-"/root/.cshrc"}
+
+# Remove proxy settings (HTTP_PROXY, HTTP_PROXY_AUTH, FTP_PROXY, FTP_PROXY_AUTH, FTP_LOGIN and FTP_PASSWORD)
+if [ -e ${cshrc_config} ]; then
+	/usr/bin/sed -i "" '/^.*[HTTP|FTP]_PROXY[_AUTH]*.*$/d' ${cshrc_config}
+	/usr/bin/sed -i "" '/^.*FTP_[LOGIN|PASSWORD].*$/d' ${cshrc_config}
+fi
+
+# Set proxy settings
+/usr/local/bin/xml sel --text --template \
+	--match "//system/proxy/http" \
+		--if "count(enable) > 0" \
+			--value-of "concat('setenv HTTP_PROXY \"',address,':',port,'\"')" \
+			--nl \
+			--if "count(auth) > 0" \
+				--value-of "concat('setenv HTTP_PROXY_AUTH \"basic:*:',username,':',password,'\"')" \
+				--nl \
+			--break \
+		--break \
+	--break \
+	--match "//system/proxy/ftp" \
+		--if "count(enable) > 0" \
+			--value-of "concat('setenv FTP_PROXY \"',address,':',port,'\"')" \
+			--nl \
+			--if "count(auth) > 0" \
+				--value-of "concat('setenv FTP_LOGIN \"',username,'\"')" \
+				--nl \
+				--value-of "concat('setenv FTP_PASSWORD \"',password,'\"')" \
+				--nl \
+			--break \
+		--break \
+	--break \
+	${configxml_file} | /usr/local/bin/xml unesc >> ${cshrc_config}

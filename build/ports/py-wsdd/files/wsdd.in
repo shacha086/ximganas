@@ -1,0 +1,121 @@
+#!/bin/sh
+#
+# Part of XigmaNAS® (https://www.xigmanas.com).
+# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# All rights reserved.
+#
+# Web Service Discovery host daemon
+#
+# PROVIDE: wsdd
+# REQUIRE: DAEMON samba_server smbd
+# BEFORE: LOGIN
+# KEYWORD: shutdown
+# XQUERY: --if "count(//wsdd/enable) > 0" --output "0" --else --output "1" --break
+# RCVAR: wsdd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name=wsdd
+rcvar=wsdd_enable
+
+# Defaults
+start_cmd="wsdd_start"
+command="/usr/local/bin/wsdd"
+command_interpreter="/usr/local/bin/python*.*"
+pidfile="/var/run/wsdd.pid"
+
+load_rc_config ${name}
+
+: ${wsdd_enable:="NO"}
+: ${wsdd_flags:=""}
+: ${wsdd_domain:=""}
+: ${wsdd_group:=""}
+: ${wsdd_smb_config_file:="/usr/local/etc/smb4.conf"}
+
+cfg_wsdd_extraoptions=$(configxml_get "//wsdd/extraoptions")
+cfg_wsdd_hostname=$(configxml_get "//wsdd/hostname")
+cfg_wsdd_if=$(configxml_get "//wsdd/if")
+cfg_wsdd_ipprotocol=$(configxml_get "//wsdd/ipprotocol")
+cfg_wsdd_servermode=$(configxml_get "//wsdd/servermode")
+#	domain
+priority_domain=""
+#	read domain from wsdd in config.xml
+if [ "${cfg_wsdd_servermode}" = "domain" ]; then
+	priority_domain=$(configxml_get "//wsdd/domain")
+fi
+#	read domain from sambaad in config.xml
+if [ -z "${priority_domain}" ]; then
+	if configxml_isset "//sambaad/enable"; then
+		priority_domain=$(configxml_get "//sambaad/dns_domain")
+	fi
+fi
+#	overwrite wsdd domain with existing priority domain
+if [ -n "${priority_domain}" ]; then
+	wsdd_domain="${priority_domain}"
+fi
+#	workgroup
+if [ -z "${wsdd_domain}" ]; then
+	priority_group=""
+#	read workgroup from wsdd in config.xml
+	if [ "${cfg_wsdd_servermode}" = "workgroup" ]; then
+		priority_group=$(configxml_get "//wsdd/workgroup")
+	fi
+#	detect workgroup from samba in config.xml
+	if [ -z "${priority_group}" ]; then
+		if configxml_isset "//samba/enable"; then
+			priority_group=$(configxml_get "//samba/workgroup")
+		fi
+	fi
+#	detect workgroup from testparm
+	if [ -z "${priority_group}" ]; then
+		priority_group=$(/usr/local/bin/testparm -s --parameter-name workgroup 2>/dev/null)
+	fi
+#	detect workgroup from smb.conf
+	if [ -z "${priority_group}" ]; then
+		if [ -r "${wsdd_smb_config_file}" ]; then
+			priority_group="$(grep -i '^[[:space:]]*workgroup[[:space:]]*=' ${wsdd_smb_config_file} | cut -f2 -d= | tr -d '[:blank:]')"
+		fi
+	fi
+#	overwrite wsdd group with existing priority group
+	if [ -n "${priority_group}" ]; then
+		wsdd_group="${priority_group}"
+	fi
+fi
+#	compile options
+wsdd_opts=""
+if [ -n "${wsdd_flags}" ]; then
+	wsdd_opts="${wsdd_flags}"
+fi
+if [ -n "${wsdd_domain}" ]; then
+	wsdd_opts="${wsdd_opts} -d ${wsdd_domain}"
+elif [ -n "${wsdd_group}" ]; then
+	wsdd_opts="${wsdd_opts} -w ${wsdd_group}"
+fi
+if [ -n "${cfg_wsdd_hostname}" ]; then
+	wsdd_opts="${wsdd_opts} -n ${cfg_wsdd_hostname}"
+fi
+if [ -n "${cfg_wsdd_ipprotocol}" ]; then
+	if [ "${cfg_wsdd_ipprotocol}" = "4" ]; then
+		wsdd_opts="${wsdd_opts} -4"
+	elif [ "${cfg_wsdd_ipprotocol}" = "6" ]; then
+		wsdd_opts="${wsdd_opts} -6"
+	fi
+fi
+if [ -n "${cfg_wsdd_if}" ]; then
+	wsdd_opts="${wsdd_opts} -i ${cfg_wsdd_if}"
+fi
+if configxml_isset "//wsdd/preservecase"; then
+	wsdd_opts="${wsdd_opts} -p"
+fi
+if [ -n "${cfg_wsdd_extraoptions}" ]; then
+	wsdd_opts="${wsdd_opts} ${cfg_wsdd_extraoptions}"
+fi
+
+wsdd_start()
+{
+	echo -n "Starting ${name}."
+	/usr/sbin/daemon -u _wsdd -S -p ${pidfile} ${command} ${wsdd_opts}
+}
+
+run_rc_command "$1"

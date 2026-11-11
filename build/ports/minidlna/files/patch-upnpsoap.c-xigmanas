@@ -1,0 +1,41 @@
+--- upnpsoap.c.orig	2025-07-25 03:55:58.000000000 +0200
++++ upnpsoap.c	2025-10-13 06:40:40.000000000 +0200
+@@ -1053,8 +1053,13 @@
+ 				ret = strcatf(str, "&lt;upnp:actor&gt;%s&lt;/upnp:actor&gt;", artist);
+ 			}
+ 			if( passed_args->filter & FILTER_UPNP_ARTIST ) {
+-				ret = strcatf(str, "&lt;upnp:artist&gt;%s&lt;/upnp:artist&gt;", artist);
+-			}
++				/* HEOS Hack: don't return artist if we have (and returned) a creator, because HEOS uses it where it should
++				 * use creator (usually trackartist).  (So for collection where tracks have different artists, it just
++				 * display "Various Artists" instead of the actual artist.)
++				 */
++				if (!((passed_args->client == EDenonHeos) && creator && (passed_args->filter & FILTER_DC_CREATOR)) ) {
++				    ret = strcatf(str, "&lt;upnp:artist&gt;%s&lt;/upnp:artist&gt;", artist);
++			    }			}
+ 		}
+ 		if( album && (passed_args->filter & FILTER_UPNP_ALBUM) ) {
+ 			ret = strcatf(str, "&lt;upnp:album&gt;%s&lt;/upnp:album&gt;", album);
+@@ -1907,6 +1912,22 @@
+ 		groupBy[0] = '\0';
+ 
+ 	where = parse_search_criteria(SearchCriteria, sep);
++	// This is a hack for HEOS client.  If we're listing all Artists we don't want to include composers.
++	// But if we're searching for a specific name include composers because there is no way to search on composer name.
++	if (h->req_client && h->req_client->type->type == EDenonHeos)
++	{
++		if (strstr(where, "musicArtist%") && !strstr(where, " and "))
++		{
++			char * pos1 = strstr(where, " like ");
++		    char * pos2 = strstr(where, "%\"");
++		    if (pos1 && pos2)
++		    {
++		    	memcpy(pos1, " =    ", 6);
++		    	memcpy(pos2, "\" ", 2);
++		    	// so instead of like "person.MusicArtist%" it should read =    "person.MusicArtist"
++		    }
++		}
++	}
+ 	DPRINTF(E_DEBUG, L_HTTP, "Translated SearchCriteria: %s\n", where);
+ 
+ 	totalMatches = sql_get_int_field(db, "SELECT (select count(distinct DETAIL_ID)"
