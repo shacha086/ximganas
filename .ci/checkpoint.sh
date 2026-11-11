@@ -20,6 +20,7 @@ if [[ "$operation" == restore ]]; then
   (cd "$directory" && sha256sum -c SHA256SUMS)
   cat "$directory"/state.tar.zst.* | zstd -dc |
     ssh freebsd 'tar -xpf - -C /'
+  ssh freebsd "sh '$GITHUB_WORKSPACE/.ci/restore-accounts.sh'"
   ssh freebsd 'rm -f /usr/local/xigmanas/state/dirty'
   echo "Restored $release" >> "$GITHUB_STEP_SUMMARY"
   rm -f "$directory"/state.tar.zst.*
