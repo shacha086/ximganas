@@ -3,7 +3,7 @@
 	reboot_sched.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -82,8 +82,7 @@ if($_POST):
 	endif;
 endif;
 $pgtitle = [gtext('System'),gtext('Reboot'),gtext('Scheduled')];
-include 'fbegin.inc';
-?>
+include 'fbegin.inc';?>
 <script>
 //<![CDATA[
 $(window).on("load", function() {

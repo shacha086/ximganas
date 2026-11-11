@@ -3,7 +3,7 @@
 	system_email.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -112,7 +112,7 @@ if($_POST):
 				$subject = sprintf(gettext('Test email from host: %s'),system_get_hostname());
 				$message = gettext('This email has been sent to validate your email configuration.');
 				$retval = @email_send($config['system']['email']['sendto'],$subject,$message,$error);
-				if($retval == 0):
+				if(0 == $retval):
 					$savemsg = gtext('Test email successfully sent.');
 					write_log(sprintf('Test email successfully sent to: %s.',$config['system']['email']['sendto']));
 				else:

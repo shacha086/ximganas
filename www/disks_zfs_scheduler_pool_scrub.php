@@ -3,7 +3,7 @@
 	disks_zfs_scheduler_pool_scrub.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without

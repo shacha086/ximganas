@@ -3,7 +3,7 @@
 	reboot.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -32,7 +32,6 @@
 	of XigmaNAS®, either expressed or implied.
 */
 
-require_once 'autoload.php';
 require_once 'auth.inc';
 require_once 'guiconfig.inc';
 require_once 'co_sphere.php';

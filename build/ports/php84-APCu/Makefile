@@ -11,8 +11,7 @@ NO_PKG_REGISTER?=	 yes
 DEPENDS_TARGET=	clean build stage
 
 DEP_STAGEDIR=	${PORTSDIR}/devel/pecl-APCu/work-php84/stage
-BUILD_DEPENDS=	${NONEXISTENT}:devel/pecl-APCu \
-		php84:lang/php84
+BUILD_DEPENDS=	${NONEXISTENT}:devel/pecl-APCu
 
 do-install:
 # XigmaNAS® install

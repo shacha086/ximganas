@@ -3,7 +3,7 @@
 # This script is designed to automate the assembly of XigmaNAS® builds.
 #
 # Part of XigmaNAS® (https://www.xigmanas.com).
-# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 # All rights reserved.
 #
 # Debug script
@@ -42,7 +42,6 @@ fi
 XIGMANAS_OBJDIRPREFIX="/usr/obj/$(echo ${XIGMANAS_PRODUCTNAME} | tr '[:upper:]' '[:lower:]')"
 XIGMANAS_BOOTDIR="$XIGMANAS_ROOTDIR/bootloader"
 XIGMANAS_TMPDIR="/tmp/xigmanastmp"
-XIGMANAS_MAKEFS_OPTIONS='optimization=space,version=2,minfree=0'
 
 export XIGMANAS_ROOTDIR
 export XIGMANAS_WORKINGDIR
@@ -347,7 +346,7 @@ build_kernel() {
 	# Compiling and compressing the kernel.
 	cd /usr/src;
 	env MAKEOBJDIRPREFIX=${XIGMANAS_OBJDIRPREFIX} make -j $(sysctl -n hw.ncpu) buildkernel KERNCONF=${XIGMANAS_KERNCONF};
-	env MAKEOBJDIRPREFIX=${XIGMANAS_OBJDIRPREFIX} DESTDIR=/ make installkernel KERNCONF=${XIGMANAS_KERNCONF};
+	env MAKEOBJDIRPREFIX=${XIGMANAS_OBJDIRPREFIX} make installkernel KERNCONF=${XIGMANAS_KERNCONF};
 
 	compress_kernel
 }
@@ -554,94 +553,6 @@ create_checksum_file() {
 	return 0
 }
 
-#	Making mdlocal-mini
-make_mdlocal_mini() {
-	echo "-------------------------------------------------------------------------------";
-	echo ">>> Generating MDLOCAL-MINI Filesystem"
-	echo "-------------------------------------------------------------------------------";
-
-	cd $XIGMANAS_WORKINGDIR
-
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini.xz ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini.xz
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files
-	cp $XIGMANAS_SVNDIR/build/xigmanas-mdlocal-mini.files $XIGMANAS_WORKINGDIR/mdlocal-mini.files
-
-	# Make mfsroot to have the size of the XIGMANAS_MFSROOT_SIZE variable
-	dd if=/dev/zero of=$XIGMANAS_WORKINGDIR/mdlocal-mini bs=1k seek=$(expr ${XIGMANAS_MDLOCAL_MINI_SIZE} \* 1024) count=0
-	# Configure this file as a memory disk
-	md=$(mdconfig -a -t vnode -f $XIGMANAS_WORKINGDIR/mdlocal-mini)
-	# Format memory disk using UFS
-	newfs -S $XIGMANAS_IMGFMT_SECTOR -b $XIGMANAS_IMGFMT_BSIZE -f $XIGMANAS_IMGFMT_FSIZE -O2 -o space -m 0 -U -t /dev/${md}
-	# Umount memory disk (if already used)
-	umount $XIGMANAS_TMPDIR >/dev/null 2>&1
-	# Mount memory disk
-	mkdir -p ${XIGMANAS_TMPDIR}/usr/local
-	mount /dev/${md} ${XIGMANAS_TMPDIR}/usr/local
-
-	# Create tree
-	cd $XIGMANAS_ROOTFS/usr/local
-	find . -type d | cpio -pmd ${XIGMANAS_TMPDIR}/usr/local
-
-	# Copy selected files
-	cd $XIGMANAS_TMPDIR
-	for i in $(cat $XIGMANAS_WORKINGDIR/mdlocal-mini.files | grep -v "^#"); do
-		d=$(dirname $i)
-		b=$(basename $i)
-		echo "cp $XIGMANAS_ROOTFS/$d/$b  ->  $XIGMANAS_TMPDIR/$d/$b"
-		cp $XIGMANAS_ROOTFS/$d/$b $XIGMANAS_TMPDIR/$d/$b
-		# Copy required libraries
-		for j in $(ldd $XIGMANAS_ROOTFS/$d/$b | cut -w -f 4 | grep /usr/local | sed -e '/:/d' -e 's/^\///'); do
-			d=$(dirname $j)
-			b=$(basename $j)
-			if [ ! -e $XIGMANAS_TMPDIR/$d/$b ]; then
-				echo "cp $XIGMANAS_ROOTFS/$d/$b  ->  $XIGMANAS_TMPDIR/$d/$b"
-				cp $XIGMANAS_ROOTFS/$d/$b $XIGMANAS_TMPDIR/$d/$b
-			fi
-		done
-	done
-
-	# Identify required libs.
-	[ -f /tmp/lib.list ] && rm -f /tmp/lib.list
-	dirs=(${XIGMANAS_TMPDIR}/usr/local/bin ${XIGMANAS_TMPDIR}/usr/local/sbin ${XIGMANAS_TMPDIR}/usr/local/lib ${XIGMANAS_TMPDIR}/usr/local/libexec)
-	for i in ${dirs[@]}; do
-		for file in $(find -L ${i} -type f -print); do
-			ldd -f "%p\n" ${file} 2> /dev/null >> /tmp/lib.list
-		done
-	done
-
-	# Copy identified libs.
-	for i in $(sort -u /tmp/lib.list); do
-		if [ -e "${XIGMANAS_WORLD}${i}" ]; then
-			d=$(dirname $i)
-			b=$(basename $i)
-			if [ "$d" = "/lib" -o "$d" = "/usr/lib" ]; then
-				# skip lib in mfsroot
-				[ -e ${XIGMANAS_ROOTFS}${i} ] && continue
-			fi
-			DESTDIR=${XIGMANAS_TMPDIR}$(echo $i | rev | cut -d '/' -f 2- | rev)
-			if [ ! -d ${DESTDIR} ]; then
-				DESTDIR=${XIGMANAS_TMPDIR}/usr/local/lib
-			fi
-			install -c -s -v ${XIGMANAS_WORLD}${i} ${DESTDIR}
-		fi
-	done
-
-	# Cleanup.
-	rm -f /tmp/lib.list
-
-	# Umount memory disk
-	umount $XIGMANAS_TMPDIR/usr/local
-	# Detach memory disk
-	mdconfig -d -u ${md}
-
-	echo "Compressing mdlocal-mini"
-	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/image.bin
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files
-
-	return 0
-}
-
 #	Creating mdlocal-mini
 create_mdlocal_mini() {
 	echo "-------------------------------------------------------------------------------";
@@ -726,78 +637,6 @@ create_mdlocal_mini() {
 	echo "Compressing mdlocal-mini"
 	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/image.bin
 	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files
-
-	return 0
-}
-
-#	Creating msfroot
-make_mfsroot() {
-	echo "-------------------------------------------------------------------------------";
-	echo ">>> Generating MFSROOT Filesystem"
-	echo "-------------------------------------------------------------------------------";
-
-	cd $XIGMANAS_WORKINGDIR
-
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot.gz ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot.gz
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot.uzip ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot.uzip
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal.xz ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal.xz
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal.uzip ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal.uzip
-	[ -d $XIGMANAS_SVNDIR ] && use_svn ;
-
-		# # Make mfsroot to have the size of the XIGMANAS_MFSROOT_SIZE variable
-		# dd if=/dev/zero of=$XIGMANAS_WORKINGDIR/mfsroot bs=1k seek=$(expr ${XIGMANAS_MFSROOT_SIZE} \* 1024) count=0
-		# dd if=/dev/zero of=$XIGMANAS_WORKINGDIR/mdlocal bs=1k seek=$(expr ${XIGMANAS_MDLOCAL_SIZE} \* 1024) count=0
-		# # Configure this file as a memory disk
-		# md=$(mdconfig -a -t vnode -f $XIGMANAS_WORKINGDIR/mfsroot)
-		# md2=$(mdconfig -a -t vnode -f $XIGMANAS_WORKINGDIR/mdlocal)
-		# # Format memory disk using UFS
-		# newfs -S $XIGMANAS_IMGFMT_SECTOR -b $XIGMANAS_IMGFMT_BSIZE -f $XIGMANAS_IMGFMT_FSIZE -O2 -o space -m 0 /dev/${md}
-		# newfs -S $XIGMANAS_IMGFMT_SECTOR -b $XIGMANAS_IMGFMT_BSIZE -f $XIGMANAS_IMGFMT_FSIZE -O2 -o space -m 0 -U -t /dev/${md2}
-
-		# # Mount memory disk
-		# mount /dev/${md} ${XIGMANAS_TMPDIR}
-		# mkdir -p ${XIGMANAS_TMPDIR}/usr/local
-		# mount /dev/${md2} ${XIGMANAS_TMPDIR}/usr/local
-
-	# Umount memory disk (if already used)
-	umount -f $XIGMANAS_TMPDIR >/dev/null 2>&1
-
-	cd $XIGMANAS_TMPDIR
-	tar -cf - -C $XIGMANAS_ROOTFS ./ | tar -xvpf -
-
-	echo "Creating linker.hints"
-	kldxref -R $XIGMANAS_TMPDIR/boot
-
-	mv ${XIGMANAS_TMPDIR}/usr/local ${XIGMANAS_TMPDIR}__usr__local
-	mkdir ${XIGMANAS_TMPDIR}/usr/local
-
-	makefs -t ffs -B little -o  $XIGMANAS_MAKEFS_OPTIONS,softupdates=0 $XIGMANAS_WORKINGDIR/mfsroot $XIGMANAS_TMPDIR
-	makefs -t ffs -B little -o  $XIGMANAS_MAKEFS_OPTIONS,softupdates=1 $XIGMANAS_WORKINGDIR/mdlocal ${XIGMANAS_TMPDIR}__usr__local
-
-	chflags -R noschg $XIGMANAS_TMPDIR
-	rm -rf ${XIGMANAS_TMPDIR}__usr__local
-	rm -rf $XIGMANAS_TMPDIR
-	mkdir $XIGMANAS_TMPDIR
-
-
-
-	cd $XIGMANAS_WORKINGDIR
-
-		# # Umount memory disk
-		# umount $XIGMANAS_TMPDIR/usr/local
-		# umount $XIGMANAS_TMPDIR
-		# # Detach memory disk
-		# mdconfig -d -u ${md2}
-		# mdconfig -d -u ${md}
-
-	echo "Compressing mfsroot"
-	pigz -${XIGMANAS_COMPLEVEL}kfnv $XIGMANAS_WORKINGDIR/mfsroot
-	echo "Compressing mdlocal"
-	xz -${XIGMANAS_COMPLEVEL}kv -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/mdlocal
-
-	# make_mdlocal_mini;
 
 	return 0
 }
@@ -892,161 +731,6 @@ copy_kmod() {
 		(cd ${XIGMANAS_WORLD}/boot/kernel; install -v -o root -g wheel -m 555 ${f} $XIGMANAS_TMPDIR/boot/kernel/${b})
 	done
 	return 0;
-}
-
-make_image() {
-	echo "-------------------------------------------------------------------------------";
-	echo ">>> Generating ${XIGMANAS_PRODUCTNAME} image File (to be rawrite on CF/USB/HD/SSD)"
-	echo "-------------------------------------------------------------------------------";
-
-	# Check if rootfs (containing OS image) exists.
-	if [ ! -d "$XIGMANAS_ROOTFS" ]; then
-		echo "==> Error: ${XIGMANAS_ROOTFS} does not exist."
-		return 1
-	fi
-
-	# Cleanup.
-	[ -f ${XIGMANAS_WORKINGDIR}/image.bin ] && rm -f ${XIGMANAS_WORKINGDIR}/image.bin
-	[ -f ${XIGMANAS_WORKINGDIR}/image.bin.xz ] && rm -f ${XIGMANAS_WORKINGDIR}/image.bin.xz
-
-	# Set platform information.
-	PLATFORM="${XIGMANAS_XARCH}-embedded"
-	echo $PLATFORM > ${XIGMANAS_ROOTFS}/etc/platform
-
-	# Set build time.
-	date > ${XIGMANAS_ROOTFS}/etc/prd.version.buildtime
-	date "+%s" > ${XIGMANAS_ROOTFS}/etc/prd.version.buildtimestamp
-
-	# Set revision.
-	echo ${XIGMANAS_REVISION} > ${XIGMANAS_ROOTFS}/etc/prd.revision
-
-	IMGFILENAME="${XIGMANAS_PRODUCTNAME}-${PLATFORM}-${XIGMANAS_VERSION}.${XIGMANAS_REVISION}.img"
-
-	echo "===> Generating tempory $XIGMANAS_TMPDIR folder"
-	mkdir $XIGMANAS_TMPDIR
-	make_mfsroot;
-
-
-	echo "===> Copying previously generated MFSROOT file to memory disk"
-	cp $XIGMANAS_WORKINGDIR/mfsroot.gz $XIGMANAS_TMPDIR
-	cp $XIGMANAS_WORKINGDIR/mdlocal.xz $XIGMANAS_TMPDIR
-	echo "${XIGMANAS_PRODUCTNAME}-${PLATFORM}-${XIGMANAS_VERSION}.${XIGMANAS_REVISION}" > $XIGMANAS_TMPDIR/version
-
-	echo "===> Copying Bootloader File(s) to memory disk"
-	mkdir -p $XIGMANAS_TMPDIR/boot
-	mkdir -p $XIGMANAS_TMPDIR/boot/dtb/overlays
-	mkdir -p $XIGMANAS_TMPDIR/boot/images
-	mkdir -p $XIGMANAS_TMPDIR/boot/kernel
-	mkdir -p $XIGMANAS_TMPDIR/boot/lua
-	mkdir -p $XIGMANAS_TMPDIR/boot/defaults
-	mkdir -p $XIGMANAS_TMPDIR/boot/zfs
-	mkdir -p $XIGMANAS_TMPDIR/conf
-	mkdir -p $XIGMANAS_TMPDIR/boot/modules
-
-	cp $XIGMANAS_ROOTFS/conf.default/config.xml $XIGMANAS_TMPDIR/conf
-	cp $XIGMANAS_BOOTDIR/kernel/kernel.gz $XIGMANAS_TMPDIR/boot/kernel
-	cp $XIGMANAS_BOOTDIR/entropy $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/lua/*.lua $XIGMANAS_TMPDIR/boot/lua
-	cp $XIGMANAS_ROOTFS/boot/efi.4th $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_ROOTFS/boot/loader_4th $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_SVNDIR/boot/loader_4th.efi $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_ROOTFS/boot/loader_lua $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_SVNDIR/boot/loader_lua.efi $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_ROOTFS/boot/loader_simp $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_SVNDIR/boot/loader_simp.efi $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_ROOTFS/boot/userboot_4th.so $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_ROOTFS/boot/userboot_lua.so $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/loader $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/loader.conf $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/loader.rc $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/loader.4th $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/support.4th $XIGMANAS_TMPDIR/boot
-	cp $XIGMANAS_BOOTDIR/defaults/loader.conf $XIGMANAS_TMPDIR/boot/defaults/
-	cp $XIGMANAS_BOOTDIR/device.hints $XIGMANAS_TMPDIR/boot
-	# cp $XIGMANAS_BOOTDIR/kernel/linker.hints $XIGMANAS_TMPDIR/boot/kernel/
-	if [ 0 != $OPT_BOOTMENU ]; then
-		cp $XIGMANAS_SVNDIR/boot/lua/drawer.lua $XIGMANAS_TMPDIR/boot/lua
-		cp $XIGMANAS_SVNDIR/boot/lua/gfx-${XIGMANAS_PRODUCTNAME}.lua $XIGMANAS_TMPDIR/boot/lua
-		cp $XIGMANAS_SVNDIR/boot/images/xigmanas-brand-rev.png $XIGMANAS_TMPDIR/boot/images
-		cp $XIGMANAS_SVNDIR/boot/brand-${XIGMANAS_PRODUCTNAME}.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_SVNDIR/boot/menu.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/menu.rc $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/menusets.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/beastie.4th $XIGMANAS_TMPDIR/boot
-		# cp $XIGMANAS_ROOTFS/boot/loader.efi $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_SVNDIR/boot/loader.efi $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_SVNDIR/boot/efiboot.img $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/brand.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/check-password.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/color.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/delay.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/frames.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/menu-commands.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/screen.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/shortcuts.4th $XIGMANAS_TMPDIR/boot
-		cp $XIGMANAS_BOOTDIR/version.4th $XIGMANAS_TMPDIR/boot
-	fi
-	if [ 0 != $OPT_BOOTSPLASH ]; then
-		cp $XIGMANAS_SVNDIR/boot/splash.bmp $XIGMANAS_TMPDIR/boot
-		install -v -o root -g wheel -m 555 ${XIGMANAS_WORLD}/boot/kernel/splash_bmp.ko $XIGMANAS_TMPDIR/boot/kernel
-	fi
-	if [ "amd64" != ${XIGMANAS_ARCH} ]; then
-		install -v -o root -g wheel -m 555 ${XIGMANAS_WORLD}/boot/kernel/apm.ko $XIGMANAS_TMPDIR/boot/kernel
-	fi
-	# iSCSI driver
-	install -v -o root -g wheel -m 555 ${XIGMANAS_ROOTFS}/boot/kernel/isboot.ko $XIGMANAS_TMPDIR/boot/kernel
-	# preload kernel drivers
-	install -v -o root -g wheel -m 555 ${XIGMANAS_WORLD}/boot/kernel/opensolaris.ko $XIGMANAS_TMPDIR/boot/kernel
-	install -v -o root -g wheel -m 555 ${XIGMANAS_WORLD}/boot/kernel/zfs.ko $XIGMANAS_TMPDIR/boot/kernel
-	# Ignore error: /boot/modules/openzfs.ko: No such file or directory when build by make.sh.
-	install -v -o root -g wheel -m 555 ${XIGMANAS_WORLD}/boot/modules/openzfs.ko $XIGMANAS_TMPDIR/boot/modules
-	# copy kernel modules
-	copy_kmod > /dev/null
-
-	# Custom company brand(fallback).
-	if [ -f ${XIGMANAS_SVNDIR}/boot/brand-${XIGMANAS_PRODUCTNAME}.4th ]; then
-		echo "loader_brand=\"${XIGMANAS_PRODUCTNAME}\"" >> $XIGMANAS_TMPDIR/boot/loader.conf
-	fi
-
-	echo "===> Creating linker.hints"
-	kldxref -R $XIGMANAS_TMPDIR/boot
-
-	
-	### NOTE: UFS partition be aligned to 1mb
-	sectsz=512 # sector size
-	# traditional MBR slice start (sector 63)
-	slice_start=$((63 * sectsz))	# 32,256 bytes
-	# UFS partition start inside BSD (sector 1985)
-	ufs_start=$((1985 * sectsz))	# 1,016,320 bytes 
-
-	# Step 1: build UFS filesystem
-	makefs -t ffs \
-		-o version=2,optimization=space,softupdates=1,label=embboot,minfree=0 \
-		${XIGMANAS_WORKINGDIR}/ufs.img ${XIGMANAS_TMPDIR}
-
-	# Step 2: BSD image with UFS partition at 1985 sectors
-	mkimg -o ${XIGMANAS_WORKINGDIR}/bsd.img \
-		-s bsd -b ${XIGMANAS_BOOTDIR}/boot \
-		-p freebsd-ufs:=${XIGMANAS_WORKINGDIR}/ufs.img:${ufs_start} 
-
-	# Step 3: MBR image with slice at sector 63
-	mkimg -o ${XIGMANAS_WORKINGDIR}/image.bin \
-		-s mbr -b ${XIGMANAS_BOOTDIR}/mbr -a 1 \
-		-p freebsd:=${XIGMANAS_WORKINGDIR}/bsd.img:${slice_start} 
-		
-	
-	echo "===> Compress the IMG file"
-	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/image.bin
-	cp $XIGMANAS_WORKINGDIR/image.bin.xz $XIGMANAS_ROOTDIR/${IMGFILENAME}.xz
-
-	# Cleanup.
-	[ -d $XIGMANAS_TMPDIR ] && rm -rf $XIGMANAS_TMPDIR
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot.gz ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot.gz
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot.uzip ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot.uzip
-	# [ -f $XIGMANAS_WORKINGDIR/mdlocal.xz ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal.xz
-	[ -f $XIGMANAS_WORKINGDIR/image.bin ] && rm -f $XIGMANAS_WORKINGDIR/image.bin
-
-	return 0
 }
 
 create_image() {
@@ -1378,26 +1062,6 @@ create_iso_tiny() {
 	TINY_ISO=1
 	create_iso;
 	unset TINY_ISO
-
-	return 0
-}
-
-make_embedded() {
-	echo "Embedded: Start generating the $XIGMANAS_PRODUCTNAME Image file"
-	make_image;
-	create_checksum_file;
-
-	# Cleanup.
-	[ -d $XIGMANAS_TMPDIR ] && rm -rf $XIGMANAS_TMPDIR
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot.gz ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot.gz
-	[ -f $XIGMANAS_WORKINGDIR/mfsroot.uzip ] && rm -f $XIGMANAS_WORKINGDIR/mfsroot.uzip
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal.xz ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal.xz
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal.uzip ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal.uzip
-	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini.xz ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini.xz
-	[ -f $XIGMANAS_WORKINGDIR/image.bin.xz ] && rm -f $XIGMANAS_WORKINGDIR/image.bin.xz
-	echo "Embedded: Finished generating the $XIGMANAS_PRODUCTNAME Image file"
 
 	return 0
 }

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XigmaNAS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-11 18:59+0000\n"
+"POT-Creation-Date: 2025-10-11 14:47+0000\n"
 "PO-Revision-Date: 2024-06-21 06:51+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: XigmaNAS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-18 15:53+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2025-10-11 13:16+0000\n"
+"X-Generator: Launchpad (build bff9b0558f8357613643d9a74c009da18fafa917)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -4031,9 +4031,6 @@ msgid "Upgrade ZFS and add all supported feature flags on a pool"
 msgstr ""
 "Actualizați structura ZFS și adăugați toate opțiunile disponibile la pool"
 
-msgid "Activate encryption feature"
-msgstr ""
-
 msgid "Temporary Device"
 msgstr "Dispozitiv temporar"
 
@@ -4460,9 +4457,6 @@ msgstr "Setări Avansate"
 
 msgid "Firmware Update"
 msgstr "Actualizare firmware"
-
-msgid "Boot Environments"
-msgstr ""
 
 msgid "Packages"
 msgstr "Pachete"
@@ -8410,102 +8404,6 @@ msgstr ""
 msgid "Reminder Settings"
 msgstr "Setări memento"
 
-msgid "Locked"
-msgstr ""
-
-msgid "Delete Selected Boot Environments"
-msgstr ""
-
-msgid "Do you really want to delete selected boot environments?"
-msgstr ""
-
-msgid "Failed to delete Boot Environment(s)."
-msgstr ""
-
-msgid "Age"
-msgstr ""
-
-msgid "Select"
-msgstr ""
-
-msgid "Boot Environment"
-msgstr ""
-
-msgid "Active"
-msgstr "Activ"
-
-msgid "Mountpoint"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Failed to create and/or activate Boot Environment."
-msgstr ""
-
-msgid "Failed to create Boot Environment."
-msgstr ""
-
-msgid ""
-"Activate Boot Environment after creation, note that system reboot is "
-"required for this boot environment to take place."
-msgstr ""
-
-msgid ""
-"Append the date in the following format: YYYY-MM-DD-HHMMSS, if the name "
-"field is empty, the date will always be used as the boot environment name."
-msgstr ""
-
-#, php-format
-msgid "For additional information about boot environments and %s,"
-msgstr ""
-
-msgid "Failed to activate Boot Environment."
-msgstr ""
-
-msgid "Failed to rename Boot Environment."
-msgstr ""
-
-msgid "Failed to mount Boot Environment."
-msgstr ""
-
-msgid "Failed to unmount Boot Environment."
-msgstr ""
-
-msgid "Failed to delete Boot Environment."
-msgstr ""
-
-msgid "Edit Boot Environment"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Append the date in the following format: YYYY-MM-DD-HHMMSS."
-msgstr ""
-
-msgid "Force"
-msgstr ""
-
-msgid ""
-"Destroy the boot environment and its origin if any, without confirmation."
-msgstr ""
-
-msgid "No boot environmen information available."
-msgstr ""
-
-msgid "Boot Environment List"
-msgstr ""
-
-msgid "Boot Environment Snapshots"
-msgstr ""
-
 msgid "Add job"
 msgstr "Adăugare activitate"
 
@@ -9706,8 +9604,167 @@ msgstr "Niciun rezultat disponibil."
 msgid "HOME"
 msgstr "ACASĂ"
 
+msgid "You are not allowed to use this function."
+msgstr "Nu aveți permisiunea să folosiți această funcție."
+
+msgid "This file doesn't exist."
+msgstr "Fișierul nu există."
+
+msgid "You are not allowed to access this file."
+msgstr "Nu aveți permisiunea să accesați acest fișier."
+
+msgid "Permission-change failed."
+msgstr "Eroare schimbare permisiune."
+
+msgid "Getting permissions failed."
+msgstr "Eroare determinare permisiuni."
+
+msgid "Change permissions"
+msgstr "Permisiuni modificare"
+
+msgid "Public"
+msgstr "Public"
+
+msgid "This item doesn't exist."
+msgstr "Articolul nu există."
+
+msgid "You are not allowed to access this item."
+msgstr "Nu aveți permisiunea să accesați acest element."
+
+msgid "Deleting failed."
+msgstr "Eroare ștergere."
+
+msgid "Unable to open source directory."
+msgstr ""
+
+msgid "Unable to open directory."
+msgstr "Directorul nu poate fi deschis."
+
+msgid "Unable to read directory."
+msgstr "Directorul nu poate fi citit."
+
+msgid "Copy item(s)"
+msgstr "Copiere element(e)"
+
+msgid "Move item(s)"
+msgstr "Mutare element(e)"
+
+#, php-format
+msgid "Copy from /%s to /%s "
+msgstr "Copiere de la /%s la /%s "
+
+#, php-format
+msgid "Move from /%s to /%s "
+msgstr "Mutare de la /%s la /%s "
+
+msgid "Copy"
+msgstr "Copiere"
+
+msgid "Move"
+msgstr "Mutare"
+
+msgid "The target directory doesn't exist."
+msgstr "Directorul țintă nu există."
+
+msgid "You are not allowed to access the target directory."
+msgstr "Nu sunteți autorizat să accesați directorul destinație."
+
+msgid "The target directory may not be above the home directory."
+msgstr ""
+"Directorul destinație nu poate fi deasupra/în afara directorului home."
+
+msgid "You must supply a name."
+msgstr "Trebuie să introduceți un nume."
+
+msgid "The target item already exists."
+msgstr "Destinația există deja."
+
+msgid "Copying failed."
+msgstr "Eroare copiere."
+
+msgid "Moving failed."
+msgstr "Mutare eșuată."
+
+msgid "You haven't selected any item(s)."
+msgstr "Nu ați selectat niciun element."
+
+msgid "File saving failed."
+msgstr "Eroare salvare fișier."
+
+msgid "This item already exists."
+msgstr "Articoulul există deja."
+
+msgid "File opening failed."
+msgstr "Eroare deschidere fișier."
+
+msgid "Edit file"
+msgstr "Editare fișier"
+
+msgid "Wrap text:"
+msgstr "Încadrare text:"
+
+msgid "Reset"
+msgstr "Resetare"
+
+msgid "Are you sure you want to delete selected item(s)?"
+msgstr "Sunteți sigur că doriți ștergerea elementului/elementelor selectate?"
+
+msgid "CHANGE PERMISSIONS"
+msgstr "MODIFICARE PERMISIUNI"
+
+msgid "You are not allowed to access this directory."
+msgstr "Nu aveți permisiunea să accesați acest director."
+
 msgid "Directory"
 msgstr "Director"
+
+msgid "UP"
+msgstr "SUS"
+
+msgid "RELOAD"
+msgstr "REÎNCĂRCARE"
+
+msgid "SEARCH"
+msgstr "CĂUTARE"
+
+msgid "Create"
+msgstr "Creare"
+
+msgid "Modified"
+msgstr "Modificat"
+
+msgid "Permissions"
+msgstr "Permisiuni"
+
+msgid "Actions"
+msgstr "Acțiuni"
+
+msgid "COPY"
+msgstr "COPIERE"
+
+msgid "MOVE"
+msgstr "MUTĂ"
+
+msgid "DELETE"
+msgstr "ȘTERGERE"
+
+msgid "EDIT"
+msgstr "EDITARE"
+
+msgid "UNZIP"
+msgstr "UNZIP"
+
+msgid "DOWNLOAD"
+msgstr "DESCĂRCARE"
+
+msgid "Extracting"
+msgstr "Se extrage"
+
+msgid "Unzip"
+msgstr "Unzip"
+
+msgid "Failed to extract archive."
+msgstr "Eroare dezarhivare arhivă."
 
 msgid "Executable File"
 msgstr "Fișier executabil"
@@ -9862,113 +9919,11 @@ msgstr "Prezentare PowerPoint"
 msgid "PDF File"
 msgstr "Fișier PDF"
 
-msgid "You haven't selected any item(s)."
-msgstr "Nu ați selectat niciun element."
-
-msgid "You are not allowed to use this function."
-msgstr "Nu aveți permisiunea să folosiți această funcție."
-
-msgid "This file doesn't exist."
-msgstr "Fișierul nu există."
-
-msgid "You are not allowed to access this file."
-msgstr "Nu aveți permisiunea să accesați acest fișier."
-
-msgid "Permission-change failed."
-msgstr "Eroare schimbare permisiune."
-
-msgid "Getting permissions failed."
-msgstr "Eroare determinare permisiuni."
-
-msgid "Change permissions"
-msgstr "Permisiuni modificare"
-
-msgid "Public"
-msgstr "Public"
-
-msgid "Copy item(s)"
-msgstr "Copiere element(e)"
-
-msgid "Move item(s)"
-msgstr "Mutare element(e)"
-
-#, php-format
-msgid "Copy from /%s to /%s "
-msgstr "Copiere de la /%s la /%s "
-
-#, php-format
-msgid "Move from /%s to /%s "
-msgstr "Mutare de la /%s la /%s "
-
-msgid "Copy"
-msgstr "Copiere"
-
-msgid "Move"
-msgstr "Mutare"
-
-msgid "The target directory doesn't exist."
-msgstr "Directorul țintă nu există."
-
-msgid "You are not allowed to access the target directory."
-msgstr "Nu sunteți autorizat să accesați directorul destinație."
-
-msgid "The target directory may not be above the home directory."
-msgstr ""
-"Directorul destinație nu poate fi deasupra/în afara directorului home."
-
-msgid "You must supply a name."
-msgstr "Trebuie să introduceți un nume."
-
-msgid "This item doesn't exist."
-msgstr "Articolul nu există."
-
-msgid "You are not allowed to access this item."
-msgstr "Nu aveți permisiunea să accesați acest element."
-
-msgid "The target item already exists."
-msgstr "Destinația există deja."
-
-msgid "Copying failed."
-msgstr "Eroare copiere."
-
-msgid "Moving failed."
-msgstr "Mutare eșuată."
-
-msgid "Deleting failed."
-msgstr "Eroare ștergere."
-
 msgid "ERROR(S)"
 msgstr "ERORI"
 
 msgid "Go Back"
 msgstr "Mergi înapoi"
-
-msgid "File saving failed."
-msgstr "Eroare salvare fișier."
-
-msgid "This item already exists."
-msgstr "Articoulul există deja."
-
-msgid "File opening failed."
-msgstr "Eroare deschidere fișier."
-
-msgid "Edit file"
-msgstr "Editare fișier"
-
-msgid "Wrap text:"
-msgstr "Încadrare text:"
-
-msgid "Reset"
-msgstr "Resetare"
-
-msgid "Unable to open source directory."
-msgstr ""
-
-msgid "Unable to open directory."
-msgstr "Directorul nu poate fi deschis."
-
-msgid "Unable to read directory."
-msgstr "Directorul nu poate fi citit."
 
 msgid "Directory creation failed."
 msgstr "Eroare creare director."
@@ -9976,62 +9931,238 @@ msgstr "Eroare creare director."
 msgid "File creation failed."
 msgstr "Eroare creare fișier."
 
-msgid "Are you sure you want to delete selected item(s)?"
-msgstr "Sunteți sigur că doriți ștergerea elementului/elementelor selectate?"
+msgid "Dataset Name"
+msgstr ""
 
-msgid "CHANGE PERMISSIONS"
-msgstr "MODIFICARE PERMISIUNI"
+msgid ""
+"File System - can be mounted within the standard system namespace and "
+"behaves like other file systems."
+msgstr ""
+"Sistem de fișiere - poate fi montat în spațiul de nume sistem standard și se "
+"comportă ca orice alt sistem de fișiere."
 
-msgid "You are not allowed to access this directory."
-msgstr "Nu aveți permisiunea să accesați acest director."
+msgid "Volume - A logical volume. Can be exported as a raw or block device."
+msgstr ""
+"Volum - Un volum logic. Poate fi exportat ca atare sau ca dispozitiv "
+"independent."
 
-msgid "UP"
-msgstr "SUS"
+msgid ""
+"Snapshot - A read-only version of a file system or volume at a given point "
+"in time."
+msgstr ""
 
-msgid "RELOAD"
-msgstr "REÎNCĂRCARE"
+msgid "Bookmark - Creates a bookmark of a given snapshot."
+msgstr "Bookmark - Creare bookmark pentru un snapshot-ul indicat."
 
-msgid "SEARCH"
-msgstr "CĂUTARE"
+msgid "Dataset Type"
+msgstr "Tip set de date"
 
-msgid "Create"
-msgstr "Creare"
+msgid "Pool Name"
+msgstr ""
 
-msgid "Modified"
-msgstr "Modificat"
+msgid "Clones"
+msgstr "Clonare"
 
-msgid "Permissions"
-msgstr "Permisiuni"
+msgid "Compression Ratio"
+msgstr "Rată de compresie"
 
-msgid "Actions"
-msgstr "Acțiuni"
+msgid "Defer Destroy"
+msgstr ""
 
-msgid "COPY"
-msgstr "COPIERE"
+msgid "Encryption Root"
+msgstr ""
 
-msgid "MOVE"
-msgstr "MUTĂ"
+msgid "Filesystem Count"
+msgstr ""
 
-msgid "DELETE"
-msgstr "ȘTERGERE"
+msgid "GUID"
+msgstr ""
 
-msgid "EDIT"
-msgstr "EDITARE"
+msgid "Key Status"
+msgstr ""
 
-msgid "UNZIP"
-msgstr "UNZIP"
+msgid "Logical Referenced"
+msgstr ""
 
-msgid "DOWNLOAD"
-msgstr "DESCĂRCARE"
+msgid "Logical Used"
+msgstr ""
 
-msgid "Extracting"
-msgstr "Se extrage"
+msgid "Mounted"
+msgstr ""
 
-msgid "Unzip"
-msgstr "Unzip"
+msgid "Obj Set ID"
+msgstr ""
 
-msgid "Failed to extract archive."
-msgstr "Eroare dezarhivare arhivă."
+msgid "Receive Resume Token"
+msgstr ""
+
+msgid "Redact Snaps"
+msgstr ""
+
+msgid "Refcompressratio"
+msgstr ""
+
+msgid "Referenced"
+msgstr ""
+
+msgid "Snapshot Count"
+msgstr ""
+
+msgid "Used by Children"
+msgstr ""
+
+msgid "Used by Dataset"
+msgstr ""
+
+msgid "Used by Refreservation"
+msgstr ""
+
+msgid "Used by Snapshots"
+msgstr ""
+
+msgid "Userrefs"
+msgstr ""
+
+msgid "Written"
+msgstr ""
+
+msgid "Normalization"
+msgstr "Normalizare"
+
+msgid "UTF-8 File Names"
+msgstr ""
+
+msgid "ACL Type"
+msgstr "ACL tip"
+
+msgid "Access Time"
+msgstr "Timp acces"
+
+msgid "Can Mount"
+msgstr "Se poate monta"
+
+msgid "Checksum"
+msgstr "Sumă de control"
+
+msgid "GZIP Compression Level"
+msgstr ""
+
+msgid "Zstandard Compression Level"
+msgstr ""
+
+msgid "Fast Zstandard Compression Level"
+msgstr ""
+
+msgid "Copies"
+msgstr "Copii"
+
+msgid "Dedup Method"
+msgstr "Metodă dedup"
+
+msgid "Dnode Size"
+msgstr ""
+
+msgid "Execute Processes"
+msgstr ""
+
+msgid "Filesystem Limit"
+msgstr ""
+
+msgid "Jailed"
+msgstr "Captiv"
+
+msgid "Key Format"
+msgstr ""
+
+msgid "Key Location"
+msgstr ""
+
+msgid "Logbias"
+msgstr "Deviație"
+
+msgid "Mountpoint Type"
+msgstr ""
+
+msgid "Non-blocking Mandatory Locks"
+msgstr ""
+
+msgid "Overlay Mount"
+msgstr ""
+
+msgid "PBKDF2 Iterations"
+msgstr ""
+
+msgid "Primary Cache"
+msgstr "Cache primar"
+
+msgid "Record Size"
+msgstr ""
+
+msgid "Redundant Metadata"
+msgstr "Metadate redundante"
+
+msgid "Refquota"
+msgstr "Refquota"
+
+msgid "Refquota Type"
+msgstr ""
+
+msgid "Refreservation"
+msgstr "Refreservation"
+
+msgid "Refreservation Type"
+msgstr ""
+
+msgid "Relatime"
+msgstr ""
+
+msgid "Reservation Type"
+msgstr ""
+
+msgid "Secondary Cache"
+msgstr "Cache secundar"
+
+msgid "Setuid"
+msgstr ""
+
+msgid "Share NFS Options"
+msgstr ""
+
+msgid "Share NFS Type"
+msgstr ""
+
+msgid "Share SMB Options"
+msgstr ""
+
+msgid "Share SMB Type"
+msgstr ""
+
+msgid "Snapshot Device Visibility"
+msgstr ""
+
+msgid "Snapshot Folder Visibility"
+msgstr ""
+
+msgid "Snapshot Limit"
+msgstr ""
+
+msgid "Threshold Small Block Size"
+msgstr ""
+
+msgid "Synchronous Requests Behaviour"
+msgstr ""
+
+msgid "Volume Mode"
+msgstr "Mod volum"
+
+msgid "Volume Size"
+msgstr "Dimensiune volum"
+
+msgid "Virus Scan"
+msgstr ""
+
+msgid "No ZFS filesystem information available."
+msgstr "Nicio informație de sistem de fișiere ZFS disponibilă."
 
 msgid "The name of the filesystem."
 msgstr ""
@@ -10041,9 +10172,6 @@ msgstr ""
 
 msgid "Controls the type of the ZFS dataset."
 msgstr "Controlează tipul setului de date ZFS."
-
-msgid "Pool Name"
-msgstr ""
 
 msgid ""
 "Indicates whether the file name matching algorithm used by the filesystem "
@@ -10593,9 +10721,6 @@ msgstr ""
 msgid "System attribute based xattrs"
 msgstr ""
 
-msgid "No ZFS filesystem information available."
-msgstr "Nicio informație de sistem de fișiere ZFS disponibilă."
-
 msgid "Add Filesystem"
 msgstr "Adăugare sistem fișiere"
 
@@ -10642,233 +10767,6 @@ msgid "unknown"
 msgstr "necunoscut"
 
 msgid "Filesystems"
-msgstr ""
-
-msgid "Dataset Name"
-msgstr ""
-
-msgid ""
-"File System - can be mounted within the standard system namespace and "
-"behaves like other file systems."
-msgstr ""
-"Sistem de fișiere - poate fi montat în spațiul de nume sistem standard și se "
-"comportă ca orice alt sistem de fișiere."
-
-msgid "Volume - A logical volume. Can be exported as a raw or block device."
-msgstr ""
-"Volum - Un volum logic. Poate fi exportat ca atare sau ca dispozitiv "
-"independent."
-
-msgid ""
-"Snapshot - A read-only version of a file system or volume at a given point "
-"in time."
-msgstr ""
-
-msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr "Bookmark - Creare bookmark pentru un snapshot-ul indicat."
-
-msgid "Dataset Type"
-msgstr "Tip set de date"
-
-msgid "Clones"
-msgstr "Clonare"
-
-msgid "Compression Ratio"
-msgstr "Rată de compresie"
-
-msgid "Defer Destroy"
-msgstr ""
-
-msgid "Encryption Root"
-msgstr ""
-
-msgid "Filesystem Count"
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-msgid "Key Status"
-msgstr ""
-
-msgid "Logical Referenced"
-msgstr ""
-
-msgid "Logical Used"
-msgstr ""
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Obj Set ID"
-msgstr ""
-
-msgid "Receive Resume Token"
-msgstr ""
-
-msgid "Redact Snaps"
-msgstr ""
-
-msgid "Refcompressratio"
-msgstr ""
-
-msgid "Referenced"
-msgstr ""
-
-msgid "Snapshot Count"
-msgstr ""
-
-msgid "Used by Children"
-msgstr ""
-
-msgid "Used by Dataset"
-msgstr ""
-
-msgid "Used by Refreservation"
-msgstr ""
-
-msgid "Used by Snapshots"
-msgstr ""
-
-msgid "Userrefs"
-msgstr ""
-
-msgid "Written"
-msgstr ""
-
-msgid "Normalization"
-msgstr "Normalizare"
-
-msgid "UTF-8 File Names"
-msgstr ""
-
-msgid "ACL Type"
-msgstr "ACL tip"
-
-msgid "Access Time"
-msgstr "Timp acces"
-
-msgid "Can Mount"
-msgstr "Se poate monta"
-
-msgid "Checksum"
-msgstr "Sumă de control"
-
-msgid "GZIP Compression Level"
-msgstr ""
-
-msgid "Zstandard Compression Level"
-msgstr ""
-
-msgid "Fast Zstandard Compression Level"
-msgstr ""
-
-msgid "Copies"
-msgstr "Copii"
-
-msgid "Dedup Method"
-msgstr "Metodă dedup"
-
-msgid "Dnode Size"
-msgstr ""
-
-msgid "Execute Processes"
-msgstr ""
-
-msgid "Filesystem Limit"
-msgstr ""
-
-msgid "Jailed"
-msgstr "Captiv"
-
-msgid "Key Format"
-msgstr ""
-
-msgid "Key Location"
-msgstr ""
-
-msgid "Logbias"
-msgstr "Deviație"
-
-msgid "Mountpoint Type"
-msgstr ""
-
-msgid "Non-blocking Mandatory Locks"
-msgstr ""
-
-msgid "Overlay Mount"
-msgstr ""
-
-msgid "PBKDF2 Iterations"
-msgstr ""
-
-msgid "Primary Cache"
-msgstr "Cache primar"
-
-msgid "Record Size"
-msgstr ""
-
-msgid "Redundant Metadata"
-msgstr "Metadate redundante"
-
-msgid "Refquota"
-msgstr "Refquota"
-
-msgid "Refquota Type"
-msgstr ""
-
-msgid "Refreservation"
-msgstr "Refreservation"
-
-msgid "Refreservation Type"
-msgstr ""
-
-msgid "Relatime"
-msgstr ""
-
-msgid "Reservation Type"
-msgstr ""
-
-msgid "Secondary Cache"
-msgstr "Cache secundar"
-
-msgid "Setuid"
-msgstr ""
-
-msgid "Share NFS Options"
-msgstr ""
-
-msgid "Share NFS Type"
-msgstr ""
-
-msgid "Share SMB Options"
-msgstr ""
-
-msgid "Share SMB Type"
-msgstr ""
-
-msgid "Snapshot Device Visibility"
-msgstr ""
-
-msgid "Snapshot Folder Visibility"
-msgstr ""
-
-msgid "Snapshot Limit"
-msgstr ""
-
-msgid "Threshold Small Block Size"
-msgstr ""
-
-msgid "Synchronous Requests Behaviour"
-msgstr ""
-
-msgid "Volume Mode"
-msgstr "Mod volum"
-
-msgid "Volume Size"
-msgstr "Dimensiune volum"
-
-msgid "Virus Scan"
 msgstr ""
 
 msgid "Show Used/Avail"
@@ -10951,6 +10849,51 @@ msgid ""
 "When enabled, destroying a dataset will also destroy all dependents "
 "(datasets, snapshots and clones)."
 msgstr ""
+
+msgid "Add Schedule"
+msgstr "Adăugare programare"
+
+msgid "Edit Schedule"
+msgstr "Editare programare"
+
+msgid "Schedule is marked for deletion"
+msgstr "Programarea este marcată pentru ștergere"
+
+msgid "Schedule is locked"
+msgstr "Programare blocată"
+
+msgid "Schedule is unlocked"
+msgstr "Programarea este deblocată"
+
+msgid "Delete Selected Schedules"
+msgstr "Ștergere programări selectate"
+
+msgid "Do you want to delete selected schedules?"
+msgstr "Doriți să ștergeți programările selectate?"
+
+msgid "Do you want to disable selected schedules?"
+msgstr "Doriți să dezactivați programările selectate?"
+
+msgid "Do you want to enable selected schedules?"
+msgstr "Doriți să activați programările selectate?"
+
+msgid "Do you want to toggle selected schedules?"
+msgstr "Doriți să inversați starea programărilor selectate?"
+
+msgid "Invalid"
+msgstr "Invalid"
+
+msgid "Destroy"
+msgstr "Distruge"
+
+msgid "Create Snapshot"
+msgstr "Creare snapshot"
+
+msgid "Destroy Snapshot"
+msgstr "Dsitrugere snapsot"
+
+msgid "Scrub Pool"
+msgstr "Curățare pool"
 
 msgid "Lifetime"
 msgstr "Timp de viață"
@@ -11040,61 +10983,16 @@ msgstr ""
 msgid "Presets"
 msgstr "Setări predefinite"
 
-msgid "Add Schedule"
-msgstr "Adăugare programare"
-
-msgid "Edit Schedule"
-msgstr "Editare programare"
-
-msgid "Schedule is marked for deletion"
-msgstr "Programarea este marcată pentru ștergere"
-
-msgid "Schedule is locked"
-msgstr "Programare blocată"
-
-msgid "Schedule is unlocked"
-msgstr "Programarea este deblocată"
-
-msgid "Delete Selected Schedules"
-msgstr "Ștergere programări selectate"
-
-msgid "Do you want to delete selected schedules?"
-msgstr "Doriți să ștergeți programările selectate?"
-
-msgid "Do you want to disable selected schedules?"
-msgstr "Doriți să dezactivați programările selectate?"
-
-msgid "Do you want to enable selected schedules?"
-msgstr "Doriți să activați programările selectate?"
-
-msgid "Do you want to toggle selected schedules?"
-msgstr "Doriți să inversați starea programărilor selectate?"
-
-msgid "Invalid"
-msgstr "Invalid"
-
-msgid "Destroy"
-msgstr "Distruge"
-
-msgid "Create Snapshot"
-msgstr "Creare snapshot"
-
-msgid "Destroy Snapshot"
-msgstr "Dsitrugere snapsot"
-
-msgid "Scrub Pool"
-msgstr "Curățare pool"
-
 msgid "Recursively create snapshots of all descendent datasets."
 msgstr ""
 "Creare recursivă de imagini snapshot pentru toate seturile de date "
 "descendente."
 
-msgid "Scrub"
-msgstr "Curățare"
-
 msgid "Select pool."
 msgstr "Selectare pool."
+
+msgid "Scrub"
+msgstr "Curățare"
 
 msgid "No ZFS zpool information available."
 msgstr "Nicio informație zpool ZFS disponibilă."
@@ -11112,6 +11010,48 @@ msgstr "Introducere Identificator"
 
 msgid "Enter smartctl pass-through type."
 msgstr "Introducere parolă de trecere smartctl"
+
+msgid "Login Name"
+msgstr "Nume de autentificare"
+
+msgid "Full Name"
+msgstr "Nume complet"
+
+msgid "SHA Password"
+msgstr "Parolă SHA"
+
+msgid "MD4 Password"
+msgstr "Parola MD4"
+
+msgid "Shell"
+msgstr "Shell"
+
+msgid "Primary Group"
+msgstr "Grup Primar"
+
+msgid "Groups"
+msgstr "Grupuri"
+
+msgid "Timezone"
+msgstr "Fus orar"
+
+msgid "File Manager Access"
+msgstr "Acces manager fișiere"
+
+msgid "Hidden Items"
+msgstr "Elemente ascunse"
+
+msgid "Read Permission"
+msgstr "Permisiuni citire"
+
+msgid "Create Permission"
+msgstr "Creare permisiune"
+
+msgid "Change Permission"
+msgstr "Modificare permisiune"
+
+msgid "Delete Permission"
+msgstr "Permisiune ștergere"
 
 msgid "Add User Account"
 msgstr "Adăugare cont utilizator"
@@ -11155,6 +11095,9 @@ msgstr "Inversare selecție utilizatori"
 msgid "Do you want to toggle selected users?"
 msgstr "Doriți să inversați starea utilizatorilor selectați?"
 
+msgid "Active"
+msgstr "Activ"
+
 msgid "System User"
 msgstr "Utilizator sistem"
 
@@ -11169,9 +11112,6 @@ msgstr "Introduceți numele pentru autentificare."
 
 msgid "Enter the full user name."
 msgstr "Introduceți numele complet al utilizatorului."
-
-msgid "Full Name"
-msgstr "Nume complet"
 
 msgid "Set user password."
 msgstr "Stabilire parolă utilizator."
@@ -11258,53 +11198,11 @@ msgstr "Acordare permisiune modificare"
 msgid "Grant delete permission"
 msgstr "Acordare permisiune ștergere"
 
-msgid "Login Name"
-msgstr "Nume de autentificare"
-
-msgid "SHA Password"
-msgstr "Parolă SHA"
-
-msgid "MD4 Password"
-msgstr "Parola MD4"
-
-msgid "Shell"
-msgstr "Shell"
-
-msgid "Primary Group"
-msgstr "Grup Primar"
-
-msgid "Groups"
-msgstr "Grupuri"
-
-msgid "Timezone"
-msgstr "Fus orar"
-
-msgid "File Manager Access"
-msgstr "Acces manager fișiere"
-
-msgid "Hidden Items"
-msgstr "Elemente ascunse"
-
-msgid "Read Permission"
-msgstr "Permisiuni citire"
-
-msgid "Create Permission"
-msgstr "Creare permisiune"
-
-msgid "Change Permission"
-msgstr "Modificare permisiune"
-
-msgid "Delete Permission"
-msgstr "Permisiune ștergere"
-
 msgid "Users"
 msgstr "Utilizatori"
 
 msgid "Public Keys"
 msgstr "Chei publice"
-
-msgid "Public Key"
-msgstr "Cheie publică"
 
 msgid "Add Public Key"
 msgstr "Adăugare cheie publică"
@@ -11348,20 +11246,11 @@ msgstr "Doriți să inversați starea cheilor publice selectate?"
 msgid "Reload"
 msgstr "Reîncărcare"
 
+msgid "Public Key"
+msgstr "Cheie publică"
+
 msgid "Public key information."
 msgstr "Informație cheie publică."
-
-msgid "Enter group name."
-msgstr "Introducere nume grup."
-
-msgid "Group Name"
-msgstr "Nume grup"
-
-msgid "Specify the group numeric id."
-msgstr "Specifică id-ul numeric al grupului."
-
-msgid "The recommended range for the group id is between 1000 and 32000."
-msgstr "Intervalul recomandat pentru grup este 1000-32000."
 
 msgid "Add Group"
 msgstr "Adăugare grup"
@@ -11410,6 +11299,18 @@ msgstr "Afișare grupuri sistem"
 
 msgid "Hide System Groups"
 msgstr "Acundere grupuri sistem"
+
+msgid "Enter group name."
+msgstr "Introducere nume grup."
+
+msgid "Group Name"
+msgstr "Nume grup"
+
+msgid "Specify the group numeric id."
+msgstr "Specifică id-ul numeric al grupului."
+
+msgid "The recommended range for the group id is between 1000 and 32000."
+msgstr "Intervalul recomandat pentru grup este 1000-32000."
 
 msgid "Enter AD or PDC name."
 msgstr "Introducere nume AD sau PDC."
@@ -11822,17 +11723,56 @@ msgstr "Numele variabilei."
 msgid "The value of the variable."
 msgstr "Valoarea variabilei."
 
+msgid "Name of the variable."
+msgstr "Numele variabilei."
+
+msgid "Enter Value"
+msgstr "Introduceți o valoarea"
+
 msgid "Disabled variable names will be removed from /etc/rc.conf."
 msgstr "Numele de variabile dezactivate vor fi șterse din /etc/rc.conf."
 
 msgid "Enabled options will be added to /etc/rc.conf."
 msgstr "Opțiunile activate vor fi adăugate în /etc/rc.conf."
 
-msgid "Name of the variable."
-msgstr "Numele variabilei."
+msgid "Button Location"
+msgstr "Locație buton"
 
-msgid "Enter Value"
-msgstr "Introduceți o valoarea"
+msgid "File Chooser"
+msgstr "Selecție fișier"
+
+msgid "File Mode"
+msgstr "Mod fișier"
+
+msgid "GUI"
+msgstr "Interfaţă Grafică Utilizator"
+
+msgid "Navigation Bar"
+msgstr "Bară de navigare"
+
+msgid "Tabs"
+msgstr "Taburi"
+
+msgid "Toggle Mode"
+msgstr "Inversare selecție"
+
+msgid "Navbar Style"
+msgstr "Stil Navbar (bară navigare)"
+
+msgid "Binary Prefix"
+msgstr "Prefix binar"
+
+msgid "Colorful Meters"
+msgstr "Indicatoare color"
+
+msgid "Skip View Mode"
+msgstr "Anulare mod vizualizare"
+
+msgid "Show Max CPUs"
+msgstr "Afișare număr maxim CPU"
+
+msgid "Diagnostics Information"
+msgstr "Informație diagnostice"
 
 msgid ""
 "Display action buttons in the scrollable area instead of the footer area."
@@ -11923,48 +11863,6 @@ msgstr ""
 msgid "Set the landing page for the Diagnostics > Information menu."
 msgstr "Stabilește pagina de bază pentru Diagnoză : Meniu Informații."
 
-msgid "Button Location"
-msgstr "Locație buton"
-
-msgid "File Chooser"
-msgstr "Selecție fișier"
-
-msgid "File Mode"
-msgstr "Mod fișier"
-
-msgid "GUI"
-msgstr "Interfaţă Grafică Utilizator"
-
-msgid "Navigation Bar"
-msgstr "Bară de navigare"
-
-msgid "Tabs"
-msgstr "Taburi"
-
-msgid "Toggle Mode"
-msgstr "Inversare selecție"
-
-msgid "Navbar Style"
-msgstr "Stil Navbar (bară navigare)"
-
-msgid "Binary Prefix"
-msgstr "Prefix binar"
-
-msgid "Colorful Meters"
-msgstr "Indicatoare color"
-
-msgid "Skip View Mode"
-msgstr "Anulare mod vizualizare"
-
-msgid "Show Max CPUs"
-msgstr "Afișare număr maxim CPU"
-
-msgid "Diagnostics Information"
-msgstr "Informație diagnostice"
-
-msgid "Show Interval"
-msgstr "Afișare interval"
-
 msgid ""
 "Set the number of days until a reminder is shown to backup system "
 "configuration. The default is 28 days. A value of 0 disables the reminder."
@@ -11972,6 +11870,15 @@ msgstr ""
 "Stabilește numărul de zile după care vi se va reaminti necesitatea "
 "efectuării unui backup al configurației sistemului. Implicit este 28 de "
 "zile, valoarea 0 dezactivând serviciul."
+
+msgid "Show Interval"
+msgstr "Afișare interval"
+
+msgid "Do you really want to remove the selected item from the list?"
+msgstr "Doriți să ștergeți elementul selectat din listă?"
+
+msgid "Select item to remove from the list"
+msgstr "Selectați un element din listă pentru eliminare"
 
 msgid "Delete Selected Records"
 msgstr "Ștergere înregistrări selectate"
@@ -12030,12 +11937,6 @@ msgstr "Editare înregistrare"
 msgid "Record is unlocked"
 msgstr "Înregistrarea este deblocată"
 
-msgid "Do you really want to remove the selected item from the list?"
-msgstr "Doriți să ștergeți elementul selectat din listă?"
-
-msgid "Select item to remove from the list"
-msgstr "Selectați un element din listă pentru eliminare"
-
 msgid "Service"
 msgstr "Serviciu"
 
@@ -12045,23 +11946,23 @@ msgstr "Nedefinit"
 msgid "The value is invalid."
 msgstr "Valoare invalidă."
 
+msgid "Enter additional parameters"
+msgstr "Introduceți parametrii adiționali"
+
+msgid "No additional parameters"
+msgstr "Fără parametri adiționali"
+
+msgid "Enter a description for your reference."
+msgstr "Introduceți o scurtă descriere, de referință."
+
 msgid "Network Address"
 msgstr "Adresă reţea"
 
 msgid "Enable Setting"
 msgstr "Activare setări"
 
-msgid "Enter a description for your reference."
-msgstr "Introduceți o scurtă descriere, de referință."
-
 msgid "IPv4 Address"
 msgstr "Adresă IPv4"
-
-msgid "Protect"
-msgstr "Protejare"
-
-msgid "Protect Setting"
-msgstr "Protejare setări"
 
 msgid "The UUID of the record."
 msgstr "Codul UUID al înregistrării"
@@ -12072,14 +11973,62 @@ msgstr "Introducere Identificator Universal Unic"
 msgid "Universally Unique Identifier"
 msgstr "Identificator Universal Unic"
 
-msgid "Enter additional parameters"
-msgstr "Introduceți parametrii adiționali"
+msgid "Protect"
+msgstr "Protejare"
 
-msgid "No additional parameters"
-msgstr "Fără parametri adiționali"
+msgid "Protect Setting"
+msgstr "Protejare setări"
 
 msgid "Autodetect"
 msgstr "Detectare automată"
+
+msgid "Standard Provider"
+msgstr "Furnizor standard"
+
+msgid "Custom Provider"
+msgstr "Furnizor personalizat"
+
+msgid "Record Type"
+msgstr "Tip înregistrare"
+
+msgid "Provider"
+msgstr "Furnizor"
+
+msgid "Provider Name"
+msgstr "Nume furnizor"
+
+msgid "Host Names"
+msgstr "Nume sistem"
+
+msgid "Wildcard Domain"
+msgstr "Domeniu În alb"
+
+msgid "Use HTTPS"
+msgstr "Utilizare HTTPS"
+
+msgid "Check IP Server"
+msgstr "Verificare IP server"
+
+msgid "Check IP Path"
+msgstr "Verificare cale IP"
+
+msgid "Check IP using HTTPS"
+msgstr "Verificare IP folosind protocolul HTTPS"
+
+msgid "Check IP Command"
+msgstr "Comandă verificare IP"
+
+msgid "User Agent"
+msgstr "Agent utilizator"
+
+msgid "DDNS-Server"
+msgstr "Server DDNS"
+
+msgid "DDNS-Path"
+msgstr "Calea DDNS"
+
+msgid "Append my IP"
+msgstr "Adăugare IP propriu"
 
 msgid "Add Provider"
 msgstr "Adăugare furnizor"
@@ -12131,6 +12080,12 @@ msgstr "Tip nedefinit"
 
 msgid "Unknown Provider"
 msgstr "Furnizor necunoscut"
+
+msgid "Providers"
+msgstr "Furnizori"
+
+msgid "Global Settings"
+msgstr "Setări globale"
 
 msgid ""
 "Select \"Custom Provider\" for customizing the DDNS update server details "
@@ -12251,59 +12206,44 @@ msgstr ""
 msgid "These parameters will be added to this provider configuration"
 msgstr "Acești parametri vor fi adăugați la configurația acestui furnizor."
 
-msgid "Standard Provider"
-msgstr "Furnizor standard"
+msgid "Verify Address"
+msgstr "Verificare adressă"
 
-msgid "Custom Provider"
-msgstr "Furnizor personalizat"
+msgid "Fake Address"
+msgstr "Adresă falsă"
 
-msgid "Record Type"
-msgstr "Tip înregistrare"
+msgid "Allow IPv6"
+msgstr "Permite IPv6"
 
-msgid "Provider"
-msgstr "Furnizor"
+msgid "Network Interface"
+msgstr "Interfață rețea"
 
-msgid "Provider Name"
-msgstr "Nume furnizor"
+msgid "Iterations"
+msgstr "Iterații"
 
-msgid "Host Names"
-msgstr "Nume sistem"
+msgid "Check Interval"
+msgstr "Interval verificare"
 
-msgid "Wildcard Domain"
-msgstr "Domeniu În alb"
+msgid "Force Update Interval"
+msgstr "Forțare actualizare interval"
 
-msgid "Use HTTPS"
-msgstr "Utilizare HTTPS"
+msgid "Secure SSL"
+msgstr "SSL secuzirat"
 
-msgid "Check IP Server"
-msgstr "Verificare IP server"
+msgid "Broken RTC"
+msgstr "Setări eronate RTC"
 
-msgid "Check IP Path"
-msgstr "Verificare cale IP"
+msgid "CA Trusted Certificates"
+msgstr "Certificat CA"
 
-msgid "Check IP using HTTPS"
-msgstr "Verificare IP folosind protocolul HTTPS"
+msgid "Cache Directory"
+msgstr "Director cache"
 
-msgid "Check IP Command"
-msgstr "Comandă verificare IP"
+msgid "Startup Delay"
+msgstr "Întârziere pornire"
 
-msgid "User Agent"
-msgstr "Agent utilizator"
-
-msgid "DDNS-Server"
-msgstr "Server DDNS"
-
-msgid "DDNS-Path"
-msgstr "Calea DDNS"
-
-msgid "Append my IP"
-msgstr "Adăugare IP propriu"
-
-msgid "Providers"
-msgstr "Furnizori"
-
-msgid "Global Settings"
-msgstr "Setări globale"
+msgid "Log Level"
+msgstr "Nivel jurnal"
 
 msgid ""
 "IP address validation can be disabled by setting this option to false."
@@ -12422,47 +12362,14 @@ msgstr "Depanare"
 msgid "These parameters are appended to the inadyn.conf file."
 msgstr "Acești parametri vor fi adăugați la fișierul inadyn.conf."
 
-msgid "Verify Address"
-msgstr "Verificare adressă"
-
-msgid "Fake Address"
-msgstr "Adresă falsă"
-
-msgid "Allow IPv6"
-msgstr "Permite IPv6"
-
-msgid "Network Interface"
-msgstr "Interfață rețea"
-
-msgid "Iterations"
-msgstr "Iterații"
-
-msgid "Check Interval"
-msgstr "Interval verificare"
-
-msgid "Force Update Interval"
-msgstr "Forțare actualizare interval"
-
-msgid "Secure SSL"
-msgstr "SSL secuzirat"
-
-msgid "Broken RTC"
-msgstr "Setări eronate RTC"
-
-msgid "CA Trusted Certificates"
-msgstr "Certificat CA"
-
-msgid "Cache Directory"
-msgstr "Director cache"
-
-msgid "Startup Delay"
-msgstr "Întârziere pornire"
-
-msgid "Log Level"
-msgstr "Nivel jurnal"
-
 msgid "Media Type"
 msgstr "Tip media"
+
+msgid "Media Folders"
+msgstr "Foldere media"
+
+msgid "Media Folder"
+msgstr "Folder media"
 
 msgid "Add Media Folder"
 msgstr "Adăugare folder Media"
@@ -12523,12 +12430,6 @@ msgstr "Scanare folder pentru fișiere imagine."
 
 msgid "Scan folder for video and image files."
 msgstr "Scanare folder pentru fișiere video și imagine."
-
-msgid "Media Folders"
-msgstr "Foldere media"
-
-msgid "Media Folder"
-msgstr "Folder media"
 
 msgid "Inotify"
 msgstr "Inotify"
@@ -12655,26 +12556,17 @@ msgstr "Nume Grup autorizat"
 msgid "Auth Type"
 msgstr "Tip autorizare"
 
-msgid "No CHAP users found."
-msgstr "Niciun utilizator CHAP găsit."
+msgid "Name of the Auth Group."
+msgstr "Numele grupului Auth."
 
-msgid "Mutual-CHAP"
+msgid "Sets the authentication type."
+msgstr "Stabilire tip de autentificare."
+
+msgid "CHAP-Mutual"
 msgstr "CHAP-Mutual"
 
-msgid "No Mutual-CHAP users found."
-msgstr "Niciun utilizator mutual CHAP găsit."
-
-msgid "Initiator Name"
-msgstr "Nume inițiator"
-
-msgid "No initiator names found."
-msgstr "Niciun nume inițiator găsit."
-
-msgid "Initiator Portal"
-msgstr "Portal inițiator"
-
-msgid "No initiator portals found."
-msgstr "Niciun portal inițiator găsit."
+msgid "These parameters will be added to this auth-group."
+msgstr "Acești parametri vor fi adăugați la acest grup auth."
 
 msgid "Add Auth Group"
 msgstr "Adăugare grup Auth"
@@ -12721,23 +12613,140 @@ msgstr "Nume inițiator"
 msgid "Initiator Portals"
 msgstr "Portaluri inițiator"
 
-msgid "Name of the Auth Group."
-msgstr "Numele grupului Auth."
+msgid "No CHAP users found."
+msgstr "Niciun utilizator CHAP găsit."
 
-msgid "Sets the authentication type."
-msgstr "Stabilire tip de autentificare."
-
-msgid "CHAP-Mutual"
+msgid "Mutual-CHAP"
 msgstr "CHAP-Mutual"
 
-msgid "These parameters will be added to this auth-group."
-msgstr "Acești parametri vor fi adăugați la acest grup auth."
+msgid "No Mutual-CHAP users found."
+msgstr "Niciun utilizator mutual CHAP găsit."
 
-msgid "Name of the LUN."
-msgstr "Numele unității logice LUN"
+msgid "Initiator Name"
+msgstr "Nume inițiator"
+
+msgid "No initiator names found."
+msgstr "Niciun nume inițiator găsit."
+
+msgid "Initiator Portal"
+msgstr "Portal inițiator"
+
+msgid "No initiator portals found."
+msgstr "Niciun portal inițiator găsit."
 
 msgid "LUN Name"
 msgstr "Nume LUN"
+
+msgid "Backend"
+msgstr "Suport"
+
+msgid "CTL LUN"
+msgstr "CTL LUN"
+
+msgid "Device ID"
+msgstr "ID dispozitiv"
+
+msgid "Device Type"
+msgstr "Tip dispozitiv"
+
+msgid "Passthrough Address"
+msgstr "Adresă trece prin"
+
+msgid "LUN Vendor"
+msgstr "Furnizor LUN"
+
+msgid "LUN Product"
+msgstr "Produs LUN"
+
+msgid "LUN Revision"
+msgstr "Revizie LUN"
+
+msgid "LUN SCSI Name"
+msgstr "Nume LUN SCSI"
+
+msgid "LUN EUI-64\tidentifier"
+msgstr "Identificator LUN EUI-64"
+
+msgid "LUN NAA Identifier"
+msgstr "Identificator LUN NAA"
+
+msgid "LUN UUID"
+msgstr "LUN UUID"
+
+msgid "HA Role"
+msgstr "Rol HA"
+
+msgid "Insecure TPC"
+msgstr "TCP insecurizat"
+
+msgid "Read Cache"
+msgstr "Cache citire"
+
+msgid "Read Only"
+msgstr "Doar citire"
+
+msgid "Reordering"
+msgstr "Reordonare"
+
+msgid "Serialize Sequence"
+msgstr "Serializare secvență"
+
+msgid "Physical Block Size"
+msgstr "Dimensiune bloc fizic"
+
+msgid "Physical Block Offset"
+msgstr "Ofset bloc fizic"
+
+msgid "UNMAP Block Size"
+msgstr "Dimensiune bloc UNMAP"
+
+msgid "UNMAP Block Offset"
+msgstr "Ofset bloc UNMAP"
+
+msgid "RPM"
+msgstr "RPM"
+
+msgid "Form Factor"
+msgstr "Factor de formă"
+
+msgid "Provisioning Type"
+msgstr "Tip provizionare"
+
+msgid "UNMAP"
+msgstr "UNMAP"
+
+msgid "UNMAP Maximum LBA"
+msgstr "Valoare max. LBA UNMAP"
+
+msgid "UNMAP Maximum Descriptors"
+msgstr "Descriptori maximi UNMAP"
+
+msgid "Write Same Maximum LBA"
+msgstr "Scrie aceași valoare maximă LBA"
+
+msgid "Avail Threshold"
+msgstr "NIvel disponibil"
+
+msgid "Used Threshold"
+msgstr "Prag utilizat"
+
+msgid "Pool Avail Threshold"
+msgstr "Nivel disponibil pool"
+
+msgid "Pool Used Threshold"
+msgstr "Nivel utilizare pool"
+
+msgid "Threads"
+msgstr "Fire de execuție"
+
+msgid "Additional Options for Block Backend"
+msgstr "Opțiuni suplimentare pentru Block Backend"
+
+msgid "Additional Options for RAM Disk Backend"
+msgstr "Opțiuni suplimentare pentru RAM Disk Backend"
+
+msgid "Name of the LUN."
+msgstr "Numele unității logice LUN"
 
 msgid "The CTL backend to use for a given LUN."
 msgstr "Valoare CTL de rezervă de utilizat pentru un anumit LUN dat."
@@ -12779,9 +12788,6 @@ msgstr ""
 msgid "The SCSI Device Identification string presented to the initiator."
 msgstr ""
 "Identificatorul text al dispozitivului iSCSI prezentat inițiatorului."
-
-msgid "Device ID"
-msgstr "ID dispozitiv"
 
 msgid "Specify the SCSI device type to use when creating the LUN."
 msgstr ""
@@ -13019,12 +13025,6 @@ msgstr ""
 msgid "These parameters will be added to this lun."
 msgstr "Acești parametri vor fi adăugați la această unitate lun."
 
-msgid "Additional Options for Block Backend"
-msgstr "Opțiuni suplimentare pentru Block Backend"
-
-msgid "Additional Options for RAM Disk Backend"
-msgstr "Opțiuni suplimentare pentru RAM Disk Backend"
-
 msgid "Add LUN"
 msgstr "Adăugare unitate LUN"
 
@@ -13064,104 +13064,17 @@ msgstr "Doriți să activați unitățile logice LUN selectate?"
 msgid "Do you want to toggle selected LUNs?"
 msgstr "Doriți să inversați etichetele LUN selectate?"
 
-msgid "Backend"
-msgstr "Suport"
+msgid "Listen"
+msgstr "Acultare"
 
-msgid "CTL LUN"
-msgstr "CTL LUN"
+msgid "No listeners found."
+msgstr "Niciun sistem de monitorizare găsit."
 
-msgid "Device Type"
-msgstr "Tip dispozitiv"
+msgid "Option"
+msgstr "Opțiune"
 
-msgid "Passthrough Address"
-msgstr "Adresă trece prin"
-
-msgid "LUN Vendor"
-msgstr "Furnizor LUN"
-
-msgid "LUN Product"
-msgstr "Produs LUN"
-
-msgid "LUN Revision"
-msgstr "Revizie LUN"
-
-msgid "LUN SCSI Name"
-msgstr "Nume LUN SCSI"
-
-msgid "LUN EUI-64\tidentifier"
-msgstr "Identificator LUN EUI-64"
-
-msgid "LUN NAA Identifier"
-msgstr "Identificator LUN NAA"
-
-msgid "LUN UUID"
-msgstr "LUN UUID"
-
-msgid "HA Role"
-msgstr "Rol HA"
-
-msgid "Insecure TPC"
-msgstr "TCP insecurizat"
-
-msgid "Read Cache"
-msgstr "Cache citire"
-
-msgid "Read Only"
-msgstr "Doar citire"
-
-msgid "Reordering"
-msgstr "Reordonare"
-
-msgid "Serialize Sequence"
-msgstr "Serializare secvență"
-
-msgid "Physical Block Size"
-msgstr "Dimensiune bloc fizic"
-
-msgid "Physical Block Offset"
-msgstr "Ofset bloc fizic"
-
-msgid "UNMAP Block Size"
-msgstr "Dimensiune bloc UNMAP"
-
-msgid "UNMAP Block Offset"
-msgstr "Ofset bloc UNMAP"
-
-msgid "RPM"
-msgstr "RPM"
-
-msgid "Form Factor"
-msgstr "Factor de formă"
-
-msgid "Provisioning Type"
-msgstr "Tip provizionare"
-
-msgid "UNMAP"
-msgstr "UNMAP"
-
-msgid "UNMAP Maximum LBA"
-msgstr "Valoare max. LBA UNMAP"
-
-msgid "UNMAP Maximum Descriptors"
-msgstr "Descriptori maximi UNMAP"
-
-msgid "Write Same Maximum LBA"
-msgstr "Scrie aceași valoare maximă LBA"
-
-msgid "Avail Threshold"
-msgstr "NIvel disponibil"
-
-msgid "Used Threshold"
-msgstr "Prag utilizat"
-
-msgid "Pool Avail Threshold"
-msgstr "Nivel disponibil pool"
-
-msgid "Pool Used Threshold"
-msgstr "Nivel utilizare pool"
-
-msgid "Threads"
-msgstr "Fire de execuție"
+msgid "No options found."
+msgstr "Nicio opțiune disponibilă."
 
 msgid "Add Portal Group"
 msgstr "Adăugare Grup Portal"
@@ -13202,11 +13115,23 @@ msgstr "Doriți să activați grupurile portal selectate?"
 msgid "Do you want to toggle selected portal groups?"
 msgstr "Doriți să inversați selecția grupurilor portal?"
 
-msgid "Name of the Portal Group."
-msgstr "Numele grupului Portal."
-
 msgid "Portal Group Name"
 msgstr "Nume Grup Portal"
+
+msgid "Discovery Filter"
+msgstr "Filtru identificare"
+
+msgid "Offload"
+msgstr "Descărcare"
+
+msgid "Redirect"
+msgstr "Redirecționare"
+
+msgid "Foreign"
+msgstr "Străin"
+
+msgid "Name of the Portal Group."
+msgstr "Numele grupului Portal."
 
 msgid "These parameters will be added to this portal-group."
 msgstr "Acești parametri vor fi adăugați la acest grup-portal."
@@ -13283,30 +13208,6 @@ msgstr ""
 "Eticheta unică de 16 biți a acestui grup-portal. Dacă nu este specificată în "
 "mod explicit, eticheta va fi generată în mod automat de sistem."
 
-msgid "Discovery Filter"
-msgstr "Filtru identificare"
-
-msgid "Offload"
-msgstr "Descărcare"
-
-msgid "Redirect"
-msgstr "Redirecționare"
-
-msgid "Foreign"
-msgstr "Străin"
-
-msgid "Listen"
-msgstr "Acultare"
-
-msgid "Option"
-msgstr "Opțiune"
-
-msgid "No listeners found."
-msgstr "Niciun sistem de monitorizare găsit."
-
-msgid "No options found."
-msgstr "Nicio opțiune disponibilă."
-
 msgid "Enter user name."
 msgstr "Introduceți numele de utilizator."
 
@@ -13363,6 +13264,12 @@ msgstr "Doriți să activați utilizatorii CHAP selectați?"
 msgid "Do you want to toggle selected CHAP users?"
 msgstr "Doriți să inversați utilizatorii mutuali CHAP selectați?"
 
+msgid "Mutual User"
+msgstr "Utilizator mutual"
+
+msgid "Mutual Secret"
+msgstr "Secret mutual"
+
 msgid "Add Mutual CHAP User"
 msgstr "Adauga utilizator CHAP mutual"
 
@@ -13413,11 +13320,15 @@ msgstr ""
 msgid "Enter mutual user name."
 msgstr "Introduceți numele utilizatorului mutual."
 
-msgid "Mutual User"
-msgstr "Utilizator mutual"
+msgid "Enter an iSCSI initiator name."
+msgstr "Introduceți un nume pentru inițiatorul iSCSI."
 
-msgid "Mutual Secret"
-msgstr "Secret mutual"
+msgid ""
+"Link initiator-name to auth-groups. An Initiator with this name will be "
+"allowed to connect to the selected auth-groups."
+msgstr ""
+"Legare nume inițiator la grupuri autorizate. Un inițiator cu acest nume va "
+"avea astfel permisiunea de a se conecta la grupurile autorizate selectate."
 
 msgid "Add Initiator Name"
 msgstr "Adăugare nume inițiator"
@@ -13457,16 +13368,6 @@ msgstr "Doriți să activați numele inițiatorilor selectați?"
 
 msgid "Do you want to toggle selected initiator names?"
 msgstr "Doriți să inversați numele de inițiatori selectate?"
-
-msgid "Enter an iSCSI initiator name."
-msgstr "Introduceți un nume pentru inițiatorul iSCSI."
-
-msgid ""
-"Link initiator-name to auth-groups. An Initiator with this name will be "
-"allowed to connect to the selected auth-groups."
-msgstr ""
-"Legare nume inițiator la grupuri autorizate. Un inițiator cu acest nume va "
-"avea astfel permisiunea de a se conecta la grupurile autorizate selectate."
 
 msgid "IP Address Prefix"
 msgstr "Prefix adresă IP"
@@ -13524,9 +13425,6 @@ msgstr ""
 "această adresă va avea permisiunea de a se conecta la grupurile autorizate "
 "selectate."
 
-msgid "iSNS Servers"
-msgstr "Servere iSNS"
-
 msgid "IPv4 or IPv6 address of an iSNS server to register on."
 msgstr "Adresa IPv4 sau IPv6 a serverului iSNS pentru înregistrare."
 
@@ -13571,6 +13469,9 @@ msgstr "Doriți să activați serverele iSNS selectate?"
 
 msgid "Do you want to toggle selected iSNS servers?"
 msgstr "Doriți să inversați serverele iSNS selectate?"
+
+msgid "iSNS Servers"
+msgstr "Servere iSNS"
 
 msgid "An IPv4 or IPv6 address to listen on for incoming connections."
 msgstr "O adresa IPv4 sau IPv6 pentru a monitoriza conexiunile de intrare."
@@ -13752,9 +13653,6 @@ msgstr "Valoarea opțiunii."
 msgid "Link this option to selected portal-groups."
 msgstr "Atașați această opțiune la grupurile-portal."
 
-msgid "Name of the port."
-msgstr "Numele portului."
-
 msgid "Port Name"
 msgstr "Nume port"
 
@@ -13797,6 +13695,43 @@ msgstr "Doriți să activați înregistrările porturilor selectate?"
 msgid "Do you want to toggle selected port records?"
 msgstr "Doriți să inversați selecția înregistrărilor porturilor?"
 
+msgid "Name of the port."
+msgstr "Numele portului."
+
+msgid "Alias"
+msgstr "Alias"
+
+msgid "Name of the target."
+msgstr "Numele destinației."
+
+msgid "These parameters will be added to this target."
+msgstr "Acești parametri vor fi adăugați la această destinație."
+
+msgid "Assign a human-readable description to the target."
+msgstr "Adăugați o descriere ușor de înțeles pentru destinație."
+
+msgid "Assign a previously defined authentication group to the target."
+msgstr "Alocă un grup de autentificare definit anterior pentru destinație."
+
+msgid "Permit access without authentication"
+msgstr "Permite accesul fără autentificare"
+
+msgid "Assign a previously defined portal group to the target."
+msgstr "Alocă un grup portal definit anterior pentru destinație."
+
+msgid ""
+"IPv4 or IPv6 address to redirect initiators to. When configured, all "
+"initiators attempting to connect to this target will get redirected using "
+"\"Target moved temporarily\" login response."
+msgstr ""
+"Adresa IPv4 sau IPv6  utilizată pentru redirectarea inițiatorilor. Când este "
+"configurată, toți inițiatorii care vor încerca să se conecteze la această "
+"destinație vor fi redirecționați folosind răspunsul de autentificare "
+"„Destinație mutată temporar”."
+
+msgid "No ports found."
+msgstr "Niciun port găsit."
+
 msgid "Add Target"
 msgstr "Adăugare Destinație"
 
@@ -13835,40 +13770,6 @@ msgstr "Doriți să activați destinațiile selectate?"
 
 msgid "Do you want to toggle selected targets?"
 msgstr "Doriți să inversați starea destinațiilor selectate?"
-
-msgid "Name of the target."
-msgstr "Numele destinației."
-
-msgid "These parameters will be added to this target."
-msgstr "Acești parametri vor fi adăugați la această destinație."
-
-msgid "Assign a human-readable description to the target."
-msgstr "Adăugați o descriere ușor de înțeles pentru destinație."
-
-msgid "Alias"
-msgstr "Alias"
-
-msgid "Assign a previously defined authentication group to the target."
-msgstr "Alocă un grup de autentificare definit anterior pentru destinație."
-
-msgid "Permit access without authentication"
-msgstr "Permite accesul fără autentificare"
-
-msgid "Assign a previously defined portal group to the target."
-msgstr "Alocă un grup portal definit anterior pentru destinație."
-
-msgid ""
-"IPv4 or IPv6 address to redirect initiators to. When configured, all "
-"initiators attempting to connect to this target will get redirected using "
-"\"Target moved temporarily\" login response."
-msgstr ""
-"Adresa IPv4 sau IPv6  utilizată pentru redirectarea inițiatorilor. Când este "
-"configurată, toți inițiatorii care vor încerca să se conecteze la această "
-"destinație vor fi redirecționați folosind răspunsul de autentificare "
-"„Destinație mutată temporar”."
-
-msgid "No ports found."
-msgstr "Niciun port găsit."
 
 msgid "Max Processes"
 msgstr "Procese maxime"
@@ -13912,44 +13813,35 @@ msgid "These parameters will be added to the global section of ctl.conf"
 msgstr ""
 "Acești parametri vor fi adăugați în secțiunea globală a fișierului ctl.conf."
 
-msgid "Add iSCSI Initiator"
-msgstr "Adăugare inițiator iSCSI"
+msgid "Target Address"
+msgstr "Adresă țintă"
 
-msgid "Edit iSCSI Initiator"
-msgstr "Editare inițiator iSCSI"
+msgid "CHAP Name"
+msgstr "Nume CHAP"
 
-msgid "iSCSI Initiator is marked for deletion"
-msgstr "Inițiatorul iSCSI este marcat pentru ștergere"
+msgid "CHAP Secret"
+msgstr "Secret CHAP"
 
-msgid "iSCSI Initiator is locked"
-msgstr "Inițiatorul iSCSI este blocat"
+msgid "Mutual CHAP Name"
+msgstr "Nume CHAP mutual"
 
-msgid "iSCSI Initiator is unlocked"
-msgstr "Inițiatorul iSCSI este deblocat"
+msgid "Mutual CHAP Secret"
+msgstr "Secret CHAP mutual"
 
-msgid "Delete Selected iSCSI Initiators"
-msgstr "Șterge inițiatorii iSCSI selectați"
+msgid "Header Digest"
+msgstr "Rezumat header"
 
-msgid "Disable Selected iSCSI Initiators"
-msgstr "Dezactivare inițiatori iSCSI selectați"
+msgid "Data Digest"
+msgstr "Analiză date"
 
-msgid "Enable Selected iSCSI Initiators"
-msgstr "Activare inițiatori iSCSI selectați"
+msgid "Offload Driver"
+msgstr "Descărcare driver"
 
-msgid "Toggle Selected iSCSI Initiators"
-msgstr "Inversare selecție inițiatori iSCSI"
+msgid "Session State"
+msgstr "Stare sesiune"
 
-msgid "Do you want to delete selected iSCSI initiators?"
-msgstr "Doriți să ștegeți inițiatorii iSCSI selectați?"
-
-msgid "Do you want to disable selected iSCSI initiators?"
-msgstr "Doriți să dezactivați inițiatorii iSCSI selectați?"
-
-msgid "Do you want to enable selected iSCSI initiators?"
-msgstr "Doriți să activați inițiatorii iSCSI selectați?"
-
-msgid "Do you want to toggle selected iSCSI initiators?"
-msgstr "Doriți să inversați inițiatorii iSCSI selectați?"
+msgid "Session Type"
+msgstr "Tip sesiune"
 
 msgid "This is a nickname and is for information only."
 msgstr "Acesta este un pseudonim și este doar pentru informare."
@@ -14058,35 +13950,44 @@ msgstr ""
 msgid "Discovery"
 msgstr "Scanare"
 
-msgid "Target Address"
-msgstr "Adresă țintă"
+msgid "Add iSCSI Initiator"
+msgstr "Adăugare inițiator iSCSI"
 
-msgid "CHAP Name"
-msgstr "Nume CHAP"
+msgid "Edit iSCSI Initiator"
+msgstr "Editare inițiator iSCSI"
 
-msgid "CHAP Secret"
-msgstr "Secret CHAP"
+msgid "iSCSI Initiator is marked for deletion"
+msgstr "Inițiatorul iSCSI este marcat pentru ștergere"
 
-msgid "Mutual CHAP Name"
-msgstr "Nume CHAP mutual"
+msgid "iSCSI Initiator is locked"
+msgstr "Inițiatorul iSCSI este blocat"
 
-msgid "Mutual CHAP Secret"
-msgstr "Secret CHAP mutual"
+msgid "iSCSI Initiator is unlocked"
+msgstr "Inițiatorul iSCSI este deblocat"
 
-msgid "Header Digest"
-msgstr "Rezumat header"
+msgid "Delete Selected iSCSI Initiators"
+msgstr "Șterge inițiatorii iSCSI selectați"
 
-msgid "Data Digest"
-msgstr "Analiză date"
+msgid "Disable Selected iSCSI Initiators"
+msgstr "Dezactivare inițiatori iSCSI selectați"
 
-msgid "Offload Driver"
-msgstr "Descărcare driver"
+msgid "Enable Selected iSCSI Initiators"
+msgstr "Activare inițiatori iSCSI selectați"
 
-msgid "Session State"
-msgstr "Stare sesiune"
+msgid "Toggle Selected iSCSI Initiators"
+msgstr "Inversare selecție inițiatori iSCSI"
 
-msgid "Session Type"
-msgstr "Tip sesiune"
+msgid "Do you want to delete selected iSCSI initiators?"
+msgstr "Doriți să ștegeți inițiatorii iSCSI selectați?"
+
+msgid "Do you want to disable selected iSCSI initiators?"
+msgstr "Doriți să dezactivați inițiatorii iSCSI selectați?"
+
+msgid "Do you want to enable selected iSCSI initiators?"
+msgstr "Doriți să activați inițiatorii iSCSI selectați?"
+
+msgid "Do you want to toggle selected iSCSI initiators?"
+msgstr "Doriți să inversați inițiatorii iSCSI selectați?"
 
 msgid ""
 "Enter the path of the home directory for databases and configuration files."
@@ -14178,9 +14079,6 @@ msgstr "Liniște"
 msgid "Security Flavor"
 msgstr "Variantă securitate"
 
-msgid "Root Directory"
-msgstr "Director root"
-
 msgid "Map users or map root to the specified user."
 msgstr "Mapare utilizatori sau root la utilizatorul specificat"
 
@@ -14258,8 +14156,8 @@ msgstr ""
 "krb5p - Utilizează autentificarea Kerberos v5 cu sumă de control și criptare "
 "date."
 
-msgid "Root Directories"
-msgstr "Directoare root"
+msgid "Root Directory"
+msgstr "Director root"
 
 msgid "Add NFS Root"
 msgstr "Adăugare Root NFS"
@@ -14300,6 +14198,9 @@ msgstr "Doriți să activați directoarele root NFS selectate?"
 msgid "Do you want to toggle selected NFS root directories?"
 msgstr "Doriți să inversați directoarele root NFS selectate?"
 
+msgid "Root Directories"
+msgstr "Directoare root"
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -14326,17 +14227,122 @@ msgstr ""
 msgid "These parameters are appended to the exports file."
 msgstr "Acești parametri vor fi adăugați la fișierul de export."
 
+msgid "Driver List"
+msgstr "Listă dispozitiv"
+
+msgid "UPS Driver List"
+msgstr "Listă drivere UPS"
+
 msgid "Model Name"
 msgstr "Nume model"
 
 msgid "Model Extra"
 msgstr "Model Extra"
 
-msgid "Driver List"
-msgstr "Listă dispozitiv"
+msgid "Enable AFP"
+msgstr "Activare AFP"
 
-msgid "UPS Driver List"
-msgstr "Listă drivere UPS"
+msgid "Create Mask"
+msgstr "Creare Mască"
+
+msgid "Force Group"
+msgstr "Forțare grup"
+
+msgid "Force User"
+msgstr "Forțare utilizator"
+
+msgid "Shadow Copy Format"
+msgstr "Format copie de siguranță"
+
+msgid "VFS fruit:encoding"
+msgstr "VFS fruit:codare"
+
+msgid "VFS fruit:locking"
+msgstr "VFS fruit:blocare"
+
+msgid "VFS fruit:metadata"
+msgstr "VFS fruit:metadata"
+
+msgid "VFS fruit:resource"
+msgstr "VFS fruit:resurse"
+
+msgid "VFS fruit:time machine"
+msgstr "VFS fruit:time machine"
+
+msgid "ZFS ACL"
+msgstr "ACL ZFS"
+
+msgid "Inherit ACL"
+msgstr "Moștenire ACL"
+
+msgid "Alternate Data Streams"
+msgstr "Flux de date alternativ"
+
+msgid "NTFS ACLs"
+msgstr "NTFS ACLs"
+
+msgid "Shadow Copy"
+msgstr "Copie de Siguranță"
+
+msgid "Browseable"
+msgstr "Navigabil"
+
+msgid "Guest Only"
+msgstr ""
+
+msgid "Inherit Permissions"
+msgstr "Permisiuni moștenite"
+
+msgid "Recycle Bin"
+msgstr "Cos de gunoi"
+
+msgid "Hide Dot Files"
+msgstr "Ascundere fișiere Dot"
+
+msgid "Add Samba Share"
+msgstr "Adăugare partajare Samba"
+
+msgid "Edit Samba Share"
+msgstr "Editare partajare Samba"
+
+msgid "Samba Share is marked for deletion"
+msgstr "Partajarea Samba este marcată pentru ștergere"
+
+msgid "Samba Share is locked"
+msgstr "Partajarea Samba este blocată"
+
+msgid "Samba Share is unlocked"
+msgstr "Partajarea Samba este deblocată"
+
+msgid "Delete Selected Samba Shares"
+msgstr "Ștergere partajări Samba selectate"
+
+msgid "Disable Selected Samba Shares"
+msgstr "Dezactivare partajări Samba selectate"
+
+msgid "Enable Selected Samba Shares"
+msgstr "Activare partajări Samba selectate"
+
+msgid "Toggle Selected Samba Shares"
+msgstr "Inversare selecție partajări Samba"
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "Doriți să ștergeți partajările Samba selectate?"
+
+msgid "Do you want to disable selected Samba shares?"
+msgstr "Doriți să dezactivați partajările Samba selectate?"
+
+msgid "Do you want to enable selected Samba shares?"
+msgstr "Doriți să activați partajările Samba selectate?"
+
+msgid "Do you want to toggle selected Samba shares?"
+msgstr "Doriți să inversați partajările Samba selectate?"
+
+msgid "yes"
+msgstr "da"
+
+msgid "no"
+msgstr "nu"
 
 #, php-format
 msgid "These parameters are added to the [Share] section of %s."
@@ -14560,111 +14566,6 @@ msgstr "Introduceți comentariul pentru partajare"
 
 msgid "Enter the location of the share"
 msgstr "Introduceți locația partajării"
-
-msgid "Add Samba Share"
-msgstr "Adăugare partajare Samba"
-
-msgid "Edit Samba Share"
-msgstr "Editare partajare Samba"
-
-msgid "Samba Share is marked for deletion"
-msgstr "Partajarea Samba este marcată pentru ștergere"
-
-msgid "Samba Share is locked"
-msgstr "Partajarea Samba este blocată"
-
-msgid "Samba Share is unlocked"
-msgstr "Partajarea Samba este deblocată"
-
-msgid "Delete Selected Samba Shares"
-msgstr "Ștergere partajări Samba selectate"
-
-msgid "Disable Selected Samba Shares"
-msgstr "Dezactivare partajări Samba selectate"
-
-msgid "Enable Selected Samba Shares"
-msgstr "Activare partajări Samba selectate"
-
-msgid "Toggle Selected Samba Shares"
-msgstr "Inversare selecție partajări Samba"
-
-msgid "Do you want to delete selected Samba shares?"
-msgstr "Doriți să ștergeți partajările Samba selectate?"
-
-msgid "Do you want to disable selected Samba shares?"
-msgstr "Doriți să dezactivați partajările Samba selectate?"
-
-msgid "Do you want to enable selected Samba shares?"
-msgstr "Doriți să activați partajările Samba selectate?"
-
-msgid "Do you want to toggle selected Samba shares?"
-msgstr "Doriți să inversați partajările Samba selectate?"
-
-msgid "yes"
-msgstr "da"
-
-msgid "no"
-msgstr "nu"
-
-msgid "Enable AFP"
-msgstr "Activare AFP"
-
-msgid "Create Mask"
-msgstr "Creare Mască"
-
-msgid "Force Group"
-msgstr "Forțare grup"
-
-msgid "Force User"
-msgstr "Forțare utilizator"
-
-msgid "Shadow Copy Format"
-msgstr "Format copie de siguranță"
-
-msgid "VFS fruit:encoding"
-msgstr "VFS fruit:codare"
-
-msgid "VFS fruit:locking"
-msgstr "VFS fruit:blocare"
-
-msgid "VFS fruit:metadata"
-msgstr "VFS fruit:metadata"
-
-msgid "VFS fruit:resource"
-msgstr "VFS fruit:resurse"
-
-msgid "VFS fruit:time machine"
-msgstr "VFS fruit:time machine"
-
-msgid "ZFS ACL"
-msgstr "ACL ZFS"
-
-msgid "Inherit ACL"
-msgstr "Moștenire ACL"
-
-msgid "Alternate Data Streams"
-msgstr "Flux de date alternativ"
-
-msgid "NTFS ACLs"
-msgstr "NTFS ACLs"
-
-msgid "Shadow Copy"
-msgstr "Copie de Siguranță"
-
-msgid "Browseable"
-msgstr "Navigabil"
-
-msgid "Guest Only"
-msgstr ""
-
-msgid "Inherit Permissions"
-msgstr "Permisiuni moștenite"
-
-msgid "Recycle Bin"
-msgstr "Cos de gunoi"
-
-msgid "Hide Dot Files"
-msgstr "Ascundere fișiere Dot"
 
 msgid "Workgroup"
 msgstr "Grup de Lucru"
@@ -15021,27 +14922,6 @@ msgstr ""
 "Samba va scrie fișierul asincron când mărimea cererii este mai mare ca "
 "această valoare (implicit %d)."
 
-msgid "Password Authentication"
-msgstr "Autentificare cu parolă"
-
-msgid "Keyboard-Interactive Authentication"
-msgstr "Autentificare cu tastatură interactivă"
-
-msgid "Public Key Authentication"
-msgstr "Autentificare cu cheie publică"
-
-msgid "GSSAPI Authentication"
-msgstr "Autentificare GSSAPI"
-
-msgid "Root Login"
-msgstr "Autentificare root"
-
-msgid "TCP Forwarding"
-msgstr "TCP Forwarding"
-
-msgid "Subsystem"
-msgstr "Subsistem"
-
 msgid "Port of the SSH service. Leave blank to use the default port."
 msgstr ""
 "Numărul portului pentru SSH. Lăsați câmpul necompletat pentru valoarea "
@@ -15094,6 +14974,9 @@ msgstr ""
 "propriile argumente opționale) de executat la o cerere a subsistemului. "
 "Lăsați câmpul necompletat pentru utilizarea setărilor implicite."
 
+msgid "Subsystem"
+msgstr "Subsistem"
+
 msgid "Using defaults"
 msgstr "Utilizare setări implicite"
 
@@ -15136,14 +15019,23 @@ msgstr "DEBUG3 - jurnalizarea tuturor informațiilor de depanare"
 msgid "These parameters are appended to /etc/ssh/sshd_config."
 msgstr "Acești parametri vor fi adăugați la /etc/ssh/sshd_config."
 
-msgid "Allow New Files"
-msgstr "Permite fișiere noi"
+msgid "Password Authentication"
+msgstr "Autentificare cu parolă"
 
-msgid "Max. Block Size"
-msgstr "Dimensiune max. bloc"
+msgid "Keyboard-Interactive Authentication"
+msgstr "Autentificare cu tastatură interactivă"
 
-msgid "Umask"
-msgstr "Umask"
+msgid "Public Key Authentication"
+msgstr "Autentificare cu cheie publică"
+
+msgid "GSSAPI Authentication"
+msgstr "Autentificare GSSAPI"
+
+msgid "Root Login"
+msgstr "Autentificare root"
+
+msgid "TCP Forwarding"
+msgstr "TCP Forwarding"
 
 msgid "Allow new files to be created."
 msgstr "Permite crearea de fișiere noi."
@@ -15214,56 +15106,14 @@ msgstr "000"
 msgid "Specifies the username under which the TFTP service should run."
 msgstr "Specifică numele de utilizator sub care va rula serviciul TFTP."
 
-msgid "Peer Port"
-msgstr "Port partener"
+msgid "Allow New Files"
+msgstr "Permite fișiere noi"
 
-msgid "Configuration Folder"
-msgstr "Folder configurație"
+msgid "Max. Block Size"
+msgstr "Dimensiune max. bloc"
 
-msgid "Incomplete Folder"
-msgstr "Folder incomplet"
-
-msgid "Download Folder"
-msgstr "Folder Download"
-
-msgid "Watch Folder"
-msgstr "Folder monitorizat"
-
-msgid "Port Forwarding"
-msgstr "Transmistere port"
-
-msgid "Peer Exchange"
-msgstr "Schimb între parteneri"
-
-msgid "Distributed Hash Table"
-msgstr "Tabelă Hash distribuită"
-
-msgid "Local Peer Discovery"
-msgstr "Identificare grupuri locale"
-
-msgid "uTP"
-msgstr "uTP"
-
-msgid "User Mask"
-msgstr "Mască utilizator"
-
-msgid "Preallocation"
-msgstr "Prealocare"
-
-msgid "Message Level"
-msgstr "Mivel mesaj"
-
-msgid "DNS Rebind Protection"
-msgstr "Protecție la modificare DNS"
-
-msgid "Domain Names"
-msgstr "Nume domenii"
-
-msgid "Start Torrents"
-msgstr "Pornire torenți"
-
-msgid "Stop Torrents"
-msgstr "Oprire torenți"
+msgid "Umask"
+msgstr "Umask"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. The default port is %d."
@@ -15395,11 +15245,56 @@ msgstr ""
 msgid "Stop torrents before stopping service."
 msgstr "Oprire torenți înainte de oprirea serviciului."
 
-msgid "Work Directory"
-msgstr "Director de lucru"
+msgid "Peer Port"
+msgstr "Port partener"
 
-msgid "Create Work Directory"
-msgstr "Creare director de lucru"
+msgid "Configuration Folder"
+msgstr "Folder configurație"
+
+msgid "Incomplete Folder"
+msgstr "Folder incomplet"
+
+msgid "Download Folder"
+msgstr "Folder Download"
+
+msgid "Watch Folder"
+msgstr "Folder monitorizat"
+
+msgid "Port Forwarding"
+msgstr "Transmistere port"
+
+msgid "Peer Exchange"
+msgstr "Schimb între parteneri"
+
+msgid "Distributed Hash Table"
+msgstr "Tabelă Hash distribuită"
+
+msgid "Local Peer Discovery"
+msgstr "Identificare grupuri locale"
+
+msgid "uTP"
+msgstr "uTP"
+
+msgid "User Mask"
+msgstr "Mască utilizator"
+
+msgid "Preallocation"
+msgstr "Prealocare"
+
+msgid "Message Level"
+msgstr "Mivel mesaj"
+
+msgid "DNS Rebind Protection"
+msgstr "Protecție la modificare DNS"
+
+msgid "Domain Names"
+msgstr "Nume domenii"
+
+msgid "Start Torrents"
+msgstr "Pornire torenți"
+
+msgid "Stop Torrents"
+msgstr "Oprire torenți"
 
 msgid "Location where work files will be stored."
 msgstr "Locația de stocare a fișierelor de lucru."
@@ -15407,17 +15302,35 @@ msgstr "Locația de stocare a fișierelor de lucru."
 msgid "Create work directory if it doesn't exist."
 msgstr "Creare folder de lucru (dacă acesta nu există deja)."
 
+msgid "Work Directory"
+msgstr "Director de lucru"
+
+msgid "Create Work Directory"
+msgstr "Creare director de lucru"
+
+msgid "Name of the WebDAV Record."
+msgstr "Numele înregistrării WebDAV."
+
 msgid "WebDAV Name"
 msgstr "Nume WebDAV"
+
+msgid ""
+"The WebDAV configuration is applied to all folders matching this pattern."
+msgstr ""
+"Configurația WebDAV este aplicată tuturor folderelor care respectă acest "
+"model."
 
 msgid "Folder Pattern"
 msgstr "Model folder"
 
-msgid "Read-Only"
-msgstr "Doar citire"
+msgid "Read-Only Access."
+msgstr "Acces doar citire."
 
-msgid "Use Sqlite"
-msgstr "Utilizare Sqlite"
+msgid "Use Sqlite for lockings and properties."
+msgstr "Utilizează Sqlite pentru blocări și proprietăți."
+
+msgid "These parameters will be added to this WebDAV configuration."
+msgstr "Acești parametri vor fi adăugați la fișierul de configurare WebDAV."
 
 msgid "Add WebDAV Record"
 msgstr "Adăugare înregistrare WebDAV"
@@ -15458,41 +15371,11 @@ msgstr "Doriți să activați înregistrările WebDAV selectate?"
 msgid "Do you want to toggle selected WebDAV records?"
 msgstr "Doriți să inversați înregistrările WebDAV selectate?"
 
-msgid "Name of the WebDAV Record."
-msgstr "Numele înregistrării WebDAV."
+msgid "Read-Only"
+msgstr "Doar citire"
 
-msgid ""
-"The WebDAV configuration is applied to all folders matching this pattern."
-msgstr ""
-"Configurația WebDAV este aplicată tuturor folderelor care respectă acest "
-"model."
-
-msgid "Read-Only Access."
-msgstr "Acces doar citire."
-
-msgid "Use Sqlite for lockings and properties."
-msgstr "Utilizează Sqlite pentru blocări și proprietăți."
-
-msgid "These parameters will be added to this WebDAV configuration."
-msgstr "Acești parametri vor fi adăugați la fișierul de configurare WebDAV."
-
-msgid "Web Service Discovery"
-msgstr "Descoperire servicii Web"
-
-msgid "IP Address Family"
-msgstr "Familia de adrese IP"
-
-msgid "NETBIOS Hostname"
-msgstr "Nume NETBIOS sistem"
-
-msgid "Preserve Case"
-msgstr "Păstrare tip caracter"
-
-msgid "Server Mode"
-msgstr "Mod Server"
-
-msgid "Workgroup Name"
-msgstr "Nume Grup de lucru"
+msgid "Use Sqlite"
+msgstr "Utilizare Sqlite"
 
 msgid "IPv4 only"
 msgstr "Doar IPv4"
@@ -15521,6 +15404,36 @@ msgstr "Selecțați între modul domeniu sau modul grup de lucru."
 msgid "Set workgroup name"
 msgstr "Stabilire nume grup de lucru"
 
+msgid "IP Address Family"
+msgstr "Familia de adrese IP"
+
+msgid "NETBIOS Hostname"
+msgstr "Nume NETBIOS sistem"
+
+msgid "Preserve Case"
+msgstr "Păstrare tip caracter"
+
+msgid "Server Mode"
+msgstr "Mod Server"
+
+msgid "Workgroup Name"
+msgstr "Nume Grup de lucru"
+
+msgid "Web Service Discovery"
+msgstr "Descoperire servicii Web"
+
+msgid "Protected"
+msgstr "Protejat"
+
+msgid "Set UID"
+msgstr "Setare UID"
+
+msgid "Snapdir"
+msgstr "Snapdir"
+
+msgid "UTF-8 Only"
+msgstr "Doar UTF-8"
+
 msgid "You may enter a description for your reference."
 msgstr "Puteți introduce o descriere pentru referință."
 
@@ -15548,18 +15461,6 @@ msgstr "Introduceți numele de volum"
 
 msgid "The name of the ZFS pool."
 msgstr "Numele structurii pool ZFS."
-
-msgid "Protected"
-msgstr "Protejat"
-
-msgid "Set UID"
-msgstr "Setare UID"
-
-msgid "Snapdir"
-msgstr "Snapdir"
-
-msgid "UTF-8 Only"
-msgstr "Doar UTF-8"
 
 msgid "The following errors were detected"
 msgstr "Au fost detectate următoarele erori"
@@ -15615,45 +15516,6 @@ msgstr ""
 msgid "Encapsulation Protocol"
 msgstr ""
 
-msgid "Add VLAN"
-msgstr "Adăugare VLAN"
-
-msgid "Edit VLAN"
-msgstr "Editare VLAN"
-
-msgid "VLAN is marked for deletion"
-msgstr "Conexiunea VLAN este marcată pentru ștergere"
-
-msgid "VLAN is locked"
-msgstr ""
-
-msgid "VLAN is unlocked"
-msgstr "Conexiunea VLAN este deblocată"
-
-msgid "Delete Selected VLANs"
-msgstr "Ștergere rețele VLAN selectate"
-
-msgid "Disable Selected VLANs"
-msgstr ""
-
-msgid "Enable Selected VLANs"
-msgstr ""
-
-msgid "Toggle Selected VLANs"
-msgstr ""
-
-msgid "Do you want to delete selected VLANs?"
-msgstr "Doriți să ștergeți rețelele VLAN selectate?"
-
-msgid "Do you want to disable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to enable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to toggle selected VLANs?"
-msgstr ""
-
 msgid "The name of the VLAN interface"
 msgstr ""
 
@@ -15703,6 +15565,45 @@ msgstr "802.1Q (implicit)"
 
 msgid "802.1ad (QinQ)"
 msgstr "802.1ad (QinQ)"
+
+msgid "Add VLAN"
+msgstr "Adăugare VLAN"
+
+msgid "Edit VLAN"
+msgstr "Editare VLAN"
+
+msgid "VLAN is marked for deletion"
+msgstr "Conexiunea VLAN este marcată pentru ștergere"
+
+msgid "VLAN is locked"
+msgstr ""
+
+msgid "VLAN is unlocked"
+msgstr "Conexiunea VLAN este deblocată"
+
+msgid "Delete Selected VLANs"
+msgstr "Ștergere rețele VLAN selectate"
+
+msgid "Disable Selected VLANs"
+msgstr ""
+
+msgid "Enable Selected VLANs"
+msgstr ""
+
+msgid "Toggle Selected VLANs"
+msgstr ""
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "Doriți să ștergeți rețelele VLAN selectate?"
+
+msgid "Do you want to disable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to enable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to toggle selected VLANs?"
+msgstr ""
 
 msgid "1"
 msgstr "1"
@@ -15915,27 +15816,6 @@ msgstr "și"
 msgid "Total: %1$s | Allocated: %2$s | Free: %3$s"
 msgstr "Total: %1$s | Alocat: %2$s | Disponibil: %3$s"
 
-msgid "Exported"
-msgstr "Exportat"
-
-msgid "Destroyed"
-msgstr "Distrus"
-
-msgid "Spare"
-msgstr "Rezervă"
-
-msgid "L2 Cache"
-msgstr "Cache L2"
-
-msgid "Uninitialized"
-msgstr "Neinițializat"
-
-msgid "Potentially Active"
-msgstr "Potențial activ"
-
-msgid "System tuning"
-msgstr "Reglare fină sistem"
-
 msgid "Deleting MBR and partition table"
 msgstr "Se șterge MBR-ul și tabela de partiții"
 
@@ -15967,6 +15847,9 @@ msgid ""
 msgstr ""
 "Discul este în acest moment montat! Punctul de montare va fi șters temporar "
 "pentru a putea efectua această comandă."
+
+msgid "System tuning"
+msgstr "Reglare fină sistem"
 
 msgid "ZFS Pool Tools"
 msgstr "Unelte pool ZFS"
@@ -16226,3 +16109,24 @@ msgstr "Eroare la scrierea fișerului pe disc."
 
 msgid "File upload stopped by extension."
 msgstr "Încărcare fișier oprită prin extensie."
+
+msgid "Exported"
+msgstr "Exportat"
+
+msgid "Destroyed"
+msgstr "Distrus"
+
+msgid "Spare"
+msgstr "Rezervă"
+
+msgid "L2 Cache"
+msgstr "Cache L2"
+
+msgid "Uninitialized"
+msgstr "Neinițializat"
+
+msgid "Potentially Active"
+msgstr "Potențial activ"
+
+#~ msgid "Be careful with turning on these options."
+#~ msgstr "Atenție la activarea acestor opțiuni"

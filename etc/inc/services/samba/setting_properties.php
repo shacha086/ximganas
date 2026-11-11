@@ -3,7 +3,7 @@
 	setting_properties.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -235,10 +235,10 @@ class setting_properties extends grid_properties {
 	public function init_if(): myp\property_list {
 		$description = '';
 		$options = [
-			'' => gettext('All Interfaces'),
-			'lan' => gettext('LAN Only'),
-			'opt' => gettext('OPT Only'),
-			'carp' => gettext('CARP only')
+			'' => gettext("All Interfaces"),
+			'lan' => gettext("LAN Only"),
+			'opt' => gettext("OPT Only"),
+			'carp' => gettext("CARP only")
 		];
 		$property = parent::init_if();
 		$property->

@@ -1,5 +1,5 @@
 PORTNAME=	phpvirtualbox
-DISTVERSION=	7.2-2
+DISTVERSION=	7.2-1
 PORTREVISION=	0
 CATEGORIES=	www
 SUFFIX=		-72
@@ -32,6 +32,7 @@ ETCDIR=		${WWWDIR}
 post-patch:
 	@${REINPLACE_CMD} -e 's#/usr/share/phpvirtualbox#${WWWDIR}#g' \
 		${WRKSRC}/phpvirtualbox.conf
+
 do-install:
 	${MKDIR} ${STAGEDIR}${WWWDIR}
 	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "*" ${STAGEDIR}${WWWDIR} \

@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of XigmaNAS® (https://www.xigmanas.com).
-# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 # All rights reserved.
 #
 
@@ -219,11 +219,11 @@ gptpart_init()
 
 		if [ ! -z "${SWAP_SIZE}" ]; then
 			# Add swap partition to selected drives.
-			gpart add -a 4k -s ${SWAP_SIZE} -t freebsd-swap -l swap${NUM} ${DISK} > /dev/null
+			gpart add -a 4m -s ${SWAP_SIZE} -t freebsd-swap -l swap${NUM} ${DISK} > /dev/null
 			# Generate swap device list.
 			echo "/dev/gpt/swap${NUM}" >> ${swapdevlist}
 		fi
-		gpart add -a 4k ${ZROOT_SIZE} -t freebsd-zfs -l sysdisk${NUM} ${DISK} > /dev/null
+		gpart add -a 4m ${ZROOT_SIZE} -t freebsd-zfs -l sysdisk${NUM} ${DISK} > /dev/null
 		# Generate the glabel device list.
 		echo "/dev/gpt/sysdisk${NUM}" >> ${tmpfile}
 
@@ -287,7 +287,7 @@ mbrpart_init()
 		fi
 
 		# Create zfs os partition.
-		gpart add -a 4k ${ZROOT_SIZE} -i 4 -t freebsd-zfs "${DISK}s1" > /dev/null
+		gpart add -a 4m ${ZROOT_SIZE} -i 4 -t freebsd-zfs "${DISK}s1" > /dev/null
 
 		# Write bootcode for ZFS on BIOS
 		dd if="/boot/zfsboot" of="/dev/${DISK}s1" count=1 > /dev/null 2>&1
@@ -819,9 +819,6 @@ hint.acpi_throttle.0.disabled="0"
 hint.p4tcc.0.disabled="0"
 loader_brand="${PRDNAME}"
 autoboot_delay="3"
-hostuuid_load="YES"
-hostuuid_name="/etc/hostid"
-hostuuid_type="hostuuid"
 isboot_load="YES"
 zfs_load="YES"
 EOF
@@ -1099,7 +1096,7 @@ menu_swap()
 {
 	swap_size=
 	cdialog --backtitle "${PRDNAME} ${APPNAME} Installer" --title "Customize Swap size" \
-	--form "Enter a desired SWAP size, default size is 2G, leave empty for none and continue." 0 0 0 \
+	--form "Enter a desired SWAP size, default size is 2G, leave empty for none." 0 0 0 \
 	"Enter swap size:" 1 1 "2G" 1 25 25 25 \
 	2>${tmpfile}
 	if [ 0 -ne $? ]; then
@@ -1109,9 +1106,9 @@ menu_swap()
 	swap_size=$(cat ${tmpfile})
 	if [ ! -z "${swap_size}" ]; then
 		# Perform some input validation.
-		if [ ! $(echo "${swap_size}" | egrep -o '^[1-9][0-9]*[gG]$') ]; then
+		if [ ! $(echo "${swap_size}" | egrep -o '^[1-9][0-9]*[kmgKMG]$') ]; then
 			echo ""
-			echo "ERROR: Invalid swap size specified, allowed suffix is G as in Gigabytes."
+			echo "ERROR: Invalid swap size specified, allowed suffixes are K,M,G."
 			read -p "Press Enter to retry." RETRY
 			menu_swap
 		fi
@@ -1136,10 +1133,9 @@ menu_zrootsize()
 {
 	root_size=
 	cdialog --backtitle "${PRDNAME} ${APPNAME} Installer" --title "Customize zroot pool partition" \
-	--radiolist "Would you like to customize the ${ZROOT} partition size?, \
-	this is only useful if you plan to use the OS disk for L2ARC or any other filesystem other than ZFS, generally not recommended." 14 68 6 \
-	1 "Yes, customize zroot partition." off \
-	2 "No, continue with defaults." on \
+	--radiolist "Would you like to customize the ${ZROOT} partition size?" 10 60 4 \
+	1 "Yes, I want to customize." off \
+	2 "No, leave the defaults." on \
 	2>${tmpfile}
 	if [ 0 -ne $? ]; then
 		exit 0
@@ -1148,7 +1144,7 @@ menu_zrootsize()
 	CUSTOM_ROOT=$(cat ${tmpfile})
 	if [ "${CUSTOM_ROOT}" = 1 ]; then
 		cdialog --backtitle "${PRDNAME} ${APPNAME} Installer" --title "Customize zroot pool size" \
-		--form "Enter a desired zroot pool size, for example 20G, or leave empty to use all remaining disk space and continue." 0 0 0 \
+		--form "Enter a desired zroot pool size, for example 10G, or leave empty to use all remaining disk space (default empty)." 0 0 0 \
 		"Enter zroot pool size:" 1 1 "" 1 25 25 25 \
 		2>${tmpfile}
 		if [ 0 -ne $? ]; then
@@ -1158,21 +1154,12 @@ menu_zrootsize()
 		root_size=$(cat ${tmpfile})
 		if [ ! -z "${root_size}" ]; then
 			# Perform some input validation.
-			if [ ! $(echo "${root_size}" | egrep -o '^[1-9][0-9]*[gG]$') ]; then
+			if [ ! $(echo "${root_size}" | egrep -o '^[1-9][0-9]*[kmgKMG]$') ]; then
 				echo ""
-				echo "ERROR: Invalid zroot size specified, allowed suffix is G as in Gigabytes."
+				echo "ERROR: Invalid zroot size specified, allowed suffixes are K,M,G."
 				read -p "Press Enter to retry." RETRY
 				menu_zrootsize
 			fi
-
-		root_size_min=$(echo ${root_size} | sed 's/[Gg]//')
-		# The minimum allowed zroot size is 20G.
-		if [ ! "${root_size_min}" -ge 20 ]; then
-				echo ""
-				echo "ERROR: Invalid zroot size specified, minimum allowed size is 20G."
-				read -p "Press Enter to retry." RETRY
-				menu_zrootsize
-		fi
 
 			ZROOT_SIZE="-s ${root_size}"
 		fi
@@ -1183,10 +1170,9 @@ menu_dataset()
 {
 	dataset_name=
 	cdialog --backtitle "${PRDNAME} ${APPNAME} Installer" --title "Create user Dataset" \
-	--radiolist "Would you like the installer to create a ZFS Dataset?, this is useful if \
-	you plan to use the OS disk for storing extensions, jails etc. on a dedicated dataset, this is highly recommended." 14 68 6 \
-	1 "Yes, create a Dataset." off \
-	2 "No, continue with defaults." on \
+	--radiolist "Would you like to create a ZFS Dataset for data store?" 10 60 4 \
+	1 "Yes, I want a Dataset." off \
+	2 "No, leave the defaults." on \
 	2>${tmpfile}
 	if [ 0 -ne $? ]; then
 		exit 0
@@ -1195,7 +1181,7 @@ menu_dataset()
 	dataset=$(cat ${tmpfile})
 	if [ "${dataset}" = 1 ]; then
 		cdialog --backtitle "${PRDNAME} ${APPNAME} Installer" --title "Enter Dataset name" \
-		--form "Enter a desired Dataset name, leave empty to cancel Dataset creation and continue with the installation." 0 0 0 \
+		--form "Enter a desired Dataset name, or leave empty to cancel Dataset creation (default empty)." 0 0 0 \
 		"Enter Dataset name:" 1 1 "" 1 25 25 25 \
 		2>${tmpfile}
 		if [ 0 -ne $? ]; then
@@ -1265,7 +1251,7 @@ menu_encryption()
 	PASS1=
 	PASS2=
 	cdialog --backtitle "${PRDNAME} ${APPNAME} Installer" --title "Encryption option menu" \
-	--checklist "Select the desired items to be encrypted (optional), if not experienced with GELI/Encryption, please disregard and press Enter to continue." 12 60 8 \
+	--checklist "Select the desired items to be encrypted (optional), if you're inexperienced with GELI/Encryption, please disregard this and press Enter to continue." 12 55 8 \
 	"DISK+GELI" "Encrypt Disks?" off \
 	"SWAP+GELI" "Encrypt Swap?" off \
 	2>${tmpfile}

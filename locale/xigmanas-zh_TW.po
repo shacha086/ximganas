@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XigmaNAS\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@xigmanas.com>\n"
-"POT-Creation-Date: 2025-11-11 18:59+0000\n"
+"POT-Creation-Date: 2025-10-11 14:47+0000\n"
 "PO-Revision-Date: 2022-12-30 16:04+0000\n"
 "Last-Translator: Tomfro <Unknown>\n"
 "Language-Team: XigmaNAS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-18 15:53+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2025-10-11 13:17+0000\n"
+"X-Generator: Launchpad (build bff9b0558f8357613643d9a74c009da18fafa917)\n"
 "Language: zh_TW\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -3695,9 +3695,6 @@ msgstr ""
 msgid "Upgrade ZFS and add all supported feature flags on a pool"
 msgstr "升級ZFS並在池中添加所有支持的功能標誌"
 
-msgid "Activate encryption feature"
-msgstr ""
-
 msgid "Temporary Device"
 msgstr "臨時裝置"
 
@@ -4099,9 +4096,6 @@ msgstr "高級"
 
 msgid "Firmware Update"
 msgstr "固件升級"
-
-msgid "Boot Environments"
-msgstr ""
 
 msgid "Packages"
 msgstr "套件"
@@ -7765,102 +7759,6 @@ msgstr "建議加密您的配置並將其存儲在安全的位置。"
 msgid "Reminder Settings"
 msgstr "提醒設置"
 
-msgid "Locked"
-msgstr ""
-
-msgid "Delete Selected Boot Environments"
-msgstr ""
-
-msgid "Do you really want to delete selected boot environments?"
-msgstr ""
-
-msgid "Failed to delete Boot Environment(s)."
-msgstr ""
-
-msgid "Age"
-msgstr ""
-
-msgid "Select"
-msgstr ""
-
-msgid "Boot Environment"
-msgstr ""
-
-msgid "Active"
-msgstr "活動"
-
-msgid "Mountpoint"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Failed to create and/or activate Boot Environment."
-msgstr ""
-
-msgid "Failed to create Boot Environment."
-msgstr ""
-
-msgid ""
-"Activate Boot Environment after creation, note that system reboot is "
-"required for this boot environment to take place."
-msgstr ""
-
-msgid ""
-"Append the date in the following format: YYYY-MM-DD-HHMMSS, if the name "
-"field is empty, the date will always be used as the boot environment name."
-msgstr ""
-
-#, php-format
-msgid "For additional information about boot environments and %s,"
-msgstr ""
-
-msgid "Failed to activate Boot Environment."
-msgstr ""
-
-msgid "Failed to rename Boot Environment."
-msgstr ""
-
-msgid "Failed to mount Boot Environment."
-msgstr ""
-
-msgid "Failed to unmount Boot Environment."
-msgstr ""
-
-msgid "Failed to delete Boot Environment."
-msgstr ""
-
-msgid "Edit Boot Environment"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Append the date in the following format: YYYY-MM-DD-HHMMSS."
-msgstr ""
-
-msgid "Force"
-msgstr ""
-
-msgid ""
-"Destroy the boot environment and its origin if any, without confirmation."
-msgstr ""
-
-msgid "No boot environmen information available."
-msgstr ""
-
-msgid "Boot Environment List"
-msgstr ""
-
-msgid "Boot Environment Snapshots"
-msgstr ""
-
 msgid "Add job"
 msgstr "添加任務"
 
@@ -8990,8 +8888,166 @@ msgstr "沒有可用的結果"
 msgid "HOME"
 msgstr "主頁"
 
+msgid "You are not allowed to use this function."
+msgstr "您無權使用此功能。"
+
+msgid "This file doesn't exist."
+msgstr "該文件不存在。"
+
+msgid "You are not allowed to access this file."
+msgstr "您無權訪問此文件。"
+
+msgid "Permission-change failed."
+msgstr "權限修改錯誤"
+
+msgid "Getting permissions failed."
+msgstr "獲取權限失敗"
+
+msgid "Change permissions"
+msgstr "變更權限"
+
+msgid "Public"
+msgstr "公開"
+
+msgid "This item doesn't exist."
+msgstr "該項目不存在。"
+
+msgid "You are not allowed to access this item."
+msgstr "您無權訪問此項目。"
+
+msgid "Deleting failed."
+msgstr "刪除失敗。"
+
+msgid "Unable to open source directory."
+msgstr ""
+
+msgid "Unable to open directory."
+msgstr "無法打開目錄。"
+
+msgid "Unable to read directory."
+msgstr "無法讀取目錄。"
+
+msgid "Copy item(s)"
+msgstr "複製項目"
+
+msgid "Move item(s)"
+msgstr "移動項目"
+
+#, php-format
+msgid "Copy from /%s to /%s "
+msgstr "由 /%s 複製到 /%s "
+
+#, php-format
+msgid "Move from /%s to /%s "
+msgstr "由/%s 移動到 /%s "
+
+msgid "Copy"
+msgstr "複製"
+
+msgid "Move"
+msgstr "移動"
+
+msgid "The target directory doesn't exist."
+msgstr "目標目錄不存在。"
+
+msgid "You are not allowed to access the target directory."
+msgstr "您無權訪問目標目錄。"
+
+msgid "The target directory may not be above the home directory."
+msgstr "目標目錄可能不在主目錄之上。"
+
+msgid "You must supply a name."
+msgstr "您必須提供一個名稱。"
+
+msgid "The target item already exists."
+msgstr "目標項目已存在。"
+
+msgid "Copying failed."
+msgstr "複製錯誤"
+
+msgid "Moving failed."
+msgstr "移動錯誤"
+
+msgid "You haven't selected any item(s)."
+msgstr "您尚未選擇任何項目。"
+
+msgid "File saving failed."
+msgstr "文件保存失敗"
+
+msgid "This item already exists."
+msgstr "此項目已存在。"
+
+msgid "File opening failed."
+msgstr "檔案打開失敗"
+
+msgid "Edit file"
+msgstr "編輯檔案"
+
+msgid "Wrap text:"
+msgstr "換行文字："
+
+msgid "Reset"
+msgstr "重設"
+
+msgid "Are you sure you want to delete selected item(s)?"
+msgstr "您確定要刪除所選項目嗎？"
+
+msgid "CHANGE PERMISSIONS"
+msgstr "更改權限"
+
+msgid "You are not allowed to access this directory."
+msgstr "您無權訪問此目錄。"
+
 msgid "Directory"
 msgstr "目錄"
+
+msgid "UP"
+msgstr "UP"
+
+msgid "RELOAD"
+msgstr "RELOAD"
+
+msgid "SEARCH"
+msgstr "搜尋"
+
+msgid "Create"
+msgstr "創建"
+
+msgid "Modified"
+msgstr "已修改"
+
+msgid "Permissions"
+msgstr "權限"
+
+msgid "Actions"
+msgstr "動作"
+
+msgid "COPY"
+msgstr "複製"
+
+msgid "MOVE"
+msgstr "MOVE"
+
+msgid "DELETE"
+msgstr "刪除"
+
+msgid "EDIT"
+msgstr "編輯"
+
+msgid "UNZIP"
+msgstr "UNZIP"
+
+msgid "DOWNLOAD"
+msgstr "下載"
+
+msgid "Extracting"
+msgstr "提取中"
+
+msgid "Unzip"
+msgstr "解壓縮"
+
+msgid "Failed to extract archive."
+msgstr ""
 
 msgid "Executable File"
 msgstr "可執行文件"
@@ -9146,112 +9202,11 @@ msgstr "PowerPoint演示文稿"
 msgid "PDF File"
 msgstr "PDF 檔案"
 
-msgid "You haven't selected any item(s)."
-msgstr "您尚未選擇任何項目。"
-
-msgid "You are not allowed to use this function."
-msgstr "您無權使用此功能。"
-
-msgid "This file doesn't exist."
-msgstr "該文件不存在。"
-
-msgid "You are not allowed to access this file."
-msgstr "您無權訪問此文件。"
-
-msgid "Permission-change failed."
-msgstr "權限修改錯誤"
-
-msgid "Getting permissions failed."
-msgstr "獲取權限失敗"
-
-msgid "Change permissions"
-msgstr "變更權限"
-
-msgid "Public"
-msgstr "公開"
-
-msgid "Copy item(s)"
-msgstr "複製項目"
-
-msgid "Move item(s)"
-msgstr "移動項目"
-
-#, php-format
-msgid "Copy from /%s to /%s "
-msgstr "由 /%s 複製到 /%s "
-
-#, php-format
-msgid "Move from /%s to /%s "
-msgstr "由/%s 移動到 /%s "
-
-msgid "Copy"
-msgstr "複製"
-
-msgid "Move"
-msgstr "移動"
-
-msgid "The target directory doesn't exist."
-msgstr "目標目錄不存在。"
-
-msgid "You are not allowed to access the target directory."
-msgstr "您無權訪問目標目錄。"
-
-msgid "The target directory may not be above the home directory."
-msgstr "目標目錄可能不在主目錄之上。"
-
-msgid "You must supply a name."
-msgstr "您必須提供一個名稱。"
-
-msgid "This item doesn't exist."
-msgstr "該項目不存在。"
-
-msgid "You are not allowed to access this item."
-msgstr "您無權訪問此項目。"
-
-msgid "The target item already exists."
-msgstr "目標項目已存在。"
-
-msgid "Copying failed."
-msgstr "複製錯誤"
-
-msgid "Moving failed."
-msgstr "移動錯誤"
-
-msgid "Deleting failed."
-msgstr "刪除失敗。"
-
 msgid "ERROR(S)"
 msgstr "錯誤"
 
 msgid "Go Back"
 msgstr "返回"
-
-msgid "File saving failed."
-msgstr "文件保存失敗"
-
-msgid "This item already exists."
-msgstr "此項目已存在。"
-
-msgid "File opening failed."
-msgstr "檔案打開失敗"
-
-msgid "Edit file"
-msgstr "編輯檔案"
-
-msgid "Wrap text:"
-msgstr "換行文字："
-
-msgid "Reset"
-msgstr "重設"
-
-msgid "Unable to open source directory."
-msgstr ""
-
-msgid "Unable to open directory."
-msgstr "無法打開目錄。"
-
-msgid "Unable to read directory."
-msgstr "無法讀取目錄。"
 
 msgid "Directory creation failed."
 msgstr "創建目錄錯誤"
@@ -9259,62 +9214,234 @@ msgstr "創建目錄錯誤"
 msgid "File creation failed."
 msgstr "檔案新增失敗"
 
-msgid "Are you sure you want to delete selected item(s)?"
-msgstr "您確定要刪除所選項目嗎？"
-
-msgid "CHANGE PERMISSIONS"
-msgstr "更改權限"
-
-msgid "You are not allowed to access this directory."
-msgstr "您無權訪問此目錄。"
-
-msgid "UP"
-msgstr "UP"
-
-msgid "RELOAD"
-msgstr "RELOAD"
-
-msgid "SEARCH"
-msgstr "搜尋"
-
-msgid "Create"
-msgstr "創建"
-
-msgid "Modified"
-msgstr "已修改"
-
-msgid "Permissions"
-msgstr "權限"
-
-msgid "Actions"
-msgstr "動作"
-
-msgid "COPY"
-msgstr "複製"
-
-msgid "MOVE"
-msgstr "MOVE"
-
-msgid "DELETE"
-msgstr "刪除"
-
-msgid "EDIT"
-msgstr "編輯"
-
-msgid "UNZIP"
-msgstr "UNZIP"
-
-msgid "DOWNLOAD"
-msgstr "下載"
-
-msgid "Extracting"
-msgstr "提取中"
-
-msgid "Unzip"
-msgstr "解壓縮"
-
-msgid "Failed to extract archive."
+msgid "Dataset Name"
 msgstr ""
+
+msgid ""
+"File System - can be mounted within the standard system namespace and "
+"behaves like other file systems."
+msgstr "文件系統 - 可以安裝在標準系統命名空間中，並且像其他文件系統一樣運行。"
+
+msgid "Volume - A logical volume. Can be exported as a raw or block device."
+msgstr "卷 - 邏輯卷。 可以導出為原始或塊裝置。"
+
+msgid ""
+"Snapshot - A read-only version of a file system or volume at a given point "
+"in time."
+msgstr ""
+
+msgid "Bookmark - Creates a bookmark of a given snapshot."
+msgstr ""
+
+msgid "Dataset Type"
+msgstr "數據集類型"
+
+msgid "Pool Name"
+msgstr ""
+
+msgid "Clones"
+msgstr ""
+
+msgid "Compression Ratio"
+msgstr ""
+
+msgid "Defer Destroy"
+msgstr ""
+
+msgid "Encryption Root"
+msgstr ""
+
+msgid "Filesystem Count"
+msgstr ""
+
+msgid "GUID"
+msgstr ""
+
+msgid "Key Status"
+msgstr ""
+
+msgid "Logical Referenced"
+msgstr ""
+
+msgid "Logical Used"
+msgstr ""
+
+msgid "Mounted"
+msgstr ""
+
+msgid "Obj Set ID"
+msgstr ""
+
+msgid "Receive Resume Token"
+msgstr ""
+
+msgid "Redact Snaps"
+msgstr ""
+
+msgid "Refcompressratio"
+msgstr ""
+
+msgid "Referenced"
+msgstr ""
+
+msgid "Snapshot Count"
+msgstr ""
+
+msgid "Used by Children"
+msgstr ""
+
+msgid "Used by Dataset"
+msgstr ""
+
+msgid "Used by Refreservation"
+msgstr ""
+
+msgid "Used by Snapshots"
+msgstr ""
+
+msgid "Userrefs"
+msgstr ""
+
+msgid "Written"
+msgstr ""
+
+msgid "Normalization"
+msgstr "正常化"
+
+msgid "UTF-8 File Names"
+msgstr ""
+
+msgid "ACL Type"
+msgstr ""
+
+msgid "Access Time"
+msgstr "訪問時間"
+
+msgid "Can Mount"
+msgstr "可掛載"
+
+msgid "Checksum"
+msgstr "校驗"
+
+msgid "GZIP Compression Level"
+msgstr ""
+
+msgid "Zstandard Compression Level"
+msgstr ""
+
+msgid "Fast Zstandard Compression Level"
+msgstr ""
+
+msgid "Copies"
+msgstr "副本數"
+
+msgid "Dedup Method"
+msgstr "重複數據刪除方法"
+
+msgid "Dnode Size"
+msgstr ""
+
+msgid "Execute Processes"
+msgstr ""
+
+msgid "Filesystem Limit"
+msgstr ""
+
+msgid "Jailed"
+msgstr "Jailed"
+
+msgid "Key Format"
+msgstr ""
+
+msgid "Key Location"
+msgstr ""
+
+msgid "Logbias"
+msgstr "Logbias"
+
+msgid "Mountpoint Type"
+msgstr ""
+
+msgid "Non-blocking Mandatory Locks"
+msgstr ""
+
+msgid "Overlay Mount"
+msgstr ""
+
+msgid "PBKDF2 Iterations"
+msgstr ""
+
+msgid "Primary Cache"
+msgstr "主緩存"
+
+msgid "Record Size"
+msgstr ""
+
+msgid "Redundant Metadata"
+msgstr "冗餘元數據"
+
+msgid "Refquota"
+msgstr "Refquota"
+
+msgid "Refquota Type"
+msgstr ""
+
+msgid "Refreservation"
+msgstr "Refreservation"
+
+msgid "Refreservation Type"
+msgstr ""
+
+msgid "Relatime"
+msgstr ""
+
+msgid "Reservation Type"
+msgstr ""
+
+msgid "Secondary Cache"
+msgstr "二級緩存"
+
+msgid "Setuid"
+msgstr ""
+
+msgid "Share NFS Options"
+msgstr ""
+
+msgid "Share NFS Type"
+msgstr ""
+
+msgid "Share SMB Options"
+msgstr ""
+
+msgid "Share SMB Type"
+msgstr ""
+
+msgid "Snapshot Device Visibility"
+msgstr ""
+
+msgid "Snapshot Folder Visibility"
+msgstr ""
+
+msgid "Snapshot Limit"
+msgstr ""
+
+msgid "Threshold Small Block Size"
+msgstr ""
+
+msgid "Synchronous Requests Behaviour"
+msgstr ""
+
+msgid "Volume Mode"
+msgstr "卷模式"
+
+msgid "Volume Size"
+msgstr "卷大小"
+
+msgid "Virus Scan"
+msgstr ""
+
+msgid "No ZFS filesystem information available."
+msgstr "沒有可用的 ZFS 文件系統信息"
 
 msgid "The name of the filesystem."
 msgstr ""
@@ -9324,9 +9451,6 @@ msgstr ""
 
 msgid "Controls the type of the ZFS dataset."
 msgstr "控制ZFS數據集的類型。"
-
-msgid "Pool Name"
-msgstr ""
 
 msgid ""
 "Indicates whether the file name matching algorithm used by the filesystem "
@@ -9840,9 +9964,6 @@ msgstr ""
 msgid "System attribute based xattrs"
 msgstr ""
 
-msgid "No ZFS filesystem information available."
-msgstr "沒有可用的 ZFS 文件系統信息"
-
 msgid "Add Filesystem"
 msgstr ""
 
@@ -9889,229 +10010,6 @@ msgid "unknown"
 msgstr "未知的"
 
 msgid "Filesystems"
-msgstr ""
-
-msgid "Dataset Name"
-msgstr ""
-
-msgid ""
-"File System - can be mounted within the standard system namespace and "
-"behaves like other file systems."
-msgstr "文件系統 - 可以安裝在標準系統命名空間中，並且像其他文件系統一樣運行。"
-
-msgid "Volume - A logical volume. Can be exported as a raw or block device."
-msgstr "卷 - 邏輯卷。 可以導出為原始或塊裝置。"
-
-msgid ""
-"Snapshot - A read-only version of a file system or volume at a given point "
-"in time."
-msgstr ""
-
-msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr ""
-
-msgid "Dataset Type"
-msgstr "數據集類型"
-
-msgid "Clones"
-msgstr ""
-
-msgid "Compression Ratio"
-msgstr ""
-
-msgid "Defer Destroy"
-msgstr ""
-
-msgid "Encryption Root"
-msgstr ""
-
-msgid "Filesystem Count"
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-msgid "Key Status"
-msgstr ""
-
-msgid "Logical Referenced"
-msgstr ""
-
-msgid "Logical Used"
-msgstr ""
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Obj Set ID"
-msgstr ""
-
-msgid "Receive Resume Token"
-msgstr ""
-
-msgid "Redact Snaps"
-msgstr ""
-
-msgid "Refcompressratio"
-msgstr ""
-
-msgid "Referenced"
-msgstr ""
-
-msgid "Snapshot Count"
-msgstr ""
-
-msgid "Used by Children"
-msgstr ""
-
-msgid "Used by Dataset"
-msgstr ""
-
-msgid "Used by Refreservation"
-msgstr ""
-
-msgid "Used by Snapshots"
-msgstr ""
-
-msgid "Userrefs"
-msgstr ""
-
-msgid "Written"
-msgstr ""
-
-msgid "Normalization"
-msgstr "正常化"
-
-msgid "UTF-8 File Names"
-msgstr ""
-
-msgid "ACL Type"
-msgstr ""
-
-msgid "Access Time"
-msgstr "訪問時間"
-
-msgid "Can Mount"
-msgstr "可掛載"
-
-msgid "Checksum"
-msgstr "校驗"
-
-msgid "GZIP Compression Level"
-msgstr ""
-
-msgid "Zstandard Compression Level"
-msgstr ""
-
-msgid "Fast Zstandard Compression Level"
-msgstr ""
-
-msgid "Copies"
-msgstr "副本數"
-
-msgid "Dedup Method"
-msgstr "重複數據刪除方法"
-
-msgid "Dnode Size"
-msgstr ""
-
-msgid "Execute Processes"
-msgstr ""
-
-msgid "Filesystem Limit"
-msgstr ""
-
-msgid "Jailed"
-msgstr "Jailed"
-
-msgid "Key Format"
-msgstr ""
-
-msgid "Key Location"
-msgstr ""
-
-msgid "Logbias"
-msgstr "Logbias"
-
-msgid "Mountpoint Type"
-msgstr ""
-
-msgid "Non-blocking Mandatory Locks"
-msgstr ""
-
-msgid "Overlay Mount"
-msgstr ""
-
-msgid "PBKDF2 Iterations"
-msgstr ""
-
-msgid "Primary Cache"
-msgstr "主緩存"
-
-msgid "Record Size"
-msgstr ""
-
-msgid "Redundant Metadata"
-msgstr "冗餘元數據"
-
-msgid "Refquota"
-msgstr "Refquota"
-
-msgid "Refquota Type"
-msgstr ""
-
-msgid "Refreservation"
-msgstr "Refreservation"
-
-msgid "Refreservation Type"
-msgstr ""
-
-msgid "Relatime"
-msgstr ""
-
-msgid "Reservation Type"
-msgstr ""
-
-msgid "Secondary Cache"
-msgstr "二級緩存"
-
-msgid "Setuid"
-msgstr ""
-
-msgid "Share NFS Options"
-msgstr ""
-
-msgid "Share NFS Type"
-msgstr ""
-
-msgid "Share SMB Options"
-msgstr ""
-
-msgid "Share SMB Type"
-msgstr ""
-
-msgid "Snapshot Device Visibility"
-msgstr ""
-
-msgid "Snapshot Folder Visibility"
-msgstr ""
-
-msgid "Snapshot Limit"
-msgstr ""
-
-msgid "Threshold Small Block Size"
-msgstr ""
-
-msgid "Synchronous Requests Behaviour"
-msgstr ""
-
-msgid "Volume Mode"
-msgstr "卷模式"
-
-msgid "Volume Size"
-msgstr "卷大小"
-
-msgid "Virus Scan"
 msgstr ""
 
 msgid "Show Used/Avail"
@@ -10180,6 +10078,51 @@ msgid ""
 "When enabled, destroying a dataset will also destroy all dependents "
 "(datasets, snapshots and clones)."
 msgstr ""
+
+msgid "Add Schedule"
+msgstr "新增日程"
+
+msgid "Edit Schedule"
+msgstr "編輯日程計劃"
+
+msgid "Schedule is marked for deletion"
+msgstr "日程計劃被標記為刪除"
+
+msgid "Schedule is locked"
+msgstr "日程計劃已鎖"
+
+msgid "Schedule is unlocked"
+msgstr "日程計劃已解鎖"
+
+msgid "Delete Selected Schedules"
+msgstr "刪除所選的日程計劃"
+
+msgid "Do you want to delete selected schedules?"
+msgstr "您要刪除所選的時間表嗎？"
+
+msgid "Do you want to disable selected schedules?"
+msgstr "是否要禁用所選的計劃？"
+
+msgid "Do you want to enable selected schedules?"
+msgstr "您要啟用所選的計劃嗎？"
+
+msgid "Do you want to toggle selected schedules?"
+msgstr "您要切換所選的時間表嗎？"
+
+msgid "Invalid"
+msgstr "無效的"
+
+msgid "Destroy"
+msgstr "摧毀"
+
+msgid "Create Snapshot"
+msgstr "創建快照"
+
+msgid "Destroy Snapshot"
+msgstr "摧毀快照"
+
+msgid "Scrub Pool"
+msgstr "擦洗池"
 
 msgid "Lifetime"
 msgstr "存活時間"
@@ -10265,59 +10208,14 @@ msgstr "當年中的分鐘、小時和月份字段與當前時間匹配，並且
 msgid "Presets"
 msgstr "預設"
 
-msgid "Add Schedule"
-msgstr "新增日程"
-
-msgid "Edit Schedule"
-msgstr "編輯日程計劃"
-
-msgid "Schedule is marked for deletion"
-msgstr "日程計劃被標記為刪除"
-
-msgid "Schedule is locked"
-msgstr "日程計劃已鎖"
-
-msgid "Schedule is unlocked"
-msgstr "日程計劃已解鎖"
-
-msgid "Delete Selected Schedules"
-msgstr "刪除所選的日程計劃"
-
-msgid "Do you want to delete selected schedules?"
-msgstr "您要刪除所選的時間表嗎？"
-
-msgid "Do you want to disable selected schedules?"
-msgstr "是否要禁用所選的計劃？"
-
-msgid "Do you want to enable selected schedules?"
-msgstr "您要啟用所選的計劃嗎？"
-
-msgid "Do you want to toggle selected schedules?"
-msgstr "您要切換所選的時間表嗎？"
-
-msgid "Invalid"
-msgstr "無效的"
-
-msgid "Destroy"
-msgstr "摧毀"
-
-msgid "Create Snapshot"
-msgstr "創建快照"
-
-msgid "Destroy Snapshot"
-msgstr "摧毀快照"
-
-msgid "Scrub Pool"
-msgstr "擦洗池"
-
 msgid "Recursively create snapshots of all descendent datasets."
 msgstr "遞歸創建所有後代數據集的快照"
 
-msgid "Scrub"
-msgstr "擦洗"
-
 msgid "Select pool."
 msgstr "選擇池"
+
+msgid "Scrub"
+msgstr "擦洗"
 
 msgid "No ZFS zpool information available."
 msgstr "沒有可用的 ZFS zpool 信息"
@@ -10333,6 +10231,48 @@ msgstr "輸入標識符"
 
 msgid "Enter smartctl pass-through type."
 msgstr "輸入說明供您參考"
+
+msgid "Login Name"
+msgstr "登入名稱"
+
+msgid "Full Name"
+msgstr "全名"
+
+msgid "SHA Password"
+msgstr "SHA 密碼"
+
+msgid "MD4 Password"
+msgstr "MD4 密碼"
+
+msgid "Shell"
+msgstr "命令殼 (shell)"
+
+msgid "Primary Group"
+msgstr "主要群組"
+
+msgid "Groups"
+msgstr "群組"
+
+msgid "Timezone"
+msgstr "時區"
+
+msgid "File Manager Access"
+msgstr "文件管理器訪問"
+
+msgid "Hidden Items"
+msgstr "隱藏項目"
+
+msgid "Read Permission"
+msgstr "讀取權限"
+
+msgid "Create Permission"
+msgstr "創建權限"
+
+msgid "Change Permission"
+msgstr "變更權限"
+
+msgid "Delete Permission"
+msgstr "刪除權限"
 
 msgid "Add User Account"
 msgstr "添加用戶帳戶"
@@ -10376,6 +10316,9 @@ msgstr "切換選定的用戶"
 msgid "Do you want to toggle selected users?"
 msgstr "您要切換所選的用戶嗎？"
 
+msgid "Active"
+msgstr "活動"
+
 msgid "System User"
 msgstr "系統用戶"
 
@@ -10390,9 +10333,6 @@ msgstr "輸入登入名稱"
 
 msgid "Enter the full user name."
 msgstr "輸入用戶全名"
-
-msgid "Full Name"
-msgstr "全名"
 
 msgid "Set user password."
 msgstr "設置用戶密碼"
@@ -10477,52 +10417,10 @@ msgstr "授予修改權限"
 msgid "Grant delete permission"
 msgstr "授予刪除權限"
 
-msgid "Login Name"
-msgstr "登入名稱"
-
-msgid "SHA Password"
-msgstr "SHA 密碼"
-
-msgid "MD4 Password"
-msgstr "MD4 密碼"
-
-msgid "Shell"
-msgstr "命令殼 (shell)"
-
-msgid "Primary Group"
-msgstr "主要群組"
-
-msgid "Groups"
-msgstr "群組"
-
-msgid "Timezone"
-msgstr "時區"
-
-msgid "File Manager Access"
-msgstr "文件管理器訪問"
-
-msgid "Hidden Items"
-msgstr "隱藏項目"
-
-msgid "Read Permission"
-msgstr "讀取權限"
-
-msgid "Create Permission"
-msgstr "創建權限"
-
-msgid "Change Permission"
-msgstr "變更權限"
-
-msgid "Delete Permission"
-msgstr "刪除權限"
-
 msgid "Users"
 msgstr "用戶"
 
 msgid "Public Keys"
-msgstr "公鑰"
-
-msgid "Public Key"
 msgstr "公鑰"
 
 msgid "Add Public Key"
@@ -10567,20 +10465,11 @@ msgstr "是否要切換所選的公鑰？"
 msgid "Reload"
 msgstr "重新載入"
 
+msgid "Public Key"
+msgstr "公鑰"
+
 msgid "Public key information."
 msgstr "公鑰資訊"
-
-msgid "Enter group name."
-msgstr "輸入組別名稱"
-
-msgid "Group Name"
-msgstr "群組名稱"
-
-msgid "Specify the group numeric id."
-msgstr "指定組別的數字 ID。"
-
-msgid "The recommended range for the group id is between 1000 and 32000."
-msgstr "組 ID 的推薦範圍在 1000 到 32000 之間。"
 
 msgid "Add Group"
 msgstr "新增群組"
@@ -10629,6 +10518,18 @@ msgstr "顯示系統群組"
 
 msgid "Hide System Groups"
 msgstr "隱藏系統組別"
+
+msgid "Enter group name."
+msgstr "輸入組別名稱"
+
+msgid "Group Name"
+msgstr "群組名稱"
+
+msgid "Specify the group numeric id."
+msgstr "指定組別的數字 ID。"
+
+msgid "The recommended range for the group id is between 1000 and 32000."
+msgstr "組 ID 的推薦範圍在 1000 到 32000 之間。"
 
 msgid "Enter AD or PDC name."
 msgstr "輸入AD及PDC名稱"
@@ -11026,17 +10927,56 @@ msgstr "變量的名稱。"
 msgid "The value of the variable."
 msgstr "變數的數值。"
 
+msgid "Name of the variable."
+msgstr "改名名稱。"
+
+msgid "Enter Value"
+msgstr "輸入數值"
+
 msgid "Disabled variable names will be removed from /etc/rc.conf."
 msgstr "禁用的變量名將從 /etc/rc.conf 中刪除"
 
 msgid "Enabled options will be added to /etc/rc.conf."
 msgstr "啟用的選項將添加到 /etc/rc.conf"
 
-msgid "Name of the variable."
-msgstr "改名名稱。"
+msgid "Button Location"
+msgstr "按鈕位置"
 
-msgid "Enter Value"
-msgstr "輸入數值"
+msgid "File Chooser"
+msgstr "檔案選擇器"
+
+msgid "File Mode"
+msgstr "檔案模式"
+
+msgid "GUI"
+msgstr "圖形使用者介面"
+
+msgid "Navigation Bar"
+msgstr "導航欄"
+
+msgid "Tabs"
+msgstr "分頁"
+
+msgid "Toggle Mode"
+msgstr "切換模式"
+
+msgid "Navbar Style"
+msgstr "導航欄樣式"
+
+msgid "Binary Prefix"
+msgstr "二進制前綴"
+
+msgid "Colorful Meters"
+msgstr "彩色的儀表"
+
+msgid "Skip View Mode"
+msgstr "跳過查看模式"
+
+msgid "Show Max CPUs"
+msgstr "顯示所有CPU"
+
+msgid "Diagnostics Information"
+msgstr "診斷信息"
 
 msgid ""
 "Display action buttons in the scrollable area instead of the footer area."
@@ -11108,52 +11048,19 @@ msgstr "限制主頁上顯示的最多的 CPU 數量"
 msgid "Set the landing page for the Diagnostics > Information menu."
 msgstr "設置診斷 > 信息菜單的登錄頁面"
 
-msgid "Button Location"
-msgstr "按鈕位置"
-
-msgid "File Chooser"
-msgstr "檔案選擇器"
-
-msgid "File Mode"
-msgstr "檔案模式"
-
-msgid "GUI"
-msgstr "圖形使用者介面"
-
-msgid "Navigation Bar"
-msgstr "導航欄"
-
-msgid "Tabs"
-msgstr "分頁"
-
-msgid "Toggle Mode"
-msgstr "切換模式"
-
-msgid "Navbar Style"
-msgstr "導航欄樣式"
-
-msgid "Binary Prefix"
-msgstr "二進制前綴"
-
-msgid "Colorful Meters"
-msgstr "彩色的儀表"
-
-msgid "Skip View Mode"
-msgstr "跳過查看模式"
-
-msgid "Show Max CPUs"
-msgstr "顯示所有CPU"
-
-msgid "Diagnostics Information"
-msgstr "診斷信息"
-
-msgid "Show Interval"
-msgstr "顯示間隔"
-
 msgid ""
 "Set the number of days until a reminder is shown to backup system "
 "configuration. The default is 28 days. A value of 0 disables the reminder."
 msgstr "設置顯示備份系統的配置直到提醒的天數。默認值為 28 天。值 0 爲禁用提醒"
+
+msgid "Show Interval"
+msgstr "顯示間隔"
+
+msgid "Do you really want to remove the selected item from the list?"
+msgstr "您確定從列表中刪除選中的項目嗎？"
+
+msgid "Select item to remove from the list"
+msgstr "請從列表中選擇要刪除的專案"
 
 msgid "Delete Selected Records"
 msgstr "刪除選中的記錄"
@@ -11212,12 +11119,6 @@ msgstr "編輯記錄"
 msgid "Record is unlocked"
 msgstr "記錄被解鎖"
 
-msgid "Do you really want to remove the selected item from the list?"
-msgstr "您確定從列表中刪除選中的項目嗎？"
-
-msgid "Select item to remove from the list"
-msgstr "請從列表中選擇要刪除的專案"
-
 msgid "Service"
 msgstr "服務"
 
@@ -11227,23 +11128,23 @@ msgstr "未定義"
 msgid "The value is invalid."
 msgstr "該值無效。"
 
+msgid "Enter additional parameters"
+msgstr "輸入附加參數"
+
+msgid "No additional parameters"
+msgstr "無附加參數"
+
+msgid "Enter a description for your reference."
+msgstr "輸入說明以供參考。"
+
 msgid "Network Address"
 msgstr "網路地址"
 
 msgid "Enable Setting"
 msgstr "啟用設置"
 
-msgid "Enter a description for your reference."
-msgstr "輸入說明以供參考。"
-
 msgid "IPv4 Address"
 msgstr "IPv4 位址"
-
-msgid "Protect"
-msgstr "保護"
-
-msgid "Protect Setting"
-msgstr "保護設置"
 
 msgid "The UUID of the record."
 msgstr "記錄的UUID。"
@@ -11254,14 +11155,62 @@ msgstr "輸入通用唯一標識符"
 msgid "Universally Unique Identifier"
 msgstr "通用唯一標識符"
 
-msgid "Enter additional parameters"
-msgstr "輸入附加參數"
+msgid "Protect"
+msgstr "保護"
 
-msgid "No additional parameters"
-msgstr "無附加參數"
+msgid "Protect Setting"
+msgstr "保護設置"
 
 msgid "Autodetect"
 msgstr "自動偵測"
+
+msgid "Standard Provider"
+msgstr "標準提供者"
+
+msgid "Custom Provider"
+msgstr "自定義提供"
+
+msgid "Record Type"
+msgstr "記錄型態"
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "Provider Name"
+msgstr "供應者名稱"
+
+msgid "Host Names"
+msgstr "主機名"
+
+msgid "Wildcard Domain"
+msgstr "通配符域"
+
+msgid "Use HTTPS"
+msgstr "使用 HTTPS"
+
+msgid "Check IP Server"
+msgstr "檢查IP服務器"
+
+msgid "Check IP Path"
+msgstr "檢查IP路徑"
+
+msgid "Check IP using HTTPS"
+msgstr "用HTTPS檢查IP地址"
+
+msgid "Check IP Command"
+msgstr "檢查IP命令"
+
+msgid "User Agent"
+msgstr "使用者代理"
+
+msgid "DDNS-Server"
+msgstr "DDNS服務器"
+
+msgid "DDNS-Path"
+msgstr "DDNS路徑"
+
+msgid "Append my IP"
+msgstr "新增我的IP地址"
 
 msgid "Add Provider"
 msgstr "新增提供者"
@@ -11313,6 +11262,12 @@ msgstr "未定義類型"
 
 msgid "Unknown Provider"
 msgstr "未知的提供者"
+
+msgid "Providers"
+msgstr "提供者"
+
+msgid "Global Settings"
+msgstr "全域設定"
 
 msgid ""
 "Select \"Custom Provider\" for customizing the DDNS update server details "
@@ -11409,59 +11364,44 @@ msgstr "如果未啟用此設置，則會附加主機名。除非 ddns-path 帶�
 msgid "These parameters will be added to this provider configuration"
 msgstr "這些參數將添加到此提供程序配置中"
 
-msgid "Standard Provider"
-msgstr "標準提供者"
+msgid "Verify Address"
+msgstr "驗證地址"
 
-msgid "Custom Provider"
-msgstr "自定義提供"
+msgid "Fake Address"
+msgstr "錯誤地址"
 
-msgid "Record Type"
-msgstr "記錄型態"
+msgid "Allow IPv6"
+msgstr "允許IPv6v6"
 
-msgid "Provider"
-msgstr "提供者"
+msgid "Network Interface"
+msgstr "網路介面"
 
-msgid "Provider Name"
-msgstr "供應者名稱"
+msgid "Iterations"
+msgstr "迭代器"
 
-msgid "Host Names"
-msgstr "主機名"
+msgid "Check Interval"
+msgstr "檢查間隔"
 
-msgid "Wildcard Domain"
-msgstr "通配符域"
+msgid "Force Update Interval"
+msgstr "強制更新間隔"
 
-msgid "Use HTTPS"
-msgstr "使用 HTTPS"
+msgid "Secure SSL"
+msgstr "安全 SSL"
 
-msgid "Check IP Server"
-msgstr "檢查IP服務器"
+msgid "Broken RTC"
+msgstr "RTC斷開"
 
-msgid "Check IP Path"
-msgstr "檢查IP路徑"
+msgid "CA Trusted Certificates"
+msgstr "CA 可信證書"
 
-msgid "Check IP using HTTPS"
-msgstr "用HTTPS檢查IP地址"
+msgid "Cache Directory"
+msgstr "緩存目錄"
 
-msgid "Check IP Command"
-msgstr "檢查IP命令"
+msgid "Startup Delay"
+msgstr "啟動延遲"
 
-msgid "User Agent"
-msgstr "使用者代理"
-
-msgid "DDNS-Server"
-msgstr "DDNS服務器"
-
-msgid "DDNS-Path"
-msgstr "DDNS路徑"
-
-msgid "Append my IP"
-msgstr "新增我的IP地址"
-
-msgid "Providers"
-msgstr "提供者"
-
-msgid "Global Settings"
-msgstr "全域設定"
+msgid "Log Level"
+msgstr "日誌級別"
 
 msgid ""
 "IP address validation can be disabled by setting this option to false."
@@ -11552,47 +11492,14 @@ msgstr "調試"
 msgid "These parameters are appended to the inadyn.conf file."
 msgstr "這些參數附加到 inadyn.conf 文件中。"
 
-msgid "Verify Address"
-msgstr "驗證地址"
-
-msgid "Fake Address"
-msgstr "錯誤地址"
-
-msgid "Allow IPv6"
-msgstr "允許IPv6v6"
-
-msgid "Network Interface"
-msgstr "網路介面"
-
-msgid "Iterations"
-msgstr "迭代器"
-
-msgid "Check Interval"
-msgstr "檢查間隔"
-
-msgid "Force Update Interval"
-msgstr "強制更新間隔"
-
-msgid "Secure SSL"
-msgstr "安全 SSL"
-
-msgid "Broken RTC"
-msgstr "RTC斷開"
-
-msgid "CA Trusted Certificates"
-msgstr "CA 可信證書"
-
-msgid "Cache Directory"
-msgstr "緩存目錄"
-
-msgid "Startup Delay"
-msgstr "啟動延遲"
-
-msgid "Log Level"
-msgstr "日誌級別"
-
 msgid "Media Type"
 msgstr "媒體類型"
+
+msgid "Media Folders"
+msgstr "媒體文件夾"
+
+msgid "Media Folder"
+msgstr "媒體文件夾"
 
 msgid "Add Media Folder"
 msgstr "新增多媒體檔案夾"
@@ -11653,12 +11560,6 @@ msgstr "掃描文件夾中的圖像文件"
 
 msgid "Scan folder for video and image files."
 msgstr "掃描文件夾中的視頻和圖像文件"
-
-msgid "Media Folders"
-msgstr "媒體文件夾"
-
-msgid "Media Folder"
-msgstr "媒體文件夾"
 
 msgid "Inotify"
 msgstr "Inotify檔案監控機制"
@@ -11772,26 +11673,17 @@ msgstr "驗證組名稱"
 msgid "Auth Type"
 msgstr "驗證類型"
 
-msgid "No CHAP users found."
-msgstr "未找到 CHAP 用戶"
+msgid "Name of the Auth Group."
+msgstr "身份驗證組的名稱"
 
-msgid "Mutual-CHAP"
-msgstr "Mutual-CHAP"
+msgid "Sets the authentication type."
+msgstr "設置認證類型。"
 
-msgid "No Mutual-CHAP users found."
-msgstr "未找到 Mutual-CHAP 用戶"
+msgid "CHAP-Mutual"
+msgstr "CHAP-相互的"
 
-msgid "Initiator Name"
-msgstr "啟動器名稱"
-
-msgid "No initiator names found."
-msgstr "未找到啟動器名稱"
-
-msgid "Initiator Portal"
-msgstr "啓動器門戶"
-
-msgid "No initiator portals found."
-msgstr "未找到啟動程序門戶"
+msgid "These parameters will be added to this auth-group."
+msgstr "這些參數將被添加到此 auth-group。"
 
 msgid "Add Auth Group"
 msgstr "新增授權組別"
@@ -11838,23 +11730,140 @@ msgstr "啓動器名稱"
 msgid "Initiator Portals"
 msgstr "啓動器門戶"
 
-msgid "Name of the Auth Group."
-msgstr "身份驗證組的名稱"
+msgid "No CHAP users found."
+msgstr "未找到 CHAP 用戶"
 
-msgid "Sets the authentication type."
-msgstr "設置認證類型。"
+msgid "Mutual-CHAP"
+msgstr "Mutual-CHAP"
 
-msgid "CHAP-Mutual"
-msgstr "CHAP-相互的"
+msgid "No Mutual-CHAP users found."
+msgstr "未找到 Mutual-CHAP 用戶"
 
-msgid "These parameters will be added to this auth-group."
-msgstr "這些參數將被添加到此 auth-group。"
+msgid "Initiator Name"
+msgstr "啟動器名稱"
 
-msgid "Name of the LUN."
-msgstr "LUN 的名稱"
+msgid "No initiator names found."
+msgstr "未找到啟動器名稱"
+
+msgid "Initiator Portal"
+msgstr "啓動器門戶"
+
+msgid "No initiator portals found."
+msgstr "未找到啟動程序門戶"
 
 msgid "LUN Name"
 msgstr "LUN 名稱"
+
+msgid "Backend"
+msgstr "後端"
+
+msgid "CTL LUN"
+msgstr "CTL LUN"
+
+msgid "Device ID"
+msgstr "設備ID"
+
+msgid "Device Type"
+msgstr "設備類型"
+
+msgid "Passthrough Address"
+msgstr "直通地址"
+
+msgid "LUN Vendor"
+msgstr "LUN 提供者"
+
+msgid "LUN Product"
+msgstr "LUN Product"
+
+msgid "LUN Revision"
+msgstr "LUN 修訂"
+
+msgid "LUN SCSI Name"
+msgstr "LUN SCSI 名稱"
+
+msgid "LUN EUI-64\tidentifier"
+msgstr "鍵盤交互認證"
+
+msgid "LUN NAA Identifier"
+msgstr "LUN NAA 標識符"
+
+msgid "LUN UUID"
+msgstr "LUN UUID"
+
+msgid "HA Role"
+msgstr "HA角色"
+
+msgid "Insecure TPC"
+msgstr "不安全的 TPC"
+
+msgid "Read Cache"
+msgstr "讀取緩存"
+
+msgid "Read Only"
+msgstr "只讀"
+
+msgid "Reordering"
+msgstr "重新排序"
+
+msgid "Serialize Sequence"
+msgstr "序列化序列"
+
+msgid "Physical Block Size"
+msgstr "物理塊大小"
+
+msgid "Physical Block Offset"
+msgstr "物理塊偏移"
+
+msgid "UNMAP Block Size"
+msgstr "UNMAP 塊大小"
+
+msgid "UNMAP Block Offset"
+msgstr "UNMAP 塊偏移"
+
+msgid "RPM"
+msgstr "RPM 每分鐘轉速"
+
+msgid "Form Factor"
+msgstr "構成因素"
+
+msgid "Provisioning Type"
+msgstr "供應類型"
+
+msgid "UNMAP"
+msgstr "UNMAP"
+
+msgid "UNMAP Maximum LBA"
+msgstr "UNMAP 最大 LBA"
+
+msgid "UNMAP Maximum Descriptors"
+msgstr "UNMAP 最大描述符"
+
+msgid "Write Same Maximum LBA"
+msgstr "寫入相同的最大 LBA"
+
+msgid "Avail Threshold"
+msgstr "可用的閾值"
+
+msgid "Used Threshold"
+msgstr "使用閾值"
+
+msgid "Pool Avail Threshold"
+msgstr "池可用閾值"
+
+msgid "Pool Used Threshold"
+msgstr "池使用閾值"
+
+msgid "Threads"
+msgstr "執行緒"
+
+msgid "Additional Options for Block Backend"
+msgstr "塊後端的額外選項"
+
+msgid "Additional Options for RAM Disk Backend"
+msgstr "内存盤（RAM Disk）的額外選項"
+
+msgid "Name of the LUN."
+msgstr "LUN 的名稱"
 
 msgid "The CTL backend to use for a given LUN."
 msgstr "用於給定 LUN 的 CTL 後端。"
@@ -11894,9 +11903,6 @@ msgstr "用於 CTL 內給定 LUN 的全局數字標識符"
 
 msgid "The SCSI Device Identification string presented to the initiator."
 msgstr "提供給啟動器的 SCSI 設備標識字符串。"
-
-msgid "Device ID"
-msgstr "設備ID"
 
 msgid "Specify the SCSI device type to use when creating the LUN."
 msgstr "指定創建 LUN 時要使用的 SCSI 設備類型。"
@@ -12098,12 +12104,6 @@ msgstr "指定後備存儲的容量（最大的數據内存）。默認值為零
 msgid "These parameters will be added to this lun."
 msgstr "這些參數將添加到此 lun。"
 
-msgid "Additional Options for Block Backend"
-msgstr "塊後端的額外選項"
-
-msgid "Additional Options for RAM Disk Backend"
-msgstr "内存盤（RAM Disk）的額外選項"
-
 msgid "Add LUN"
 msgstr "新增LUN"
 
@@ -12143,104 +12143,17 @@ msgstr "是否要啟用選定的 LUNs？"
 msgid "Do you want to toggle selected LUNs?"
 msgstr "是否要切換所選的 LUNs？"
 
-msgid "Backend"
-msgstr "後端"
+msgid "Listen"
+msgstr "監聽"
 
-msgid "CTL LUN"
-msgstr "CTL LUN"
+msgid "No listeners found."
+msgstr "未找到監聽器"
 
-msgid "Device Type"
-msgstr "設備類型"
+msgid "Option"
+msgstr "選項"
 
-msgid "Passthrough Address"
-msgstr "直通地址"
-
-msgid "LUN Vendor"
-msgstr "LUN 提供者"
-
-msgid "LUN Product"
-msgstr "LUN Product"
-
-msgid "LUN Revision"
-msgstr "LUN 修訂"
-
-msgid "LUN SCSI Name"
-msgstr "LUN SCSI 名稱"
-
-msgid "LUN EUI-64\tidentifier"
-msgstr "鍵盤交互認證"
-
-msgid "LUN NAA Identifier"
-msgstr "LUN NAA 標識符"
-
-msgid "LUN UUID"
-msgstr "LUN UUID"
-
-msgid "HA Role"
-msgstr "HA角色"
-
-msgid "Insecure TPC"
-msgstr "不安全的 TPC"
-
-msgid "Read Cache"
-msgstr "讀取緩存"
-
-msgid "Read Only"
-msgstr "只讀"
-
-msgid "Reordering"
-msgstr "重新排序"
-
-msgid "Serialize Sequence"
-msgstr "序列化序列"
-
-msgid "Physical Block Size"
-msgstr "物理塊大小"
-
-msgid "Physical Block Offset"
-msgstr "物理塊偏移"
-
-msgid "UNMAP Block Size"
-msgstr "UNMAP 塊大小"
-
-msgid "UNMAP Block Offset"
-msgstr "UNMAP 塊偏移"
-
-msgid "RPM"
-msgstr "RPM 每分鐘轉速"
-
-msgid "Form Factor"
-msgstr "構成因素"
-
-msgid "Provisioning Type"
-msgstr "供應類型"
-
-msgid "UNMAP"
-msgstr "UNMAP"
-
-msgid "UNMAP Maximum LBA"
-msgstr "UNMAP 最大 LBA"
-
-msgid "UNMAP Maximum Descriptors"
-msgstr "UNMAP 最大描述符"
-
-msgid "Write Same Maximum LBA"
-msgstr "寫入相同的最大 LBA"
-
-msgid "Avail Threshold"
-msgstr "可用的閾值"
-
-msgid "Used Threshold"
-msgstr "使用閾值"
-
-msgid "Pool Avail Threshold"
-msgstr "池可用閾值"
-
-msgid "Pool Used Threshold"
-msgstr "池使用閾值"
-
-msgid "Threads"
-msgstr "執行緒"
+msgid "No options found."
+msgstr "未找到任何選項"
 
 msgid "Add Portal Group"
 msgstr "新增門戶組別"
@@ -12281,11 +12194,23 @@ msgstr "是否要啟用所選的門戶組？"
 msgid "Do you want to toggle selected portal groups?"
 msgstr "是否要切換所選的門戶組？"
 
-msgid "Name of the Portal Group."
-msgstr "門戶組的名稱"
-
 msgid "Portal Group Name"
 msgstr "門戶組名稱"
+
+msgid "Discovery Filter"
+msgstr "發現過濾器"
+
+msgid "Offload"
+msgstr "卸載"
+
+msgid "Redirect"
+msgstr "重新導向"
+
+msgid "Foreign"
+msgstr "外來的"
+
+msgid "Name of the Portal Group."
+msgstr "門戶組的名稱"
 
 msgid "These parameters will be added to this portal-group."
 msgstr "這些參數將添加到此門戶組。"
@@ -12346,30 +12271,6 @@ msgid ""
 "generated automatically."
 msgstr "此門戶組的唯一 16 位標記值。如果未指定，則自動生成該值。"
 
-msgid "Discovery Filter"
-msgstr "發現過濾器"
-
-msgid "Offload"
-msgstr "卸載"
-
-msgid "Redirect"
-msgstr "重新導向"
-
-msgid "Foreign"
-msgstr "外來的"
-
-msgid "Listen"
-msgstr "監聽"
-
-msgid "Option"
-msgstr "選項"
-
-msgid "No listeners found."
-msgstr "未找到監聽器"
-
-msgid "No options found."
-msgstr "未找到任何選項"
-
 msgid "Enter user name."
 msgstr "輸入用戶名稱"
 
@@ -12424,6 +12325,12 @@ msgstr "是否要啟用選定的 CHAP 用戶？"
 msgid "Do you want to toggle selected CHAP users?"
 msgstr "是否要切換所選的 CHAP 用戶？"
 
+msgid "Mutual User"
+msgstr "Mutual 用戶"
+
+msgid "Mutual Secret"
+msgstr "Mutual Secret"
+
 msgid "Add Mutual CHAP User"
 msgstr "新增相互的CHAP用戶"
 
@@ -12471,11 +12378,13 @@ msgstr "將相互章配置鏈接到身份驗證組。請注意，auth-group 可�
 msgid "Enter mutual user name."
 msgstr "輸入相互用戶名稱"
 
-msgid "Mutual User"
-msgstr "Mutual 用戶"
+msgid "Enter an iSCSI initiator name."
+msgstr "輸入 iSCSI 啟動器名稱"
 
-msgid "Mutual Secret"
-msgstr "Mutual Secret"
+msgid ""
+"Link initiator-name to auth-groups. An Initiator with this name will be "
+"allowed to connect to the selected auth-groups."
+msgstr "將啟動器名稱鏈接到身份驗證組。將允許具有此名稱的發起者連接到選定的身份驗證組"
 
 msgid "Add Initiator Name"
 msgstr "新增發起人名字"
@@ -12515,14 +12424,6 @@ msgstr "是否要啟用所選的啟動器名稱？"
 
 msgid "Do you want to toggle selected initiator names?"
 msgstr "是否要切換所選的啟動器名稱？"
-
-msgid "Enter an iSCSI initiator name."
-msgstr "輸入 iSCSI 啟動器名稱"
-
-msgid ""
-"Link initiator-name to auth-groups. An Initiator with this name will be "
-"allowed to connect to the selected auth-groups."
-msgstr "將啟動器名稱鏈接到身份驗證組。將允許具有此名稱的發起者連接到選定的身份驗證組"
 
 msgid "IP Address Prefix"
 msgstr "IP 地址前綴"
@@ -12577,9 +12478,6 @@ msgid ""
 "will be allowed to connect to the selected auth-groups."
 msgstr "將啟動程序門戶鏈接到身份驗證組。匹配此地址的發起者將被允許連接到選定的身份驗證組"
 
-msgid "iSNS Servers"
-msgstr "iSNS 服務器"
-
 msgid "IPv4 or IPv6 address of an iSNS server to register on."
 msgstr "要註冊的 iSNS 服務器的 IPv4 或 IPv6 地址"
 
@@ -12624,6 +12522,9 @@ msgstr "是否要啟用所選的 iSNS 服務器？"
 
 msgid "Do you want to toggle selected iSNS servers?"
 msgstr "是否要切換所選的 iSNS 服務器？"
+
+msgid "iSNS Servers"
+msgstr "iSNS 服務器"
 
 msgid "An IPv4 or IPv6 address to listen on for incoming connections."
 msgstr "用於監聽傳入連接的 IPv4 或 IPv6 地址"
@@ -12799,9 +12700,6 @@ msgstr "選項的值"
 msgid "Link this option to selected portal-groups."
 msgstr "將此選項鍊接到選定的門戶組"
 
-msgid "Name of the port."
-msgstr "端口名稱"
-
 msgid "Port Name"
 msgstr "端口名稱"
 
@@ -12844,6 +12742,39 @@ msgstr "您要啟用所選的端口記錄嗎？"
 msgid "Do you want to toggle selected port records?"
 msgstr "是否要切換所選的端口記錄？"
 
+msgid "Name of the port."
+msgstr "端口名稱"
+
+msgid "Alias"
+msgstr "别名"
+
+msgid "Name of the target."
+msgstr "目標名稱"
+
+msgid "These parameters will be added to this target."
+msgstr "這些參數將被添加到此目標。"
+
+msgid "Assign a human-readable description to the target."
+msgstr "指定一個人類可讀的描述到目標"
+
+msgid "Assign a previously defined authentication group to the target."
+msgstr "將先前定義的身份驗證組分配給目標"
+
+msgid "Permit access without authentication"
+msgstr "允許未經身份驗證的訪問"
+
+msgid "Assign a previously defined portal group to the target."
+msgstr "將先前定義的門戶組分配給目標"
+
+msgid ""
+"IPv4 or IPv6 address to redirect initiators to. When configured, all "
+"initiators attempting to connect to this target will get redirected using "
+"\"Target moved temporarily\" login response."
+msgstr "要將啟動器重定向到的 IPv4 或 IPv6 地址。配置後，所有嘗試連接到此目標的啟動器都將使用“目標已臨時移動”登錄響應重定向"
+
+msgid "No ports found."
+msgstr "未找到端口"
+
 msgid "Add Target"
 msgstr "新增目標"
 
@@ -12883,36 +12814,6 @@ msgstr "是否要啟用所選的目標？"
 msgid "Do you want to toggle selected targets?"
 msgstr "是否要切換所選的目標？"
 
-msgid "Name of the target."
-msgstr "目標名稱"
-
-msgid "These parameters will be added to this target."
-msgstr "這些參數將被添加到此目標。"
-
-msgid "Assign a human-readable description to the target."
-msgstr "指定一個人類可讀的描述到目標"
-
-msgid "Alias"
-msgstr "别名"
-
-msgid "Assign a previously defined authentication group to the target."
-msgstr "將先前定義的身份驗證組分配給目標"
-
-msgid "Permit access without authentication"
-msgstr "允許未經身份驗證的訪問"
-
-msgid "Assign a previously defined portal group to the target."
-msgstr "將先前定義的門戶組分配給目標"
-
-msgid ""
-"IPv4 or IPv6 address to redirect initiators to. When configured, all "
-"initiators attempting to connect to this target will get redirected using "
-"\"Target moved temporarily\" login response."
-msgstr "要將啟動器重定向到的 IPv4 或 IPv6 地址。配置後，所有嘗試連接到此目標的啟動器都將使用“目標已臨時移動”登錄響應重定向"
-
-msgid "No ports found."
-msgstr "未找到端口"
-
 msgid "Max Processes"
 msgstr "最大進程"
 
@@ -12946,44 +12847,35 @@ msgstr "iSNS 請求超時。默認值為 5。"
 msgid "These parameters will be added to the global section of ctl.conf"
 msgstr "這些參數將被添加到 ctl.conf 的 global 部分"
 
-msgid "Add iSCSI Initiator"
-msgstr "新增iSCSI發起人"
+msgid "Target Address"
+msgstr "目標地址"
 
-msgid "Edit iSCSI Initiator"
-msgstr "編輯iSCSI啓動器"
+msgid "CHAP Name"
+msgstr "CHAP名字"
 
-msgid "iSCSI Initiator is marked for deletion"
-msgstr "iSCSI 啓動器被標記為刪除"
+msgid "CHAP Secret"
+msgstr "CHAP Secret"
 
-msgid "iSCSI Initiator is locked"
-msgstr "iSCSI 啓動器已鎖"
+msgid "Mutual CHAP Name"
+msgstr "Mutual CHAP 名稱"
 
-msgid "iSCSI Initiator is unlocked"
-msgstr "iSCSI 啓動器已解鎖"
+msgid "Mutual CHAP Secret"
+msgstr "Mutual CHAP Secret"
 
-msgid "Delete Selected iSCSI Initiators"
-msgstr "刪除所選的iSCSI啟動器"
+msgid "Header Digest"
+msgstr "標題摘要"
 
-msgid "Disable Selected iSCSI Initiators"
-msgstr "禁用所選的iSCSI啓動器"
+msgid "Data Digest"
+msgstr "數據摘要"
 
-msgid "Enable Selected iSCSI Initiators"
-msgstr "啟用選定的 iSCSI 啟動器"
+msgid "Offload Driver"
+msgstr "卸載驅動器"
 
-msgid "Toggle Selected iSCSI Initiators"
-msgstr "切換選定的 iSCSI 啟動器"
+msgid "Session State"
+msgstr "階段狀態"
 
-msgid "Do you want to delete selected iSCSI initiators?"
-msgstr "是否要刪除所選的 iSCSI 啟動器？"
-
-msgid "Do you want to disable selected iSCSI initiators?"
-msgstr "是否要禁用所選的 iSCSI 啟動器？"
-
-msgid "Do you want to enable selected iSCSI initiators?"
-msgstr "是否要啟用所選的 iSCSI 啟動器？"
-
-msgid "Do you want to toggle selected iSCSI initiators?"
-msgstr "是否要切換所選的 iSCSI 啟動器？"
+msgid "Session Type"
+msgstr "階段類型"
 
 msgid "This is a nickname and is for information only."
 msgstr "這是一個暱稱，僅供參考。"
@@ -13073,35 +12965,44 @@ msgstr ""
 msgid "Discovery"
 msgstr "發現"
 
-msgid "Target Address"
-msgstr "目標地址"
+msgid "Add iSCSI Initiator"
+msgstr "新增iSCSI發起人"
 
-msgid "CHAP Name"
-msgstr "CHAP名字"
+msgid "Edit iSCSI Initiator"
+msgstr "編輯iSCSI啓動器"
 
-msgid "CHAP Secret"
-msgstr "CHAP Secret"
+msgid "iSCSI Initiator is marked for deletion"
+msgstr "iSCSI 啓動器被標記為刪除"
 
-msgid "Mutual CHAP Name"
-msgstr "Mutual CHAP 名稱"
+msgid "iSCSI Initiator is locked"
+msgstr "iSCSI 啓動器已鎖"
 
-msgid "Mutual CHAP Secret"
-msgstr "Mutual CHAP Secret"
+msgid "iSCSI Initiator is unlocked"
+msgstr "iSCSI 啓動器已解鎖"
 
-msgid "Header Digest"
-msgstr "標題摘要"
+msgid "Delete Selected iSCSI Initiators"
+msgstr "刪除所選的iSCSI啟動器"
 
-msgid "Data Digest"
-msgstr "數據摘要"
+msgid "Disable Selected iSCSI Initiators"
+msgstr "禁用所選的iSCSI啓動器"
 
-msgid "Offload Driver"
-msgstr "卸載驅動器"
+msgid "Enable Selected iSCSI Initiators"
+msgstr "啟用選定的 iSCSI 啟動器"
 
-msgid "Session State"
-msgstr "階段狀態"
+msgid "Toggle Selected iSCSI Initiators"
+msgstr "切換選定的 iSCSI 啟動器"
 
-msgid "Session Type"
-msgstr "階段類型"
+msgid "Do you want to delete selected iSCSI initiators?"
+msgstr "是否要刪除所選的 iSCSI 啟動器？"
+
+msgid "Do you want to disable selected iSCSI initiators?"
+msgstr "是否要禁用所選的 iSCSI 啟動器？"
+
+msgid "Do you want to enable selected iSCSI initiators?"
+msgstr "是否要啟用所選的 iSCSI 啟動器？"
+
+msgid "Do you want to toggle selected iSCSI initiators?"
+msgstr "是否要切換所選的 iSCSI 啟動器？"
 
 msgid ""
 "Enter the path of the home directory for databases and configuration files."
@@ -13188,9 +13089,6 @@ msgstr "靜音"
 msgid "Security Flavor"
 msgstr "Security Flavor"
 
-msgid "Root Directory"
-msgstr "根目錄"
-
 msgid "Map users or map root to the specified user."
 msgstr "映射用戶或將 root 映射到指定用戶"
 
@@ -13254,7 +13152,7 @@ msgid ""
 "data encryption."
 msgstr "krb5p - 使用帶有數據完整性校驗和和數據加密的 Kerberos V5 身份驗證。"
 
-msgid "Root Directories"
+msgid "Root Directory"
 msgstr "根目錄"
 
 msgid "Add NFS Root"
@@ -13296,6 +13194,9 @@ msgstr "是否要啟用選定的 NFS 根目錄？"
 msgid "Do you want to toggle selected NFS root directories?"
 msgstr "是否要切換所選的 NFS 根目錄？"
 
+msgid "Root Directories"
+msgstr "根目錄"
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -13319,17 +13220,122 @@ msgstr "指定要創建的服務器數量。應該足以處理來自其客戶端
 msgid "These parameters are appended to the exports file."
 msgstr "這些參數附加到導出文件中。"
 
+msgid "Driver List"
+msgstr "驅動器列表"
+
+msgid "UPS Driver List"
+msgstr "UPS 驅動列表"
+
 msgid "Model Name"
 msgstr "型號名"
 
 msgid "Model Extra"
 msgstr "額外模型"
 
-msgid "Driver List"
-msgstr "驅動器列表"
+msgid "Enable AFP"
+msgstr "啟用AFP"
 
-msgid "UPS Driver List"
-msgstr "UPS 驅動列表"
+msgid "Create Mask"
+msgstr "創建掩碼"
+
+msgid "Force Group"
+msgstr "部隊集團"
+
+msgid "Force User"
+msgstr "強制用戶"
+
+msgid "Shadow Copy Format"
+msgstr "影複製格式"
+
+msgid "VFS fruit:encoding"
+msgstr "VFS fruit：編碼"
+
+msgid "VFS fruit:locking"
+msgstr "VFS fruit：鎖定"
+
+msgid "VFS fruit:metadata"
+msgstr "VFS fruit：元數據"
+
+msgid "VFS fruit:resource"
+msgstr "VFS fruit：資源"
+
+msgid "VFS fruit:time machine"
+msgstr "VFS fruit:time machine"
+
+msgid "ZFS ACL"
+msgstr "ZFS 存取控制清單（ACL）"
+
+msgid "Inherit ACL"
+msgstr "繼承ACL"
+
+msgid "Alternate Data Streams"
+msgstr "備用數據流"
+
+msgid "NTFS ACLs"
+msgstr "NTFS ACLs"
+
+msgid "Shadow Copy"
+msgstr "陰影複製"
+
+msgid "Browseable"
+msgstr "可流覽"
+
+msgid "Guest Only"
+msgstr ""
+
+msgid "Inherit Permissions"
+msgstr "繼承權限"
+
+msgid "Recycle Bin"
+msgstr "回收站"
+
+msgid "Hide Dot Files"
+msgstr "隱藏點檔"
+
+msgid "Add Samba Share"
+msgstr "添加Samba共用"
+
+msgid "Edit Samba Share"
+msgstr "編輯Samba共用"
+
+msgid "Samba Share is marked for deletion"
+msgstr "Samba共用標記為刪除"
+
+msgid "Samba Share is locked"
+msgstr "Samba 共享已鎖"
+
+msgid "Samba Share is unlocked"
+msgstr "Samba共用被解鎖"
+
+msgid "Delete Selected Samba Shares"
+msgstr "刪除選中的Samba共用"
+
+msgid "Disable Selected Samba Shares"
+msgstr "禁用所選的Samba共享"
+
+msgid "Enable Selected Samba Shares"
+msgstr "啟用所選的 Samba 共享"
+
+msgid "Toggle Selected Samba Shares"
+msgstr "切換選定的 Samba 共享"
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "是否要刪除所選的Samba共用？"
+
+msgid "Do you want to disable selected Samba shares?"
+msgstr "是否要禁用所選的 Samba 共享？"
+
+msgid "Do you want to enable selected Samba shares?"
+msgstr "您要啟用所選的 Samba 共享嗎？"
+
+msgid "Do you want to toggle selected Samba shares?"
+msgstr "是否要切換所選的 Samba 共享？"
+
+msgid "yes"
+msgstr "是"
+
+msgid "no"
+msgstr "否"
 
 #, php-format
 msgid "These parameters are added to the [Share] section of %s."
@@ -13513,111 +13519,6 @@ msgstr "輸入對該共享的評論"
 
 msgid "Enter the location of the share"
 msgstr "輸入共享的位置"
-
-msgid "Add Samba Share"
-msgstr "添加Samba共用"
-
-msgid "Edit Samba Share"
-msgstr "編輯Samba共用"
-
-msgid "Samba Share is marked for deletion"
-msgstr "Samba共用標記為刪除"
-
-msgid "Samba Share is locked"
-msgstr "Samba 共享已鎖"
-
-msgid "Samba Share is unlocked"
-msgstr "Samba共用被解鎖"
-
-msgid "Delete Selected Samba Shares"
-msgstr "刪除選中的Samba共用"
-
-msgid "Disable Selected Samba Shares"
-msgstr "禁用所選的Samba共享"
-
-msgid "Enable Selected Samba Shares"
-msgstr "啟用所選的 Samba 共享"
-
-msgid "Toggle Selected Samba Shares"
-msgstr "切換選定的 Samba 共享"
-
-msgid "Do you want to delete selected Samba shares?"
-msgstr "是否要刪除所選的Samba共用？"
-
-msgid "Do you want to disable selected Samba shares?"
-msgstr "是否要禁用所選的 Samba 共享？"
-
-msgid "Do you want to enable selected Samba shares?"
-msgstr "您要啟用所選的 Samba 共享嗎？"
-
-msgid "Do you want to toggle selected Samba shares?"
-msgstr "是否要切換所選的 Samba 共享？"
-
-msgid "yes"
-msgstr "是"
-
-msgid "no"
-msgstr "否"
-
-msgid "Enable AFP"
-msgstr "啟用AFP"
-
-msgid "Create Mask"
-msgstr "創建掩碼"
-
-msgid "Force Group"
-msgstr "部隊集團"
-
-msgid "Force User"
-msgstr "強制用戶"
-
-msgid "Shadow Copy Format"
-msgstr "影複製格式"
-
-msgid "VFS fruit:encoding"
-msgstr "VFS fruit：編碼"
-
-msgid "VFS fruit:locking"
-msgstr "VFS fruit：鎖定"
-
-msgid "VFS fruit:metadata"
-msgstr "VFS fruit：元數據"
-
-msgid "VFS fruit:resource"
-msgstr "VFS fruit：資源"
-
-msgid "VFS fruit:time machine"
-msgstr "VFS fruit:time machine"
-
-msgid "ZFS ACL"
-msgstr "ZFS 存取控制清單（ACL）"
-
-msgid "Inherit ACL"
-msgstr "繼承ACL"
-
-msgid "Alternate Data Streams"
-msgstr "備用數據流"
-
-msgid "NTFS ACLs"
-msgstr "NTFS ACLs"
-
-msgid "Shadow Copy"
-msgstr "陰影複製"
-
-msgid "Browseable"
-msgstr "可流覽"
-
-msgid "Guest Only"
-msgstr ""
-
-msgid "Inherit Permissions"
-msgstr "繼承權限"
-
-msgid "Recycle Bin"
-msgstr "回收站"
-
-msgid "Hide Dot Files"
-msgstr "隱藏點檔"
 
 msgid "Workgroup"
 msgstr "工作群組（Workgroup）"
@@ -13942,27 +13843,6 @@ msgid ""
 "this value. (%d by default)."
 msgstr "當請求大小大於此值時，Samba將非同步寫入檔。 （默認為%d）。"
 
-msgid "Password Authentication"
-msgstr "密碼驗證"
-
-msgid "Keyboard-Interactive Authentication"
-msgstr "鍵盤交互認證"
-
-msgid "Public Key Authentication"
-msgstr "公鑰認證"
-
-msgid "GSSAPI Authentication"
-msgstr "GSSAPI 身份驗證"
-
-msgid "Root Login"
-msgstr "Root 登入"
-
-msgid "TCP Forwarding"
-msgstr "TCP轉發"
-
-msgid "Subsystem"
-msgstr "子系統"
-
 msgid "Port of the SSH service. Leave blank to use the default port."
 msgstr "SSH 服務的端口。留空以使用默認端口。"
 
@@ -14007,6 +13887,9 @@ msgid ""
 "settings."
 msgstr "配置外部子系統（例如文件傳輸守護程序）。參數應該是子系統名稱和根據子系統請求執行的命令（帶有可選參數）。將此字段留空以使用默認設置"
 
+msgid "Subsystem"
+msgstr "子系統"
+
 msgid "Using defaults"
 msgstr "使用預設值"
 
@@ -14046,14 +13929,23 @@ msgstr "DEBUG3 - 記錄所有調試信息"
 msgid "These parameters are appended to /etc/ssh/sshd_config."
 msgstr "這些參數附加到 /etc/ssh/sshd_config。"
 
-msgid "Allow New Files"
-msgstr "允許新檔"
+msgid "Password Authentication"
+msgstr "密碼驗證"
 
-msgid "Max. Block Size"
-msgstr "最大塊尺寸"
+msgid "Keyboard-Interactive Authentication"
+msgstr "鍵盤交互認證"
 
-msgid "Umask"
-msgstr "Umask"
+msgid "Public Key Authentication"
+msgstr "公鑰認證"
+
+msgid "GSSAPI Authentication"
+msgstr "GSSAPI 身份驗證"
+
+msgid "Root Login"
+msgstr "Root 登入"
+
+msgid "TCP Forwarding"
+msgstr "TCP轉發"
 
 msgid "Allow new files to be created."
 msgstr "允許創建新檔."
@@ -14111,56 +14003,14 @@ msgstr "000"
 msgid "Specifies the username under which the TFTP service should run."
 msgstr "指定TFTP服務應運行的用戶名。"
 
-msgid "Peer Port"
-msgstr "對等端口"
+msgid "Allow New Files"
+msgstr "允許新檔"
 
-msgid "Configuration Folder"
-msgstr "配置文件夾"
+msgid "Max. Block Size"
+msgstr "最大塊尺寸"
 
-msgid "Incomplete Folder"
-msgstr "未完成的文件夾"
-
-msgid "Download Folder"
-msgstr "下載資料夾"
-
-msgid "Watch Folder"
-msgstr "監視文件夾"
-
-msgid "Port Forwarding"
-msgstr "端口轉發"
-
-msgid "Peer Exchange"
-msgstr "對等交換"
-
-msgid "Distributed Hash Table"
-msgstr "分佈式哈希表"
-
-msgid "Local Peer Discovery"
-msgstr "本地Peer發現"
-
-msgid "uTP"
-msgstr "uTP"
-
-msgid "User Mask"
-msgstr "用戶掩碼"
-
-msgid "Preallocation"
-msgstr "預分配"
-
-msgid "Message Level"
-msgstr "消息級別"
-
-msgid "DNS Rebind Protection"
-msgstr "DNS 重新綁定保護"
-
-msgid "Domain Names"
-msgstr "域名"
-
-msgid "Start Torrents"
-msgstr "啟動種子"
-
-msgid "Stop Torrents"
-msgstr "停止種子"
+msgid "Umask"
+msgstr "Umask"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. The default port is %d."
@@ -14277,11 +14127,56 @@ msgstr "服務啟動後啟動/恢復之前停止的種子。"
 msgid "Stop torrents before stopping service."
 msgstr "在停止服務之前停止種子。"
 
-msgid "Work Directory"
-msgstr "工作目錄"
+msgid "Peer Port"
+msgstr "對等端口"
 
-msgid "Create Work Directory"
-msgstr "創建工作目錄"
+msgid "Configuration Folder"
+msgstr "配置文件夾"
+
+msgid "Incomplete Folder"
+msgstr "未完成的文件夾"
+
+msgid "Download Folder"
+msgstr "下載資料夾"
+
+msgid "Watch Folder"
+msgstr "監視文件夾"
+
+msgid "Port Forwarding"
+msgstr "端口轉發"
+
+msgid "Peer Exchange"
+msgstr "對等交換"
+
+msgid "Distributed Hash Table"
+msgstr "分佈式哈希表"
+
+msgid "Local Peer Discovery"
+msgstr "本地Peer發現"
+
+msgid "uTP"
+msgstr "uTP"
+
+msgid "User Mask"
+msgstr "用戶掩碼"
+
+msgid "Preallocation"
+msgstr "預分配"
+
+msgid "Message Level"
+msgstr "消息級別"
+
+msgid "DNS Rebind Protection"
+msgstr "DNS 重新綁定保護"
+
+msgid "Domain Names"
+msgstr "域名"
+
+msgid "Start Torrents"
+msgstr "啟動種子"
+
+msgid "Stop Torrents"
+msgstr "停止種子"
 
 msgid "Location where work files will be stored."
 msgstr "存儲工作文件的位置"
@@ -14289,17 +14184,33 @@ msgstr "存儲工作文件的位置"
 msgid "Create work directory if it doesn't exist."
 msgstr "如果工作目錄不存在，則創建目錄"
 
+msgid "Work Directory"
+msgstr "工作目錄"
+
+msgid "Create Work Directory"
+msgstr "創建工作目錄"
+
+msgid "Name of the WebDAV Record."
+msgstr "WebDAV 記錄的名稱"
+
 msgid "WebDAV Name"
 msgstr "WebDAV 名稱"
+
+msgid ""
+"The WebDAV configuration is applied to all folders matching this pattern."
+msgstr "WebDAV 配置適用於與此模式匹配的所有文件夾。"
 
 msgid "Folder Pattern"
 msgstr "文件夾模式"
 
-msgid "Read-Only"
-msgstr "唯讀"
+msgid "Read-Only Access."
+msgstr "唯讀訪問"
 
-msgid "Use Sqlite"
-msgstr "使用 Sqlite"
+msgid "Use Sqlite for lockings and properties."
+msgstr "使用 Sqlite 進行鎖定和屬性。"
+
+msgid "These parameters will be added to this WebDAV configuration."
+msgstr "這些參數將添加到此 WebDAV 配置中。"
 
 msgid "Add WebDAV Record"
 msgstr "新增WebDAV記錄"
@@ -14340,39 +14251,11 @@ msgstr "是否要啟用所選的 WebDAV 記錄？"
 msgid "Do you want to toggle selected WebDAV records?"
 msgstr "是否要切換所選的 WebDAV 記錄？"
 
-msgid "Name of the WebDAV Record."
-msgstr "WebDAV 記錄的名稱"
+msgid "Read-Only"
+msgstr "唯讀"
 
-msgid ""
-"The WebDAV configuration is applied to all folders matching this pattern."
-msgstr "WebDAV 配置適用於與此模式匹配的所有文件夾。"
-
-msgid "Read-Only Access."
-msgstr "唯讀訪問"
-
-msgid "Use Sqlite for lockings and properties."
-msgstr "使用 Sqlite 進行鎖定和屬性。"
-
-msgid "These parameters will be added to this WebDAV configuration."
-msgstr "這些參數將添加到此 WebDAV 配置中。"
-
-msgid "Web Service Discovery"
-msgstr "Web 服務發現"
-
-msgid "IP Address Family"
-msgstr "IP 地址系列"
-
-msgid "NETBIOS Hostname"
-msgstr "NETBIOS 主機名"
-
-msgid "Preserve Case"
-msgstr "保留大小寫"
-
-msgid "Server Mode"
-msgstr "伺服器模式"
-
-msgid "Workgroup Name"
-msgstr "工作組名稱"
+msgid "Use Sqlite"
+msgstr "使用 Sqlite"
 
 msgid "IPv4 only"
 msgstr "僅限IPv4"
@@ -14399,6 +14282,36 @@ msgstr "在域模式和工作組模式之間進行選擇"
 msgid "Set workgroup name"
 msgstr "設置工作組名稱"
 
+msgid "IP Address Family"
+msgstr "IP 地址系列"
+
+msgid "NETBIOS Hostname"
+msgstr "NETBIOS 主機名"
+
+msgid "Preserve Case"
+msgstr "保留大小寫"
+
+msgid "Server Mode"
+msgstr "伺服器模式"
+
+msgid "Workgroup Name"
+msgstr "工作組名稱"
+
+msgid "Web Service Discovery"
+msgstr "Web 服務發現"
+
+msgid "Protected"
+msgstr "受保護的"
+
+msgid "Set UID"
+msgstr "設定 UID"
+
+msgid "Snapdir"
+msgstr "Snapdir"
+
+msgid "UTF-8 Only"
+msgstr "僅限UTF-8"
+
 msgid "You may enter a description for your reference."
 msgstr "您可以輸入描述以供參考。"
 
@@ -14422,18 +14335,6 @@ msgstr "輸入卷名稱"
 
 msgid "The name of the ZFS pool."
 msgstr "ZFS池的名稱。"
-
-msgid "Protected"
-msgstr "受保護的"
-
-msgid "Set UID"
-msgstr "設定 UID"
-
-msgid "Snapdir"
-msgstr "Snapdir"
-
-msgid "UTF-8 Only"
-msgstr "僅限UTF-8"
 
 msgid "The following errors were detected"
 msgstr "檢測到以下錯誤"
@@ -14487,45 +14388,6 @@ msgstr ""
 msgid "Encapsulation Protocol"
 msgstr ""
 
-msgid "Add VLAN"
-msgstr "添加VLAN"
-
-msgid "Edit VLAN"
-msgstr "編輯VLAN"
-
-msgid "VLAN is marked for deletion"
-msgstr "VLAN被標記為刪除"
-
-msgid "VLAN is locked"
-msgstr ""
-
-msgid "VLAN is unlocked"
-msgstr "VLAN被解鎖"
-
-msgid "Delete Selected VLANs"
-msgstr "刪除選中的VLANs"
-
-msgid "Disable Selected VLANs"
-msgstr ""
-
-msgid "Enable Selected VLANs"
-msgstr ""
-
-msgid "Toggle Selected VLANs"
-msgstr ""
-
-msgid "Do you want to delete selected VLANs?"
-msgstr "是否要刪除選定的VLAN？"
-
-msgid "Do you want to disable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to enable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to toggle selected VLANs?"
-msgstr ""
-
 msgid "The name of the VLAN interface"
 msgstr ""
 
@@ -14574,6 +14436,45 @@ msgid "802.1Q (default)"
 msgstr ""
 
 msgid "802.1ad (QinQ)"
+msgstr ""
+
+msgid "Add VLAN"
+msgstr "添加VLAN"
+
+msgid "Edit VLAN"
+msgstr "編輯VLAN"
+
+msgid "VLAN is marked for deletion"
+msgstr "VLAN被標記為刪除"
+
+msgid "VLAN is locked"
+msgstr ""
+
+msgid "VLAN is unlocked"
+msgstr "VLAN被解鎖"
+
+msgid "Delete Selected VLANs"
+msgstr "刪除選中的VLANs"
+
+msgid "Disable Selected VLANs"
+msgstr ""
+
+msgid "Enable Selected VLANs"
+msgstr ""
+
+msgid "Toggle Selected VLANs"
+msgstr ""
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "是否要刪除選定的VLAN？"
+
+msgid "Do you want to disable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to enable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to toggle selected VLANs?"
 msgstr ""
 
 msgid "1"
@@ -14774,27 +14675,6 @@ msgstr "and"
 msgid "Total: %1$s | Allocated: %2$s | Free: %3$s"
 msgstr "總計：%1$s |已分配：%2$s |空餘：%3$s"
 
-msgid "Exported"
-msgstr "已導出"
-
-msgid "Destroyed"
-msgstr "已銷毀"
-
-msgid "Spare"
-msgstr "備用"
-
-msgid "L2 Cache"
-msgstr "２級緩存"
-
-msgid "Uninitialized"
-msgstr "未初始化"
-
-msgid "Potentially Active"
-msgstr "潛在活動"
-
-msgid "System tuning"
-msgstr "系統微調"
-
 msgid "Deleting MBR and partition table"
 msgstr "刪除 MBR 和分區表中"
 
@@ -14824,6 +14704,9 @@ msgid ""
 "The disk is currently mounted! The mount point will be removed temporarily "
 "to perform selected command."
 msgstr "磁片正在掛載中！執行所選擇的命令時，掛載點將暫時被刪除。"
+
+msgid "System tuning"
+msgstr "系統微調"
 
 msgid "ZFS Pool Tools"
 msgstr "ZFS池工具"
@@ -15075,3 +14958,24 @@ msgstr "無法將檔寫入磁片。"
 
 msgid "File upload stopped by extension."
 msgstr "檔上傳被插件終止了."
+
+msgid "Exported"
+msgstr "已導出"
+
+msgid "Destroyed"
+msgstr "已銷毀"
+
+msgid "Spare"
+msgstr "備用"
+
+msgid "L2 Cache"
+msgstr "２級緩存"
+
+msgid "Uninitialized"
+msgstr "未初始化"
+
+msgid "Potentially Active"
+msgstr "潛在活動"
+
+#~ msgid "Be careful with turning on these options."
+#~ msgstr "開啟這些選項時要小心。"

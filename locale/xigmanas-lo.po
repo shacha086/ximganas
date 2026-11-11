@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xigmanas\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2025-11-11 18:59+0000\n"
+"POT-Creation-Date: 2025-10-11 14:47+0000\n"
 "PO-Revision-Date: 2025-10-20 04:52+0000\n"
 "Last-Translator: boneni <Unknown>\n"
 "Language-Team: Lao <lo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-18 15:53+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2025-10-26 20:20+0000\n"
+"X-Generator: Launchpad (build 85440ec533b5f0f56d72cb53bf7a09726604f8f5)\n"
 
 msgid "Active Directory"
 msgstr "Active Directory"
@@ -3944,9 +3944,6 @@ msgstr "ເລີ່ມຕົ້ນການ TRIM ພື້ນທີ່ວ່າ
 msgid "Upgrade ZFS and add all supported feature flags on a pool"
 msgstr "ອັບເກຣດ ZFS ແລະ ເພີ່ມຄຸນສົມບັດທີ່ຮອງຮັບທັງໝົດໃສ່ພູລ"
 
-msgid "Activate encryption feature"
-msgstr ""
-
 msgid "Temporary Device"
 msgstr "ອຸປະກອນຊົ່ວຄາວ"
 
@@ -4355,9 +4352,6 @@ msgstr "ຂັ້ນສູງ"
 
 msgid "Firmware Update"
 msgstr "ອັບເດດເຟີມແວ"
-
-msgid "Boot Environments"
-msgstr ""
 
 msgid "Packages"
 msgstr "ແພັກເກດ"
@@ -8218,102 +8212,6 @@ msgstr "ແນະນຳໃຫ້ເຂົ້າລະຫັດການຕັ້
 msgid "Reminder Settings"
 msgstr "ການຕັ້ງຄ່າການແຈ້ງເຕືອນ"
 
-msgid "Locked"
-msgstr ""
-
-msgid "Delete Selected Boot Environments"
-msgstr ""
-
-msgid "Do you really want to delete selected boot environments?"
-msgstr ""
-
-msgid "Failed to delete Boot Environment(s)."
-msgstr ""
-
-msgid "Age"
-msgstr ""
-
-msgid "Select"
-msgstr ""
-
-msgid "Boot Environment"
-msgstr ""
-
-msgid "Active"
-msgstr "ກຳລັງໃຊ້ງານ"
-
-msgid "Mountpoint"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Failed to create and/or activate Boot Environment."
-msgstr ""
-
-msgid "Failed to create Boot Environment."
-msgstr ""
-
-msgid ""
-"Activate Boot Environment after creation, note that system reboot is "
-"required for this boot environment to take place."
-msgstr ""
-
-msgid ""
-"Append the date in the following format: YYYY-MM-DD-HHMMSS, if the name "
-"field is empty, the date will always be used as the boot environment name."
-msgstr ""
-
-#, php-format
-msgid "For additional information about boot environments and %s,"
-msgstr ""
-
-msgid "Failed to activate Boot Environment."
-msgstr ""
-
-msgid "Failed to rename Boot Environment."
-msgstr ""
-
-msgid "Failed to mount Boot Environment."
-msgstr ""
-
-msgid "Failed to unmount Boot Environment."
-msgstr ""
-
-msgid "Failed to delete Boot Environment."
-msgstr ""
-
-msgid "Edit Boot Environment"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Append the date in the following format: YYYY-MM-DD-HHMMSS."
-msgstr ""
-
-msgid "Force"
-msgstr ""
-
-msgid ""
-"Destroy the boot environment and its origin if any, without confirmation."
-msgstr ""
-
-msgid "No boot environmen information available."
-msgstr ""
-
-msgid "Boot Environment List"
-msgstr ""
-
-msgid "Boot Environment Snapshots"
-msgstr ""
-
 msgid "Add job"
 msgstr "ເພີ່ມວຽກ"
 
@@ -9488,8 +9386,166 @@ msgstr "ບໍ່ມີຜົນລັບ."
 msgid "HOME"
 msgstr "ໜ້າຫຼັກ"
 
+msgid "You are not allowed to use this function."
+msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ໃຊ້ຟັງຊັນນີ້."
+
+msgid "This file doesn't exist."
+msgstr "ໄຟລ໌ນີ້ບໍ່ມີຢູ່."
+
+msgid "You are not allowed to access this file."
+msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງໄຟລ໌ນີ້."
+
+msgid "Permission-change failed."
+msgstr "ການປ່ຽນສິດອະນຸຍາດລົ້ມເຫຼວ."
+
+msgid "Getting permissions failed."
+msgstr "ການເອົາສິດອະນຸຍາດລົ້ມເຫຼວ."
+
+msgid "Change permissions"
+msgstr "ປ່ຽນສິດອະນຸຍາດ"
+
+msgid "Public"
+msgstr "ສາທາລະນະ"
+
+msgid "This item doesn't exist."
+msgstr "ລາຍການນີ້ບໍ່ມີຢູ່."
+
+msgid "You are not allowed to access this item."
+msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງລາຍການນີ້."
+
+msgid "Deleting failed."
+msgstr "ການລຶບລົ້ມເຫຼວ."
+
+msgid "Unable to open source directory."
+msgstr "ບໍ່ສາມາດເປີດໄດເຣັກທໍຣີຕົ້ນທາງໄດ້."
+
+msgid "Unable to open directory."
+msgstr "ບໍ່ສາມາດເປີດໄດເຣັກທໍຣີໄດ້."
+
+msgid "Unable to read directory."
+msgstr "ບໍ່ສາມາດອ່ານໄດເຣັກທໍຣີໄດ້."
+
+msgid "Copy item(s)"
+msgstr "ຄັດລອກລາຍການ"
+
+msgid "Move item(s)"
+msgstr "ຍ້າຍລາຍການ"
+
+#, php-format
+msgid "Copy from /%s to /%s "
+msgstr "ຄັດລອກຈາກ /%s ໄປ /%s "
+
+#, php-format
+msgid "Move from /%s to /%s "
+msgstr "ຍ້າຍຈາກ /%s ໄປ /%s "
+
+msgid "Copy"
+msgstr "ຄັດລອກ"
+
+msgid "Move"
+msgstr "ຍ້າຍ"
+
+msgid "The target directory doesn't exist."
+msgstr "ໄດເຣັກທໍຣີປາຍທາງບໍ່ມີຢູ່."
+
+msgid "You are not allowed to access the target directory."
+msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງໄດເຣັກທໍຣີປາຍທາງ."
+
+msgid "The target directory may not be above the home directory."
+msgstr "ໄດເຣັກທໍຣີປາຍທາງບໍ່ສາມາດຢູ່ເໜືອໄດເຣັກທໍຣີຫຼັກໄດ້."
+
+msgid "You must supply a name."
+msgstr "ທ່ານຕ້ອງໃສ່ຊື່."
+
+msgid "The target item already exists."
+msgstr "ລາຍການປາຍທາງມີຢູ່ແລ້ວ."
+
+msgid "Copying failed."
+msgstr "ການຄັດລອກລົ້ມເຫຼວ."
+
+msgid "Moving failed."
+msgstr "ການຍ້າຍລົ້ມເຫຼວ."
+
+msgid "You haven't selected any item(s)."
+msgstr "ທ່ານຍັງບໍ່ໄດ້ເລືອກລາຍການໃດໆ."
+
+msgid "File saving failed."
+msgstr "ການບັນທຶກໄຟລ໌ລົ້ມເຫຼວ."
+
+msgid "This item already exists."
+msgstr "ລາຍການນີ້ມີຢູ່ແລ້ວ."
+
+msgid "File opening failed."
+msgstr "ການເປີດໄຟລ໌ລົ້ມເຫຼວ."
+
+msgid "Edit file"
+msgstr "ແກ້ໄຂໄຟລ໌"
+
+msgid "Wrap text:"
+msgstr "ຕັດຂໍ້ຄວາມ:"
+
+msgid "Reset"
+msgstr "ຣີເຊັດ"
+
+msgid "Are you sure you want to delete selected item(s)?"
+msgstr "ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບລາຍການທີ່ເລືອກ?"
+
+msgid "CHANGE PERMISSIONS"
+msgstr "ປ່ຽນສິດອະນຸຍາດ"
+
+msgid "You are not allowed to access this directory."
+msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງໄດເຣັກທໍຣີນີ້."
+
 msgid "Directory"
 msgstr "ໄດເຣັກທໍຣີ"
+
+msgid "UP"
+msgstr "ຂຶ້ນ"
+
+msgid "RELOAD"
+msgstr "ໂຫຼດໃໝ່"
+
+msgid "SEARCH"
+msgstr "ຄົ້ນຫາ"
+
+msgid "Create"
+msgstr "ສ້າງ"
+
+msgid "Modified"
+msgstr "ແກ້ໄຂແລ້ວ"
+
+msgid "Permissions"
+msgstr "ສິດອະນຸຍາດ"
+
+msgid "Actions"
+msgstr "ການກະທຳ"
+
+msgid "COPY"
+msgstr "ຄັດລອກ"
+
+msgid "MOVE"
+msgstr "ຍ້າຍ"
+
+msgid "DELETE"
+msgstr "ລຶບ"
+
+msgid "EDIT"
+msgstr "ແກ້ໄຂ"
+
+msgid "UNZIP"
+msgstr "ແຕກໄຟລ໌"
+
+msgid "DOWNLOAD"
+msgstr "ດາວໂຫຼດ"
+
+msgid "Extracting"
+msgstr "ກຳລັງແຕກໄຟລ໌"
+
+msgid "Unzip"
+msgstr "ແຕກໄຟລ໌"
+
+msgid "Failed to extract archive."
+msgstr "ແຕກໄຟລ໌ເກັບມ້ຽນລົ້ມເຫຼວ."
 
 msgid "Executable File"
 msgstr "ໄຟລ໌ທີ່ປະຕິບັດໄດ້"
@@ -9644,112 +9700,11 @@ msgstr "ງານນຳສະເໜີ Powerpoint"
 msgid "PDF File"
 msgstr "ໄຟລ໌ PDF"
 
-msgid "You haven't selected any item(s)."
-msgstr "ທ່ານຍັງບໍ່ໄດ້ເລືອກລາຍການໃດໆ."
-
-msgid "You are not allowed to use this function."
-msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ໃຊ້ຟັງຊັນນີ້."
-
-msgid "This file doesn't exist."
-msgstr "ໄຟລ໌ນີ້ບໍ່ມີຢູ່."
-
-msgid "You are not allowed to access this file."
-msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງໄຟລ໌ນີ້."
-
-msgid "Permission-change failed."
-msgstr "ການປ່ຽນສິດອະນຸຍາດລົ້ມເຫຼວ."
-
-msgid "Getting permissions failed."
-msgstr "ການເອົາສິດອະນຸຍາດລົ້ມເຫຼວ."
-
-msgid "Change permissions"
-msgstr "ປ່ຽນສິດອະນຸຍາດ"
-
-msgid "Public"
-msgstr "ສາທາລະນະ"
-
-msgid "Copy item(s)"
-msgstr "ຄັດລອກລາຍການ"
-
-msgid "Move item(s)"
-msgstr "ຍ້າຍລາຍການ"
-
-#, php-format
-msgid "Copy from /%s to /%s "
-msgstr "ຄັດລອກຈາກ /%s ໄປ /%s "
-
-#, php-format
-msgid "Move from /%s to /%s "
-msgstr "ຍ້າຍຈາກ /%s ໄປ /%s "
-
-msgid "Copy"
-msgstr "ຄັດລອກ"
-
-msgid "Move"
-msgstr "ຍ້າຍ"
-
-msgid "The target directory doesn't exist."
-msgstr "ໄດເຣັກທໍຣີປາຍທາງບໍ່ມີຢູ່."
-
-msgid "You are not allowed to access the target directory."
-msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງໄດເຣັກທໍຣີປາຍທາງ."
-
-msgid "The target directory may not be above the home directory."
-msgstr "ໄດເຣັກທໍຣີປາຍທາງບໍ່ສາມາດຢູ່ເໜືອໄດເຣັກທໍຣີຫຼັກໄດ້."
-
-msgid "You must supply a name."
-msgstr "ທ່ານຕ້ອງໃສ່ຊື່."
-
-msgid "This item doesn't exist."
-msgstr "ລາຍການນີ້ບໍ່ມີຢູ່."
-
-msgid "You are not allowed to access this item."
-msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງລາຍການນີ້."
-
-msgid "The target item already exists."
-msgstr "ລາຍການປາຍທາງມີຢູ່ແລ້ວ."
-
-msgid "Copying failed."
-msgstr "ການຄັດລອກລົ້ມເຫຼວ."
-
-msgid "Moving failed."
-msgstr "ການຍ້າຍລົ້ມເຫຼວ."
-
-msgid "Deleting failed."
-msgstr "ການລຶບລົ້ມເຫຼວ."
-
 msgid "ERROR(S)"
 msgstr "ຂໍ້ຜິດພາດ"
 
 msgid "Go Back"
 msgstr "ກັບຄືນ"
-
-msgid "File saving failed."
-msgstr "ການບັນທຶກໄຟລ໌ລົ້ມເຫຼວ."
-
-msgid "This item already exists."
-msgstr "ລາຍການນີ້ມີຢູ່ແລ້ວ."
-
-msgid "File opening failed."
-msgstr "ການເປີດໄຟລ໌ລົ້ມເຫຼວ."
-
-msgid "Edit file"
-msgstr "ແກ້ໄຂໄຟລ໌"
-
-msgid "Wrap text:"
-msgstr "ຕັດຂໍ້ຄວາມ:"
-
-msgid "Reset"
-msgstr "ຣີເຊັດ"
-
-msgid "Unable to open source directory."
-msgstr "ບໍ່ສາມາດເປີດໄດເຣັກທໍຣີຕົ້ນທາງໄດ້."
-
-msgid "Unable to open directory."
-msgstr "ບໍ່ສາມາດເປີດໄດເຣັກທໍຣີໄດ້."
-
-msgid "Unable to read directory."
-msgstr "ບໍ່ສາມາດອ່ານໄດເຣັກທໍຣີໄດ້."
 
 msgid "Directory creation failed."
 msgstr "ການສ້າງໄດເຣັກທໍຣີລົ້ມເຫຼວ."
@@ -9757,62 +9712,237 @@ msgstr "ການສ້າງໄດເຣັກທໍຣີລົ້ມເຫຼ
 msgid "File creation failed."
 msgstr "ການສ້າງໄຟລ໌ລົ້ມເຫຼວ."
 
-msgid "Are you sure you want to delete selected item(s)?"
-msgstr "ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບລາຍການທີ່ເລືອກ?"
+msgid "Dataset Name"
+msgstr "ຊື່ຊຸດຂໍ້ມູນ"
 
-msgid "CHANGE PERMISSIONS"
-msgstr "ປ່ຽນສິດອະນຸຍາດ"
+msgid ""
+"File System - can be mounted within the standard system namespace and "
+"behaves like other file systems."
+msgstr ""
+"ລະບົບໄຟລ໌ - ສາມາດເຊື່ອມຕໍ່ພາຍໃນຊື່ມາດຕະຖານຂອງລະບົບ ແລະ "
+"ເຮັດວຽກຄືກັບລະບົບໄຟລ໌ອື່ນໆ."
 
-msgid "You are not allowed to access this directory."
-msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ເຂົ້າເຖິງໄດເຣັກທໍຣີນີ້."
+msgid "Volume - A logical volume. Can be exported as a raw or block device."
+msgstr "ໂວລຸມ - ໂວລຸມທາງເຫດຜົນ. ສາມາດສົ່ງອອກເປັນອຸປະກອນດິບ ຫຼື ອຸປະກອນບລັອກ."
 
-msgid "UP"
-msgstr "ຂຶ້ນ"
+msgid ""
+"Snapshot - A read-only version of a file system or volume at a given point "
+"in time."
+msgstr ""
+"ສະແນັບຊັອດ - ເວີຊັນທີ່ອ່ານໄດ້ຢ່າງດຽວຂອງລະບົບໄຟລ໌ ຫຼື ໂວລຸມໃນຊ່ວງເວລາໃດໜຶ່ງ."
 
-msgid "RELOAD"
-msgstr "ໂຫຼດໃໝ່"
+msgid "Bookmark - Creates a bookmark of a given snapshot."
+msgstr "ບຸກມາກ - ສ້າງບຸກມາກຂອງສະແນັບຊັອດທີ່ໃຫ້ໄວ້."
 
-msgid "SEARCH"
-msgstr "ຄົ້ນຫາ"
+msgid "Dataset Type"
+msgstr "ປະເພດຊຸດຂໍ້ມູນ"
 
-msgid "Create"
-msgstr "ສ້າງ"
+msgid "Pool Name"
+msgstr "ຊື່ພູລ"
 
-msgid "Modified"
-msgstr "ແກ້ໄຂແລ້ວ"
+msgid "Clones"
+msgstr "ໂຄລນ"
 
-msgid "Permissions"
-msgstr "ສິດອະນຸຍາດ"
+msgid "Compression Ratio"
+msgstr "ອັດຕາສ່ວນການບີບອັດ"
 
-msgid "Actions"
-msgstr "ການກະທຳ"
+msgid "Defer Destroy"
+msgstr "ເລື່ອນການທຳລາຍ"
 
-msgid "COPY"
-msgstr "ຄັດລອກ"
+msgid "Encryption Root"
+msgstr "ຮາກການເຂົ້າລະຫັດ"
 
-msgid "MOVE"
-msgstr "ຍ້າຍ"
+msgid "Filesystem Count"
+msgstr "ຈຳນວນລະບົບໄຟລ໌"
 
-msgid "DELETE"
-msgstr "ລຶບ"
+msgid "GUID"
+msgstr "GUID"
 
-msgid "EDIT"
-msgstr "ແກ້ໄຂ"
+msgid "Key Status"
+msgstr "ສະຖານະຄີ"
 
-msgid "UNZIP"
-msgstr "ແຕກໄຟລ໌"
+msgid "Logical Referenced"
+msgstr "ອ້າງອີງຕາມເຫດຜົນ"
 
-msgid "DOWNLOAD"
-msgstr "ດາວໂຫຼດ"
+msgid "Logical Used"
+msgstr "ນຳໃຊ້ຕາມເຫດຜົນ"
 
-msgid "Extracting"
-msgstr "ກຳລັງແຕກໄຟລ໌"
+msgid "Mounted"
+msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
 
-msgid "Unzip"
-msgstr "ແຕກໄຟລ໌"
+msgid "Obj Set ID"
+msgstr "ID ຊຸດວັດຖຸ"
 
-msgid "Failed to extract archive."
-msgstr "ແຕກໄຟລ໌ເກັບມ້ຽນລົ້ມເຫຼວ."
+msgid "Receive Resume Token"
+msgstr "ຮັບໂທເຄັນສືບຕໍ່"
+
+msgid "Redact Snaps"
+msgstr "ແກ້ໄຂສະແນັບ"
+
+msgid "Refcompressratio"
+msgstr "ອັດຕາສ່ວນການບີບອັດອ້າງອີງ"
+
+msgid "Referenced"
+msgstr "ອ້າງອີງແລ້ວ"
+
+msgid "Snapshot Count"
+msgstr "ຈຳນວນສະແນັບຊັອດ"
+
+msgid "Used by Children"
+msgstr "ໃຊ້ໂດຍລູກ"
+
+msgid "Used by Dataset"
+msgstr "ໃຊ້ໂດຍຊຸດຂໍ້ມູນ"
+
+msgid "Used by Refreservation"
+msgstr "ໃຊ້ໂດຍການຈອງອ້າງອີງ"
+
+msgid "Used by Snapshots"
+msgstr "ໃຊ້ໂດຍສະແນັບຊັອດ"
+
+msgid "Userrefs"
+msgstr "ການອ້າງອີງຜູ້ໃຊ້"
+
+msgid "Written"
+msgstr "ຂຽນແລ້ວ"
+
+msgid "Normalization"
+msgstr "ການເຮັດໃຫ້ເປັນປົກກະຕິ"
+
+msgid "UTF-8 File Names"
+msgstr "ຊື່ໄຟລ໌ UTF-8"
+
+msgid "ACL Type"
+msgstr "ປະເພດ ACL"
+
+msgid "Access Time"
+msgstr "ເວລາເຂົ້າເຖິງ"
+
+msgid "Can Mount"
+msgstr "ສາມາດເຊື່ອມຕໍ່ໄດ້"
+
+msgid "Checksum"
+msgstr "ເຊັກຊຳ"
+
+msgid "GZIP Compression Level"
+msgstr "ລະດັບການບີບອັດ GZIP"
+
+msgid "Zstandard Compression Level"
+msgstr "ລະດັບການບີບອັດ Zstandard"
+
+msgid "Fast Zstandard Compression Level"
+msgstr "ລະດັບການບີບອັດ Zstandard ແບບໄວ"
+
+msgid "Copies"
+msgstr "ສຳເນົາ"
+
+msgid "Dedup Method"
+msgstr "ວິທີການລຶບຂໍ້ມູນຊັບຊ້ອນ"
+
+msgid "Dnode Size"
+msgstr "ຂະໜາດ Dnode"
+
+msgid "Execute Processes"
+msgstr "ປະມວນຜົນ"
+
+msgid "Filesystem Limit"
+msgstr "ຂີດຈຳກັດລະບົບໄຟລ໌"
+
+msgid "Jailed"
+msgstr "ຖືກຈຳກັດ"
+
+msgid "Key Format"
+msgstr "ຮູບແບບຄີ"
+
+msgid "Key Location"
+msgstr "ຕຳແໜ່ງຄີ"
+
+msgid "Logbias"
+msgstr "Logbias"
+
+msgid "Mountpoint Type"
+msgstr "ປະເພດຈຸດເຊື່ອມຕໍ່"
+
+msgid "Non-blocking Mandatory Locks"
+msgstr "ການລັອກແບບບັງຄັບບໍ່ກີດຂວາງ"
+
+msgid "Overlay Mount"
+msgstr "ການເຊື່ອມຕໍ່ແບບຊ້ອນທັບ"
+
+msgid "PBKDF2 Iterations"
+msgstr "ຈຳນວນຮອບ PBKDF2"
+
+msgid "Primary Cache"
+msgstr "ແຄດຫຼັກ"
+
+msgid "Record Size"
+msgstr "ຂະໜາດເຣັກຄອດ"
+
+msgid "Redundant Metadata"
+msgstr "ເມຕາເດຕາຊ້ຳຊ້ອນ"
+
+msgid "Refquota"
+msgstr "ໂຄຕ້າອ້າງອີງ"
+
+msgid "Refquota Type"
+msgstr "ປະເພດໂຄຕ້າອ້າງອີງ"
+
+msgid "Refreservation"
+msgstr "ການຈອງອ້າງອີງ"
+
+msgid "Refreservation Type"
+msgstr "ປະເພດການຈອງອ້າງອີງ"
+
+msgid "Relatime"
+msgstr "ເວລາສຳພັນ"
+
+msgid "Reservation Type"
+msgstr "ປະເພດການຈອງ"
+
+msgid "Secondary Cache"
+msgstr "ແຄດສຳຮອງ"
+
+msgid "Setuid"
+msgstr "Setuid"
+
+msgid "Share NFS Options"
+msgstr "ຕົວເລືອກແບ່ງປັນ NFS"
+
+msgid "Share NFS Type"
+msgstr "ປະເພດແບ່ງປັນ NFS"
+
+msgid "Share SMB Options"
+msgstr "ຕົວເລືອກແບ່ງປັນ SMB"
+
+msgid "Share SMB Type"
+msgstr "ປະເພດແບ່ງປັນ SMB"
+
+msgid "Snapshot Device Visibility"
+msgstr "ການເບິ່ງເຫັນອຸປະກອນສະແນັບຊັອດ"
+
+msgid "Snapshot Folder Visibility"
+msgstr "ການເບິ່ງເຫັນໂຟນເດີສະແນັບຊັອດ"
+
+msgid "Snapshot Limit"
+msgstr "ຂີດຈຳກັດສະແນັບຊັອດ"
+
+msgid "Threshold Small Block Size"
+msgstr "ຂະໜາດບລັອກນ້ອຍສຸດ"
+
+msgid "Synchronous Requests Behaviour"
+msgstr "ພຶດຕິກຳການຮ້ອງຂໍແບບຊິງໂຄຣນັສ"
+
+msgid "Volume Mode"
+msgstr "ໂໝດໂວລຸມ"
+
+msgid "Volume Size"
+msgstr "ຂະໜາດໂວລຸມ"
+
+msgid "Virus Scan"
+msgstr "ສະແກນໄວຣັສ"
+
+msgid "No ZFS filesystem information available."
+msgstr "ບໍ່ມີຂໍ້ມູນລະບົບໄຟລ໌ ZFS."
 
 msgid "The name of the filesystem."
 msgstr "ຊື່ຂອງລະບົບໄຟລ໌."
@@ -9822,9 +9952,6 @@ msgstr "ປ້ອນຊື່ລະບົບໄຟລ໌"
 
 msgid "Controls the type of the ZFS dataset."
 msgstr "ຄວບຄຸມປະເພດຂອງຊຸດຂໍ້ມູນ ZFS."
-
-msgid "Pool Name"
-msgstr "ຊື່ພູລ"
 
 msgid ""
 "Indicates whether the file name matching algorithm used by the filesystem "
@@ -10379,9 +10506,6 @@ msgstr "ຄວບຄຸມວ່າຄຸນລັກສະນະເພີ່ມ
 msgid "System attribute based xattrs"
 msgstr "Xattrs ອີງຕາມຄຸນລັກສະນະຂອງລະບົບ"
 
-msgid "No ZFS filesystem information available."
-msgstr "ບໍ່ມີຂໍ້ມູນລະບົບໄຟລ໌ ZFS."
-
 msgid "Add Filesystem"
 msgstr "ເພີ່ມລະບົບໄຟລ໌"
 
@@ -10429,232 +10553,6 @@ msgstr "ບໍ່ຮູ້ຈັກ"
 
 msgid "Filesystems"
 msgstr "ລະບົບໄຟລ໌"
-
-msgid "Dataset Name"
-msgstr "ຊື່ຊຸດຂໍ້ມູນ"
-
-msgid ""
-"File System - can be mounted within the standard system namespace and "
-"behaves like other file systems."
-msgstr ""
-"ລະບົບໄຟລ໌ - ສາມາດເຊື່ອມຕໍ່ພາຍໃນຊື່ມາດຕະຖານຂອງລະບົບ ແລະ "
-"ເຮັດວຽກຄືກັບລະບົບໄຟລ໌ອື່ນໆ."
-
-msgid "Volume - A logical volume. Can be exported as a raw or block device."
-msgstr "ໂວລຸມ - ໂວລຸມທາງເຫດຜົນ. ສາມາດສົ່ງອອກເປັນອຸປະກອນດິບ ຫຼື ອຸປະກອນບລັອກ."
-
-msgid ""
-"Snapshot - A read-only version of a file system or volume at a given point "
-"in time."
-msgstr ""
-"ສະແນັບຊັອດ - ເວີຊັນທີ່ອ່ານໄດ້ຢ່າງດຽວຂອງລະບົບໄຟລ໌ ຫຼື ໂວລຸມໃນຊ່ວງເວລາໃດໜຶ່ງ."
-
-msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr "ບຸກມາກ - ສ້າງບຸກມາກຂອງສະແນັບຊັອດທີ່ໃຫ້ໄວ້."
-
-msgid "Dataset Type"
-msgstr "ປະເພດຊຸດຂໍ້ມູນ"
-
-msgid "Clones"
-msgstr "ໂຄລນ"
-
-msgid "Compression Ratio"
-msgstr "ອັດຕາສ່ວນການບີບອັດ"
-
-msgid "Defer Destroy"
-msgstr "ເລື່ອນການທຳລາຍ"
-
-msgid "Encryption Root"
-msgstr "ຮາກການເຂົ້າລະຫັດ"
-
-msgid "Filesystem Count"
-msgstr "ຈຳນວນລະບົບໄຟລ໌"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Key Status"
-msgstr "ສະຖານະຄີ"
-
-msgid "Logical Referenced"
-msgstr "ອ້າງອີງຕາມເຫດຜົນ"
-
-msgid "Logical Used"
-msgstr "ນຳໃຊ້ຕາມເຫດຜົນ"
-
-msgid "Mounted"
-msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
-
-msgid "Obj Set ID"
-msgstr "ID ຊຸດວັດຖຸ"
-
-msgid "Receive Resume Token"
-msgstr "ຮັບໂທເຄັນສືບຕໍ່"
-
-msgid "Redact Snaps"
-msgstr "ແກ້ໄຂສະແນັບ"
-
-msgid "Refcompressratio"
-msgstr "ອັດຕາສ່ວນການບີບອັດອ້າງອີງ"
-
-msgid "Referenced"
-msgstr "ອ້າງອີງແລ້ວ"
-
-msgid "Snapshot Count"
-msgstr "ຈຳນວນສະແນັບຊັອດ"
-
-msgid "Used by Children"
-msgstr "ໃຊ້ໂດຍລູກ"
-
-msgid "Used by Dataset"
-msgstr "ໃຊ້ໂດຍຊຸດຂໍ້ມູນ"
-
-msgid "Used by Refreservation"
-msgstr "ໃຊ້ໂດຍການຈອງອ້າງອີງ"
-
-msgid "Used by Snapshots"
-msgstr "ໃຊ້ໂດຍສະແນັບຊັອດ"
-
-msgid "Userrefs"
-msgstr "ການອ້າງອີງຜູ້ໃຊ້"
-
-msgid "Written"
-msgstr "ຂຽນແລ້ວ"
-
-msgid "Normalization"
-msgstr "ການເຮັດໃຫ້ເປັນປົກກະຕິ"
-
-msgid "UTF-8 File Names"
-msgstr "ຊື່ໄຟລ໌ UTF-8"
-
-msgid "ACL Type"
-msgstr "ປະເພດ ACL"
-
-msgid "Access Time"
-msgstr "ເວລາເຂົ້າເຖິງ"
-
-msgid "Can Mount"
-msgstr "ສາມາດເຊື່ອມຕໍ່ໄດ້"
-
-msgid "Checksum"
-msgstr "ເຊັກຊຳ"
-
-msgid "GZIP Compression Level"
-msgstr "ລະດັບການບີບອັດ GZIP"
-
-msgid "Zstandard Compression Level"
-msgstr "ລະດັບການບີບອັດ Zstandard"
-
-msgid "Fast Zstandard Compression Level"
-msgstr "ລະດັບການບີບອັດ Zstandard ແບບໄວ"
-
-msgid "Copies"
-msgstr "ສຳເນົາ"
-
-msgid "Dedup Method"
-msgstr "ວິທີການລຶບຂໍ້ມູນຊັບຊ້ອນ"
-
-msgid "Dnode Size"
-msgstr "ຂະໜາດ Dnode"
-
-msgid "Execute Processes"
-msgstr "ປະມວນຜົນ"
-
-msgid "Filesystem Limit"
-msgstr "ຂີດຈຳກັດລະບົບໄຟລ໌"
-
-msgid "Jailed"
-msgstr "ຖືກຈຳກັດ"
-
-msgid "Key Format"
-msgstr "ຮູບແບບຄີ"
-
-msgid "Key Location"
-msgstr "ຕຳແໜ່ງຄີ"
-
-msgid "Logbias"
-msgstr "Logbias"
-
-msgid "Mountpoint Type"
-msgstr "ປະເພດຈຸດເຊື່ອມຕໍ່"
-
-msgid "Non-blocking Mandatory Locks"
-msgstr "ການລັອກແບບບັງຄັບບໍ່ກີດຂວາງ"
-
-msgid "Overlay Mount"
-msgstr "ການເຊື່ອມຕໍ່ແບບຊ້ອນທັບ"
-
-msgid "PBKDF2 Iterations"
-msgstr "ຈຳນວນຮອບ PBKDF2"
-
-msgid "Primary Cache"
-msgstr "ແຄດຫຼັກ"
-
-msgid "Record Size"
-msgstr "ຂະໜາດເຣັກຄອດ"
-
-msgid "Redundant Metadata"
-msgstr "ເມຕາເດຕາຊ້ຳຊ້ອນ"
-
-msgid "Refquota"
-msgstr "ໂຄຕ້າອ້າງອີງ"
-
-msgid "Refquota Type"
-msgstr "ປະເພດໂຄຕ້າອ້າງອີງ"
-
-msgid "Refreservation"
-msgstr "ການຈອງອ້າງອີງ"
-
-msgid "Refreservation Type"
-msgstr "ປະເພດການຈອງອ້າງອີງ"
-
-msgid "Relatime"
-msgstr "ເວລາສຳພັນ"
-
-msgid "Reservation Type"
-msgstr "ປະເພດການຈອງ"
-
-msgid "Secondary Cache"
-msgstr "ແຄດສຳຮອງ"
-
-msgid "Setuid"
-msgstr "Setuid"
-
-msgid "Share NFS Options"
-msgstr "ຕົວເລືອກແບ່ງປັນ NFS"
-
-msgid "Share NFS Type"
-msgstr "ປະເພດແບ່ງປັນ NFS"
-
-msgid "Share SMB Options"
-msgstr "ຕົວເລືອກແບ່ງປັນ SMB"
-
-msgid "Share SMB Type"
-msgstr "ປະເພດແບ່ງປັນ SMB"
-
-msgid "Snapshot Device Visibility"
-msgstr "ການເບິ່ງເຫັນອຸປະກອນສະແນັບຊັອດ"
-
-msgid "Snapshot Folder Visibility"
-msgstr "ການເບິ່ງເຫັນໂຟນເດີສະແນັບຊັອດ"
-
-msgid "Snapshot Limit"
-msgstr "ຂີດຈຳກັດສະແນັບຊັອດ"
-
-msgid "Threshold Small Block Size"
-msgstr "ຂະໜາດບລັອກນ້ອຍສຸດ"
-
-msgid "Synchronous Requests Behaviour"
-msgstr "ພຶດຕິກຳການຮ້ອງຂໍແບບຊິງໂຄຣນັສ"
-
-msgid "Volume Mode"
-msgstr "ໂໝດໂວລຸມ"
-
-msgid "Volume Size"
-msgstr "ຂະໜາດໂວລຸມ"
-
-msgid "Virus Scan"
-msgstr "ສະແກນໄວຣັສ"
 
 msgid "Show Used/Avail"
 msgstr "ສະແດງ ໃຊ້ແລ້ວ/ຫວ່າງ"
@@ -10727,6 +10625,51 @@ msgid ""
 msgstr ""
 "ເມື່ອເປີດໃຊ້, ການທຳລາຍຊຸດຂໍ້ມູນຈະທຳລາຍທຸກສ່ວນທີ່ກ່ຽວຂ້ອງ (ຊຸດຂໍ້ມູນ, "
 "ສະແນັບຊັອດ ແລະ ໂຄລນ) ນຳ."
+
+msgid "Add Schedule"
+msgstr "ເພີ່ມຕາຕະລາງ"
+
+msgid "Edit Schedule"
+msgstr "ແກ້ໄຂຕາຕະລາງ"
+
+msgid "Schedule is marked for deletion"
+msgstr "ຕາຕະລາງຖືກໝາຍໄວ້ເພື່ອລຶບ"
+
+msgid "Schedule is locked"
+msgstr "ຕາຕະລາງຖືກລັອກ"
+
+msgid "Schedule is unlocked"
+msgstr "ຕາຕະລາງຖືກປົດລັອກ"
+
+msgid "Delete Selected Schedules"
+msgstr "ລຶບຕາຕະລາງທີ່ເລືອກ"
+
+msgid "Do you want to delete selected schedules?"
+msgstr "ທ່ານຕ້ອງການລຶບຕາຕະລາງທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to disable selected schedules?"
+msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານຕາຕະລາງທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to enable selected schedules?"
+msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານຕາຕະລາງທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to toggle selected schedules?"
+msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານຕາຕະລາງທີ່ເລືອກບໍ່?"
+
+msgid "Invalid"
+msgstr "ບໍ່ຖືກຕ້ອງ"
+
+msgid "Destroy"
+msgstr "ທຳລາຍ"
+
+msgid "Create Snapshot"
+msgstr "ສ້າງສະແນັບຊັອດ"
+
+msgid "Destroy Snapshot"
+msgstr "ທຳລາຍສະແນັບຊັອດ"
+
+msgid "Scrub Pool"
+msgstr "ຂັດພູລ"
 
 msgid "Lifetime"
 msgstr "ອາຍຸການໃຊ້ງານ"
@@ -10815,59 +10758,14 @@ msgstr ""
 msgid "Presets"
 msgstr "ຄ່າທີ່ຕັ້ງໄວ້ລ່ວງໜ້າ"
 
-msgid "Add Schedule"
-msgstr "ເພີ່ມຕາຕະລາງ"
-
-msgid "Edit Schedule"
-msgstr "ແກ້ໄຂຕາຕະລາງ"
-
-msgid "Schedule is marked for deletion"
-msgstr "ຕາຕະລາງຖືກໝາຍໄວ້ເພື່ອລຶບ"
-
-msgid "Schedule is locked"
-msgstr "ຕາຕະລາງຖືກລັອກ"
-
-msgid "Schedule is unlocked"
-msgstr "ຕາຕະລາງຖືກປົດລັອກ"
-
-msgid "Delete Selected Schedules"
-msgstr "ລຶບຕາຕະລາງທີ່ເລືອກ"
-
-msgid "Do you want to delete selected schedules?"
-msgstr "ທ່ານຕ້ອງການລຶບຕາຕະລາງທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to disable selected schedules?"
-msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານຕາຕະລາງທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to enable selected schedules?"
-msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານຕາຕະລາງທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to toggle selected schedules?"
-msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານຕາຕະລາງທີ່ເລືອກບໍ່?"
-
-msgid "Invalid"
-msgstr "ບໍ່ຖືກຕ້ອງ"
-
-msgid "Destroy"
-msgstr "ທຳລາຍ"
-
-msgid "Create Snapshot"
-msgstr "ສ້າງສະແນັບຊັອດ"
-
-msgid "Destroy Snapshot"
-msgstr "ທຳລາຍສະແນັບຊັອດ"
-
-msgid "Scrub Pool"
-msgstr "ຂັດພູລ"
-
 msgid "Recursively create snapshots of all descendent datasets."
 msgstr "ສ້າງສະແນັບຊັອດຂອງຊຸດຂໍ້ມູນລູກຫຼານທັງໝົດແບບຕໍ່ເນື່ອງ."
 
-msgid "Scrub"
-msgstr "ຂັດ"
-
 msgid "Select pool."
 msgstr "ເລືອກພູລ."
+
+msgid "Scrub"
+msgstr "ຂັດ"
 
 msgid "No ZFS zpool information available."
 msgstr "ບໍ່ມີຂໍ້ມູນ zpool ຂອງ ZFS."
@@ -10883,6 +10781,48 @@ msgstr "ປ້ອນຕົວລະບຸ"
 
 msgid "Enter smartctl pass-through type."
 msgstr "ປ້ອນປະເພດການສົ່ງຜ່ານຂອງ smartctl."
+
+msgid "Login Name"
+msgstr "ຊື່ເຂົ້າລະບົບ"
+
+msgid "Full Name"
+msgstr "ຊື່ເຕັມ"
+
+msgid "SHA Password"
+msgstr "ລະຫັດຜ່ານ SHA"
+
+msgid "MD4 Password"
+msgstr "ລະຫັດຜ່ານ MD4"
+
+msgid "Shell"
+msgstr "ເຊວ"
+
+msgid "Primary Group"
+msgstr "ກຸ່ມຫຼັກ"
+
+msgid "Groups"
+msgstr "ກຸ່ມ"
+
+msgid "Timezone"
+msgstr "ເຂດເວລາ"
+
+msgid "File Manager Access"
+msgstr "ການເຂົ້າເຖິງໂຕຈັດການໄຟລ໌"
+
+msgid "Hidden Items"
+msgstr "ລາຍການທີ່ຊ່ອນຢູ່"
+
+msgid "Read Permission"
+msgstr "ການອະນຸຍາດອ່ານ"
+
+msgid "Create Permission"
+msgstr "ການອະນຸຍາດສ້າງ"
+
+msgid "Change Permission"
+msgstr "ການອະນຸຍາດປ່ຽນແປງ"
+
+msgid "Delete Permission"
+msgstr "ການອະນຸຍາດລຶບ"
 
 msgid "Add User Account"
 msgstr "ເພີ່ມບັນຊີຜູ້ໃຊ້"
@@ -10926,6 +10866,9 @@ msgstr "ສະຫຼັບການໃຊ້ງານຜູ້ໃຊ້ທີ່
 msgid "Do you want to toggle selected users?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານຜູ້ໃຊ້ທີ່ເລືອກບໍ່?"
 
+msgid "Active"
+msgstr "ກຳລັງໃຊ້ງານ"
+
 msgid "System User"
 msgstr "ຜູ້ໃຊ້ລະບົບ"
 
@@ -10940,9 +10883,6 @@ msgstr "ປ້ອນຊື່ເຂົ້າລະບົບ."
 
 msgid "Enter the full user name."
 msgstr "ປ້ອນຊື່ເຕັມຂອງຜູ້ໃຊ້."
-
-msgid "Full Name"
-msgstr "ຊື່ເຕັມ"
 
 msgid "Set user password."
 msgstr "ຕັ້ງລະຫັດຜ່ານຜູ້ໃຊ້."
@@ -11029,52 +10969,10 @@ msgstr "ໃຫ້ສິດແກ້ໄຂ"
 msgid "Grant delete permission"
 msgstr "ໃຫ້ສິດລຶບ"
 
-msgid "Login Name"
-msgstr "ຊື່ເຂົ້າລະບົບ"
-
-msgid "SHA Password"
-msgstr "ລະຫັດຜ່ານ SHA"
-
-msgid "MD4 Password"
-msgstr "ລະຫັດຜ່ານ MD4"
-
-msgid "Shell"
-msgstr "ເຊວ"
-
-msgid "Primary Group"
-msgstr "ກຸ່ມຫຼັກ"
-
-msgid "Groups"
-msgstr "ກຸ່ມ"
-
-msgid "Timezone"
-msgstr "ເຂດເວລາ"
-
-msgid "File Manager Access"
-msgstr "ການເຂົ້າເຖິງໂຕຈັດການໄຟລ໌"
-
-msgid "Hidden Items"
-msgstr "ລາຍການທີ່ຊ່ອນຢູ່"
-
-msgid "Read Permission"
-msgstr "ການອະນຸຍາດອ່ານ"
-
-msgid "Create Permission"
-msgstr "ການອະນຸຍາດສ້າງ"
-
-msgid "Change Permission"
-msgstr "ການອະນຸຍາດປ່ຽນແປງ"
-
-msgid "Delete Permission"
-msgstr "ການອະນຸຍາດລຶບ"
-
 msgid "Users"
 msgstr "ຜູ້ໃຊ້"
 
 msgid "Public Keys"
-msgstr "ຄີສາທາລະນະ"
-
-msgid "Public Key"
 msgstr "ຄີສາທາລະນະ"
 
 msgid "Add Public Key"
@@ -11119,20 +11017,11 @@ msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງ
 msgid "Reload"
 msgstr "ໂຫຼດໃໝ່"
 
+msgid "Public Key"
+msgstr "ຄີສາທາລະນະ"
+
 msgid "Public key information."
 msgstr "ຂໍ້ມູນຄີສາທາລະນະ."
-
-msgid "Enter group name."
-msgstr "ປ້ອນຊື່ກຸ່ມ."
-
-msgid "Group Name"
-msgstr "ຊື່ກຸ່ມ"
-
-msgid "Specify the group numeric id."
-msgstr "ລະບຸ ID ຕົວເລກຂອງກຸ່ມ."
-
-msgid "The recommended range for the group id is between 1000 and 32000."
-msgstr "ຊ່ວງທີ່ແນະນຳສຳລັບ ID ກຸ່ມແມ່ນລະຫວ່າງ 1000 ແລະ 32000."
 
 msgid "Add Group"
 msgstr "ເພີ່ມກຸ່ມ"
@@ -11181,6 +11070,18 @@ msgstr "ສະແດງກຸ່ມລະບົບ"
 
 msgid "Hide System Groups"
 msgstr "ຊ່ອນກຸ່ມລະບົບ"
+
+msgid "Enter group name."
+msgstr "ປ້ອນຊື່ກຸ່ມ."
+
+msgid "Group Name"
+msgstr "ຊື່ກຸ່ມ"
+
+msgid "Specify the group numeric id."
+msgstr "ລະບຸ ID ຕົວເລກຂອງກຸ່ມ."
+
+msgid "The recommended range for the group id is between 1000 and 32000."
+msgstr "ຊ່ວງທີ່ແນະນຳສຳລັບ ID ກຸ່ມແມ່ນລະຫວ່າງ 1000 ແລະ 32000."
 
 msgid "Enter AD or PDC name."
 msgstr "ປ້ອນຊື່ AD ຫຼື PDC."
@@ -11588,17 +11489,56 @@ msgstr "ຊື່ຂອງຕົວແປ."
 msgid "The value of the variable."
 msgstr "ຄ່າຂອງຕົວແປ."
 
+msgid "Name of the variable."
+msgstr "ຊື່ຂອງຕົວແປ."
+
+msgid "Enter Value"
+msgstr "ປ້ອນຄ່າ"
+
 msgid "Disabled variable names will be removed from /etc/rc.conf."
 msgstr "ຊື່ຕົວແປທີ່ຖືກປິດໃຊ້ງານຈະຖືກລຶບອອກຈາກ /etc/rc.conf."
 
 msgid "Enabled options will be added to /etc/rc.conf."
 msgstr "ຕົວເລືອກທີ່ເປີດໃຊ້ງານຈະຖືກເພີ່ມໃສ່ /etc/rc.conf."
 
-msgid "Name of the variable."
-msgstr "ຊື່ຂອງຕົວແປ."
+msgid "Button Location"
+msgstr "ຕຳແໜ່ງປຸ່ມ"
 
-msgid "Enter Value"
-msgstr "ປ້ອນຄ່າ"
+msgid "File Chooser"
+msgstr "ໂຕເລືອກໄຟລ໌"
+
+msgid "File Mode"
+msgstr "ໂໝດໄຟລ໌"
+
+msgid "GUI"
+msgstr "GUI"
+
+msgid "Navigation Bar"
+msgstr "ແຖບນຳທາງ"
+
+msgid "Tabs"
+msgstr "ແຖບ"
+
+msgid "Toggle Mode"
+msgstr "ໂໝດສະຫຼັບ"
+
+msgid "Navbar Style"
+msgstr "ຮູບແບບແຖບນຳທາງ"
+
+msgid "Binary Prefix"
+msgstr "ຄຳນຳໜ້າຖານສອງ"
+
+msgid "Colorful Meters"
+msgstr "ເຄື່ອງວັດສີສັນ"
+
+msgid "Skip View Mode"
+msgstr "ຂ້າມໂໝດເບິ່ງ"
+
+msgid "Show Max CPUs"
+msgstr "ສະແດງ CPU ສູງສຸດ"
+
+msgid "Diagnostics Information"
+msgstr "ຂໍ້ມູນການວິນິດໄສ"
 
 msgid ""
 "Display action buttons in the scrollable area instead of the footer area."
@@ -11672,54 +11612,21 @@ msgstr "ຈຳກັດຈຳນວນ CPU ສູງສຸດທີ່ຈະສ�
 msgid "Set the landing page for the Diagnostics > Information menu."
 msgstr "ຕັ້ງຄ່າໜ້າເປົ້າໝາຍສຳລັບເມນູ ການວິນິດໄສ > ຂໍ້ມູນ."
 
-msgid "Button Location"
-msgstr "ຕຳແໜ່ງປຸ່ມ"
-
-msgid "File Chooser"
-msgstr "ໂຕເລືອກໄຟລ໌"
-
-msgid "File Mode"
-msgstr "ໂໝດໄຟລ໌"
-
-msgid "GUI"
-msgstr "GUI"
-
-msgid "Navigation Bar"
-msgstr "ແຖບນຳທາງ"
-
-msgid "Tabs"
-msgstr "ແຖບ"
-
-msgid "Toggle Mode"
-msgstr "ໂໝດສະຫຼັບ"
-
-msgid "Navbar Style"
-msgstr "ຮູບແບບແຖບນຳທາງ"
-
-msgid "Binary Prefix"
-msgstr "ຄຳນຳໜ້າຖານສອງ"
-
-msgid "Colorful Meters"
-msgstr "ເຄື່ອງວັດສີສັນ"
-
-msgid "Skip View Mode"
-msgstr "ຂ້າມໂໝດເບິ່ງ"
-
-msgid "Show Max CPUs"
-msgstr "ສະແດງ CPU ສູງສຸດ"
-
-msgid "Diagnostics Information"
-msgstr "ຂໍ້ມູນການວິນິດໄສ"
-
-msgid "Show Interval"
-msgstr "ສະແດງຊ່ວງເວລາ"
-
 msgid ""
 "Set the number of days until a reminder is shown to backup system "
 "configuration. The default is 28 days. A value of 0 disables the reminder."
 msgstr ""
 "ຕັ້ງຈຳນວນມື້ກ່ອນທີ່ຈະສະແດງການແຈ້ງເຕືອນໃຫ້ສຳຮອງການຕັ້ງຄ່າລະບົບ. "
 "ຄ່າເລີ່ມຕົ້ນແມ່ນ 28 ມື້. ຄ່າ 0 ຈະປິດການແຈ້ງເຕືອນ."
+
+msgid "Show Interval"
+msgstr "ສະແດງຊ່ວງເວລາ"
+
+msgid "Do you really want to remove the selected item from the list?"
+msgstr "ທ່ານຕ້ອງການລຶບລາຍການທີ່ເລືອກອອກຈາກລາຍການແທ້ບໍ່?"
+
+msgid "Select item to remove from the list"
+msgstr "ເລືອກລາຍການທີ່ຈະລຶບອອກຈາກລາຍການ"
 
 msgid "Delete Selected Records"
 msgstr "ລຶບເຣັກຄອດທີ່ເລືອກ"
@@ -11778,12 +11685,6 @@ msgstr "ແກ້ໄຂເຣັກຄອດ"
 msgid "Record is unlocked"
 msgstr "ເຣັກຄອດຖືກປົດລັອກ"
 
-msgid "Do you really want to remove the selected item from the list?"
-msgstr "ທ່ານຕ້ອງການລຶບລາຍການທີ່ເລືອກອອກຈາກລາຍການແທ້ບໍ່?"
-
-msgid "Select item to remove from the list"
-msgstr "ເລືອກລາຍການທີ່ຈະລຶບອອກຈາກລາຍການ"
-
 msgid "Service"
 msgstr "ບໍລິການ"
 
@@ -11793,23 +11694,23 @@ msgstr "ບໍ່ໄດ້ກຳນົດ"
 msgid "The value is invalid."
 msgstr "ຄ່າບໍ່ຖືກຕ້ອງ."
 
+msgid "Enter additional parameters"
+msgstr "ປ້ອນພາຣາມິເຕີເພີ່ມເຕີມ"
+
+msgid "No additional parameters"
+msgstr "ບໍ່ມີພາຣາມິເຕີເພີ່ມເຕີມ"
+
+msgid "Enter a description for your reference."
+msgstr "ປ້ອນຄຳອະທິບາຍເພື່ອອ້າງອີງ."
+
 msgid "Network Address"
 msgstr "ທີ່ຢູ່ເຄືອຂ່າຍ"
 
 msgid "Enable Setting"
 msgstr "ເປີດໃຊ້ການຕັ້ງຄ່າ"
 
-msgid "Enter a description for your reference."
-msgstr "ປ້ອນຄຳອະທິບາຍເພື່ອອ້າງອີງ."
-
 msgid "IPv4 Address"
 msgstr "ທີ່ຢູ່ IPv4"
-
-msgid "Protect"
-msgstr "ປ້ອງກັນ"
-
-msgid "Protect Setting"
-msgstr "ການຕັ້ງຄ່າການປ້ອງກັນ"
 
 msgid "The UUID of the record."
 msgstr "UUID ຂອງເຣັກຄອດ."
@@ -11820,14 +11721,62 @@ msgstr "ປ້ອນຕົວລະບຸທີ່ບໍ່ຊ້ຳກັນທ
 msgid "Universally Unique Identifier"
 msgstr "ຕົວລະບຸທີ່ບໍ່ຊ້ຳກັນທົ່ວໂລກ"
 
-msgid "Enter additional parameters"
-msgstr "ປ້ອນພາຣາມິເຕີເພີ່ມເຕີມ"
+msgid "Protect"
+msgstr "ປ້ອງກັນ"
 
-msgid "No additional parameters"
-msgstr "ບໍ່ມີພາຣາມິເຕີເພີ່ມເຕີມ"
+msgid "Protect Setting"
+msgstr "ການຕັ້ງຄ່າການປ້ອງກັນ"
 
 msgid "Autodetect"
 msgstr "ກວດຈັບອັດຕະໂນມັດ"
+
+msgid "Standard Provider"
+msgstr "ຜູ້ໃຫ້ບໍລິການມາດຕະຖານ"
+
+msgid "Custom Provider"
+msgstr "ຜູ້ໃຫ້ບໍລິການແບບກຳນົດເອງ"
+
+msgid "Record Type"
+msgstr "ປະເພດເຣັກຄອດ"
+
+msgid "Provider"
+msgstr "ຜູ້ໃຫ້ບໍລິການ"
+
+msgid "Provider Name"
+msgstr "ຊື່ຜູ້ໃຫ້ບໍລິການ"
+
+msgid "Host Names"
+msgstr "ຊື່ໂຮສ"
+
+msgid "Wildcard Domain"
+msgstr "ໂດເມນແບບ Wildcard"
+
+msgid "Use HTTPS"
+msgstr "ໃຊ້ HTTPS"
+
+msgid "Check IP Server"
+msgstr "ເຊີບເວີກວດສອບ IP"
+
+msgid "Check IP Path"
+msgstr "ເສັ້ນທາງກວດສອບ IP"
+
+msgid "Check IP using HTTPS"
+msgstr "ກວດສອບ IP ໂດຍໃຊ້ HTTPS"
+
+msgid "Check IP Command"
+msgstr "ຄຳສັ່ງກວດສອບ IP"
+
+msgid "User Agent"
+msgstr "User Agent"
+
+msgid "DDNS-Server"
+msgstr "ເຊີບເວີ DDNS"
+
+msgid "DDNS-Path"
+msgstr "ເສັ້ນທາງ DDNS"
+
+msgid "Append my IP"
+msgstr "ເພີ່ມ IP ຂອງຂ້ອຍ"
 
 msgid "Add Provider"
 msgstr "ເພີ່ມຜູ້ໃຫ້ບໍລິການ"
@@ -11879,6 +11828,12 @@ msgstr "ປະເພດບໍ່ໄດ້ກຳນົດ"
 
 msgid "Unknown Provider"
 msgstr "ຜູ້ໃຫ້ບໍລິການບໍ່ຮູ້ຈັກ"
+
+msgid "Providers"
+msgstr "ຜູ້ໃຫ້ບໍລິການ"
+
+msgid "Global Settings"
+msgstr "ການຕັ້ງຄ່າທົ່ວໄປ"
 
 msgid ""
 "Select \"Custom Provider\" for customizing the DDNS update server details "
@@ -11994,59 +11949,44 @@ msgstr ""
 msgid "These parameters will be added to this provider configuration"
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນການຕັ້ງຄ່າຜູ້ໃຫ້ບໍລິການນີ້"
 
-msgid "Standard Provider"
-msgstr "ຜູ້ໃຫ້ບໍລິການມາດຕະຖານ"
+msgid "Verify Address"
+msgstr "ກວດສອບທີ່ຢູ່"
 
-msgid "Custom Provider"
-msgstr "ຜູ້ໃຫ້ບໍລິການແບບກຳນົດເອງ"
+msgid "Fake Address"
+msgstr "ທີ່ຢູ່ປອມ"
 
-msgid "Record Type"
-msgstr "ປະເພດເຣັກຄອດ"
+msgid "Allow IPv6"
+msgstr "ອະນຸຍາດ IPv6"
 
-msgid "Provider"
-msgstr "ຜູ້ໃຫ້ບໍລິການ"
+msgid "Network Interface"
+msgstr "ອິນເຕີເຟດເຄືອຂ່າຍ"
 
-msgid "Provider Name"
-msgstr "ຊື່ຜູ້ໃຫ້ບໍລິການ"
+msgid "Iterations"
+msgstr "ຈຳນວນຮອບ"
 
-msgid "Host Names"
-msgstr "ຊື່ໂຮສ"
+msgid "Check Interval"
+msgstr "ຊ່ວງເວລາກວດສອບ"
 
-msgid "Wildcard Domain"
-msgstr "ໂດເມນແບບ Wildcard"
+msgid "Force Update Interval"
+msgstr "ຊ່ວງເວລາບັງຄັບອັບເດດ"
 
-msgid "Use HTTPS"
-msgstr "ໃຊ້ HTTPS"
+msgid "Secure SSL"
+msgstr "SSL ທີ່ປອດໄພ"
 
-msgid "Check IP Server"
-msgstr "ເຊີບເວີກວດສອບ IP"
+msgid "Broken RTC"
+msgstr "RTC ເສຍ"
 
-msgid "Check IP Path"
-msgstr "ເສັ້ນທາງກວດສອບ IP"
+msgid "CA Trusted Certificates"
+msgstr "ໃບຮັບຮອງ CA ທີ່ເຊື່ອຖືໄດ້"
 
-msgid "Check IP using HTTPS"
-msgstr "ກວດສອບ IP ໂດຍໃຊ້ HTTPS"
+msgid "Cache Directory"
+msgstr "ໄດເຣັກທໍຣີແຄດ"
 
-msgid "Check IP Command"
-msgstr "ຄຳສັ່ງກວດສອບ IP"
+msgid "Startup Delay"
+msgstr "ການຊັກຊ້າໃນການເລີ່ມຕົ້ນ"
 
-msgid "User Agent"
-msgstr "User Agent"
-
-msgid "DDNS-Server"
-msgstr "ເຊີບເວີ DDNS"
-
-msgid "DDNS-Path"
-msgstr "ເສັ້ນທາງ DDNS"
-
-msgid "Append my IP"
-msgstr "ເພີ່ມ IP ຂອງຂ້ອຍ"
-
-msgid "Providers"
-msgstr "ຜູ້ໃຫ້ບໍລິການ"
-
-msgid "Global Settings"
-msgstr "ການຕັ້ງຄ່າທົ່ວໄປ"
+msgid "Log Level"
+msgstr "ລະດັບການບັນທຶກ"
 
 msgid ""
 "IP address validation can be disabled by setting this option to false."
@@ -12161,47 +12101,14 @@ msgstr "ດີບັກ"
 msgid "These parameters are appended to the inadyn.conf file."
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຖືກເພີ່ມໃສ່ທ້າຍໄຟລ໌ inadyn.conf."
 
-msgid "Verify Address"
-msgstr "ກວດສອບທີ່ຢູ່"
-
-msgid "Fake Address"
-msgstr "ທີ່ຢູ່ປອມ"
-
-msgid "Allow IPv6"
-msgstr "ອະນຸຍາດ IPv6"
-
-msgid "Network Interface"
-msgstr "ອິນເຕີເຟດເຄືອຂ່າຍ"
-
-msgid "Iterations"
-msgstr "ຈຳນວນຮອບ"
-
-msgid "Check Interval"
-msgstr "ຊ່ວງເວລາກວດສອບ"
-
-msgid "Force Update Interval"
-msgstr "ຊ່ວງເວລາບັງຄັບອັບເດດ"
-
-msgid "Secure SSL"
-msgstr "SSL ທີ່ປອດໄພ"
-
-msgid "Broken RTC"
-msgstr "RTC ເສຍ"
-
-msgid "CA Trusted Certificates"
-msgstr "ໃບຮັບຮອງ CA ທີ່ເຊື່ອຖືໄດ້"
-
-msgid "Cache Directory"
-msgstr "ໄດເຣັກທໍຣີແຄດ"
-
-msgid "Startup Delay"
-msgstr "ການຊັກຊ້າໃນການເລີ່ມຕົ້ນ"
-
-msgid "Log Level"
-msgstr "ລະດັບການບັນທຶກ"
-
 msgid "Media Type"
 msgstr "ປະເພດສື່"
+
+msgid "Media Folders"
+msgstr "ໂຟນເດີສື່"
+
+msgid "Media Folder"
+msgstr "ໂຟນເດີສື່"
 
 msgid "Add Media Folder"
 msgstr "ເພີ່ມໂຟນເດີສື່"
@@ -12262,12 +12169,6 @@ msgstr "ສະແກນໂຟນເດີສຳລັບໄຟລ໌ຮູບພ
 
 msgid "Scan folder for video and image files."
 msgstr "ສະແກນໂຟນເດີສຳລັບໄຟລ໌ວິດີໂອ ແລະ ຮູບພາບ."
-
-msgid "Media Folders"
-msgstr "ໂຟນເດີສື່"
-
-msgid "Media Folder"
-msgstr "ໂຟນເດີສື່"
 
 msgid "Inotify"
 msgstr "Inotify"
@@ -12387,26 +12288,17 @@ msgstr "ຊື່ກຸ່ມກວດສອບສິດ"
 msgid "Auth Type"
 msgstr "ປະເພດການກວດສອບສິດ"
 
-msgid "No CHAP users found."
-msgstr "ບໍ່ພົບຜູ້ໃຊ້ CHAP."
+msgid "Name of the Auth Group."
+msgstr "ຊື່ຂອງກຸ່ມກວດສອບສິດ."
 
-msgid "Mutual-CHAP"
+msgid "Sets the authentication type."
+msgstr "ຕັ້ງປະເພດການກວດສອບສິດ."
+
+msgid "CHAP-Mutual"
 msgstr "CHAP-ເຊິ່ງກັນແລະກັນ"
 
-msgid "No Mutual-CHAP users found."
-msgstr "ບໍ່ພົບຜູ້ໃຊ້ CHAP-ເຊິ່ງກັນແລະກັນ."
-
-msgid "Initiator Name"
-msgstr "ຊື່ຜູ້ເລີ່ມຕົ້ນ"
-
-msgid "No initiator names found."
-msgstr "ບໍ່ພົບຊື່ຜູ້ເລີ່ມຕົ້ນ."
-
-msgid "Initiator Portal"
-msgstr "ພໍທັລຜູ້ເລີ່ມຕົ້ນ"
-
-msgid "No initiator portals found."
-msgstr "ບໍ່ພົບພໍທັລຜູ້ເລີ່ມຕົ້ນ."
+msgid "These parameters will be added to this auth-group."
+msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນກຸ່ມກວດສອບສິດນີ້."
 
 msgid "Add Auth Group"
 msgstr "ເພີ່ມກຸ່ມກວດສອບສິດ"
@@ -12453,23 +12345,140 @@ msgstr "ຊື່ຜູ້ເລີ່ມຕົ້ນ"
 msgid "Initiator Portals"
 msgstr "ພໍທັລຜູ້ເລີ່ມຕົ້ນ"
 
-msgid "Name of the Auth Group."
-msgstr "ຊື່ຂອງກຸ່ມກວດສອບສິດ."
+msgid "No CHAP users found."
+msgstr "ບໍ່ພົບຜູ້ໃຊ້ CHAP."
 
-msgid "Sets the authentication type."
-msgstr "ຕັ້ງປະເພດການກວດສອບສິດ."
-
-msgid "CHAP-Mutual"
+msgid "Mutual-CHAP"
 msgstr "CHAP-ເຊິ່ງກັນແລະກັນ"
 
-msgid "These parameters will be added to this auth-group."
-msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນກຸ່ມກວດສອບສິດນີ້."
+msgid "No Mutual-CHAP users found."
+msgstr "ບໍ່ພົບຜູ້ໃຊ້ CHAP-ເຊິ່ງກັນແລະກັນ."
 
-msgid "Name of the LUN."
-msgstr "ຊື່ຂອງ LUN."
+msgid "Initiator Name"
+msgstr "ຊື່ຜູ້ເລີ່ມຕົ້ນ"
+
+msgid "No initiator names found."
+msgstr "ບໍ່ພົບຊື່ຜູ້ເລີ່ມຕົ້ນ."
+
+msgid "Initiator Portal"
+msgstr "ພໍທັລຜູ້ເລີ່ມຕົ້ນ"
+
+msgid "No initiator portals found."
+msgstr "ບໍ່ພົບພໍທັລຜູ້ເລີ່ມຕົ້ນ."
 
 msgid "LUN Name"
 msgstr "ຊື່ LUN"
+
+msgid "Backend"
+msgstr "Backend"
+
+msgid "CTL LUN"
+msgstr "CTL LUN"
+
+msgid "Device ID"
+msgstr "ID ອຸປະກອນ"
+
+msgid "Device Type"
+msgstr "ປະເພດອຸປະກອນ"
+
+msgid "Passthrough Address"
+msgstr "ທີ່ຢູ່ Passthrough"
+
+msgid "LUN Vendor"
+msgstr "ຜູ້ຜະລິດ LUN"
+
+msgid "LUN Product"
+msgstr "ຜະລິດຕະພັນ LUN"
+
+msgid "LUN Revision"
+msgstr "ເວີຊັນ LUN"
+
+msgid "LUN SCSI Name"
+msgstr "ຊື່ SCSI ຂອງ LUN"
+
+msgid "LUN EUI-64\tidentifier"
+msgstr "ຕົວລະບຸ EUI-64 ຂອງ LUN"
+
+msgid "LUN NAA Identifier"
+msgstr "ຕົວລະບຸ NAA ຂອງ LUN"
+
+msgid "LUN UUID"
+msgstr "UUID ຂອງ LUN"
+
+msgid "HA Role"
+msgstr "ບົດບາດ HA"
+
+msgid "Insecure TPC"
+msgstr "TPC ບໍ່ປອດໄພ"
+
+msgid "Read Cache"
+msgstr "ແຄດການອ່ານ"
+
+msgid "Read Only"
+msgstr "ອ່ານເທົ່ານັ້ນ"
+
+msgid "Reordering"
+msgstr "ການຈັດລຳດັບໃໝ່"
+
+msgid "Serialize Sequence"
+msgstr "ລຳດັບ Serialize"
+
+msgid "Physical Block Size"
+msgstr "ຂະໜາດບລັອກທາງກາຍະພາບ"
+
+msgid "Physical Block Offset"
+msgstr "ອັອຟເຊັດບລັອກທາງກາຍະພາບ"
+
+msgid "UNMAP Block Size"
+msgstr "ຂະໜາດບລັອກ UNMAP"
+
+msgid "UNMAP Block Offset"
+msgstr "ອັອຟເຊັດບລັອກ UNMAP"
+
+msgid "RPM"
+msgstr "RPM"
+
+msgid "Form Factor"
+msgstr "Form Factor"
+
+msgid "Provisioning Type"
+msgstr "ປະເພດ Provisioning"
+
+msgid "UNMAP"
+msgstr "UNMAP"
+
+msgid "UNMAP Maximum LBA"
+msgstr "LBA ສູງສຸດຂອງ UNMAP"
+
+msgid "UNMAP Maximum Descriptors"
+msgstr "ຕົວອະທິບາຍສູງສຸດຂອງ UNMAP"
+
+msgid "Write Same Maximum LBA"
+msgstr "LBA ສູງສຸດຂອງ Write Same"
+
+msgid "Avail Threshold"
+msgstr "ລະດັບຫວ່າງ"
+
+msgid "Used Threshold"
+msgstr "ລະດັບທີ່ໃຊ້ແລ້ວ"
+
+msgid "Pool Avail Threshold"
+msgstr "ລະດັບຫວ່າງຂອງພູລ"
+
+msgid "Pool Used Threshold"
+msgstr "ລະດັບທີ່ໃຊ້ແລ້ວຂອງພູລ"
+
+msgid "Threads"
+msgstr "Threads"
+
+msgid "Additional Options for Block Backend"
+msgstr "ຕົວເລືອກເພີ່ມເຕີມສຳລັບ Block Backend"
+
+msgid "Additional Options for RAM Disk Backend"
+msgstr "ຕົວເລືອກເພີ່ມເຕີມສຳລັບ RAM Disk Backend"
+
+msgid "Name of the LUN."
+msgstr "ຊື່ຂອງ LUN."
 
 msgid "The CTL backend to use for a given LUN."
 msgstr "CTL backend ທີ່ຈະໃຊ້ສຳລັບ LUN ທີ່ໃຫ້ໄວ້."
@@ -12509,9 +12518,6 @@ msgstr "ຕົວລະບຸຕົວເລກທົ່ວໄປທີ່ຈະ
 
 msgid "The SCSI Device Identification string presented to the initiator."
 msgstr "ສະຕຣິງການລະບຸອຸປະກອນ SCSI ທີ່ນຳສະເໜີຕໍ່ຜູ້ເລີ່ມຕົ້ນ."
-
-msgid "Device ID"
-msgstr "ID ອຸປະກອນ"
 
 msgid "Specify the SCSI device type to use when creating the LUN."
 msgstr "ລະບຸປະເພດອຸປະກອນ SCSI ທີ່ຈະໃຊ້ເມື່ອສ້າງ LUN."
@@ -12736,12 +12742,6 @@ msgstr ""
 msgid "These parameters will be added to this lun."
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນ LUN ນີ້."
 
-msgid "Additional Options for Block Backend"
-msgstr "ຕົວເລືອກເພີ່ມເຕີມສຳລັບ Block Backend"
-
-msgid "Additional Options for RAM Disk Backend"
-msgstr "ຕົວເລືອກເພີ່ມເຕີມສຳລັບ RAM Disk Backend"
-
 msgid "Add LUN"
 msgstr "ເພີ່ມ LUN"
 
@@ -12781,104 +12781,17 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານ LUN ທ�
 msgid "Do you want to toggle selected LUNs?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານ LUN ທີ່ເລືອກບໍ່?"
 
-msgid "Backend"
-msgstr "Backend"
+msgid "Listen"
+msgstr "ຮັບຟັງ"
 
-msgid "CTL LUN"
-msgstr "CTL LUN"
+msgid "No listeners found."
+msgstr "ບໍ່ພົບຈຸດຮັບຟັງ."
 
-msgid "Device Type"
-msgstr "ປະເພດອຸປະກອນ"
+msgid "Option"
+msgstr "ຕົວເລືອກ"
 
-msgid "Passthrough Address"
-msgstr "ທີ່ຢູ່ Passthrough"
-
-msgid "LUN Vendor"
-msgstr "ຜູ້ຜະລິດ LUN"
-
-msgid "LUN Product"
-msgstr "ຜະລິດຕະພັນ LUN"
-
-msgid "LUN Revision"
-msgstr "ເວີຊັນ LUN"
-
-msgid "LUN SCSI Name"
-msgstr "ຊື່ SCSI ຂອງ LUN"
-
-msgid "LUN EUI-64\tidentifier"
-msgstr "ຕົວລະບຸ EUI-64 ຂອງ LUN"
-
-msgid "LUN NAA Identifier"
-msgstr "ຕົວລະບຸ NAA ຂອງ LUN"
-
-msgid "LUN UUID"
-msgstr "UUID ຂອງ LUN"
-
-msgid "HA Role"
-msgstr "ບົດບາດ HA"
-
-msgid "Insecure TPC"
-msgstr "TPC ບໍ່ປອດໄພ"
-
-msgid "Read Cache"
-msgstr "ແຄດການອ່ານ"
-
-msgid "Read Only"
-msgstr "ອ່ານເທົ່ານັ້ນ"
-
-msgid "Reordering"
-msgstr "ການຈັດລຳດັບໃໝ່"
-
-msgid "Serialize Sequence"
-msgstr "ລຳດັບ Serialize"
-
-msgid "Physical Block Size"
-msgstr "ຂະໜາດບລັອກທາງກາຍະພາບ"
-
-msgid "Physical Block Offset"
-msgstr "ອັອຟເຊັດບລັອກທາງກາຍະພາບ"
-
-msgid "UNMAP Block Size"
-msgstr "ຂະໜາດບລັອກ UNMAP"
-
-msgid "UNMAP Block Offset"
-msgstr "ອັອຟເຊັດບລັອກ UNMAP"
-
-msgid "RPM"
-msgstr "RPM"
-
-msgid "Form Factor"
-msgstr "Form Factor"
-
-msgid "Provisioning Type"
-msgstr "ປະເພດ Provisioning"
-
-msgid "UNMAP"
-msgstr "UNMAP"
-
-msgid "UNMAP Maximum LBA"
-msgstr "LBA ສູງສຸດຂອງ UNMAP"
-
-msgid "UNMAP Maximum Descriptors"
-msgstr "ຕົວອະທິບາຍສູງສຸດຂອງ UNMAP"
-
-msgid "Write Same Maximum LBA"
-msgstr "LBA ສູງສຸດຂອງ Write Same"
-
-msgid "Avail Threshold"
-msgstr "ລະດັບຫວ່າງ"
-
-msgid "Used Threshold"
-msgstr "ລະດັບທີ່ໃຊ້ແລ້ວ"
-
-msgid "Pool Avail Threshold"
-msgstr "ລະດັບຫວ່າງຂອງພູລ"
-
-msgid "Pool Used Threshold"
-msgstr "ລະດັບທີ່ໃຊ້ແລ້ວຂອງພູລ"
-
-msgid "Threads"
-msgstr "Threads"
+msgid "No options found."
+msgstr "ບໍ່ພົບຕົວເລືອກ."
 
 msgid "Add Portal Group"
 msgstr "ເພີ່ມກຸ່ມພໍທໍ"
@@ -12919,11 +12832,23 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານກຸ່
 msgid "Do you want to toggle selected portal groups?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານກຸ່ມພໍທໍທີ່ເລືອກບໍ່?"
 
-msgid "Name of the Portal Group."
-msgstr "ຊື່ຂອງກຸ່ມພໍທໍ."
-
 msgid "Portal Group Name"
 msgstr "ຊື່ກຸ່ມພໍທໍ"
+
+msgid "Discovery Filter"
+msgstr "ໂຕກອງການຄົ້ນພົບ"
+
+msgid "Offload"
+msgstr "Offload"
+
+msgid "Redirect"
+msgstr "ສົ່ງຕໍ່"
+
+msgid "Foreign"
+msgstr "ພາຍນອກ"
+
+msgid "Name of the Portal Group."
+msgstr "ຊື່ຂອງກຸ່ມພໍທໍ."
 
 msgid "These parameters will be added to this portal-group."
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນກຸ່ມພໍທໍນີ້."
@@ -12998,30 +12923,6 @@ msgstr ""
 "ຄ່າ tag 16-bit ທີ່ບໍ່ຊ້ຳກັນຂອງກຸ່ມພໍທໍນີ້. ຖ້າບໍ່ໄດ້ລະບຸ, "
 "ຄ່າຈະຖືກສ້າງຂຶ້ນໂດຍອັດຕະໂນມັດ."
 
-msgid "Discovery Filter"
-msgstr "ໂຕກອງການຄົ້ນພົບ"
-
-msgid "Offload"
-msgstr "Offload"
-
-msgid "Redirect"
-msgstr "ສົ່ງຕໍ່"
-
-msgid "Foreign"
-msgstr "ພາຍນອກ"
-
-msgid "Listen"
-msgstr "ຮັບຟັງ"
-
-msgid "Option"
-msgstr "ຕົວເລືອກ"
-
-msgid "No listeners found."
-msgstr "ບໍ່ພົບຈຸດຮັບຟັງ."
-
-msgid "No options found."
-msgstr "ບໍ່ພົບຕົວເລືອກ."
-
 msgid "Enter user name."
 msgstr "ປ້ອນຊື່ຜູ້ໃຊ້."
 
@@ -13078,6 +12979,12 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານຜູ້
 msgid "Do you want to toggle selected CHAP users?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານຜູ້ໃຊ້ CHAP ທີ່ເລືອກບໍ່?"
 
+msgid "Mutual User"
+msgstr "ຜູ້ໃຊ້ຮ່ວມ"
+
+msgid "Mutual Secret"
+msgstr "ລະຫັດລັບຮ່ວມ"
+
 msgid "Add Mutual CHAP User"
 msgstr "ເພີ່ມຜູ້ໃຊ້ Mutual CHAP"
 
@@ -13128,11 +13035,15 @@ msgstr ""
 msgid "Enter mutual user name."
 msgstr "ປ້ອນຊື່ຜູ້ໃຊ້ຮ່ວມ."
 
-msgid "Mutual User"
-msgstr "ຜູ້ໃຊ້ຮ່ວມ"
+msgid "Enter an iSCSI initiator name."
+msgstr "ປ້ອນຊື່ iSCSI initiator."
 
-msgid "Mutual Secret"
-msgstr "ລະຫັດລັບຮ່ວມ"
+msgid ""
+"Link initiator-name to auth-groups. An Initiator with this name will be "
+"allowed to connect to the selected auth-groups."
+msgstr ""
+"ເຊື່ອມໂຍງ initiator-name ກັບກຸ່ມການຢືນຢັນຕົວຕົນ. Initiator "
+"ທີ່ມີຊື່ນີ້ຈະໄດ້ຮັບອະນຸຍາດໃຫ້ເຊື່ອມຕໍ່ກັບກຸ່ມການຢືນຢັນຕົວຕົນທີ່ເລືອກ."
 
 msgid "Add Initiator Name"
 msgstr "ເພີ່ມຊື່ Initiator"
@@ -13172,16 +13083,6 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານຊື່
 
 msgid "Do you want to toggle selected initiator names?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານຊື່ initiator ທີ່ເລືອກບໍ່?"
-
-msgid "Enter an iSCSI initiator name."
-msgstr "ປ້ອນຊື່ iSCSI initiator."
-
-msgid ""
-"Link initiator-name to auth-groups. An Initiator with this name will be "
-"allowed to connect to the selected auth-groups."
-msgstr ""
-"ເຊື່ອມໂຍງ initiator-name ກັບກຸ່ມການຢືນຢັນຕົວຕົນ. Initiator "
-"ທີ່ມີຊື່ນີ້ຈະໄດ້ຮັບອະນຸຍາດໃຫ້ເຊື່ອມຕໍ່ກັບກຸ່ມການຢືນຢັນຕົວຕົນທີ່ເລືອກ."
 
 msgid "IP Address Prefix"
 msgstr "ຄຳນຳໜ້າທີ່ຢູ່ IP"
@@ -13238,9 +13139,6 @@ msgstr ""
 "ເຊື່ອມໂຍງ initiator-portal ກັບກຸ່ມການຢືນຢັນຕົວຕົນ. Initiator "
 "ທີ່ກົງກັບທີ່ຢູ່ນີ້ຈະໄດ້ຮັບອະນຸຍາດໃຫ້ເຊື່ອມຕໍ່ກັບກຸ່ມການຢືນຢັນຕົວຕົນທີ່ເລືອກ."
 
-msgid "iSNS Servers"
-msgstr "ເຊີບເວີ iSNS"
-
 msgid "IPv4 or IPv6 address of an iSNS server to register on."
 msgstr "ທີ່ຢູ່ IPv4 ຫຼື IPv6 ຂອງເຊີບເວີ iSNS ເພື່ອລົງທະບຽນ."
 
@@ -13285,6 +13183,9 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານເຊີ
 
 msgid "Do you want to toggle selected iSNS servers?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານເຊີບເວີ iSNS ທີ່ເລືອກບໍ່?"
+
+msgid "iSNS Servers"
+msgstr "ເຊີບເວີ iSNS"
 
 msgid "An IPv4 or IPv6 address to listen on for incoming connections."
 msgstr "ທີ່ຢູ່ IPv4 ຫຼື IPv6 ເພື່ອຮັບຟັງການເຊື່ອມຕໍ່ທີ່ເຂົ້າມາ."
@@ -13465,9 +13366,6 @@ msgstr "ຄ່າຂອງຕົວເລືອກ."
 msgid "Link this option to selected portal-groups."
 msgstr "ເຊື່ອມໂຍງຕົວເລືອກນີ້ກັບກຸ່ມພໍທໍທີ່ເລືອກ."
 
-msgid "Name of the port."
-msgstr "ຊື່ຂອງພອດ."
-
 msgid "Port Name"
 msgstr "ຊື່ພອດ"
 
@@ -13510,6 +13408,42 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານລາຍ
 msgid "Do you want to toggle selected port records?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານລາຍການພອດທີ່ເລືອກບໍ່?"
 
+msgid "Name of the port."
+msgstr "ຊື່ຂອງພອດ."
+
+msgid "Alias"
+msgstr "ຊື່ແຝງ"
+
+msgid "Name of the target."
+msgstr "ຊື່ຂອງເປົ້າໝາຍ."
+
+msgid "These parameters will be added to this target."
+msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນເປົ້າໝາຍນີ້."
+
+msgid "Assign a human-readable description to the target."
+msgstr "ກຳນົດຄຳອະທິບາຍທີ່ຄົນສາມາດອ່ານໄດ້ໃຫ້ກັບເປົ້າໝາຍ."
+
+msgid "Assign a previously defined authentication group to the target."
+msgstr "ກຳນົດກຸ່ມການຢືນຢັນຕົວຕົນທີ່ໄດ້ກຳນົດໄວ້ກ່ອນໜ້ານີ້ໃຫ້ກັບເປົ້າໝາຍ."
+
+msgid "Permit access without authentication"
+msgstr "ອະນຸຍາດການເຂົ້າເຖິງໂດຍບໍ່ຕ້ອງຢືນຢັນຕົວຕົນ"
+
+msgid "Assign a previously defined portal group to the target."
+msgstr "ກຳນົດກຸ່ມພໍທໍທີ່ໄດ້ກຳນົດໄວ້ກ່ອນໜ້ານີ້ໃຫ້ກັບເປົ້າໝາຍ."
+
+msgid ""
+"IPv4 or IPv6 address to redirect initiators to. When configured, all "
+"initiators attempting to connect to this target will get redirected using "
+"\"Target moved temporarily\" login response."
+msgstr ""
+"ທີ່ຢູ່ IPv4 ຫຼື IPv6 ເພື່ອສົ່ງຕໍ່ initiator ໄປ. ເມື່ອຕັ້ງຄ່າແລ້ວ, initiator "
+"ທັງໝົດທີ່ພະຍາຍາມເຊື່ອມຕໍ່ຫາເປົ້າໝາຍນີ້ຈະຖືກສົ່ງຕໍ່ໂດຍໃຊ້ການຕອບກັບການເຂົ້າສູ່ລ"
+"ະບົບ \"Target moved temporarily\"."
+
+msgid "No ports found."
+msgstr "ບໍ່ພົບພອດ."
+
 msgid "Add Target"
 msgstr "ເພີ່ມເປົ້າໝາຍ"
 
@@ -13548,39 +13482,6 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານເປົ
 
 msgid "Do you want to toggle selected targets?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານເປົ້າໝາຍທີ່ເລືອກບໍ່?"
-
-msgid "Name of the target."
-msgstr "ຊື່ຂອງເປົ້າໝາຍ."
-
-msgid "These parameters will be added to this target."
-msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນເປົ້າໝາຍນີ້."
-
-msgid "Assign a human-readable description to the target."
-msgstr "ກຳນົດຄຳອະທິບາຍທີ່ຄົນສາມາດອ່ານໄດ້ໃຫ້ກັບເປົ້າໝາຍ."
-
-msgid "Alias"
-msgstr "ຊື່ແຝງ"
-
-msgid "Assign a previously defined authentication group to the target."
-msgstr "ກຳນົດກຸ່ມການຢືນຢັນຕົວຕົນທີ່ໄດ້ກຳນົດໄວ້ກ່ອນໜ້ານີ້ໃຫ້ກັບເປົ້າໝາຍ."
-
-msgid "Permit access without authentication"
-msgstr "ອະນຸຍາດການເຂົ້າເຖິງໂດຍບໍ່ຕ້ອງຢືນຢັນຕົວຕົນ"
-
-msgid "Assign a previously defined portal group to the target."
-msgstr "ກຳນົດກຸ່ມພໍທໍທີ່ໄດ້ກຳນົດໄວ້ກ່ອນໜ້ານີ້ໃຫ້ກັບເປົ້າໝາຍ."
-
-msgid ""
-"IPv4 or IPv6 address to redirect initiators to. When configured, all "
-"initiators attempting to connect to this target will get redirected using "
-"\"Target moved temporarily\" login response."
-msgstr ""
-"ທີ່ຢູ່ IPv4 ຫຼື IPv6 ເພື່ອສົ່ງຕໍ່ initiator ໄປ. ເມື່ອຕັ້ງຄ່າແລ້ວ, initiator "
-"ທັງໝົດທີ່ພະຍາຍາມເຊື່ອມຕໍ່ຫາເປົ້າໝາຍນີ້ຈະຖືກສົ່ງຕໍ່ໂດຍໃຊ້ການຕອບກັບການເຂົ້າສູ່ລ"
-"ະບົບ \"Target moved temporarily\"."
-
-msgid "No ports found."
-msgstr "ບໍ່ພົບພອດ."
 
 msgid "Max Processes"
 msgstr "ຈຳນວນໂປຣເຊສສູງສຸດ"
@@ -13624,44 +13525,35 @@ msgstr "ເວລາໝົດກຳນົດສຳລັບຄຳຮ້ອງຂ
 msgid "These parameters will be added to the global section of ctl.conf"
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນສ່ວນ global ຂອງ ctl.conf"
 
-msgid "Add iSCSI Initiator"
-msgstr "ເພີ່ມ iSCSI Initiator"
+msgid "Target Address"
+msgstr "ທີ່ຢູ່ເປົ້າໝາຍ"
 
-msgid "Edit iSCSI Initiator"
-msgstr "ແກ້ໄຂ iSCSI Initiator"
+msgid "CHAP Name"
+msgstr "ຊື່ CHAP"
 
-msgid "iSCSI Initiator is marked for deletion"
-msgstr "iSCSI Initiator ຖືກໝາຍໄວ້ເພື່ອລຶບ"
+msgid "CHAP Secret"
+msgstr "ລະຫັດລັບ CHAP"
 
-msgid "iSCSI Initiator is locked"
-msgstr "iSCSI Initiator ຖືກລັອກ"
+msgid "Mutual CHAP Name"
+msgstr "ຊື່ Mutual CHAP"
 
-msgid "iSCSI Initiator is unlocked"
-msgstr "iSCSI Initiator ຖືກປົດລັອກ"
+msgid "Mutual CHAP Secret"
+msgstr "ລະຫັດລັບ Mutual CHAP"
 
-msgid "Delete Selected iSCSI Initiators"
-msgstr "ລຶບ iSCSI Initiator ທີ່ເລືອກ"
+msgid "Header Digest"
+msgstr "Header Digest"
 
-msgid "Disable Selected iSCSI Initiators"
-msgstr "ປິດໃຊ້ງານ iSCSI Initiator ທີ່ເລືອກ"
+msgid "Data Digest"
+msgstr "Data Digest"
 
-msgid "Enable Selected iSCSI Initiators"
-msgstr "ເປີດໃຊ້ງານ iSCSI Initiator ທີ່ເລືອກ"
+msgid "Offload Driver"
+msgstr "ໄດເວີ Offload"
 
-msgid "Toggle Selected iSCSI Initiators"
-msgstr "ສະຫຼັບການໃຊ້ງານ iSCSI Initiator ທີ່ເລືອກ"
+msgid "Session State"
+msgstr "ສະຖານະເຊສຊັນ"
 
-msgid "Do you want to delete selected iSCSI initiators?"
-msgstr "ທ່ານຕ້ອງການລຶບ iSCSI initiator ທີ່ເລືອກອອກບໍ່?"
-
-msgid "Do you want to disable selected iSCSI initiators?"
-msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານ iSCSI initiator ທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to enable selected iSCSI initiators?"
-msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານ iSCSI initiator ທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to toggle selected iSCSI initiators?"
-msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານ iSCSI initiator ທີ່ເລືອກບໍ່?"
+msgid "Session Type"
+msgstr "ປະເພດເຊສຊັນ"
 
 msgid "This is a nickname and is for information only."
 msgstr "ນີ້ແມ່ນຊື່ຫຼິ້ນ ແລະ ມີໄວ້ເພື່ອເປັນຂໍ້ມູນເທົ່ານັ້ນ."
@@ -13767,35 +13659,44 @@ msgstr ""
 msgid "Discovery"
 msgstr "ການຄົ້ນພົບ"
 
-msgid "Target Address"
-msgstr "ທີ່ຢູ່ເປົ້າໝາຍ"
+msgid "Add iSCSI Initiator"
+msgstr "ເພີ່ມ iSCSI Initiator"
 
-msgid "CHAP Name"
-msgstr "ຊື່ CHAP"
+msgid "Edit iSCSI Initiator"
+msgstr "ແກ້ໄຂ iSCSI Initiator"
 
-msgid "CHAP Secret"
-msgstr "ລະຫັດລັບ CHAP"
+msgid "iSCSI Initiator is marked for deletion"
+msgstr "iSCSI Initiator ຖືກໝາຍໄວ້ເພື່ອລຶບ"
 
-msgid "Mutual CHAP Name"
-msgstr "ຊື່ Mutual CHAP"
+msgid "iSCSI Initiator is locked"
+msgstr "iSCSI Initiator ຖືກລັອກ"
 
-msgid "Mutual CHAP Secret"
-msgstr "ລະຫັດລັບ Mutual CHAP"
+msgid "iSCSI Initiator is unlocked"
+msgstr "iSCSI Initiator ຖືກປົດລັອກ"
 
-msgid "Header Digest"
-msgstr "Header Digest"
+msgid "Delete Selected iSCSI Initiators"
+msgstr "ລຶບ iSCSI Initiator ທີ່ເລືອກ"
 
-msgid "Data Digest"
-msgstr "Data Digest"
+msgid "Disable Selected iSCSI Initiators"
+msgstr "ປິດໃຊ້ງານ iSCSI Initiator ທີ່ເລືອກ"
 
-msgid "Offload Driver"
-msgstr "ໄດເວີ Offload"
+msgid "Enable Selected iSCSI Initiators"
+msgstr "ເປີດໃຊ້ງານ iSCSI Initiator ທີ່ເລືອກ"
 
-msgid "Session State"
-msgstr "ສະຖານະເຊສຊັນ"
+msgid "Toggle Selected iSCSI Initiators"
+msgstr "ສະຫຼັບການໃຊ້ງານ iSCSI Initiator ທີ່ເລືອກ"
 
-msgid "Session Type"
-msgstr "ປະເພດເຊສຊັນ"
+msgid "Do you want to delete selected iSCSI initiators?"
+msgstr "ທ່ານຕ້ອງການລຶບ iSCSI initiator ທີ່ເລືອກອອກບໍ່?"
+
+msgid "Do you want to disable selected iSCSI initiators?"
+msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານ iSCSI initiator ທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to enable selected iSCSI initiators?"
+msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານ iSCSI initiator ທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to toggle selected iSCSI initiators?"
+msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານ iSCSI initiator ທີ່ເລືອກບໍ່?"
 
 msgid ""
 "Enter the path of the home directory for databases and configuration files."
@@ -13884,9 +13785,6 @@ msgstr "ແບບງຽບ"
 msgid "Security Flavor"
 msgstr "ປະເພດຄວາມປອດໄພ"
 
-msgid "Root Directory"
-msgstr "ໂຟນເດີຫຼັກ"
-
 msgid "Map users or map root to the specified user."
 msgstr "ຈັບຄູ່ຜູ້ໃຊ້ ຫຼື ຈັບຄູ່ root ກັບຜູ້ໃຊ້ທີ່ລະບຸ."
 
@@ -13961,7 +13859,7 @@ msgstr ""
 "krb5p - ໃຊ້ການຢືນຢັນຕົວຕົນ Kerberos V5 ພ້ອມກັບ checksum ຄວາມສົມບູນຂອງຂໍ້ມູນ "
 "ແລະ ການເຂົ້າລະຫັດຂໍ້ມູນ."
 
-msgid "Root Directories"
+msgid "Root Directory"
 msgstr "ໂຟນເດີຫຼັກ"
 
 msgid "Add NFS Root"
@@ -14003,6 +13901,9 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານໂຟນ
 msgid "Do you want to toggle selected NFS root directories?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານໂຟນເດີ NFS root ທີ່ເລືອກບໍ່?"
 
+msgid "Root Directories"
+msgstr "ໂຟນເດີຫຼັກ"
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -14029,17 +13930,122 @@ msgstr ""
 msgid "These parameters are appended to the exports file."
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຖືກເພີ່ມໃສ່ທ້າຍໄຟລ໌ exports."
 
+msgid "Driver List"
+msgstr "ລາຍຊື່ໄດເວີ"
+
+msgid "UPS Driver List"
+msgstr "ລາຍຊື່ໄດເວີ UPS"
+
 msgid "Model Name"
 msgstr "ຊື່ລຸ້ນ"
 
 msgid "Model Extra"
 msgstr "ຂໍ້ມູນເພີ່ມເຕີມຂອງລຸ້ນ"
 
-msgid "Driver List"
-msgstr "ລາຍຊື່ໄດເວີ"
+msgid "Enable AFP"
+msgstr "ເປີດໃຊ້ AFP"
 
-msgid "UPS Driver List"
-msgstr "ລາຍຊື່ໄດເວີ UPS"
+msgid "Create Mask"
+msgstr "Create Mask"
+
+msgid "Force Group"
+msgstr "ບັງຄັບກຸ່ມ"
+
+msgid "Force User"
+msgstr "ບັງຄັບຜູ້ໃຊ້"
+
+msgid "Shadow Copy Format"
+msgstr "ຮູບແບບ Shadow Copy"
+
+msgid "VFS fruit:encoding"
+msgstr "VFS fruit:encoding"
+
+msgid "VFS fruit:locking"
+msgstr "VFS fruit:locking"
+
+msgid "VFS fruit:metadata"
+msgstr "VFS fruit:metadata"
+
+msgid "VFS fruit:resource"
+msgstr "VFS fruit:resource"
+
+msgid "VFS fruit:time machine"
+msgstr "VFS fruit:time machine"
+
+msgid "ZFS ACL"
+msgstr "ZFS ACL"
+
+msgid "Inherit ACL"
+msgstr "ສືບທອດ ACL"
+
+msgid "Alternate Data Streams"
+msgstr "Alternate Data Streams"
+
+msgid "NTFS ACLs"
+msgstr "NTFS ACLs"
+
+msgid "Shadow Copy"
+msgstr "Shadow Copy"
+
+msgid "Browseable"
+msgstr "ສາມາດເບິ່ງໄດ້"
+
+msgid "Guest Only"
+msgstr "ສະເພາະແຂກ"
+
+msgid "Inherit Permissions"
+msgstr "ສືບທອດສິດອະນຸຍາດ"
+
+msgid "Recycle Bin"
+msgstr "ຖັງຂີ້ເຫຍື້ອ"
+
+msgid "Hide Dot Files"
+msgstr "ເຊື່ອງໄຟລ໌ທີ່ຂຶ້ນຕົ້ນດ້ວຍຈຸດ"
+
+msgid "Add Samba Share"
+msgstr "ເພີ່ມການແບ່ງປັນ Samba"
+
+msgid "Edit Samba Share"
+msgstr "ແກ້ໄຂການແບ່ງປັນ Samba"
+
+msgid "Samba Share is marked for deletion"
+msgstr "ການແບ່ງປັນ Samba ຖືກໝາຍໄວ້ເພື່ອລຶບ"
+
+msgid "Samba Share is locked"
+msgstr "ການແບ່ງປັນ Samba ຖືກລັອກ"
+
+msgid "Samba Share is unlocked"
+msgstr "ການແບ່ງປັນ Samba ຖືກປົດລັອກ"
+
+msgid "Delete Selected Samba Shares"
+msgstr "ລຶບການແບ່ງປັນ Samba ທີ່ເລືອກ"
+
+msgid "Disable Selected Samba Shares"
+msgstr "ປິດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກ"
+
+msgid "Enable Selected Samba Shares"
+msgstr "ເປີດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກ"
+
+msgid "Toggle Selected Samba Shares"
+msgstr "ສະຫຼັບການໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກ"
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "ທ່ານຕ້ອງການລຶບການແບ່ງປັນ Samba ທີ່ເລືອກອອກບໍ່?"
+
+msgid "Do you want to disable selected Samba shares?"
+msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to enable selected Samba shares?"
+msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to toggle selected Samba shares?"
+msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກບໍ່?"
+
+msgid "yes"
+msgstr "ແມ່ນ"
+
+msgid "no"
+msgstr "ບໍ່"
 
 #, php-format
 msgid "These parameters are added to the [Share] section of %s."
@@ -14255,111 +14261,6 @@ msgstr "ປ້ອນຄຳອະທິບາຍສຳລັບການແບ່
 
 msgid "Enter the location of the share"
 msgstr "ປ້ອນທີ່ຕັ້ງຂອງການແບ່ງປັນ"
-
-msgid "Add Samba Share"
-msgstr "ເພີ່ມການແບ່ງປັນ Samba"
-
-msgid "Edit Samba Share"
-msgstr "ແກ້ໄຂການແບ່ງປັນ Samba"
-
-msgid "Samba Share is marked for deletion"
-msgstr "ການແບ່ງປັນ Samba ຖືກໝາຍໄວ້ເພື່ອລຶບ"
-
-msgid "Samba Share is locked"
-msgstr "ການແບ່ງປັນ Samba ຖືກລັອກ"
-
-msgid "Samba Share is unlocked"
-msgstr "ການແບ່ງປັນ Samba ຖືກປົດລັອກ"
-
-msgid "Delete Selected Samba Shares"
-msgstr "ລຶບການແບ່ງປັນ Samba ທີ່ເລືອກ"
-
-msgid "Disable Selected Samba Shares"
-msgstr "ປິດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກ"
-
-msgid "Enable Selected Samba Shares"
-msgstr "ເປີດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກ"
-
-msgid "Toggle Selected Samba Shares"
-msgstr "ສະຫຼັບການໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກ"
-
-msgid "Do you want to delete selected Samba shares?"
-msgstr "ທ່ານຕ້ອງການລຶບການແບ່ງປັນ Samba ທີ່ເລືອກອອກບໍ່?"
-
-msgid "Do you want to disable selected Samba shares?"
-msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to enable selected Samba shares?"
-msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to toggle selected Samba shares?"
-msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານການແບ່ງປັນ Samba ທີ່ເລືອກບໍ່?"
-
-msgid "yes"
-msgstr "ແມ່ນ"
-
-msgid "no"
-msgstr "ບໍ່"
-
-msgid "Enable AFP"
-msgstr "ເປີດໃຊ້ AFP"
-
-msgid "Create Mask"
-msgstr "Create Mask"
-
-msgid "Force Group"
-msgstr "ບັງຄັບກຸ່ມ"
-
-msgid "Force User"
-msgstr "ບັງຄັບຜູ້ໃຊ້"
-
-msgid "Shadow Copy Format"
-msgstr "ຮູບແບບ Shadow Copy"
-
-msgid "VFS fruit:encoding"
-msgstr "VFS fruit:encoding"
-
-msgid "VFS fruit:locking"
-msgstr "VFS fruit:locking"
-
-msgid "VFS fruit:metadata"
-msgstr "VFS fruit:metadata"
-
-msgid "VFS fruit:resource"
-msgstr "VFS fruit:resource"
-
-msgid "VFS fruit:time machine"
-msgstr "VFS fruit:time machine"
-
-msgid "ZFS ACL"
-msgstr "ZFS ACL"
-
-msgid "Inherit ACL"
-msgstr "ສືບທອດ ACL"
-
-msgid "Alternate Data Streams"
-msgstr "Alternate Data Streams"
-
-msgid "NTFS ACLs"
-msgstr "NTFS ACLs"
-
-msgid "Shadow Copy"
-msgstr "Shadow Copy"
-
-msgid "Browseable"
-msgstr "ສາມາດເບິ່ງໄດ້"
-
-msgid "Guest Only"
-msgstr "ສະເພາະແຂກ"
-
-msgid "Inherit Permissions"
-msgstr "ສືບທອດສິດອະນຸຍາດ"
-
-msgid "Recycle Bin"
-msgstr "ຖັງຂີ້ເຫຍື້ອ"
-
-msgid "Hide Dot Files"
-msgstr "ເຊື່ອງໄຟລ໌ທີ່ຂຶ້ນຕົ້ນດ້ວຍຈຸດ"
 
 msgid "Workgroup"
 msgstr "ກຸ່ມເຮັດວຽກ"
@@ -14714,27 +14615,6 @@ msgstr ""
 "Samba ຈະຂຽນໃສ່ໄຟລ໌ແບບ asynchronous ເມື່ອຂະໜາດຂອງຄຳຮ້ອງຂໍໃຫຍ່ກວ່າຄ່ານີ້. (%d "
 "ໂດຍຄ່າເລີ່ມຕົ້ນ)."
 
-msgid "Password Authentication"
-msgstr "ການຢືນຢັນຕົວຕົນດ້ວຍລະຫັດຜ່ານ"
-
-msgid "Keyboard-Interactive Authentication"
-msgstr "ການຢືນຢັນຕົວຕົນແບບໂຕ້ຕອບດ້ວຍແປ້ນພິມ"
-
-msgid "Public Key Authentication"
-msgstr "ການຢືນຢັນຕົວຕົນດ້ວຍລະຫັດສາທາລະນະ"
-
-msgid "GSSAPI Authentication"
-msgstr "ການຢືນຢັນຕົວຕົນ GSSAPI"
-
-msgid "Root Login"
-msgstr "ການເຂົ້າສູ່ລະບົບຂອງ Root"
-
-msgid "TCP Forwarding"
-msgstr "TCP Forwarding"
-
-msgid "Subsystem"
-msgstr "ລະບົບຍ່ອຍ"
-
 msgid "Port of the SSH service. Leave blank to use the default port."
 msgstr "ພອດຂອງບໍລິການ SSH. ປະຫວ່າງໄວ້ເພື່ອໃຊ້ພອດເລີ່ມຕົ້ນ."
 
@@ -14783,6 +14663,9 @@ msgstr ""
 "ທີ່ຈະປະມວນຜົນເມື່ອມີຄຳຮ້ອງຂໍລະບົບຍ່ອຍ. "
 "ປະຊ່ອງນີ້ຫວ່າງໄວ້ເພື່ອໃຊ້ການຕັ້ງຄ່າເລີ່ມຕົ້ນ."
 
+msgid "Subsystem"
+msgstr "ລະບົບຍ່ອຍ"
+
 msgid "Using defaults"
 msgstr "ກຳລັງໃຊ້ຄ່າເລີ່ມຕົ້ນ"
 
@@ -14824,14 +14707,23 @@ msgstr "DEBUG3 - ບັນທຶກຂໍ້ມູນການດີບັກທ
 msgid "These parameters are appended to /etc/ssh/sshd_config."
 msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຖືກເພີ່ມໃສ່ທ້າຍ /etc/ssh/sshd_config."
 
-msgid "Allow New Files"
-msgstr "ອະນຸຍາດໄຟລ໌ໃໝ່"
+msgid "Password Authentication"
+msgstr "ການຢືນຢັນຕົວຕົນດ້ວຍລະຫັດຜ່ານ"
 
-msgid "Max. Block Size"
-msgstr "ຂະໜາດບລັອກສູງສຸດ"
+msgid "Keyboard-Interactive Authentication"
+msgstr "ການຢືນຢັນຕົວຕົນແບບໂຕ້ຕອບດ້ວຍແປ້ນພິມ"
 
-msgid "Umask"
-msgstr "Umask"
+msgid "Public Key Authentication"
+msgstr "ການຢືນຢັນຕົວຕົນດ້ວຍລະຫັດສາທາລະນະ"
+
+msgid "GSSAPI Authentication"
+msgstr "ການຢືນຢັນຕົວຕົນ GSSAPI"
+
+msgid "Root Login"
+msgstr "ການເຂົ້າສູ່ລະບົບຂອງ Root"
+
+msgid "TCP Forwarding"
+msgstr "TCP Forwarding"
 
 msgid "Allow new files to be created."
 msgstr "ອະນຸຍາດໃຫ້ສ້າງໄຟລ໌ໃໝ່."
@@ -14897,56 +14789,14 @@ msgstr "000"
 msgid "Specifies the username under which the TFTP service should run."
 msgstr "ລະບຸຊື່ຜູ້ໃຊ້ທີ່ບໍລິການ TFTP ຄວນເຮັດວຽກພາຍໃຕ້."
 
-msgid "Peer Port"
-msgstr "ພອດ Peer"
+msgid "Allow New Files"
+msgstr "ອະນຸຍາດໄຟລ໌ໃໝ່"
 
-msgid "Configuration Folder"
-msgstr "ໂຟນເດີການຕັ້ງຄ່າ"
+msgid "Max. Block Size"
+msgstr "ຂະໜາດບລັອກສູງສຸດ"
 
-msgid "Incomplete Folder"
-msgstr "ໂຟນເດີທີ່ບໍ່ສົມບູນ"
-
-msgid "Download Folder"
-msgstr "ໂຟນເດີດາວໂຫຼດ"
-
-msgid "Watch Folder"
-msgstr "ໂຟນເດີຕິດຕາມ"
-
-msgid "Port Forwarding"
-msgstr "Port Forwarding"
-
-msgid "Peer Exchange"
-msgstr "Peer Exchange"
-
-msgid "Distributed Hash Table"
-msgstr "Distributed Hash Table"
-
-msgid "Local Peer Discovery"
-msgstr "Local Peer Discovery"
-
-msgid "uTP"
-msgstr "uTP"
-
-msgid "User Mask"
-msgstr "User Mask"
-
-msgid "Preallocation"
-msgstr "Preallocation"
-
-msgid "Message Level"
-msgstr "ລະດັບຂໍ້ຄວາມ"
-
-msgid "DNS Rebind Protection"
-msgstr "ການປ້ອງກັນ DNS Rebind"
-
-msgid "Domain Names"
-msgstr "ຊື່ໂດເມນ"
-
-msgid "Start Torrents"
-msgstr "ເລີ່ມ Torrents"
-
-msgid "Stop Torrents"
-msgstr "ຢຸດ Torrents"
+msgid "Umask"
+msgstr "Umask"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. The default port is %d."
@@ -15073,11 +14923,56 @@ msgstr "ເລີ່ມ/ສືບຕໍ່ torrents ທີ່ຢຸດໄວ້�
 msgid "Stop torrents before stopping service."
 msgstr "ຢຸດ torrents ກ່ອນທີ່ຈະຢຸດບໍລິການ."
 
-msgid "Work Directory"
-msgstr "ໂຟນເດີເຮັດວຽກ"
+msgid "Peer Port"
+msgstr "ພອດ Peer"
 
-msgid "Create Work Directory"
-msgstr "ສ້າງໂຟນເດີເຮັດວຽກ"
+msgid "Configuration Folder"
+msgstr "ໂຟນເດີການຕັ້ງຄ່າ"
+
+msgid "Incomplete Folder"
+msgstr "ໂຟນເດີທີ່ບໍ່ສົມບູນ"
+
+msgid "Download Folder"
+msgstr "ໂຟນເດີດາວໂຫຼດ"
+
+msgid "Watch Folder"
+msgstr "ໂຟນເດີຕິດຕາມ"
+
+msgid "Port Forwarding"
+msgstr "Port Forwarding"
+
+msgid "Peer Exchange"
+msgstr "Peer Exchange"
+
+msgid "Distributed Hash Table"
+msgstr "Distributed Hash Table"
+
+msgid "Local Peer Discovery"
+msgstr "Local Peer Discovery"
+
+msgid "uTP"
+msgstr "uTP"
+
+msgid "User Mask"
+msgstr "User Mask"
+
+msgid "Preallocation"
+msgstr "Preallocation"
+
+msgid "Message Level"
+msgstr "ລະດັບຂໍ້ຄວາມ"
+
+msgid "DNS Rebind Protection"
+msgstr "ການປ້ອງກັນ DNS Rebind"
+
+msgid "Domain Names"
+msgstr "ຊື່ໂດເມນ"
+
+msgid "Start Torrents"
+msgstr "ເລີ່ມ Torrents"
+
+msgid "Stop Torrents"
+msgstr "ຢຸດ Torrents"
 
 msgid "Location where work files will be stored."
 msgstr "ທີ່ຕັ້ງທີ່ຈະເກັບໄຟລ໌ເຮັດວຽກ."
@@ -15085,17 +14980,33 @@ msgstr "ທີ່ຕັ້ງທີ່ຈະເກັບໄຟລ໌ເຮັດ
 msgid "Create work directory if it doesn't exist."
 msgstr "ສ້າງໂຟນເດີເຮັດວຽກຖ້າມັນບໍ່ມີ."
 
+msgid "Work Directory"
+msgstr "ໂຟນເດີເຮັດວຽກ"
+
+msgid "Create Work Directory"
+msgstr "ສ້າງໂຟນເດີເຮັດວຽກ"
+
+msgid "Name of the WebDAV Record."
+msgstr "ຊື່ຂອງລາຍການ WebDAV."
+
 msgid "WebDAV Name"
 msgstr "ຊື່ WebDAV"
+
+msgid ""
+"The WebDAV configuration is applied to all folders matching this pattern."
+msgstr "ການຕັ້ງຄ່າ WebDAV ຖືກນຳໃຊ້ກັບທຸກໂຟນເດີທີ່ກົງກັບຮູບແບບນີ້."
 
 msgid "Folder Pattern"
 msgstr "ຮູບແບບໂຟນເດີ"
 
-msgid "Read-Only"
-msgstr "ອ່ານຢ່າງດຽວ"
+msgid "Read-Only Access."
+msgstr "ການເຂົ້າເຖິງແບບອ່ານຢ່າງດຽວ."
 
-msgid "Use Sqlite"
-msgstr "ໃຊ້ Sqlite"
+msgid "Use Sqlite for lockings and properties."
+msgstr "ໃຊ້ Sqlite ສຳລັບການລັອກ ແລະ ຄຸນສົມບັດ."
+
+msgid "These parameters will be added to this WebDAV configuration."
+msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນການຕັ້ງຄ່າ WebDAV ນີ້."
 
 msgid "Add WebDAV Record"
 msgstr "ເພີ່ມລາຍການ WebDAV"
@@ -15136,39 +15047,11 @@ msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານລາຍ
 msgid "Do you want to toggle selected WebDAV records?"
 msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານລາຍການ WebDAV ທີ່ເລືອກບໍ່?"
 
-msgid "Name of the WebDAV Record."
-msgstr "ຊື່ຂອງລາຍການ WebDAV."
+msgid "Read-Only"
+msgstr "ອ່ານຢ່າງດຽວ"
 
-msgid ""
-"The WebDAV configuration is applied to all folders matching this pattern."
-msgstr "ການຕັ້ງຄ່າ WebDAV ຖືກນຳໃຊ້ກັບທຸກໂຟນເດີທີ່ກົງກັບຮູບແບບນີ້."
-
-msgid "Read-Only Access."
-msgstr "ການເຂົ້າເຖິງແບບອ່ານຢ່າງດຽວ."
-
-msgid "Use Sqlite for lockings and properties."
-msgstr "ໃຊ້ Sqlite ສຳລັບການລັອກ ແລະ ຄຸນສົມບັດ."
-
-msgid "These parameters will be added to this WebDAV configuration."
-msgstr "ພາຣາມິເຕີເຫຼົ່ານີ້ຈະຖືກເພີ່ມເຂົ້າໃນການຕັ້ງຄ່າ WebDAV ນີ້."
-
-msgid "Web Service Discovery"
-msgstr "Web Service Discovery"
-
-msgid "IP Address Family"
-msgstr "ຕະກູນທີ່ຢູ່ IP"
-
-msgid "NETBIOS Hostname"
-msgstr "ຊື່ໂຮສ NETBIOS"
-
-msgid "Preserve Case"
-msgstr "ຮັກສາຕົວພິມ"
-
-msgid "Server Mode"
-msgstr "ໂໝດເຊີບເວີ"
-
-msgid "Workgroup Name"
-msgstr "ຊື່ກຸ່ມເຮັດວຽກ"
+msgid "Use Sqlite"
+msgstr "ໃຊ້ Sqlite"
 
 msgid "IPv4 only"
 msgstr "IPv4 ເທົ່ານັ້ນ"
@@ -15195,6 +15078,36 @@ msgstr "ເລືອກລະຫວ່າງໂໝດໂດເມນ ແລະ �
 msgid "Set workgroup name"
 msgstr "ຕັ້ງຊື່ກຸ່ມເຮັດວຽກ"
 
+msgid "IP Address Family"
+msgstr "ຕະກູນທີ່ຢູ່ IP"
+
+msgid "NETBIOS Hostname"
+msgstr "ຊື່ໂຮສ NETBIOS"
+
+msgid "Preserve Case"
+msgstr "ຮັກສາຕົວພິມ"
+
+msgid "Server Mode"
+msgstr "ໂໝດເຊີບເວີ"
+
+msgid "Workgroup Name"
+msgstr "ຊື່ກຸ່ມເຮັດວຽກ"
+
+msgid "Web Service Discovery"
+msgstr "Web Service Discovery"
+
+msgid "Protected"
+msgstr "ຖືກປ້ອງກັນ"
+
+msgid "Set UID"
+msgstr "ຕັ້ງ UID"
+
+msgid "Snapdir"
+msgstr "Snapdir"
+
+msgid "UTF-8 Only"
+msgstr "UTF-8 ເທົ່ານັ້ນ"
+
 msgid "You may enter a description for your reference."
 msgstr "ທ່ານສາມາດປ້ອນຄຳອະທິບາຍເພື່ອການອ້າງອີງຂອງທ່ານ."
 
@@ -15220,18 +15133,6 @@ msgstr "ປ້ອນຊື່ວໍລຸມ"
 
 msgid "The name of the ZFS pool."
 msgstr "ຊື່ຂອງ ZFS pool."
-
-msgid "Protected"
-msgstr "ຖືກປ້ອງກັນ"
-
-msgid "Set UID"
-msgstr "ຕັ້ງ UID"
-
-msgid "Snapdir"
-msgstr "Snapdir"
-
-msgid "UTF-8 Only"
-msgstr "UTF-8 ເທົ່ານັ້ນ"
 
 msgid "The following errors were detected"
 msgstr "ກວດພົບຂໍ້ຜິດພາດຕໍ່ໄປນີ້"
@@ -15285,45 +15186,6 @@ msgstr "PCP"
 msgid "Encapsulation Protocol"
 msgstr "ໂປຣໂຕຄໍ Encapsulation"
 
-msgid "Add VLAN"
-msgstr "ເພີ່ມ VLAN"
-
-msgid "Edit VLAN"
-msgstr "ແກ້ໄຂ VLAN"
-
-msgid "VLAN is marked for deletion"
-msgstr "VLAN ຖືກໝາຍໄວ້ເພື່ອລຶບ"
-
-msgid "VLAN is locked"
-msgstr "VLAN ຖືກລັອກ"
-
-msgid "VLAN is unlocked"
-msgstr "VLAN ຖືກປົດລັອກ"
-
-msgid "Delete Selected VLANs"
-msgstr "ລຶບ VLAN ທີ່ເລືອກ"
-
-msgid "Disable Selected VLANs"
-msgstr "ປິດໃຊ້ງານ VLAN ທີ່ເລືອກ"
-
-msgid "Enable Selected VLANs"
-msgstr "ເປີດໃຊ້ງານ VLAN ທີ່ເລືອກ"
-
-msgid "Toggle Selected VLANs"
-msgstr "ສະຫຼັບການໃຊ້ງານ VLAN ທີ່ເລືອກ"
-
-msgid "Do you want to delete selected VLANs?"
-msgstr "ທ່ານຕ້ອງການລຶບ VLAN ທີ່ເລືອກອອກບໍ່?"
-
-msgid "Do you want to disable selected VLANs?"
-msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານ VLAN ທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to enable selected VLANs?"
-msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານ VLAN ທີ່ເລືອກບໍ່?"
-
-msgid "Do you want to toggle selected VLANs?"
-msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານ VLAN ທີ່ເລືອກບໍ່?"
-
 msgid "The name of the VLAN interface"
 msgstr "ຊື່ຂອງອິນເຕີເຟດ VLAN"
 
@@ -15375,6 +15237,45 @@ msgstr "802.1Q (ຄ່າເລີ່ມຕົ້ນ)"
 
 msgid "802.1ad (QinQ)"
 msgstr "802.1ad (QinQ)"
+
+msgid "Add VLAN"
+msgstr "ເພີ່ມ VLAN"
+
+msgid "Edit VLAN"
+msgstr "ແກ້ໄຂ VLAN"
+
+msgid "VLAN is marked for deletion"
+msgstr "VLAN ຖືກໝາຍໄວ້ເພື່ອລຶບ"
+
+msgid "VLAN is locked"
+msgstr "VLAN ຖືກລັອກ"
+
+msgid "VLAN is unlocked"
+msgstr "VLAN ຖືກປົດລັອກ"
+
+msgid "Delete Selected VLANs"
+msgstr "ລຶບ VLAN ທີ່ເລືອກ"
+
+msgid "Disable Selected VLANs"
+msgstr "ປິດໃຊ້ງານ VLAN ທີ່ເລືອກ"
+
+msgid "Enable Selected VLANs"
+msgstr "ເປີດໃຊ້ງານ VLAN ທີ່ເລືອກ"
+
+msgid "Toggle Selected VLANs"
+msgstr "ສະຫຼັບການໃຊ້ງານ VLAN ທີ່ເລືອກ"
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "ທ່ານຕ້ອງການລຶບ VLAN ທີ່ເລືອກອອກບໍ່?"
+
+msgid "Do you want to disable selected VLANs?"
+msgstr "ທ່ານຕ້ອງການປິດໃຊ້ງານ VLAN ທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to enable selected VLANs?"
+msgstr "ທ່ານຕ້ອງການເປີດໃຊ້ງານ VLAN ທີ່ເລືອກບໍ່?"
+
+msgid "Do you want to toggle selected VLANs?"
+msgstr "ທ່ານຕ້ອງການສະຫຼັບການໃຊ້ງານ VLAN ທີ່ເລືອກບໍ່?"
 
 msgid "1"
 msgstr "1"
@@ -15580,27 +15481,6 @@ msgstr "ແລະ"
 msgid "Total: %1$s | Allocated: %2$s | Free: %3$s"
 msgstr "ທັງໝົດ: %1$s | ຈັດສັນແລ້ວ: %2$s | ວ່າງ: %3$s"
 
-msgid "Exported"
-msgstr "ສົ່ງອອກແລ້ວ"
-
-msgid "Destroyed"
-msgstr "ຖືກທຳລາຍ"
-
-msgid "Spare"
-msgstr "ສຳຮອງ"
-
-msgid "L2 Cache"
-msgstr "ແຄຊ L2"
-
-msgid "Uninitialized"
-msgstr "ຍັງບໍ່ໄດ້ເລີ່ມຕົ້ນ"
-
-msgid "Potentially Active"
-msgstr "ອາດຈະເຄື່ອນໄຫວ"
-
-msgid "System tuning"
-msgstr "ການປັບແຕ່ງລະບົບ"
-
 msgid "Deleting MBR and partition table"
 msgstr "ກຳລັງລຶບ MBR ແລະ ຕາຕະລາງພາທິຊັນ"
 
@@ -15632,6 +15512,9 @@ msgid ""
 msgstr ""
 "ດິສກຳລັງຖືກ mount ຢູ່! ຈຸດ mount "
 "ຈະຖືກລຶບອອກຊົ່ວຄາວເພື່ອປະຕິບັດຄຳສັ່ງທີ່ເລືອກ."
+
+msgid "System tuning"
+msgstr "ການປັບແຕ່ງລະບົບ"
 
 msgid "ZFS Pool Tools"
 msgstr "ເຄື່ອງມື ZFS Pool"
@@ -15884,3 +15767,21 @@ msgstr "ລົ້ມເຫຼວໃນການຂຽນໄຟລ໌ລົງດ
 
 msgid "File upload stopped by extension."
 msgstr "ການອັບໂຫຼດໄຟລ໌ຖືກຢຸດໂດຍສ່ວນຂະຫຍາຍ."
+
+msgid "Exported"
+msgstr "ສົ່ງອອກແລ້ວ"
+
+msgid "Destroyed"
+msgstr "ຖືກທຳລາຍ"
+
+msgid "Spare"
+msgstr "ສຳຮອງ"
+
+msgid "L2 Cache"
+msgstr "ແຄຊ L2"
+
+msgid "Uninitialized"
+msgstr "ຍັງບໍ່ໄດ້ເລີ່ມຕົ້ນ"
+
+msgid "Potentially Active"
+msgstr "ອາດຈະເຄື່ອນໄຫວ"

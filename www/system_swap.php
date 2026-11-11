@@ -3,7 +3,7 @@
 	system_swap.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -42,16 +42,16 @@ use gui\document;
 arr::make_branch($config,'system','swap');
 $pconfig['enable'] = isset($config['system']['swap']['enable']);
 $pconfig['type'] = $config['system']['swap']['type'];
-$pconfig['mountpoint'] = !empty($config['system']['swap']['mountpoint']) ? $config['system']['swap']['mountpoint'] : '';
-$pconfig['devicespecialfile'] = !empty($config['system']['swap']['devicespecialfile']) ? $config['system']['swap']['devicespecialfile'] : '';
-$pconfig['size'] = !empty($config['system']['swap']['size']) ? $config['system']['swap']['size'] : '';
+$pconfig['mountpoint'] = !empty($config['system']['swap']['mountpoint']) ? $config['system']['swap']['mountpoint'] : "";
+$pconfig['devicespecialfile'] = !empty($config['system']['swap']['devicespecialfile']) ? $config['system']['swap']['devicespecialfile'] : "";
+$pconfig['size'] = !empty($config['system']['swap']['size']) ? $config['system']['swap']['size'] : "";
 
-//$swapdevice = 'NONE';
+//$swapdevice = "NONE";
 //if (file_exists("{$g['etc_path']}/swapdevice"))
 //	$swapdevice = trim(file_get_contents("{$g['etc_path']}/swapdevice"));
 //if (empty($_POST) && (empty($pconfig['enable']) || $pconfig['enable'] === false)) {
-//	if ($swapdevice != 'NONE')
-//		$infomsg = sprintf("%s (%s)",gtext('This server uses default swap.'),$swapdevice);
+//	if ($swapdevice != "NONE")
+//		$infomsg = sprintf("%s (%s)", gtext("This server uses default swap."), $swapdevice);
 //}
 
 if($_POST):
@@ -86,7 +86,7 @@ if($_POST):
 			$retval |= rc_update_service('swaplate');
 			config_unlock();
 			if(isset($_POST['enable']) && (preg_match('/\S/',$_POST['devicespecialfile']) === 1)):
-				$cmd = sprintf('swapon %s',escapeshellarg($_POST['devicespecialfile']));
+				$cmd = sprintf('swapon %s', escapeshellarg($_POST['devicespecialfile']));
 				write_log($cmd);
 				mwexec($cmd);
 			endif;
@@ -166,7 +166,7 @@ $document->render();
 		<tbody>
 <?php
 			$swapinfo = system_get_swap_info();
-			if(!empty($swapinfo)):
+			if (!empty($swapinfo)):
 ?>
 				<tr>
 					<td class="celltag"><?=gtext('This server uses default swap!');?></td>
@@ -175,10 +175,10 @@ $document->render();
 <?php
 							arr::sort_key($swapinfo,'device');
 							$ctrlid = 0;
-							foreach($swapinfo as $swapk => $swapv):
+							foreach ($swapinfo as $swapk => $swapv):
 								$ctrlid++;
-								$percent_used = rtrim($swapv['capacity'],"%");
-								$tooltip_used = sprintf(gtext("%s used of %s"),$swapv['used'],$swapv['total']);
+								$percent_used = rtrim($swapv['capacity'], "%");
+								$tooltip_used = sprintf(gtext("%s used of %s"), $swapv['used'], $swapv['total']);
 								$tooltip_available = sprintf(gtext("%s available of %s"),$swapv['avail'],$swapv['total']);
 								echo "<tr><td><div id='swapusage'>";
 								echo "<img src='images/bar_left.gif' class='progbarl' alt='' />";
@@ -195,7 +195,7 @@ $document->render();
 									"<span name='swapusage_{$ctrlid}_used' id='swapusage_{$ctrlid}_used' class='used'>{$swapv['used']}</span>",
 									"<span name='swapusage_{$ctrlid}_free' id='swapusage_{$ctrlid}_free' class='free'>{$swapv['avail']}</span>");
 								echo "</div></td></tr>";
-								if($ctrlid < count($swapinfo)):
+								if ($ctrlid < count($swapinfo)):
 									echo "<tr><td><hr size='1' /></td></tr>";
 								endif;
 							endforeach;

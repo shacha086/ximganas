@@ -3,7 +3,7 @@
 	disks_zfs_zpool_tools_render.inc
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -39,42 +39,6 @@ require_once 'util.inc';
 use common\arr;
 use common\uuid;
 
-/**
- *	Create a string from the keys and the values of an array
- *
- *	make_html_attributes(['type' => 'checkbox','checked' => true,'id' => 'checkbox_12[]']) returns
- *		type="checkbox" checked id="checkbox_12[]"
- *
- *	@param array $array
- *	@param string $separator
- *	@param string $keyval_separator
- *	@param string $val_wrapper
- *	@return string
- */
-function make_html_attributes(array $array,string $separator = ' ',string $keyval_separator = '=',string $val_wrapper = '"') : string {
-	return implode(
-		separator: $separator,
-		array: array_map(
-			function($k,$v) use($keyval_separator,$val_wrapper) {
-				if(is_string($k)):
-					if(is_bool($v)):
-						if($v):
-							return $k;
-						else:
-							return '';
-						endif;
-					else:
-						return $k . $keyval_separator . $val_wrapper . $v . $val_wrapper;
-					endif;
-				else:
-					return '';
-				endif;
-			},
-			array_keys($array),
-			array_values($array)
-		)
-	);
-}
 function render_set_start() {
 	$title = gettext('ZFS Pool Tools');
 	echo '<table class="area_data_settings">',"\n";
@@ -199,22 +163,25 @@ function render_pool_edit($a_items = [],$format = '0N',$a_selected_items = []) {
  * Embedded in the body of a table with 2 columns
  */
 	$b_ret = (0 < count($a_items));
-	$attributes = [
-		'class' => 'oneemhigh',
-		'name' => 'pool[]'
+	$attribute = [
+		'name' => 'name="pool[]"',
+		'id' => null,
+		'value' => null,
+		'checked' => '',
+		'required' => ''
 	];
 	switch($format):
 		case '1':
-			$attributes['required'] = true;
+			$attribute['required'] = 'required="required"';
 //			no break;
 		case '0':
-			$attributes['type'] = 'radio';
+			$attribute['type'] = 'type="radio"';
 			$is_checkbox = false;
 			break;
 		case '1N':
 //			no break;
 		case '0N':
-			$attributes['type'] = 'checkbox';
+			$attribute['type'] = 'type="checkbox"';
 			$is_checkbox = true;
 			break;
 	endswitch;
@@ -243,21 +210,23 @@ function render_pool_edit($a_items = [],$format = '0N',$a_selected_items = []) {
 				echo '<tbody>',"\n";
 					if($b_ret):
 						foreach($a_items as $r_item):
-							$attributes['id'] = sprintf('%s_%s',$attributes['type'],uuid::create_v4());
-							$attributes['value'] = $r_item['pool.name'];
+							$id = sprintf($is_checkbox ? 'checkbox_%s' : 'radio_%s',uuid::create_v4());
+							$attribute['id'] = sprintf('id="%s"',$id);
+							$value = $r_item['pool.name'];
+							$attribute['value'] = sprintf('value="%s"',$value);
 							if(count($a_selected_items) > 0):
-								if(array_search($attributes['value'],$a_selected_items) === false):
-									$attributes['checked'] =  false;
+								if(array_search($value,$a_selected_items) === false):
+									$attribute['checked'] =  '';
 								else:
-									$attributes['checked'] =  true;
+									$attribute['checked'] =  'checked="checked"';
 								endif;
 							endif;
 							echo '<tr>';
 								echo '<td class="lcelc">';
-									echo '<input ',make_html_attributes($attributes),'/>';
+									echo '<input ',implode(' ',$attribute),'/>';
 								echo '</td>',"\n";
 								echo '<td class="lcell">';
-									echo sprintf('<label for="%s">',$attributes['id']),htmlspecialchars($attributes['value'],ENT_HTML5),'</label>';
+									echo sprintf('<label for="%s">',$id),htmlspecialchars($value,ENT_HTML5),'</label>';
 								echo '</td>',"\n";
 								echo '<td class="lcell">',htmlspecialchars($r_item['pool.version'],ENT_HTML5),'</td>',"\n";
 								echo '<td class="lcebl">',htmlspecialchars($r_item['pool.state_name'],ENT_HTML5),'</td>',"\n";
@@ -311,22 +280,25 @@ function render_pooldev_edit($a_items = [],$format = '1',$a_selected_items = [],
  * Embedded in the body of a table with 2 columns
  */
 	$b_ret = (0 < count($a_items));
-	$attributes = [
-		'class' => 'oneemhigh',
-		'name' => 'pooldev[]'
+	$attribute = [
+		'name' => 'name="pooldev[]"',
+		'id' => null,
+		'value' => null,
+		'checked' => '',
+		'required' => ''
 	];
 	switch($format):
 		case '1':
-			$attributes['required'] = true;
+			$attribute['required'] = 'required="required"';
 //			no break;
 		case '0':
-			$attributes['type'] = 'radio';
+			$attribute['type'] = 'type="radio"';
 			$is_checkbox = false;
 			break;
 		case '1N':
 //			no break;
 		case '0N':
-			$attributes['type'] = 'checkbox';
+			$attribute['type'] = 'type="checkbox"';
 			$is_checkbox = true;
 			break;
 	endswitch;
@@ -359,22 +331,24 @@ function render_pooldev_edit($a_items = [],$format = '1',$a_selected_items = [],
 				echo '<tbody>',"\n";
 					if($b_ret):
 						foreach($a_items as $r_item):
-							$attributes['id'] = sprintf('%s_%s',$attributes['type'],uuid::create_v4());
+							$id = sprintf($is_checkbox ? 'checkbox_%s' : 'radio_%s',uuid::create_v4());
+							$attribute['id'] = sprintf('id="%s"',$id);
 							if($check_not_present):
-								$attributes['value'] = $r_item['device.guid'];
+								$value = $r_item['device.guid'];
 							else:
-								$attributes['value'] = $r_item['device.path'];
+								$value = $r_item['device.path'];
 							endif;
 							if($check_not_present && $r_item['device.not_present']):
 								$display_value = sprintf('%s (%s) %s',$r_item['device.guid'],$r_item['device.path'],gettext('missing'));
 							else:
 								$display_value = $r_item['device.path'];
 							endif;
+							$attribute['value'] = sprintf('value="%s"',$value);
 							if(count($a_selected_items) > 0):
-								if(array_search($attributes['value'],$a_selected_items) === false):
-									$attributes['checked'] =  false;
+								if(array_search($value,$a_selected_items) === false):
+									$attribute['checked'] =  '';
 								else:
-									$attributes['checked'] =  true;
+									$attribute['checked'] =  'checked="checked"';
 								endif;
 							endif;
 							$vdevice = '';
@@ -386,10 +360,10 @@ function render_pooldev_edit($a_items = [],$format = '1',$a_selected_items = [],
 							endif;
 							echo '<tr>';
 								echo '<td class="lcelc">';
-									echo '<input ',make_html_attributes($attributes),'/>';
+									echo '<input ',implode(' ',$attribute),'/>';
 								echo '</td>',"\n";
 								echo '<td class="lcell">';
-									echo sprintf('<label for="%s">',$attributes['id']),htmlspecialchars($display_value,ENT_HTML5),'</label>';
+									echo sprintf('<label for="%s">',$id),htmlspecialchars($display_value,ENT_HTML5),'</label>';
 								echo '</td>',"\n";
 								echo '<td class="lcell">',htmlspecialchars($r_item['device.type'],ENT_HTML5),'</td>',"\n";
 								echo '<td class="lcell">',htmlspecialchars($vdevice,ENT_HTML5),'</td>',"\n";
@@ -461,26 +435,25 @@ function render_newvdev_edit($a_items = [],$format = '0N',$a_selected_items = []
  * Embedded in the body of a table with 2 columns
  */
 	$b_ret = (0 < count($a_items));
-	$attributes = [
+	$attribute = [
+		'name' => 'name="newvdev[]"',
 		'id' => null,
-		'class' => 'oneemhigh',
-		'name' => 'newvdev[]',
 		'value' => null,
-		'checked' => false,
-		'required' => false
+		'checked' => '',
+		'required' => ''
 	];
 	switch($format):
 		case '1':
-			$attributes['required'] = true;
+			$attribute['required'] = 'required="required"';
 //			no break;
 		case '0':
-			$attributes['type'] = 'radio';
+			$attribute['type'] = 'type="radio"';
 			$is_checkbox = false;
 			break;
 		case '1N':
 //			no break;
 		case '0N':
-			$attributes['type'] = 'checkbox';
+			$attribute['type'] = 'type="checkbox"';
 			$is_checkbox = true;
 			break;
 	endswitch;
@@ -507,21 +480,23 @@ function render_newvdev_edit($a_items = [],$format = '0N',$a_selected_items = []
 				echo '<tbody>',"\n";
 					if($b_ret):
 						foreach($a_items as $r_item):
-							$attributes['id'] = sprintf("%s_%s",$attributes['type'],uuid::create_v4());
-							$attributes['value'] = $r_item['name'];
+							$id = sprintf($is_checkbox ? 'checkbox_%s' : 'radio_%s',uuid::create_v4());
+							$attribute['id'] = sprintf('id="%s"',$id);
+							$value = $r_item['name'];
+							$attribute['value'] = sprintf('value="%s"',$value);
 							if(count($a_selected_items) > 0):
-								if(array_search($attributes['value'],$a_selected_items) === false):
-									$attributes['checked'] = false;
+								if(array_search($value,$a_selected_items) === false):
+									$attribute['checked'] = '';
 								else:
-									$attributes['checked'] = true;
+									$attribute['checked'] = 'checked="checked"';
 								endif;
 							endif;
 							echo '<tr>';
 								echo '<td class="lcelc">';
-									echo '<input ',make_html_attributes($attributes),'/>';
+									echo '<input ',implode(' ',$attribute),'/>';
 								echo '</td>',"\n";
 								echo '<td class="lcebl">';
-									echo sprintf('<label for="%s">',$attributes['id']),htmlspecialchars($attributes['value'],ENT_HTML5),'</label>';
+									echo sprintf('<label for="%s">',$id),htmlspecialchars($value,ENT_HTML5),'</label>';
 								echo '</td>',"\n";
 							echo '</tr>';
 						endforeach;
@@ -572,26 +547,25 @@ function render_newdev_edit($a_items = [],$format = '1',$a_selected_items = []) 
  */
 	$use_si = is_sidisksizevalues();
 	$b_ret = (0 < count($a_items));
-	$attributes = [
+	$attribute = [
+		'name' => 'name="newdev[]"',
 		'id' => null,
-		'class' => 'oneemhigh',
-		'name' => 'newdev[]',
 		'value' => null,
-		'checked' => false,
-		'required' => false
+		'checked' => '',
+		'required' => ''
 	];
 	switch($format):
 		case '1':
-			$attributes['required'] = true;
+			$attribute['required'] = 'required="required"';
 //			no break;
 		case '0':
-			$attributes['type'] = 'radio';
+			$attribute['type'] = 'type="radio"';
 			$is_checkbox = false;
 			break;
 		case '1N':
 //			no break;
 		case '0N':
-			$attributes['type'] = 'checkbox';
+			$attribute['type'] = 'type="checkbox"';
 			$is_checkbox = true;
 			break;
 	endswitch;
@@ -620,22 +594,24 @@ function render_newdev_edit($a_items = [],$format = '1',$a_selected_items = []) 
 				echo '<tbody>',"\n";
 					if($b_ret):
 						foreach($a_items as $r_item):
+							$id = sprintf($is_checkbox ? 'checkbox_%s' : 'radio_%s',uuid::create_v4());
+							$attribute['id'] = sprintf('id="%s"',$id);
+							$value = $r_item['name'];
 							$mediasize = $r_item['mediasize'] ?? 0;
-							$attributes['id'] = sprintf('%s_%s',$attributes['type'],uuid::create_v4());
-							$attributes['value'] = $r_item['name'];
+							$attribute['value'] = sprintf('value="%s"',$value);
 							if(count($a_selected_items) > 0):
-								if(array_search($attributes['value'],$a_selected_items) === false):
-									$attributes['checked'] = false;
+								if(array_search($value,$a_selected_items) === false):
+									$attribute['checked'] = '';
 								else:
-									$attributes['checked'] = true;
+									$attribute['checked'] = 'checked="checked"';
 								endif;
 							endif;
 							echo '<tr>';
 								echo '<td class="lcelc">';
-									echo '<input ',make_html_attributes($attributes),'/>';
+									echo '<input ',implode(' ',$attribute),'/>';
 								echo '</td>',"\n";
 								echo '<td class="lcell">';
-									echo sprintf('<label for="%s">',$attributes['id']),htmlspecialchars($attributes['value'],ENT_HTML5),'</label>';
+									echo sprintf('<label for="%s">',$id),htmlspecialchars($value,ENT_HTML5),'</label>';
 								echo '</td>',"\n";
 								echo '<td class="lcebl">',"\n";
 									echo htmlspecialchars(format_bytes($mediasize,2,false,$use_si),ENT_HTML5);
@@ -716,26 +692,29 @@ function render_selector_radio($title,$a_option,$r_option_selected = '') {
 					echo '<tbody>',"\n";
 						foreach($a_option as $r_option):
 							if($r_option['show']):
-								$attributes = [
-									'type' => 'radio',
-									'id' => sprintf('radio_%s',uuid::create_v4()),
-									'class' => 'oneemhigh',
-									'name' => sprintf('%s[]',$r_option['name']),
-									'value' => $r_option['value'],
-									'checked' => false
+								$id = sprintf('radio_%s',uuid::create_v4());
+								$attribute = [
+									'name' => sprintf(' name="%s[]"',$r_option['name']),
+									'value' => sprintf(' value="%s"',$r_option['value']),
+									'type' => ' type="radio"',
+									'id' => sprintf(' id="%s"',$id),
+									'checked' => '',
+									'longname' => $r_option['longname']
 								];
 								if($b_check_default):
 									if($r_option['default']):
-										$attributes['checked'] = true;
+										$attribute['checked'] = ' checked="checked"';
 									endif;
-								elseif($r_option_selected === $r_option['value']):
-									$attributes['checked'] = true;
+								else:
+									if($r_option_selected === $r_option['value']):
+										$attribute['checked'] = ' checked="checked"';
+									endif;
 								endif;
 								echo '<tr>';
 									echo '<td class="lcelc">';
-										echo '<input ',make_html_attributes($attributes),'/>';
+										echo '<input',$attribute['type'],$attribute['name'],$attribute['id'],$attribute['value'],$attribute['checked'],'/>';
 									echo '</td>',"\n";
-									echo '<td class="lcebl">','<label for="',$attributes['id'],'">',htmlspecialchars($r_option['longname'],ENT_HTML5),'</label>','</td>',"\n";
+									echo '<td class="lcebl">','<label for="',$id,'">',htmlspecialchars($attribute['longname'],ENT_HTML5),'</label>','</td>',"\n";
 								echo '</tr>';
 							endif;
 						endforeach;
@@ -861,13 +840,12 @@ class co_zpool_flags extends co_zpool_flag_base {
 			return true; // nothing to render
 		endif;
 		$b_use_default = (0 === count(array_intersect_key($this->a_available_keys,$this->a_selected_keys)));
-		$attributes = [
-			'id' => null,
-			'class' => 'oneemhigh',
+		$attribute = [
 			'name' => '',
+			'id' => null,
 			'value' => '',
-			'type' => 'checkbox',
-			'checked' => false
+			'type' => 'type="checkbox"',
+			'checked' => ''
 		];
 		echo '<tr>';
 			echo '<td class="celltag">';  // left hand column start
@@ -888,25 +866,27 @@ class co_zpool_flags extends co_zpool_flag_base {
 					echo '<tbody>',"\n";
 						foreach($this->a_available_keys as $key):
 							if($this->a_pool_keys[$key]['show']):
-								$attributes['id'] = sprintf('checkbox_%s',uuid::create_v4());
-								$attributes['name'] = sprintf('%s[]',$this->a_pool_keys[$key]['name']);
-								$attributes['value'] = $this->a_pool_keys[$key]['value'];
-								$attributes['checked'] = false;
+								$id = sprintf('checkbox_%s',uuid::create_v4());
+								$attribute['id'] = sprintf('id="%s"',$id);
+								$value = $this->a_pool_keys[$key]['longname'];
+								$attribute['name'] = sprintf('name="%s[]"',$this->a_pool_keys[$key]['name']);
+								$attribute['value'] = sprintf('value="%s"',$this->a_pool_keys[$key]['value']);
+								$attribute['checked'] = '';
 								if($b_use_default):
 									if($this->a_pool_keys[$key]['default']):
-										$attributes['checked'] = true;
+										$attribute['checked'] = 'checked="checked"';
 									endif;
 								else:
 									if(isset($this->a_selected_keys[$key])):
-										$attributes['checked'] = true;
+										$attribute['checked'] = 'checked="checked"';
 									endif;
 								endif;
 								echo '<tr>',"\n";
 									echo '<td class="lcelc">';
-										echo '<input ',make_html_attributes($attributes),'/>';
+										echo '<input ',implode(' ',$attribute),'/>';
 									echo '</td>',"\n";
 									echo '<td class="lcebl">';
-										echo sprintf('<label for="%s">',$attributes['id']),htmlspecialchars($this->a_pool_keys[$key]['longname'],ENT_HTML5),'</label>';
+										echo sprintf('<label for="%s">',$id),htmlspecialchars($value,ENT_HTML5),'</label>';
 									echo '</td>',"\n";
 								echo '</tr>',"\n";
 							endif;

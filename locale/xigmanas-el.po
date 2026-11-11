@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XigmaNAS\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@xigmanas.com>\n"
-"POT-Creation-Date: 2025-11-11 18:59+0000\n"
-"PO-Revision-Date: 2025-10-16 16:33+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2025-10-11 14:47+0000\n"
+"PO-Revision-Date: 2025-09-26 12:06+0000\n"
+"Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: XigmaNAS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-18 15:52+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2025-10-11 13:16+0000\n"
+"X-Generator: Launchpad (build bff9b0558f8357613643d9a74c009da18fafa917)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -3463,7 +3463,7 @@ msgid "Mixed"
 msgstr "Μικτό"
 
 msgid "No encryption"
-msgstr "Χωρίς κρυπτογράφηση"
+msgstr ""
 
 msgid "Use default encryption cipher suite"
 msgstr ""
@@ -4097,9 +4097,6 @@ msgstr ""
 "Αναβάθμιση του ZFS και προσθήκη όλων των υποστηριζόμενων feature flags σε "
 "ένα pool"
 
-msgid "Activate encryption feature"
-msgstr ""
-
 msgid "Temporary Device"
 msgstr "Προσωρινή συσκευή"
 
@@ -4536,9 +4533,6 @@ msgstr "Για προχωρημένους"
 
 msgid "Firmware Update"
 msgstr "Αναβάθμιση Υλικολογισμικού"
-
-msgid "Boot Environments"
-msgstr ""
 
 msgid "Packages"
 msgstr "Πακέτα"
@@ -8571,102 +8565,6 @@ msgstr ""
 msgid "Reminder Settings"
 msgstr "Ρυθμίσεις Υπενθύμισης"
 
-msgid "Locked"
-msgstr ""
-
-msgid "Delete Selected Boot Environments"
-msgstr ""
-
-msgid "Do you really want to delete selected boot environments?"
-msgstr ""
-
-msgid "Failed to delete Boot Environment(s)."
-msgstr ""
-
-msgid "Age"
-msgstr ""
-
-msgid "Select"
-msgstr ""
-
-msgid "Boot Environment"
-msgstr ""
-
-msgid "Active"
-msgstr "Ενεργό"
-
-msgid "Mountpoint"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Failed to create and/or activate Boot Environment."
-msgstr ""
-
-msgid "Failed to create Boot Environment."
-msgstr ""
-
-msgid ""
-"Activate Boot Environment after creation, note that system reboot is "
-"required for this boot environment to take place."
-msgstr ""
-
-msgid ""
-"Append the date in the following format: YYYY-MM-DD-HHMMSS, if the name "
-"field is empty, the date will always be used as the boot environment name."
-msgstr ""
-
-#, php-format
-msgid "For additional information about boot environments and %s,"
-msgstr ""
-
-msgid "Failed to activate Boot Environment."
-msgstr ""
-
-msgid "Failed to rename Boot Environment."
-msgstr ""
-
-msgid "Failed to mount Boot Environment."
-msgstr ""
-
-msgid "Failed to unmount Boot Environment."
-msgstr ""
-
-msgid "Failed to delete Boot Environment."
-msgstr ""
-
-msgid "Edit Boot Environment"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Append the date in the following format: YYYY-MM-DD-HHMMSS."
-msgstr ""
-
-msgid "Force"
-msgstr ""
-
-msgid ""
-"Destroy the boot environment and its origin if any, without confirmation."
-msgstr ""
-
-msgid "No boot environmen information available."
-msgstr ""
-
-msgid "Boot Environment List"
-msgstr ""
-
-msgid "Boot Environment Snapshots"
-msgstr ""
-
 msgid "Add job"
 msgstr "Προσθήκης εργασίας"
 
@@ -9898,8 +9796,166 @@ msgstr "Μη διαθέσιμα αποτελέσματα."
 msgid "HOME"
 msgstr "ΑΡΧΙΚΗ"
 
+msgid "You are not allowed to use this function."
+msgstr "Δεν έχετε πρόσβαση στη χρήση αυτής της λειτουργίας."
+
+msgid "This file doesn't exist."
+msgstr "Αυτό το αρχείο δεν υπάρχει."
+
+msgid "You are not allowed to access this file."
+msgstr "Δεν έχετε δικαίωμα πρόσβασης σε αυτό το αρχείο."
+
+msgid "Permission-change failed."
+msgstr "Η αλλαγή δικαιωμάτων απέτυχε."
+
+msgid "Getting permissions failed."
+msgstr "Η λήψη των δικαιωμάτων απέτυχε."
+
+msgid "Change permissions"
+msgstr "Αλλαγή δικαιωμάτων"
+
+msgid "Public"
+msgstr "Δημόσιο"
+
+msgid "This item doesn't exist."
+msgstr "Αυτό το αρχείο δεν υπάρχει."
+
+msgid "You are not allowed to access this item."
+msgstr "Δεν έχετε δικαίωμα πρόσβασης σε αυτό το αντικείμενο."
+
+msgid "Deleting failed."
+msgstr "Η διαγραφή απέτυχε"
+
+msgid "Unable to open source directory."
+msgstr "Αδυναμία ανοίγματος του πηγαίου φακέλου."
+
+msgid "Unable to open directory."
+msgstr "Αποτυχία ανοίγματος φακέλου."
+
+msgid "Unable to read directory."
+msgstr "Αποτυχία νάγνωσης φακέλου."
+
+msgid "Copy item(s)"
+msgstr "Αντιγραφή αντικειμένων"
+
+msgid "Move item(s)"
+msgstr "Μετακίνηση αντικειμένων"
+
+#, php-format
+msgid "Copy from /%s to /%s "
+msgstr "Αντιγραφή από  /%s σε /%s "
+
+#, php-format
+msgid "Move from /%s to /%s "
+msgstr "Μετακίνηση από /%s σε /%s "
+
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+msgid "Move"
+msgstr "Μετακίνηση"
+
+msgid "The target directory doesn't exist."
+msgstr "Ο φάκελος προορισμού δεν υπάρχει."
+
+msgid "You are not allowed to access the target directory."
+msgstr "Δεν έχετε δικαίωμα πρόσβασης στο φάκελο προορισμού."
+
+msgid "The target directory may not be above the home directory."
+msgstr "Ο φάκελος προορισμού ίσως να μην είναι πάνω από τον αρχικό φάκελο."
+
+msgid "You must supply a name."
+msgstr "Πρέπει να παρέχετε ένα όνομα."
+
+msgid "The target item already exists."
+msgstr "Το αντικείμενο προορισμού υπάρχει ήδη."
+
+msgid "Copying failed."
+msgstr "Η αντιγραφή απέτυχε"
+
+msgid "Moving failed."
+msgstr "Η μετακίνηση απέτυχε."
+
+msgid "You haven't selected any item(s)."
+msgstr "Δεν έχετε επιλέξει αντικείμενα."
+
+msgid "File saving failed."
+msgstr "Η αποθήκευση του αρχείου απέτυχε."
+
+msgid "This item already exists."
+msgstr "Αυτό το αρχείο υπάρχει ήδη."
+
+msgid "File opening failed."
+msgstr "Το άνοιγμα του αρχείου απέτυχε"
+
+msgid "Edit file"
+msgstr "Επεξεργασία αρχείου"
+
+msgid "Wrap text:"
+msgstr "Αναδίπλωση κειμένου:"
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Are you sure you want to delete selected item(s)?"
+msgstr "Θέλετε σίγουρα να διαγράψετε τα επιλεγμένα αντικείμενα;"
+
+msgid "CHANGE PERMISSIONS"
+msgstr "ΑΛΛΑΓΗ ΔΙΚΑΙΩΜΑΤΩΝ"
+
+msgid "You are not allowed to access this directory."
+msgstr "Δεν έχετε δικαίωμα πρόσβασης σε αυτό το φάκελο."
+
 msgid "Directory"
 msgstr "Κατάλογος"
+
+msgid "UP"
+msgstr "ΠΑΝΩ"
+
+msgid "RELOAD"
+msgstr "ΕΠΑΝΑΦΟΡΤΩΣΗ"
+
+msgid "SEARCH"
+msgstr "ΑΝΑΖΗΤΗΣΗ"
+
+msgid "Create"
+msgstr "Δημιουργία"
+
+msgid "Modified"
+msgstr "Τροποποίηση"
+
+msgid "Permissions"
+msgstr "Δικαιώματα"
+
+msgid "Actions"
+msgstr "Ενέργειες"
+
+msgid "COPY"
+msgstr "ΑΝΤΙΓΡΑΦΗ"
+
+msgid "MOVE"
+msgstr "ΜΕΤΑΚΙΝΗΣΗ"
+
+msgid "DELETE"
+msgstr "ΔΙΑΓΡΑΦΗ"
+
+msgid "EDIT"
+msgstr "ΕΠΕΞΕΡΓΑΣΙΑ"
+
+msgid "UNZIP"
+msgstr "ΑΠΟΣΥΜΠΙΕΣΗ"
+
+msgid "DOWNLOAD"
+msgstr "ΛΗΨΗ"
+
+msgid "Extracting"
+msgstr "Γίνεται εξαγωγή"
+
+msgid "Unzip"
+msgstr "Αποσυμπίεση"
+
+msgid "Failed to extract archive."
+msgstr "Αποτυχία εξαγωγής συμπιεσμένου αρχείου."
 
 msgid "Executable File"
 msgstr "Εκτελέσιμο αρχείο"
@@ -10054,112 +10110,11 @@ msgstr "Παρουσίαση Powerpoint"
 msgid "PDF File"
 msgstr "Αρχείο PDF"
 
-msgid "You haven't selected any item(s)."
-msgstr "Δεν έχετε επιλέξει αντικείμενα."
-
-msgid "You are not allowed to use this function."
-msgstr "Δεν έχετε πρόσβαση στη χρήση αυτής της λειτουργίας."
-
-msgid "This file doesn't exist."
-msgstr "Αυτό το αρχείο δεν υπάρχει."
-
-msgid "You are not allowed to access this file."
-msgstr "Δεν έχετε δικαίωμα πρόσβασης σε αυτό το αρχείο."
-
-msgid "Permission-change failed."
-msgstr "Η αλλαγή δικαιωμάτων απέτυχε."
-
-msgid "Getting permissions failed."
-msgstr "Η λήψη των δικαιωμάτων απέτυχε."
-
-msgid "Change permissions"
-msgstr "Αλλαγή δικαιωμάτων"
-
-msgid "Public"
-msgstr "Δημόσιο"
-
-msgid "Copy item(s)"
-msgstr "Αντιγραφή αντικειμένων"
-
-msgid "Move item(s)"
-msgstr "Μετακίνηση αντικειμένων"
-
-#, php-format
-msgid "Copy from /%s to /%s "
-msgstr "Αντιγραφή από  /%s σε /%s "
-
-#, php-format
-msgid "Move from /%s to /%s "
-msgstr "Μετακίνηση από /%s σε /%s "
-
-msgid "Copy"
-msgstr "Αντιγραφή"
-
-msgid "Move"
-msgstr "Μετακίνηση"
-
-msgid "The target directory doesn't exist."
-msgstr "Ο φάκελος προορισμού δεν υπάρχει."
-
-msgid "You are not allowed to access the target directory."
-msgstr "Δεν έχετε δικαίωμα πρόσβασης στο φάκελο προορισμού."
-
-msgid "The target directory may not be above the home directory."
-msgstr "Ο φάκελος προορισμού ίσως να μην είναι πάνω από τον αρχικό φάκελο."
-
-msgid "You must supply a name."
-msgstr "Πρέπει να παρέχετε ένα όνομα."
-
-msgid "This item doesn't exist."
-msgstr "Αυτό το αρχείο δεν υπάρχει."
-
-msgid "You are not allowed to access this item."
-msgstr "Δεν έχετε δικαίωμα πρόσβασης σε αυτό το αντικείμενο."
-
-msgid "The target item already exists."
-msgstr "Το αντικείμενο προορισμού υπάρχει ήδη."
-
-msgid "Copying failed."
-msgstr "Η αντιγραφή απέτυχε"
-
-msgid "Moving failed."
-msgstr "Η μετακίνηση απέτυχε."
-
-msgid "Deleting failed."
-msgstr "Η διαγραφή απέτυχε"
-
 msgid "ERROR(S)"
 msgstr "ΣΦΑΛΜΑ(ΤΑ)"
 
 msgid "Go Back"
 msgstr "Μετάβαση πίσω"
-
-msgid "File saving failed."
-msgstr "Η αποθήκευση του αρχείου απέτυχε."
-
-msgid "This item already exists."
-msgstr "Αυτό το αρχείο υπάρχει ήδη."
-
-msgid "File opening failed."
-msgstr "Το άνοιγμα του αρχείου απέτυχε"
-
-msgid "Edit file"
-msgstr "Επεξεργασία αρχείου"
-
-msgid "Wrap text:"
-msgstr "Αναδίπλωση κειμένου:"
-
-msgid "Reset"
-msgstr "Επαναφορά"
-
-msgid "Unable to open source directory."
-msgstr "Αδυναμία ανοίγματος του πηγαίου φακέλου."
-
-msgid "Unable to open directory."
-msgstr "Αποτυχία ανοίγματος φακέλου."
-
-msgid "Unable to read directory."
-msgstr "Αποτυχία νάγνωσης φακέλου."
 
 msgid "Directory creation failed."
 msgstr "Η δημιουργία φακέλου απέτυχε."
@@ -10167,62 +10122,240 @@ msgstr "Η δημιουργία φακέλου απέτυχε."
 msgid "File creation failed."
 msgstr "Η δημιουργία αρχείου απέτυχε."
 
-msgid "Are you sure you want to delete selected item(s)?"
-msgstr "Θέλετε σίγουρα να διαγράψετε τα επιλεγμένα αντικείμενα;"
+msgid "Dataset Name"
+msgstr "Όνομα Dataset"
 
-msgid "CHANGE PERMISSIONS"
-msgstr "ΑΛΛΑΓΗ ΔΙΚΑΙΩΜΑΤΩΝ"
+msgid ""
+"File System - can be mounted within the standard system namespace and "
+"behaves like other file systems."
+msgstr ""
+"Σύστημα Αρχείων - μπορεί να προσαρτηθεί μέσα στο κανονικό namespace του "
+"συστήματος και συμπεριφέρεται σαν τα άλλα συστήματα αρχείων."
 
-msgid "You are not allowed to access this directory."
-msgstr "Δεν έχετε δικαίωμα πρόσβασης σε αυτό το φάκελο."
+msgid "Volume - A logical volume. Can be exported as a raw or block device."
+msgstr ""
+"Τόμος - Ένας λογικός τόμος. Μπορεί να εξαχθεί σαν συσκευή raw ή block."
 
-msgid "UP"
-msgstr "ΠΑΝΩ"
+msgid ""
+"Snapshot - A read-only version of a file system or volume at a given point "
+"in time."
+msgstr ""
+"Στιμιότυπο - Μια έκδοση μόνο για ανάγνωση ενός συστήματος αρχείων ή ενός "
+"τόμου, σε μια συσκεκριμένη χρονική στιγμή"
 
-msgid "RELOAD"
-msgstr "ΕΠΑΝΑΦΟΡΤΩΣΗ"
+msgid "Bookmark - Creates a bookmark of a given snapshot."
+msgstr ""
+"Σελιδοδείκτης - Δημιουργεί ένα σελιδοδείκτη για ένα συγκεκριμένο snapshot."
 
-msgid "SEARCH"
-msgstr "ΑΝΑΖΗΤΗΣΗ"
+msgid "Dataset Type"
+msgstr "Τύπος Dataset"
 
-msgid "Create"
-msgstr "Δημιουργία"
+msgid "Pool Name"
+msgstr "Όνομα Pool"
 
-msgid "Modified"
-msgstr "Τροποποίηση"
+msgid "Clones"
+msgstr "Κλώνοι"
 
-msgid "Permissions"
-msgstr "Δικαιώματα"
+msgid "Compression Ratio"
+msgstr "Αναλογία Συμπίεσης"
 
-msgid "Actions"
-msgstr "Ενέργειες"
+msgid "Defer Destroy"
+msgstr "Defer Destroy"
 
-msgid "COPY"
-msgstr "ΑΝΤΙΓΡΑΦΗ"
+msgid "Encryption Root"
+msgstr "Ρίζα Κρυπτογράφησης"
 
-msgid "MOVE"
-msgstr "ΜΕΤΑΚΙΝΗΣΗ"
+msgid "Filesystem Count"
+msgstr "Πλήθος Συστημάτων Αρχείων"
 
-msgid "DELETE"
-msgstr "ΔΙΑΓΡΑΦΗ"
+msgid "GUID"
+msgstr "GUID"
 
-msgid "EDIT"
-msgstr "ΕΠΕΞΕΡΓΑΣΙΑ"
+msgid "Key Status"
+msgstr "Κατάσταση Κλειδιού"
 
-msgid "UNZIP"
-msgstr "ΑΠΟΣΥΜΠΙΕΣΗ"
+msgid "Logical Referenced"
+msgstr "Λογικά που Αναφέρονται"
 
-msgid "DOWNLOAD"
-msgstr "ΛΗΨΗ"
+msgid "Logical Used"
+msgstr "Λογικά σε Χρήση"
 
-msgid "Extracting"
-msgstr "Γίνεται εξαγωγή"
+msgid "Mounted"
+msgstr "Προσαρτημένα"
 
-msgid "Unzip"
-msgstr "Αποσυμπίεση"
+msgid "Obj Set ID"
+msgstr "Obj Set ID"
 
-msgid "Failed to extract archive."
-msgstr "Αποτυχία εξαγωγής συμπιεσμένου αρχείου."
+msgid "Receive Resume Token"
+msgstr "Λήψη Διακριτικού Συνέχισης"
+
+msgid "Redact Snaps"
+msgstr "Redact Snaps"
+
+msgid "Refcompressratio"
+msgstr "Refcompressratio"
+
+msgid "Referenced"
+msgstr "Αναφερμένα"
+
+msgid "Snapshot Count"
+msgstr "Πλήθος Στιγμιότυπων"
+
+msgid "Used by Children"
+msgstr "Χρήση από Παιδιά"
+
+msgid "Used by Dataset"
+msgstr "Χρήση από Dataset"
+
+msgid "Used by Refreservation"
+msgstr "Χρήση από Refreservation"
+
+msgid "Used by Snapshots"
+msgstr "Χρήση από Στιγμιότυπα"
+
+msgid "Userrefs"
+msgstr "Userrefs"
+
+msgid "Written"
+msgstr "Γραμμένα"
+
+msgid "Normalization"
+msgstr "Κανονικοποίηση"
+
+msgid "UTF-8 File Names"
+msgstr "Ονόματα Αρχείων UTF-8"
+
+msgid "ACL Type"
+msgstr "Τύπος ACL"
+
+msgid "Access Time"
+msgstr "Χρόνος Προσπέλασης"
+
+msgid "Can Mount"
+msgstr "Μπορεί να Προσαρτηθεί"
+
+msgid "Checksum"
+msgstr "Checksum"
+
+msgid "GZIP Compression Level"
+msgstr "Επίπεδο Συμπίεσης GZIP"
+
+msgid "Zstandard Compression Level"
+msgstr "Επίπεδο Συμπίεσης Zstandard"
+
+msgid "Fast Zstandard Compression Level"
+msgstr "Επίπεδο Συμπίεσης Fast Zstandard"
+
+msgid "Copies"
+msgstr "Αντίγραφα"
+
+msgid "Dedup Method"
+msgstr "Μέθοδος Dedup"
+
+msgid "Dnode Size"
+msgstr "Μέγεθος Dnode"
+
+msgid "Execute Processes"
+msgstr "Εκτέλεση Διεργασιών"
+
+msgid "Filesystem Limit"
+msgstr "Όριο Συστήματος Αρχείων"
+
+msgid "Jailed"
+msgstr "Jailed"
+
+msgid "Key Format"
+msgstr "Μορφή Κλειδιού"
+
+msgid "Key Location"
+msgstr "Τοποθεσία Κλειδιού"
+
+msgid "Logbias"
+msgstr "Logbias"
+
+msgid "Mountpoint Type"
+msgstr "Τύπος Σημείου Προσάρτησης"
+
+msgid "Non-blocking Mandatory Locks"
+msgstr "Μη-αποκλειστικά Υποχρεωτικά Κλειδώματα"
+
+msgid "Overlay Mount"
+msgstr "Προσάρτηση Overlay"
+
+msgid "PBKDF2 Iterations"
+msgstr "Επαναλήψεις PBKDF2"
+
+msgid "Primary Cache"
+msgstr "Πρωτεύουσα Κρυφή Μνήμη"
+
+msgid "Record Size"
+msgstr "Μέγεθος Εγγραφής"
+
+msgid "Redundant Metadata"
+msgstr "Επαρκή Μεταδεδομένα"
+
+msgid "Refquota"
+msgstr "Refquota"
+
+msgid "Refquota Type"
+msgstr "Τύπος Refquota"
+
+msgid "Refreservation"
+msgstr "Refreservation"
+
+msgid "Refreservation Type"
+msgstr "Τύπος Refreservation"
+
+msgid "Relatime"
+msgstr "Relatime"
+
+msgid "Reservation Type"
+msgstr "Τύπος Κράτησης"
+
+msgid "Secondary Cache"
+msgstr "Δευτερεύουσα Κρυφή Μνήμη"
+
+msgid "Setuid"
+msgstr "Setuid"
+
+msgid "Share NFS Options"
+msgstr "Επιλογές Κοινόχρηστου μέσω NFS"
+
+msgid "Share NFS Type"
+msgstr "Τύπος Κοινόχρηστου μέσω NFS"
+
+msgid "Share SMB Options"
+msgstr "Επιλογές Κοινόχρηστου μέσω SMB"
+
+msgid "Share SMB Type"
+msgstr "Τύπος Κοινόχρηστου μέσω SMB"
+
+msgid "Snapshot Device Visibility"
+msgstr "Ορατότητα Συσκευής Στγμιότυπων"
+
+msgid "Snapshot Folder Visibility"
+msgstr "Ορατότητα Φακέλου με Στιγμιότυπα"
+
+msgid "Snapshot Limit"
+msgstr "Όριο Στγμιοτύπων"
+
+msgid "Threshold Small Block Size"
+msgstr "Όριο Μεγέθους Μικρού Block"
+
+msgid "Synchronous Requests Behaviour"
+msgstr "Συμπεριφορά Σύγχρονων Αιτημάτων"
+
+msgid "Volume Mode"
+msgstr "Λειτουργία Τόμου"
+
+msgid "Volume Size"
+msgstr "Μέγεθος Τόμου"
+
+msgid "Virus Scan"
+msgstr "Ελεγχος για Ιούς"
+
+msgid "No ZFS filesystem information available."
+msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες για σύστημα αρχείων ZFS."
 
 msgid "The name of the filesystem."
 msgstr "Το όνομα του συστήματος αρχείων."
@@ -10232,9 +10365,6 @@ msgstr "Εισάγετε όνομα συστήματος αρχείων"
 
 msgid "Controls the type of the ZFS dataset."
 msgstr "Ελέγχει τον τύπο του ZFS dataset."
-
-msgid "Pool Name"
-msgstr "Όνομα Pool"
 
 msgid ""
 "Indicates whether the file name matching algorithm used by the filesystem "
@@ -10831,9 +10961,6 @@ msgstr ""
 msgid "System attribute based xattrs"
 msgstr "Xattrs βασισμένα στις ιδιότητες του συστήματος"
 
-msgid "No ZFS filesystem information available."
-msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες για σύστημα αρχείων ZFS."
-
 msgid "Add Filesystem"
 msgstr "Προσθήκη Συστήματος Αρχείων"
 
@@ -10882,235 +11009,6 @@ msgstr "άγνωστο"
 
 msgid "Filesystems"
 msgstr "Συστήματα Αρχείων"
-
-msgid "Dataset Name"
-msgstr "Όνομα Dataset"
-
-msgid ""
-"File System - can be mounted within the standard system namespace and "
-"behaves like other file systems."
-msgstr ""
-"Σύστημα Αρχείων - μπορεί να προσαρτηθεί μέσα στο κανονικό namespace του "
-"συστήματος και συμπεριφέρεται σαν τα άλλα συστήματα αρχείων."
-
-msgid "Volume - A logical volume. Can be exported as a raw or block device."
-msgstr ""
-"Τόμος - Ένας λογικός τόμος. Μπορεί να εξαχθεί σαν συσκευή raw ή block."
-
-msgid ""
-"Snapshot - A read-only version of a file system or volume at a given point "
-"in time."
-msgstr ""
-"Στιμιότυπο - Μια έκδοση μόνο για ανάγνωση ενός συστήματος αρχείων ή ενός "
-"τόμου, σε μια συσκεκριμένη χρονική στιγμή"
-
-msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr ""
-"Σελιδοδείκτης - Δημιουργεί ένα σελιδοδείκτη για ένα συγκεκριμένο snapshot."
-
-msgid "Dataset Type"
-msgstr "Τύπος Dataset"
-
-msgid "Clones"
-msgstr "Κλώνοι"
-
-msgid "Compression Ratio"
-msgstr "Αναλογία Συμπίεσης"
-
-msgid "Defer Destroy"
-msgstr "Defer Destroy"
-
-msgid "Encryption Root"
-msgstr "Ρίζα Κρυπτογράφησης"
-
-msgid "Filesystem Count"
-msgstr "Πλήθος Συστημάτων Αρχείων"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Key Status"
-msgstr "Κατάσταση Κλειδιού"
-
-msgid "Logical Referenced"
-msgstr "Λογικά που Αναφέρονται"
-
-msgid "Logical Used"
-msgstr "Λογικά σε Χρήση"
-
-msgid "Mounted"
-msgstr "Προσαρτημένα"
-
-msgid "Obj Set ID"
-msgstr "Obj Set ID"
-
-msgid "Receive Resume Token"
-msgstr "Λήψη Διακριτικού Συνέχισης"
-
-msgid "Redact Snaps"
-msgstr "Redact Snaps"
-
-msgid "Refcompressratio"
-msgstr "Refcompressratio"
-
-msgid "Referenced"
-msgstr "Αναφερμένα"
-
-msgid "Snapshot Count"
-msgstr "Πλήθος Στιγμιότυπων"
-
-msgid "Used by Children"
-msgstr "Χρήση από Παιδιά"
-
-msgid "Used by Dataset"
-msgstr "Χρήση από Dataset"
-
-msgid "Used by Refreservation"
-msgstr "Χρήση από Refreservation"
-
-msgid "Used by Snapshots"
-msgstr "Χρήση από Στιγμιότυπα"
-
-msgid "Userrefs"
-msgstr "Userrefs"
-
-msgid "Written"
-msgstr "Γραμμένα"
-
-msgid "Normalization"
-msgstr "Κανονικοποίηση"
-
-msgid "UTF-8 File Names"
-msgstr "Ονόματα Αρχείων UTF-8"
-
-msgid "ACL Type"
-msgstr "Τύπος ACL"
-
-msgid "Access Time"
-msgstr "Χρόνος Προσπέλασης"
-
-msgid "Can Mount"
-msgstr "Μπορεί να Προσαρτηθεί"
-
-msgid "Checksum"
-msgstr "Checksum"
-
-msgid "GZIP Compression Level"
-msgstr "Επίπεδο Συμπίεσης GZIP"
-
-msgid "Zstandard Compression Level"
-msgstr "Επίπεδο Συμπίεσης Zstandard"
-
-msgid "Fast Zstandard Compression Level"
-msgstr "Επίπεδο Συμπίεσης Fast Zstandard"
-
-msgid "Copies"
-msgstr "Αντίγραφα"
-
-msgid "Dedup Method"
-msgstr "Μέθοδος Dedup"
-
-msgid "Dnode Size"
-msgstr "Μέγεθος Dnode"
-
-msgid "Execute Processes"
-msgstr "Εκτέλεση Διεργασιών"
-
-msgid "Filesystem Limit"
-msgstr "Όριο Συστήματος Αρχείων"
-
-msgid "Jailed"
-msgstr "Jailed"
-
-msgid "Key Format"
-msgstr "Μορφή Κλειδιού"
-
-msgid "Key Location"
-msgstr "Τοποθεσία Κλειδιού"
-
-msgid "Logbias"
-msgstr "Logbias"
-
-msgid "Mountpoint Type"
-msgstr "Τύπος Σημείου Προσάρτησης"
-
-msgid "Non-blocking Mandatory Locks"
-msgstr "Μη-αποκλειστικά Υποχρεωτικά Κλειδώματα"
-
-msgid "Overlay Mount"
-msgstr "Προσάρτηση Overlay"
-
-msgid "PBKDF2 Iterations"
-msgstr "Επαναλήψεις PBKDF2"
-
-msgid "Primary Cache"
-msgstr "Πρωτεύουσα Κρυφή Μνήμη"
-
-msgid "Record Size"
-msgstr "Μέγεθος Εγγραφής"
-
-msgid "Redundant Metadata"
-msgstr "Επαρκή Μεταδεδομένα"
-
-msgid "Refquota"
-msgstr "Refquota"
-
-msgid "Refquota Type"
-msgstr "Τύπος Refquota"
-
-msgid "Refreservation"
-msgstr "Refreservation"
-
-msgid "Refreservation Type"
-msgstr "Τύπος Refreservation"
-
-msgid "Relatime"
-msgstr "Relatime"
-
-msgid "Reservation Type"
-msgstr "Τύπος Κράτησης"
-
-msgid "Secondary Cache"
-msgstr "Δευτερεύουσα Κρυφή Μνήμη"
-
-msgid "Setuid"
-msgstr "Setuid"
-
-msgid "Share NFS Options"
-msgstr "Επιλογές Κοινόχρηστου μέσω NFS"
-
-msgid "Share NFS Type"
-msgstr "Τύπος Κοινόχρηστου μέσω NFS"
-
-msgid "Share SMB Options"
-msgstr "Επιλογές Κοινόχρηστου μέσω SMB"
-
-msgid "Share SMB Type"
-msgstr "Τύπος Κοινόχρηστου μέσω SMB"
-
-msgid "Snapshot Device Visibility"
-msgstr "Ορατότητα Συσκευής Στγμιότυπων"
-
-msgid "Snapshot Folder Visibility"
-msgstr "Ορατότητα Φακέλου με Στιγμιότυπα"
-
-msgid "Snapshot Limit"
-msgstr "Όριο Στγμιοτύπων"
-
-msgid "Threshold Small Block Size"
-msgstr "Όριο Μεγέθους Μικρού Block"
-
-msgid "Synchronous Requests Behaviour"
-msgstr "Συμπεριφορά Σύγχρονων Αιτημάτων"
-
-msgid "Volume Mode"
-msgstr "Λειτουργία Τόμου"
-
-msgid "Volume Size"
-msgstr "Μέγεθος Τόμου"
-
-msgid "Virus Scan"
-msgstr "Ελεγχος για Ιούς"
 
 msgid "Show Used/Avail"
 msgstr "Προβολή Σε χρήση/Διαθέσιμο"
@@ -11196,6 +11094,51 @@ msgid ""
 msgstr ""
 "Όταν ενεργοποιηθεί, η καταστροφή του dataset θα καταστρέψει επίσης και όσα "
 "εξαρτώνται από αυτό (dataset, snapshots και κλώνους)."
+
+msgid "Add Schedule"
+msgstr "Προσθήκη Προγράμματος"
+
+msgid "Edit Schedule"
+msgstr "Επεξεργασία Προγράμματος"
+
+msgid "Schedule is marked for deletion"
+msgstr "Το πρόγραμμα έχει σημειωθεί προς διαγραφή"
+
+msgid "Schedule is locked"
+msgstr "Το πρόγραμμα είναι κλειδωμένο"
+
+msgid "Schedule is unlocked"
+msgstr "Το πρόγραμμα είναι ξεκλείδωτο"
+
+msgid "Delete Selected Schedules"
+msgstr "Διαγραφή Επιλεγμένων Προγραμμάτων"
+
+msgid "Do you want to delete selected schedules?"
+msgstr "Θέλετε να διαγράψετε τα επιλεγμένα προγράμματα;"
+
+msgid "Do you want to disable selected schedules?"
+msgstr "Θέλετε να απενεργοποιήσετε τα επιλεγμένα προγράμματα;"
+
+msgid "Do you want to enable selected schedules?"
+msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα προγράμματα;"
+
+msgid "Do you want to toggle selected schedules?"
+msgstr "Θέλετε να κάνετε εναλλαγή επιλογής των επιλεγμένων προγραμμάτων;"
+
+msgid "Invalid"
+msgstr "Μη έγκυρο"
+
+msgid "Destroy"
+msgstr "Καταστροφή"
+
+msgid "Create Snapshot"
+msgstr "Δημιουργία Snapshot"
+
+msgid "Destroy Snapshot"
+msgstr "Καταστροφή Στιγμιότυπου"
+
+msgid "Scrub Pool"
+msgstr "Scrub του Pool"
 
 msgid "Lifetime"
 msgstr "Διάρκεια Ζωής"
@@ -11285,59 +11228,14 @@ msgstr ""
 msgid "Presets"
 msgstr "Προεπιλογές"
 
-msgid "Add Schedule"
-msgstr "Προσθήκη Προγράμματος"
-
-msgid "Edit Schedule"
-msgstr "Επεξεργασία Προγράμματος"
-
-msgid "Schedule is marked for deletion"
-msgstr "Το πρόγραμμα έχει σημειωθεί προς διαγραφή"
-
-msgid "Schedule is locked"
-msgstr "Το πρόγραμμα είναι κλειδωμένο"
-
-msgid "Schedule is unlocked"
-msgstr "Το πρόγραμμα είναι ξεκλείδωτο"
-
-msgid "Delete Selected Schedules"
-msgstr "Διαγραφή Επιλεγμένων Προγραμμάτων"
-
-msgid "Do you want to delete selected schedules?"
-msgstr "Θέλετε να διαγράψετε τα επιλεγμένα προγράμματα;"
-
-msgid "Do you want to disable selected schedules?"
-msgstr "Θέλετε να απενεργοποιήσετε τα επιλεγμένα προγράμματα;"
-
-msgid "Do you want to enable selected schedules?"
-msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα προγράμματα;"
-
-msgid "Do you want to toggle selected schedules?"
-msgstr "Θέλετε να κάνετε εναλλαγή επιλογής των επιλεγμένων προγραμμάτων;"
-
-msgid "Invalid"
-msgstr "Μη έγκυρο"
-
-msgid "Destroy"
-msgstr "Καταστροφή"
-
-msgid "Create Snapshot"
-msgstr "Δημιουργία Snapshot"
-
-msgid "Destroy Snapshot"
-msgstr "Καταστροφή Στιγμιότυπου"
-
-msgid "Scrub Pool"
-msgstr "Scrub του Pool"
-
 msgid "Recursively create snapshots of all descendent datasets."
 msgstr "Δημιουργία αναδρομικού στιγμιότυπου για όλα τα dataset - απογόνους."
 
-msgid "Scrub"
-msgstr "Scrub"
-
 msgid "Select pool."
 msgstr "Επιλογή pool."
+
+msgid "Scrub"
+msgstr "Scrub"
 
 msgid "No ZFS zpool information available."
 msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες για  zpool ZFS."
@@ -11355,6 +11253,48 @@ msgstr "Εισαγωγή Αναγνωριστικού"
 
 msgid "Enter smartctl pass-through type."
 msgstr "Εισάγετε τύπο pass-through του smartctl."
+
+msgid "Login Name"
+msgstr "Όνομα Χρήστη"
+
+msgid "Full Name"
+msgstr "Πλήρες Όνομα"
+
+msgid "SHA Password"
+msgstr "Κωδικός SHA"
+
+msgid "MD4 Password"
+msgstr "Κωδικός MD4"
+
+msgid "Shell"
+msgstr "Κέλυφος"
+
+msgid "Primary Group"
+msgstr "Πρωτεύουσα Ομάδα"
+
+msgid "Groups"
+msgstr "Ομάδες"
+
+msgid "Timezone"
+msgstr "Ζώνη Ώρας"
+
+msgid "File Manager Access"
+msgstr "Πρόσβαση Διαχειριστή Αρχείων"
+
+msgid "Hidden Items"
+msgstr "Κρυφά αντικείμενα"
+
+msgid "Read Permission"
+msgstr "Πρόσβαση Ανάγνωσης"
+
+msgid "Create Permission"
+msgstr "Δημιουργία Πρόσβασης"
+
+msgid "Change Permission"
+msgstr "Αλλαγή Πρόσβασης"
+
+msgid "Delete Permission"
+msgstr "Διαγραφή Πρόσβασης"
 
 msgid "Add User Account"
 msgstr "Προσθήκη Λογαριασμού Χρήστη"
@@ -11398,6 +11338,9 @@ msgstr "Μεταβολή Επιλεγμένων Χρηστών"
 msgid "Do you want to toggle selected users?"
 msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους χρήστες;"
 
+msgid "Active"
+msgstr "Ενεργό"
+
 msgid "System User"
 msgstr "Χρήστης Συστήματος"
 
@@ -11412,9 +11355,6 @@ msgstr "Εισάγετε όνομα χρήστη."
 
 msgid "Enter the full user name."
 msgstr "Εισάγετε το πλήρες όνομα του χρήστη."
-
-msgid "Full Name"
-msgstr "Πλήρες Όνομα"
 
 msgid "Set user password."
 msgstr "Ορισμός κωδικού χρήστη."
@@ -11502,53 +11442,11 @@ msgstr "Εκχώρηση δικαιώματος τροποποίησης πρό�
 msgid "Grant delete permission"
 msgstr "Εκχώρηση δικαιώματος διαγραφής πρόσβασης"
 
-msgid "Login Name"
-msgstr "Όνομα Χρήστη"
-
-msgid "SHA Password"
-msgstr "Κωδικός SHA"
-
-msgid "MD4 Password"
-msgstr "Κωδικός MD4"
-
-msgid "Shell"
-msgstr "Κέλυφος"
-
-msgid "Primary Group"
-msgstr "Πρωτεύουσα Ομάδα"
-
-msgid "Groups"
-msgstr "Ομάδες"
-
-msgid "Timezone"
-msgstr "Ζώνη Ώρας"
-
-msgid "File Manager Access"
-msgstr "Πρόσβαση Διαχειριστή Αρχείων"
-
-msgid "Hidden Items"
-msgstr "Κρυφά αντικείμενα"
-
-msgid "Read Permission"
-msgstr "Πρόσβαση Ανάγνωσης"
-
-msgid "Create Permission"
-msgstr "Δημιουργία Πρόσβασης"
-
-msgid "Change Permission"
-msgstr "Αλλαγή Πρόσβασης"
-
-msgid "Delete Permission"
-msgstr "Διαγραφή Πρόσβασης"
-
 msgid "Users"
 msgstr "Χρήστες"
 
 msgid "Public Keys"
 msgstr "Δημόσια Κλειδιά"
-
-msgid "Public Key"
-msgstr "Δημόσιο Κλειδί"
 
 msgid "Add Public Key"
 msgstr "Προσθήκη Δημόσιου Κλειδιού"
@@ -11592,21 +11490,11 @@ msgstr "Θέλετε να μεταβάλλετε τα επιλεγμένα δη�
 msgid "Reload"
 msgstr "Επαναφόρτωση"
 
+msgid "Public Key"
+msgstr "Δημόσιο Κλειδί"
+
 msgid "Public key information."
 msgstr "Πληροφορίες δημόσιου κλειδιού."
-
-msgid "Enter group name."
-msgstr "Εισάγετε όνομα ομάδες."
-
-msgid "Group Name"
-msgstr "Όνομα Ομάδας"
-
-msgid "Specify the group numeric id."
-msgstr "Ορίστε το αριθμητικό id της ομάδας."
-
-msgid "The recommended range for the group id is between 1000 and 32000."
-msgstr ""
-"Το προτεινόμενο εύρος τιμών για το id ομάδας είναι μεταξύ 1000 και 32000."
 
 msgid "Add Group"
 msgstr "Προσθήκη Ομάδας"
@@ -11655,6 +11543,19 @@ msgstr "Προβολή Ομάδων Συστήματος"
 
 msgid "Hide System Groups"
 msgstr "Απόκρυψη Ομάδων Συστήματος"
+
+msgid "Enter group name."
+msgstr "Εισάγετε όνομα ομάδες."
+
+msgid "Group Name"
+msgstr "Όνομα Ομάδας"
+
+msgid "Specify the group numeric id."
+msgstr "Ορίστε το αριθμητικό id της ομάδας."
+
+msgid "The recommended range for the group id is between 1000 and 32000."
+msgstr ""
+"Το προτεινόμενο εύρος τιμών για το id ομάδας είναι μεταξύ 1000 και 32000."
 
 msgid "Enter AD or PDC name."
 msgstr "Εισάγετε AD ή όνομα PDC."
@@ -12074,6 +11975,12 @@ msgstr "Το όνομα της μεταβλητής"
 msgid "The value of the variable."
 msgstr "Η τιμή της μεταβλητής."
 
+msgid "Name of the variable."
+msgstr "Το όνομα της μεταβλητής."
+
+msgid "Enter Value"
+msgstr "Εισάγετε Τιμή"
+
 msgid "Disabled variable names will be removed from /etc/rc.conf."
 msgstr ""
 "Τα ονόματα των απενεργοποιημένων μεταβλητών θα αφαιρεθούν από το "
@@ -12082,11 +11989,44 @@ msgstr ""
 msgid "Enabled options will be added to /etc/rc.conf."
 msgstr "Οι ενεργοποιημένες επιλογές θα προστεθούν στο /etc/rc.conf."
 
-msgid "Name of the variable."
-msgstr "Το όνομα της μεταβλητής."
+msgid "Button Location"
+msgstr "Τοποθεσία Κουμπιού"
 
-msgid "Enter Value"
-msgstr "Εισάγετε Τιμή"
+msgid "File Chooser"
+msgstr "Επιλογέας Αρχείων"
+
+msgid "File Mode"
+msgstr "Λειτουργία Αρχείων"
+
+msgid "GUI"
+msgstr "GUI"
+
+msgid "Navigation Bar"
+msgstr "Μπάρα Πλοήγησης"
+
+msgid "Tabs"
+msgstr "Καρτέλες"
+
+msgid "Toggle Mode"
+msgstr "Λειτουργία Εναλλαγής"
+
+msgid "Navbar Style"
+msgstr "Στυλ Μπάρας Πλοήγησης"
+
+msgid "Binary Prefix"
+msgstr "Δυαδικό Πρόθεμα"
+
+msgid "Colorful Meters"
+msgstr "Πολύχρωμοι Μετρητές"
+
+msgid "Skip View Mode"
+msgstr "Παράλειψη Λειτουργίας Προβολής"
+
+msgid "Show Max CPUs"
+msgstr "Προβολή μέγιστου αριθμού επεξεργαστών"
+
+msgid "Diagnostics Information"
+msgstr "Διαγνωστικές Πληροφορίες"
 
 msgid ""
 "Display action buttons in the scrollable area instead of the footer area."
@@ -12179,48 +12119,6 @@ msgstr ""
 msgid "Set the landing page for the Diagnostics > Information menu."
 msgstr "Ορίστε τη σελίδα προορισμού για το μενού Διαγνωστικά > Πληροφορίες"
 
-msgid "Button Location"
-msgstr "Τοποθεσία Κουμπιού"
-
-msgid "File Chooser"
-msgstr "Επιλογέας Αρχείων"
-
-msgid "File Mode"
-msgstr "Λειτουργία Αρχείων"
-
-msgid "GUI"
-msgstr "GUI"
-
-msgid "Navigation Bar"
-msgstr "Μπάρα Πλοήγησης"
-
-msgid "Tabs"
-msgstr "Καρτέλες"
-
-msgid "Toggle Mode"
-msgstr "Λειτουργία Εναλλαγής"
-
-msgid "Navbar Style"
-msgstr "Στυλ Μπάρας Πλοήγησης"
-
-msgid "Binary Prefix"
-msgstr "Δυαδικό Πρόθεμα"
-
-msgid "Colorful Meters"
-msgstr "Πολύχρωμοι Μετρητές"
-
-msgid "Skip View Mode"
-msgstr "Παράλειψη Λειτουργίας Προβολής"
-
-msgid "Show Max CPUs"
-msgstr "Προβολή μέγιστου αριθμού επεξεργαστών"
-
-msgid "Diagnostics Information"
-msgstr "Διαγνωστικές Πληροφορίες"
-
-msgid "Show Interval"
-msgstr "Προβολή χρονικού διαστήματος"
-
 msgid ""
 "Set the number of days until a reminder is shown to backup system "
 "configuration. The default is 28 days. A value of 0 disables the reminder."
@@ -12228,6 +12126,15 @@ msgstr ""
 "Ορίστε ένα αριθμό ημερών μέχρι να εμφανιστή μία υπενθύμιση για αντίγραφο "
 "ασφαλείας των ρυθμίσεων του συστήματος. Η προεπιλογή είναι 28 ημέρες. Η τιμή "
 "0 απενεργοποιεί την υπενθύμιση."
+
+msgid "Show Interval"
+msgstr "Προβολή χρονικού διαστήματος"
+
+msgid "Do you really want to remove the selected item from the list?"
+msgstr "Θέλετε σίγουρα να αφαιρέσετε το επιλεγμένο στοιχεία από τη λίστα;"
+
+msgid "Select item to remove from the list"
+msgstr "Επιλέξτε το αντικείμενο που θέλετε να αφαιρεθεί από τη λίστα"
 
 msgid "Delete Selected Records"
 msgstr "Διαγραφή Επιλεγμένων Εγγραφών"
@@ -12286,12 +12193,6 @@ msgstr "Επεξεργασία Εγγραφής"
 msgid "Record is unlocked"
 msgstr "Η εγγραφήείναι ξεκλείδωτη"
 
-msgid "Do you really want to remove the selected item from the list?"
-msgstr "Θέλετε σίγουρα να αφαιρέσετε το επιλεγμένο στοιχεία από τη λίστα;"
-
-msgid "Select item to remove from the list"
-msgstr "Επιλέξτε το αντικείμενο που θέλετε να αφαιρεθεί από τη λίστα"
-
 msgid "Service"
 msgstr "Υπηρεσία"
 
@@ -12301,23 +12202,23 @@ msgstr "Μη ορισμένο"
 msgid "The value is invalid."
 msgstr "Η τιμή δεν είναι έγκυρη."
 
+msgid "Enter additional parameters"
+msgstr "Εισάγετε πρόσθετες παραμέτρους"
+
+msgid "No additional parameters"
+msgstr "Δεν υπάρχουν πρόσθετες παράμετροι"
+
+msgid "Enter a description for your reference."
+msgstr "Εισάγετε μια περιγραφή για δική σας εξυπηρέτηση."
+
 msgid "Network Address"
 msgstr "Διεύθυνση Δικτύου"
 
 msgid "Enable Setting"
 msgstr "Ενεργοποίηση Ρύθμισης"
 
-msgid "Enter a description for your reference."
-msgstr "Εισάγετε μια περιγραφή για δική σας εξυπηρέτηση."
-
 msgid "IPv4 Address"
 msgstr "Διεύθυνση IPv4"
-
-msgid "Protect"
-msgstr "Προστασία"
-
-msgid "Protect Setting"
-msgstr "Ρύθμιση Προστασίας"
 
 msgid "The UUID of the record."
 msgstr "Το UUID  της εγγραφής."
@@ -12328,14 +12229,62 @@ msgstr "Εισαγωγή Γενικού Μοναδικού Αναγνωριστ�
 msgid "Universally Unique Identifier"
 msgstr "Γενικό Μοναδικό Αναγνωριστικό"
 
-msgid "Enter additional parameters"
-msgstr "Εισάγετε πρόσθετες παραμέτρους"
+msgid "Protect"
+msgstr "Προστασία"
 
-msgid "No additional parameters"
-msgstr "Δεν υπάρχουν πρόσθετες παράμετροι"
+msgid "Protect Setting"
+msgstr "Ρύθμιση Προστασίας"
 
 msgid "Autodetect"
 msgstr "Αυτόματος εντοπισμός"
+
+msgid "Standard Provider"
+msgstr "Τυπικός Πάροχος"
+
+msgid "Custom Provider"
+msgstr "Προσαρμοσμένος Πάροχος"
+
+msgid "Record Type"
+msgstr "Τύπος Εγγραφής"
+
+msgid "Provider"
+msgstr "Πάροχος"
+
+msgid "Provider Name"
+msgstr "Όνομα Παρόχου"
+
+msgid "Host Names"
+msgstr "Ονόματα Υπολογιστών"
+
+msgid "Wildcard Domain"
+msgstr "Χαρακτήρες Μπαλαντέρ Τομέα"
+
+msgid "Use HTTPS"
+msgstr "Χρήση HTTPS"
+
+msgid "Check IP Server"
+msgstr "Διακομιστής Ελέγχου IP"
+
+msgid "Check IP Path"
+msgstr "Διαδρομή ελέγχου IP"
+
+msgid "Check IP using HTTPS"
+msgstr "Έλεγχος IP με χρήση HTTPS"
+
+msgid "Check IP Command"
+msgstr "Εντολή Ελέγχου IP"
+
+msgid "User Agent"
+msgstr "User Agent"
+
+msgid "DDNS-Server"
+msgstr "DDNS-Διακομιστής"
+
+msgid "DDNS-Path"
+msgstr "DDNS-Διαδρομή"
+
+msgid "Append my IP"
+msgstr "Προσθήκη της IP μου"
 
 msgid "Add Provider"
 msgstr "Προσθήκη Παρόχου"
@@ -12387,6 +12336,12 @@ msgstr "Απροσδιόριστος Τύπος"
 
 msgid "Unknown Provider"
 msgstr "Άγνωστος Πάροχος"
+
+msgid "Providers"
+msgstr "Πάροχοι"
+
+msgid "Global Settings"
+msgstr "Γενικές ρυθμίσεις"
 
 msgid ""
 "Select \"Custom Provider\" for customizing the DDNS update server details "
@@ -12508,59 +12463,44 @@ msgstr ""
 msgid "These parameters will be added to this provider configuration"
 msgstr "Αυτοί οι παράμετροι θα προστεθούν στη ρύθμιση αυτού του παρόχου"
 
-msgid "Standard Provider"
-msgstr "Τυπικός Πάροχος"
+msgid "Verify Address"
+msgstr "Επιβεβαίωση Διεύθυνσης"
 
-msgid "Custom Provider"
-msgstr "Προσαρμοσμένος Πάροχος"
+msgid "Fake Address"
+msgstr "Ψεύτική Διεύθυνση"
 
-msgid "Record Type"
-msgstr "Τύπος Εγγραφής"
+msgid "Allow IPv6"
+msgstr "Να επιτρέπεται IPv6"
 
-msgid "Provider"
-msgstr "Πάροχος"
+msgid "Network Interface"
+msgstr "Διεπαφή Δικτύου"
 
-msgid "Provider Name"
-msgstr "Όνομα Παρόχου"
+msgid "Iterations"
+msgstr "Επαναλήψεις"
 
-msgid "Host Names"
-msgstr "Ονόματα Υπολογιστών"
+msgid "Check Interval"
+msgstr "Μεσοδιάστημα ελέγχου"
 
-msgid "Wildcard Domain"
-msgstr "Χαρακτήρες Μπαλαντέρ Τομέα"
+msgid "Force Update Interval"
+msgstr "Αναγκαστική Ενημέρωση Μεσοδιαστήματος"
 
-msgid "Use HTTPS"
-msgstr "Χρήση HTTPS"
+msgid "Secure SSL"
+msgstr "Ασφαλές SSL"
 
-msgid "Check IP Server"
-msgstr "Διακομιστής Ελέγχου IP"
+msgid "Broken RTC"
+msgstr "Χαλασμένο RTC"
 
-msgid "Check IP Path"
-msgstr "Διαδρομή ελέγχου IP"
+msgid "CA Trusted Certificates"
+msgstr "Αξιόπιστα Πιστοποιητικά CA"
 
-msgid "Check IP using HTTPS"
-msgstr "Έλεγχος IP με χρήση HTTPS"
+msgid "Cache Directory"
+msgstr "Φάκελος Κρυφής Μνήμης"
 
-msgid "Check IP Command"
-msgstr "Εντολή Ελέγχου IP"
+msgid "Startup Delay"
+msgstr "Καθυστέρηση Εκκίνησης"
 
-msgid "User Agent"
-msgstr "User Agent"
-
-msgid "DDNS-Server"
-msgstr "DDNS-Διακομιστής"
-
-msgid "DDNS-Path"
-msgstr "DDNS-Διαδρομή"
-
-msgid "Append my IP"
-msgstr "Προσθήκη της IP μου"
-
-msgid "Providers"
-msgstr "Πάροχοι"
-
-msgid "Global Settings"
-msgstr "Γενικές ρυθμίσεις"
+msgid "Log Level"
+msgstr "Επίπεδο Καταγραφής"
 
 msgid ""
 "IP address validation can be disabled by setting this option to false."
@@ -12680,47 +12620,14 @@ msgstr "Αποσφαλμάτωση"
 msgid "These parameters are appended to the inadyn.conf file."
 msgstr "Αυτοί οι παράμετροι προστίθονται στο αρχείο inadyn.conf."
 
-msgid "Verify Address"
-msgstr "Επιβεβαίωση Διεύθυνσης"
-
-msgid "Fake Address"
-msgstr "Ψεύτική Διεύθυνση"
-
-msgid "Allow IPv6"
-msgstr "Να επιτρέπεται IPv6"
-
-msgid "Network Interface"
-msgstr "Διεπαφή Δικτύου"
-
-msgid "Iterations"
-msgstr "Επαναλήψεις"
-
-msgid "Check Interval"
-msgstr "Μεσοδιάστημα ελέγχου"
-
-msgid "Force Update Interval"
-msgstr "Αναγκαστική Ενημέρωση Μεσοδιαστήματος"
-
-msgid "Secure SSL"
-msgstr "Ασφαλές SSL"
-
-msgid "Broken RTC"
-msgstr "Χαλασμένο RTC"
-
-msgid "CA Trusted Certificates"
-msgstr "Αξιόπιστα Πιστοποιητικά CA"
-
-msgid "Cache Directory"
-msgstr "Φάκελος Κρυφής Μνήμης"
-
-msgid "Startup Delay"
-msgstr "Καθυστέρηση Εκκίνησης"
-
-msgid "Log Level"
-msgstr "Επίπεδο Καταγραφής"
-
 msgid "Media Type"
 msgstr "Τύπος Πολυμέσων"
+
+msgid "Media Folders"
+msgstr "Φάκελοι Πολυμέσων"
+
+msgid "Media Folder"
+msgstr "Φάκελος Πολυμέσων"
 
 msgid "Add Media Folder"
 msgstr "Προσθήκη Φακέλου Πολυμέσων"
@@ -12781,12 +12688,6 @@ msgstr "Σάρωση φακέλου για αρχεία εικόνας."
 
 msgid "Scan folder for video and image files."
 msgstr "Σάρωση φακέλου για αρχεία βίντεο και εικόνας."
-
-msgid "Media Folders"
-msgstr "Φάκελοι Πολυμέσων"
-
-msgid "Media Folder"
-msgstr "Φάκελος Πολυμέσων"
 
 msgid "Inotify"
 msgstr "Inotify"
@@ -12915,26 +12816,17 @@ msgstr "Όνομα Ομάδας Πιστοποίησης"
 msgid "Auth Type"
 msgstr "Τύπος Πιστοποίησης"
 
-msgid "No CHAP users found."
-msgstr "Δεν βρέθηκαν χρήστες CHAP."
+msgid "Name of the Auth Group."
+msgstr "Όνομα της Ομάδας Πιστοποίησης"
 
-msgid "Mutual-CHAP"
-msgstr "Αμοιβαίο-CHAP"
+msgid "Sets the authentication type."
+msgstr "Ορίζει τον τύπο πιστοποίησης"
 
-msgid "No Mutual-CHAP users found."
-msgstr "Δεν βρέθηκαν χρήστες Αμοιβαίου-CHAP."
+msgid "CHAP-Mutual"
+msgstr "CHAP-Αμοιβαία"
 
-msgid "Initiator Name"
-msgstr "Όνομα Εκκινητή"
-
-msgid "No initiator names found."
-msgstr "Δεν βρέθηκαν ονόματα εκκινητών."
-
-msgid "Initiator Portal"
-msgstr "Portal Εκκινητή"
-
-msgid "No initiator portals found."
-msgstr "Δεν βρέθηκαν portal εκκινητών."
+msgid "These parameters will be added to this auth-group."
+msgstr "Αυτές οι παράμετροι θα προστεθούν σε αυτή την ομάδα πιστοποίησης."
 
 msgid "Add Auth Group"
 msgstr "Προσθήκη Ομάδας Πιστοποίησης"
@@ -12981,23 +12873,140 @@ msgstr "Ονόματα Εκκινητών"
 msgid "Initiator Portals"
 msgstr "Portal Εκκινητών"
 
-msgid "Name of the Auth Group."
-msgstr "Όνομα της Ομάδας Πιστοποίησης"
+msgid "No CHAP users found."
+msgstr "Δεν βρέθηκαν χρήστες CHAP."
 
-msgid "Sets the authentication type."
-msgstr "Ορίζει τον τύπο πιστοποίησης"
+msgid "Mutual-CHAP"
+msgstr "Αμοιβαίο-CHAP"
 
-msgid "CHAP-Mutual"
-msgstr "CHAP-Αμοιβαία"
+msgid "No Mutual-CHAP users found."
+msgstr "Δεν βρέθηκαν χρήστες Αμοιβαίου-CHAP."
 
-msgid "These parameters will be added to this auth-group."
-msgstr "Αυτές οι παράμετροι θα προστεθούν σε αυτή την ομάδα πιστοποίησης."
+msgid "Initiator Name"
+msgstr "Όνομα Εκκινητή"
 
-msgid "Name of the LUN."
-msgstr "Όνομα του LUN."
+msgid "No initiator names found."
+msgstr "Δεν βρέθηκαν ονόματα εκκινητών."
+
+msgid "Initiator Portal"
+msgstr "Portal Εκκινητή"
+
+msgid "No initiator portals found."
+msgstr "Δεν βρέθηκαν portal εκκινητών."
 
 msgid "LUN Name"
 msgstr "Όνομα LUN"
+
+msgid "Backend"
+msgstr "Backend"
+
+msgid "CTL LUN"
+msgstr "CTL LUN"
+
+msgid "Device ID"
+msgstr "ID συσκευής"
+
+msgid "Device Type"
+msgstr "Τύπος Συσκευής"
+
+msgid "Passthrough Address"
+msgstr "Διεύθυνση Passthrough"
+
+msgid "LUN Vendor"
+msgstr "Προμηθευτής LUN"
+
+msgid "LUN Product"
+msgstr "Προϊόν LUN"
+
+msgid "LUN Revision"
+msgstr "Έκδοση LUN"
+
+msgid "LUN SCSI Name"
+msgstr "Όνομα SCSI του LUN"
+
+msgid "LUN EUI-64\tidentifier"
+msgstr "LUN EUI-64\tαναγνωριστικό"
+
+msgid "LUN NAA Identifier"
+msgstr "Αναγνωριστικό LUN NAA"
+
+msgid "LUN UUID"
+msgstr "LUN UUID"
+
+msgid "HA Role"
+msgstr "Ρόλος HA"
+
+msgid "Insecure TPC"
+msgstr "Μη ασφαλές TPC"
+
+msgid "Read Cache"
+msgstr "Κρυφή Μνήμη Ανάγνωσης"
+
+msgid "Read Only"
+msgstr "Μόνο για Ανάγνωση"
+
+msgid "Reordering"
+msgstr "Αναδιάταξη"
+
+msgid "Serialize Sequence"
+msgstr "Σειριοποίηση Ακολουθίας"
+
+msgid "Physical Block Size"
+msgstr "Μέγεθος Φυσικού Μπλοκ"
+
+msgid "Physical Block Offset"
+msgstr "Όφσετ Φυσικού Μπλοκ"
+
+msgid "UNMAP Block Size"
+msgstr "Μέγεθος μπλοκ UNMAP"
+
+msgid "UNMAP Block Offset"
+msgstr "Όφσετ UNMAP μπλοκ"
+
+msgid "RPM"
+msgstr "RPM"
+
+msgid "Form Factor"
+msgstr "Τύπος Μορφής"
+
+msgid "Provisioning Type"
+msgstr "Τύπος Provisioning"
+
+msgid "UNMAP"
+msgstr "UNMAP"
+
+msgid "UNMAP Maximum LBA"
+msgstr "Μέγιστο LBA UNMAP"
+
+msgid "UNMAP Maximum Descriptors"
+msgstr "Μέγιστοι Περιγραφείς UNMAP"
+
+msgid "Write Same Maximum LBA"
+msgstr "Εγγραφή του ίδιου Maximum LBA"
+
+msgid "Avail Threshold"
+msgstr "Διαθέσιμα Όρια"
+
+msgid "Used Threshold"
+msgstr "Χρησιμοποιούμενο Όριο"
+
+msgid "Pool Avail Threshold"
+msgstr "Διαθέσιμο Όριο Pool"
+
+msgid "Pool Used Threshold"
+msgstr "Χρησιμοποιημένο Όριο Pool"
+
+msgid "Threads"
+msgstr "Νήματα"
+
+msgid "Additional Options for Block Backend"
+msgstr "Πρόσθετες Επιλογές για το Block Backend"
+
+msgid "Additional Options for RAM Disk Backend"
+msgstr "Πρόσθετες Επιλογές για το RAM Disk Backend"
+
+msgid "Name of the LUN."
+msgstr "Όνομα του LUN."
 
 msgid "The CTL backend to use for a given LUN."
 msgstr "Το CTL backend που θα χρησιμοποιείται για ένα δεδομένο LUN."
@@ -13038,9 +13047,6 @@ msgstr "Γενικό αριθμητικό αναγνωριστικό για χρ
 msgid "The SCSI Device Identification string presented to the initiator."
 msgstr ""
 "Η συμβολοσειρά Αναγνωριστικού Συσκευής SCSI που παρουσιάζεται στον εκκινητή."
-
-msgid "Device ID"
-msgstr "ID συσκευής"
 
 msgid "Specify the SCSI device type to use when creating the LUN."
 msgstr ""
@@ -13279,12 +13285,6 @@ msgstr ""
 msgid "These parameters will be added to this lun."
 msgstr "Αυτές οι παράμετροι θα προστεθούν σε αυτό το lun."
 
-msgid "Additional Options for Block Backend"
-msgstr "Πρόσθετες Επιλογές για το Block Backend"
-
-msgid "Additional Options for RAM Disk Backend"
-msgstr "Πρόσθετες Επιλογές για το RAM Disk Backend"
-
 msgid "Add LUN"
 msgstr "Προσθήκη LUN"
 
@@ -13324,104 +13324,17 @@ msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα
 msgid "Do you want to toggle selected LUNs?"
 msgstr "Θέλετε να μεταβάλλετε τα επιλεγμένα LUN;"
 
-msgid "Backend"
-msgstr "Backend"
+msgid "Listen"
+msgstr "Αναμονή"
 
-msgid "CTL LUN"
-msgstr "CTL LUN"
+msgid "No listeners found."
+msgstr "Δεν βρέθηκαν listeners."
 
-msgid "Device Type"
-msgstr "Τύπος Συσκευής"
+msgid "Option"
+msgstr "Επιλογή"
 
-msgid "Passthrough Address"
-msgstr "Διεύθυνση Passthrough"
-
-msgid "LUN Vendor"
-msgstr "Προμηθευτής LUN"
-
-msgid "LUN Product"
-msgstr "Προϊόν LUN"
-
-msgid "LUN Revision"
-msgstr "Έκδοση LUN"
-
-msgid "LUN SCSI Name"
-msgstr "Όνομα SCSI του LUN"
-
-msgid "LUN EUI-64\tidentifier"
-msgstr "LUN EUI-64\tαναγνωριστικό"
-
-msgid "LUN NAA Identifier"
-msgstr "Αναγνωριστικό LUN NAA"
-
-msgid "LUN UUID"
-msgstr "LUN UUID"
-
-msgid "HA Role"
-msgstr "Ρόλος HA"
-
-msgid "Insecure TPC"
-msgstr "Μη ασφαλές TPC"
-
-msgid "Read Cache"
-msgstr "Κρυφή Μνήμη Ανάγνωσης"
-
-msgid "Read Only"
-msgstr "Μόνο για Ανάγνωση"
-
-msgid "Reordering"
-msgstr "Αναδιάταξη"
-
-msgid "Serialize Sequence"
-msgstr "Σειριοποίηση Ακολουθίας"
-
-msgid "Physical Block Size"
-msgstr "Μέγεθος Φυσικού Μπλοκ"
-
-msgid "Physical Block Offset"
-msgstr "Όφσετ Φυσικού Μπλοκ"
-
-msgid "UNMAP Block Size"
-msgstr "Μέγεθος μπλοκ UNMAP"
-
-msgid "UNMAP Block Offset"
-msgstr "Όφσετ UNMAP μπλοκ"
-
-msgid "RPM"
-msgstr "RPM"
-
-msgid "Form Factor"
-msgstr "Τύπος Μορφής"
-
-msgid "Provisioning Type"
-msgstr "Τύπος Provisioning"
-
-msgid "UNMAP"
-msgstr "UNMAP"
-
-msgid "UNMAP Maximum LBA"
-msgstr "Μέγιστο LBA UNMAP"
-
-msgid "UNMAP Maximum Descriptors"
-msgstr "Μέγιστοι Περιγραφείς UNMAP"
-
-msgid "Write Same Maximum LBA"
-msgstr "Εγγραφή του ίδιου Maximum LBA"
-
-msgid "Avail Threshold"
-msgstr "Διαθέσιμα Όρια"
-
-msgid "Used Threshold"
-msgstr "Χρησιμοποιούμενο Όριο"
-
-msgid "Pool Avail Threshold"
-msgstr "Διαθέσιμο Όριο Pool"
-
-msgid "Pool Used Threshold"
-msgstr "Χρησιμοποιημένο Όριο Pool"
-
-msgid "Threads"
-msgstr "Νήματα"
+msgid "No options found."
+msgstr "Δεν βρέθηκαν επιλογές."
 
 msgid "Add Portal Group"
 msgstr "Προσθήκη Ομάδας Portal"
@@ -13462,11 +13375,23 @@ msgstr "Θέλετε να ενεργοποιήσετε τις επιλεγμέν
 msgid "Do you want to toggle selected portal groups?"
 msgstr "Θέλετε να μεταβάλλετε τις επιλεγμένες ομάδες portal;"
 
-msgid "Name of the Portal Group."
-msgstr "Όνομα της Ομάδας Portal."
-
 msgid "Portal Group Name"
 msgstr "Όνομα Ομάδας Portal"
+
+msgid "Discovery Filter"
+msgstr "Φίλτρο Ανεύρεσης"
+
+msgid "Offload"
+msgstr "Εκφόρτωση"
+
+msgid "Redirect"
+msgstr "Ανακατεύθυνση"
+
+msgid "Foreign"
+msgstr "Ξένο"
+
+msgid "Name of the Portal Group."
+msgstr "Όνομα της Ομάδας Portal."
 
 msgid "These parameters will be added to this portal-group."
 msgstr "Αυτές οι παράμετροι θα προστεθούν σε αυτή την ομάδα portal."
@@ -13548,30 +13473,6 @@ msgstr ""
 "Μοναδική 16-μπιτη τιμή ετικέτας αυτής της ομάδας portal. Αν δεν καθοριστεί, "
 "η τιμή δημιουργείται αυτόματα."
 
-msgid "Discovery Filter"
-msgstr "Φίλτρο Ανεύρεσης"
-
-msgid "Offload"
-msgstr "Εκφόρτωση"
-
-msgid "Redirect"
-msgstr "Ανακατεύθυνση"
-
-msgid "Foreign"
-msgstr "Ξένο"
-
-msgid "Listen"
-msgstr "Αναμονή"
-
-msgid "Option"
-msgstr "Επιλογή"
-
-msgid "No listeners found."
-msgstr "Δεν βρέθηκαν listeners."
-
-msgid "No options found."
-msgstr "Δεν βρέθηκαν επιλογές."
-
 msgid "Enter user name."
 msgstr "Εισαγωγή ονόματος χρήστη."
 
@@ -13628,6 +13529,12 @@ msgstr "Θέλετε να ενεργοποιήσετε τους επιλεγμέ
 msgid "Do you want to toggle selected CHAP users?"
 msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους χρήστες CHAP;"
 
+msgid "Mutual User"
+msgstr "Αμοιβαίος Χρήστης"
+
+msgid "Mutual Secret"
+msgstr "Αμοιβαίο Μυστικό"
+
 msgid "Add Mutual CHAP User"
 msgstr "Προσθήκη χρήστη αμοιβαίου CHAP"
 
@@ -13678,11 +13585,15 @@ msgstr ""
 msgid "Enter mutual user name."
 msgstr "Εισάγετε όνομα αμοιβαίου χρήστη"
 
-msgid "Mutual User"
-msgstr "Αμοιβαίος Χρήστης"
+msgid "Enter an iSCSI initiator name."
+msgstr "Εισάγετε ένα όνομα εκκινητή iSCSI."
 
-msgid "Mutual Secret"
-msgstr "Αμοιβαίο Μυστικό"
+msgid ""
+"Link initiator-name to auth-groups. An Initiator with this name will be "
+"allowed to connect to the selected auth-groups."
+msgstr ""
+"Σύνδεση ονόματος εκκινητή σε ομάδες πιστοποίησης. Ένας εκκινητής με αυτό το "
+"όνομα θα επιτρέπεται να συνδεθεί στις επιλεγμένες ομάδες πιστοποίησης."
 
 msgid "Add Initiator Name"
 msgstr "Προσθήκη Ονόματος Εκκινητή"
@@ -13722,16 +13633,6 @@ msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα
 
 msgid "Do you want to toggle selected initiator names?"
 msgstr "Θέλετε να μεταβάλλετε τις επιλεγμένες ομάδες εκκινητών;"
-
-msgid "Enter an iSCSI initiator name."
-msgstr "Εισάγετε ένα όνομα εκκινητή iSCSI."
-
-msgid ""
-"Link initiator-name to auth-groups. An Initiator with this name will be "
-"allowed to connect to the selected auth-groups."
-msgstr ""
-"Σύνδεση ονόματος εκκινητή σε ομάδες πιστοποίησης. Ένας εκκινητής με αυτό το "
-"όνομα θα επιτρέπεται να συνδεθεί στις επιλεγμένες ομάδες πιστοποίησης."
 
 msgid "IP Address Prefix"
 msgstr "Πρόθεμα Διεύθυνσης IP"
@@ -13788,9 +13689,6 @@ msgstr ""
 "Σύνδεση portal εκκινητή σε ομάδες πιστοποίησης. Ένας εκκινητής με αυτή τη "
 "διεύθυνση θα επιτρέπεται να συνδεθεί στις επιλεγμένες ομάδες πιστοποίησης."
 
-msgid "iSNS Servers"
-msgstr "Διακομιστές iSNS"
-
 msgid "IPv4 or IPv6 address of an iSNS server to register on."
 msgstr ""
 "Διεύθυνση IPv4 ή IPv6 ενός διακομιστή iSNS στον οποίο να γίνει εγγραφή."
@@ -13836,6 +13734,9 @@ msgstr "Θέλετε να ενεργοποιήσετε τους επιλεγμέ
 
 msgid "Do you want to toggle selected iSNS servers?"
 msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους διακομιστές iSNS;"
+
+msgid "iSNS Servers"
+msgstr "Διακομιστές iSNS"
 
 msgid "An IPv4 or IPv6 address to listen on for incoming connections."
 msgstr ""
@@ -14019,9 +13920,6 @@ msgstr "Τιμή της επιλογής."
 msgid "Link this option to selected portal-groups."
 msgstr "Συνδέστε αυτή την επιλογή στις επιλεγμένες ομάδες portal."
 
-msgid "Name of the port."
-msgstr "Όνομα της θύρας."
-
 msgid "Port Name"
 msgstr "Όνομα Θύρας"
 
@@ -14064,6 +13962,44 @@ msgstr "Θέλετε να ενεργοποιήσετε τις επιλεγμέν
 msgid "Do you want to toggle selected port records?"
 msgstr "Θέλετε να μεταβάλλετε τις επιλεγμένες εγγραφές θυρών;"
 
+msgid "Name of the port."
+msgstr "Όνομα της θύρας."
+
+msgid "Alias"
+msgstr "Ψευδώνυμο"
+
+msgid "Name of the target."
+msgstr "Όνομα του προορισμού."
+
+msgid "These parameters will be added to this target."
+msgstr "Αυτές οι παράμετροι θα προστεθούν σε αυτόν τον προορισμό."
+
+msgid "Assign a human-readable description to the target."
+msgstr "Ορίστε στον προορισμό μια περιγραφή αναγνώσιμη από τον άνθρωπο."
+
+msgid "Assign a previously defined authentication group to the target."
+msgstr ""
+"Ορίστε μια προηγουμένως καθορισμένη ομάδα πιστοποίησης στον προορισμό."
+
+msgid "Permit access without authentication"
+msgstr "Επιτρέπεται πρόσβαση χωρίς πιστοποίηση"
+
+msgid "Assign a previously defined portal group to the target."
+msgstr "Ορίστε μια προηγουμένως καθορισμένη ομάδα portal στον προορισμό."
+
+msgid ""
+"IPv4 or IPv6 address to redirect initiators to. When configured, all "
+"initiators attempting to connect to this target will get redirected using "
+"\"Target moved temporarily\" login response."
+msgstr ""
+"Διεύθυνση IPv4 ή IPv6 για ανακατεύθυνση των εκκινητών. Όταν ρυθμιστεί, όλοι "
+"οι εκκινητές που θα προσπαθούν να συνδεθούν σε αυτόν τον προορισμό, θα "
+"ανακατευθύνονται με απάντηση σύνδεσης \"Ο προορισμός μετακινήθηκε "
+"προσωρινά\"."
+
+msgid "No ports found."
+msgstr "Δεν βρέθηκαν θύρες"
+
 msgid "Add Target"
 msgstr "Προσθήκη Προορισμού"
 
@@ -14102,41 +14038,6 @@ msgstr "Θέλετε να ενεργοποιήσετε τους επιλεγμέ
 
 msgid "Do you want to toggle selected targets?"
 msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους προορισμούς;"
-
-msgid "Name of the target."
-msgstr "Όνομα του προορισμού."
-
-msgid "These parameters will be added to this target."
-msgstr "Αυτές οι παράμετροι θα προστεθούν σε αυτόν τον προορισμό."
-
-msgid "Assign a human-readable description to the target."
-msgstr "Ορίστε στον προορισμό μια περιγραφή αναγνώσιμη από τον άνθρωπο."
-
-msgid "Alias"
-msgstr "Ψευδώνυμο"
-
-msgid "Assign a previously defined authentication group to the target."
-msgstr ""
-"Ορίστε μια προηγουμένως καθορισμένη ομάδα πιστοποίησης στον προορισμό."
-
-msgid "Permit access without authentication"
-msgstr "Επιτρέπεται πρόσβαση χωρίς πιστοποίηση"
-
-msgid "Assign a previously defined portal group to the target."
-msgstr "Ορίστε μια προηγουμένως καθορισμένη ομάδα portal στον προορισμό."
-
-msgid ""
-"IPv4 or IPv6 address to redirect initiators to. When configured, all "
-"initiators attempting to connect to this target will get redirected using "
-"\"Target moved temporarily\" login response."
-msgstr ""
-"Διεύθυνση IPv4 ή IPv6 για ανακατεύθυνση των εκκινητών. Όταν ρυθμιστεί, όλοι "
-"οι εκκινητές που θα προσπαθούν να συνδεθούν σε αυτόν τον προορισμό, θα "
-"ανακατευθύνονται με απάντηση σύνδεσης \"Ο προορισμός μετακινήθηκε "
-"προσωρινά\"."
-
-msgid "No ports found."
-msgstr "Δεν βρέθηκαν θύρες"
 
 msgid "Max Processes"
 msgstr "Μέγιστος Αριθμός Διεργασιών"
@@ -14179,44 +14080,35 @@ msgstr "Χρονικό όριο λήξης για αιτήματα iSNS. Η πρ
 msgid "These parameters will be added to the global section of ctl.conf"
 msgstr "Αυτές οι παράμετροι θα προστεθούν στη γενική ενότητα του ctl.conf"
 
-msgid "Add iSCSI Initiator"
-msgstr "Προσθήκη εκκινητή iSCSI"
+msgid "Target Address"
+msgstr "Διεύθυνση Προορισμού"
 
-msgid "Edit iSCSI Initiator"
-msgstr "Επεξεργασία εκκινητή iSCSI"
+msgid "CHAP Name"
+msgstr "Όνομα CHAP"
 
-msgid "iSCSI Initiator is marked for deletion"
-msgstr "Ο εκκινητής iSCSI έχει σημειωθεί προς διαγραφή"
+msgid "CHAP Secret"
+msgstr "Μυστικό CHAP"
 
-msgid "iSCSI Initiator is locked"
-msgstr "Ο εκκινητής iSCSI είναι κλειδωμένος"
+msgid "Mutual CHAP Name"
+msgstr "Αμοιβαίο όνομα CHAP"
 
-msgid "iSCSI Initiator is unlocked"
-msgstr "Ο εκκινητής iSCSI είναι ξεκλείδωτος"
+msgid "Mutual CHAP Secret"
+msgstr "Αμοιβαίο μυστικό CHAP"
 
-msgid "Delete Selected iSCSI Initiators"
-msgstr "Διαγραφή επιλεγμένων εκκινητών iSCSI"
+msgid "Header Digest"
+msgstr "Digest κεφαλίδας"
 
-msgid "Disable Selected iSCSI Initiators"
-msgstr "Απενεργοποίηση των επιλεγμένων εκκινητών iSCSI"
+msgid "Data Digest"
+msgstr "Digest δεδομένων"
 
-msgid "Enable Selected iSCSI Initiators"
-msgstr "Ενεργοποίηση Επιλεγμένων εκκινητών iSCSI"
+msgid "Offload Driver"
+msgstr "Οδηγός Εκφόρτωσης"
 
-msgid "Toggle Selected iSCSI Initiators"
-msgstr "Μεταβολή εκκινητών iSCSI"
+msgid "Session State"
+msgstr "Κατάσταση Συνεδρίας"
 
-msgid "Do you want to delete selected iSCSI initiators?"
-msgstr "Θέλετε να διαγράψετε τους επιλεγμένους εκκινητές iSCSI;"
-
-msgid "Do you want to disable selected iSCSI initiators?"
-msgstr "Θέλετε να απενεργοποιήσετε τους επιλεγμένους εκκινητές iSCSI;"
-
-msgid "Do you want to enable selected iSCSI initiators?"
-msgstr "Θέλετε να ενεργοποιήσετε τους επιλεγμένους εκκινητές iSCSI;"
-
-msgid "Do you want to toggle selected iSCSI initiators?"
-msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους εκκινητές iSCSI;"
+msgid "Session Type"
+msgstr "Τύπος Συνεδρίας"
 
 msgid "This is a nickname and is for information only."
 msgstr "Αυτό είναι ψευδώνυμο και είναι για πληροφοριακούς λόγους μόνο."
@@ -14324,35 +14216,44 @@ msgstr ""
 msgid "Discovery"
 msgstr "Ανεύρεση"
 
-msgid "Target Address"
-msgstr "Διεύθυνση Προορισμού"
+msgid "Add iSCSI Initiator"
+msgstr "Προσθήκη εκκινητή iSCSI"
 
-msgid "CHAP Name"
-msgstr "Όνομα CHAP"
+msgid "Edit iSCSI Initiator"
+msgstr "Επεξεργασία εκκινητή iSCSI"
 
-msgid "CHAP Secret"
-msgstr "Μυστικό CHAP"
+msgid "iSCSI Initiator is marked for deletion"
+msgstr "Ο εκκινητής iSCSI έχει σημειωθεί προς διαγραφή"
 
-msgid "Mutual CHAP Name"
-msgstr "Αμοιβαίο όνομα CHAP"
+msgid "iSCSI Initiator is locked"
+msgstr "Ο εκκινητής iSCSI είναι κλειδωμένος"
 
-msgid "Mutual CHAP Secret"
-msgstr "Αμοιβαίο μυστικό CHAP"
+msgid "iSCSI Initiator is unlocked"
+msgstr "Ο εκκινητής iSCSI είναι ξεκλείδωτος"
 
-msgid "Header Digest"
-msgstr "Digest κεφαλίδας"
+msgid "Delete Selected iSCSI Initiators"
+msgstr "Διαγραφή επιλεγμένων εκκινητών iSCSI"
 
-msgid "Data Digest"
-msgstr "Digest δεδομένων"
+msgid "Disable Selected iSCSI Initiators"
+msgstr "Απενεργοποίηση των επιλεγμένων εκκινητών iSCSI"
 
-msgid "Offload Driver"
-msgstr "Οδηγός Εκφόρτωσης"
+msgid "Enable Selected iSCSI Initiators"
+msgstr "Ενεργοποίηση Επιλεγμένων εκκινητών iSCSI"
 
-msgid "Session State"
-msgstr "Κατάσταση Συνεδρίας"
+msgid "Toggle Selected iSCSI Initiators"
+msgstr "Μεταβολή εκκινητών iSCSI"
 
-msgid "Session Type"
-msgstr "Τύπος Συνεδρίας"
+msgid "Do you want to delete selected iSCSI initiators?"
+msgstr "Θέλετε να διαγράψετε τους επιλεγμένους εκκινητές iSCSI;"
+
+msgid "Do you want to disable selected iSCSI initiators?"
+msgstr "Θέλετε να απενεργοποιήσετε τους επιλεγμένους εκκινητές iSCSI;"
+
+msgid "Do you want to enable selected iSCSI initiators?"
+msgstr "Θέλετε να ενεργοποιήσετε τους επιλεγμένους εκκινητές iSCSI;"
+
+msgid "Do you want to toggle selected iSCSI initiators?"
+msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους εκκινητές iSCSI;"
 
 msgid ""
 "Enter the path of the home directory for databases and configuration files."
@@ -14445,9 +14346,6 @@ msgstr "Σίγαση"
 msgid "Security Flavor"
 msgstr "Τύπος Ασφάλειας"
 
-msgid "Root Directory"
-msgstr "Ριζιικός Κατάλογος"
-
 msgid "Map users or map root to the specified user."
 msgstr ""
 "Αντιστοίχιση χρηστών ή αντιστοίχιση του root με τον συγκεκριμένο χρήστη."
@@ -14531,8 +14429,8 @@ msgstr ""
 "krb5p - Χρήση πιστοποίησης Kerberos V5 με checksums για ακεραιότητα "
 "δεδομένων και για κρυπτογράφηση δεδομένων."
 
-msgid "Root Directories"
-msgstr "Ριζικοί Κατάλογοι"
+msgid "Root Directory"
+msgstr "Ριζιικός Κατάλογος"
 
 msgid "Add NFS Root"
 msgstr "Προσθήκη Ριζικού φακέλου NFS"
@@ -14573,6 +14471,9 @@ msgstr "Θέλετε να απενεργοποιήσετε τους επιλεγ
 msgid "Do you want to toggle selected NFS root directories?"
 msgstr "Θέλετε να μεταβάλλετε τους επιλεγμένους ριζικούς φακέλους NFS;"
 
+msgid "Root Directories"
+msgstr "Ριζικοί Κατάλογοι"
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -14599,17 +14500,122 @@ msgstr ""
 msgid "These parameters are appended to the exports file."
 msgstr "Αυτές οι παράμετροι προστίθενται στο αρχείο exports."
 
+msgid "Driver List"
+msgstr "Λίστα Οδηγών συσκευής"
+
+msgid "UPS Driver List"
+msgstr "Λίστα Προγραμμάτων οδήγησης UPS"
+
 msgid "Model Name"
 msgstr "Όνομα μοντέλου"
 
 msgid "Model Extra"
 msgstr "Model Extra"
 
-msgid "Driver List"
-msgstr "Λίστα Οδηγών συσκευής"
+msgid "Enable AFP"
+msgstr "Ενεργοποίηση AFP"
 
-msgid "UPS Driver List"
-msgstr "Λίστα Προγραμμάτων οδήγησης UPS"
+msgid "Create Mask"
+msgstr "Δημιουργία Μάσκας"
+
+msgid "Force Group"
+msgstr "Επιβολή Ομάδας"
+
+msgid "Force User"
+msgstr "Επιβολή Χρήστη"
+
+msgid "Shadow Copy Format"
+msgstr "Μορφή Σκιώδους Αντιγράφου"
+
+msgid "VFS fruit:encoding"
+msgstr "VFS fruit:κωδικοποίηση"
+
+msgid "VFS fruit:locking"
+msgstr "VFS fruit:κλείδωμα"
+
+msgid "VFS fruit:metadata"
+msgstr "VFS fruit:μεταδεδομένα"
+
+msgid "VFS fruit:resource"
+msgstr "VFS fruit:πόρος"
+
+msgid "VFS fruit:time machine"
+msgstr "VFS fruit:time machine"
+
+msgid "ZFS ACL"
+msgstr "ZFS ACL"
+
+msgid "Inherit ACL"
+msgstr "Κληρονόμηση ACL"
+
+msgid "Alternate Data Streams"
+msgstr "Εναλλακτικές Ροές Δεδομένων"
+
+msgid "NTFS ACLs"
+msgstr "NTFS ACLs"
+
+msgid "Shadow Copy"
+msgstr "Σκιώδες αντίγραφο"
+
+msgid "Browseable"
+msgstr "Περιηγήσιμα"
+
+msgid "Guest Only"
+msgstr "Επισκέπτες Μόνο"
+
+msgid "Inherit Permissions"
+msgstr "Κληρονόμηση Δικαιωμάτων"
+
+msgid "Recycle Bin"
+msgstr "Κάδος Ανακύκλωσης"
+
+msgid "Hide Dot Files"
+msgstr "Απόκρυψη Κρυφών Αρχείων"
+
+msgid "Add Samba Share"
+msgstr "Προσθήκη Κοινόχρηστου Samba"
+
+msgid "Edit Samba Share"
+msgstr "Επεξεργασία Κοινόχρηστου Samba"
+
+msgid "Samba Share is marked for deletion"
+msgstr "Το Κοινόχρηστο Samba έχει σημειωθεί προς διαγραφή"
+
+msgid "Samba Share is locked"
+msgstr "Το κοινόχρηστο Samba είναι κλειδωμένο"
+
+msgid "Samba Share is unlocked"
+msgstr "Το Κοινόχρηστο Samba είναι ξεκλείδωτο"
+
+msgid "Delete Selected Samba Shares"
+msgstr "Διαγραφή Επιλεγμένων Κοινόχρηστων Samba"
+
+msgid "Disable Selected Samba Shares"
+msgstr "Απενεργοποίηση Επιλεγμένων Κοινόχρηστων Samba"
+
+msgid "Enable Selected Samba Shares"
+msgstr "Ενεργοποίηση Επιλεγμένων Κοινόχρηστων Samba"
+
+msgid "Toggle Selected Samba Shares"
+msgstr "Μεταβολή Επιλεγμένων Κοινόχρηστων Samba"
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "Θέλετε να διαγράψετε τα επιλεγμένα κοινόχρηστα Samba;"
+
+msgid "Do you want to disable selected Samba shares?"
+msgstr "Θέλετε να απενεργοποιήσετε τα επιλεγμένα κοινόχρηστα Samba;"
+
+msgid "Do you want to enable selected Samba shares?"
+msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα κοινόχρηστα Samba;"
+
+msgid "Do you want to toggle selected Samba shares?"
+msgstr "Θέλετε να μεταβάλλετε τα επιλεγμένα κοινόχρηστα Samba;"
+
+msgid "yes"
+msgstr "ναι"
+
+msgid "no"
+msgstr "όχι"
 
 #, php-format
 msgid "These parameters are added to the [Share] section of %s."
@@ -14841,111 +14847,6 @@ msgstr "Εισάγετε σχόλιο για το κοινόχρηστο"
 
 msgid "Enter the location of the share"
 msgstr "Εισάγετε την τοποθεσία του κοινόχρηστου"
-
-msgid "Add Samba Share"
-msgstr "Προσθήκη Κοινόχρηστου Samba"
-
-msgid "Edit Samba Share"
-msgstr "Επεξεργασία Κοινόχρηστου Samba"
-
-msgid "Samba Share is marked for deletion"
-msgstr "Το Κοινόχρηστο Samba έχει σημειωθεί προς διαγραφή"
-
-msgid "Samba Share is locked"
-msgstr "Το κοινόχρηστο Samba είναι κλειδωμένο"
-
-msgid "Samba Share is unlocked"
-msgstr "Το Κοινόχρηστο Samba είναι ξεκλείδωτο"
-
-msgid "Delete Selected Samba Shares"
-msgstr "Διαγραφή Επιλεγμένων Κοινόχρηστων Samba"
-
-msgid "Disable Selected Samba Shares"
-msgstr "Απενεργοποίηση Επιλεγμένων Κοινόχρηστων Samba"
-
-msgid "Enable Selected Samba Shares"
-msgstr "Ενεργοποίηση Επιλεγμένων Κοινόχρηστων Samba"
-
-msgid "Toggle Selected Samba Shares"
-msgstr "Μεταβολή Επιλεγμένων Κοινόχρηστων Samba"
-
-msgid "Do you want to delete selected Samba shares?"
-msgstr "Θέλετε να διαγράψετε τα επιλεγμένα κοινόχρηστα Samba;"
-
-msgid "Do you want to disable selected Samba shares?"
-msgstr "Θέλετε να απενεργοποιήσετε τα επιλεγμένα κοινόχρηστα Samba;"
-
-msgid "Do you want to enable selected Samba shares?"
-msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα κοινόχρηστα Samba;"
-
-msgid "Do you want to toggle selected Samba shares?"
-msgstr "Θέλετε να μεταβάλλετε τα επιλεγμένα κοινόχρηστα Samba;"
-
-msgid "yes"
-msgstr "ναι"
-
-msgid "no"
-msgstr "όχι"
-
-msgid "Enable AFP"
-msgstr "Ενεργοποίηση AFP"
-
-msgid "Create Mask"
-msgstr "Δημιουργία Μάσκας"
-
-msgid "Force Group"
-msgstr "Επιβολή Ομάδας"
-
-msgid "Force User"
-msgstr "Επιβολή Χρήστη"
-
-msgid "Shadow Copy Format"
-msgstr "Μορφή Σκιώδους Αντιγράφου"
-
-msgid "VFS fruit:encoding"
-msgstr "VFS fruit:κωδικοποίηση"
-
-msgid "VFS fruit:locking"
-msgstr "VFS fruit:κλείδωμα"
-
-msgid "VFS fruit:metadata"
-msgstr "VFS fruit:μεταδεδομένα"
-
-msgid "VFS fruit:resource"
-msgstr "VFS fruit:πόρος"
-
-msgid "VFS fruit:time machine"
-msgstr "VFS fruit:time machine"
-
-msgid "ZFS ACL"
-msgstr "ZFS ACL"
-
-msgid "Inherit ACL"
-msgstr "Κληρονόμηση ACL"
-
-msgid "Alternate Data Streams"
-msgstr "Εναλλακτικές Ροές Δεδομένων"
-
-msgid "NTFS ACLs"
-msgstr "NTFS ACLs"
-
-msgid "Shadow Copy"
-msgstr "Σκιώδες αντίγραφο"
-
-msgid "Browseable"
-msgstr "Περιηγήσιμα"
-
-msgid "Guest Only"
-msgstr "Επισκέπτες Μόνο"
-
-msgid "Inherit Permissions"
-msgstr "Κληρονόμηση Δικαιωμάτων"
-
-msgid "Recycle Bin"
-msgstr "Κάδος Ανακύκλωσης"
-
-msgid "Hide Dot Files"
-msgstr "Απόκρυψη Κρυφών Αρχείων"
 
 msgid "Workgroup"
 msgstr "Ομάδα εργασίας"
@@ -15326,27 +15227,6 @@ msgstr ""
 "Η Samba θα γράφει το αρχείο ασύγχρονα όταν το μέγεθος του αιτήματος είναι "
 "μεγαλύτερο από αυτήν την τιμή. (%d από προεπιλογή)."
 
-msgid "Password Authentication"
-msgstr "Πιστοποίηση Κωδικών"
-
-msgid "Keyboard-Interactive Authentication"
-msgstr "Πιστοποίηση με Διαδραστική Χρήση Πληκτρολογίου"
-
-msgid "Public Key Authentication"
-msgstr "Πιστοποίηση Δημόσιου Κλειδιού"
-
-msgid "GSSAPI Authentication"
-msgstr "Πιστοποίηση GSSAPI"
-
-msgid "Root Login"
-msgstr "Σύνδεση root"
-
-msgid "TCP Forwarding"
-msgstr "Προώθηση TCP"
-
-msgid "Subsystem"
-msgstr "Υποσύστημα"
-
 msgid "Port of the SSH service. Leave blank to use the default port."
 msgstr ""
 "Θύρα της υπηρεσίας SSH. Αφήστε το κενό, για χρήση της προεπιλεγμένης θύρας."
@@ -15400,6 +15280,9 @@ msgstr ""
 "παραμέτρους) που θα εκτελεστεί όταν τη ζητήσει το υποσύστημα. Αφήστε το "
 "πεδίο αυτό κενό για να χρησιμοποιηθούν οι προεπιλεγμένες ρυθμίσεις."
 
+msgid "Subsystem"
+msgstr "Υποσύστημα"
+
 msgid "Using defaults"
 msgstr "Χρήση προεπιλογών"
 
@@ -15442,14 +15325,23 @@ msgstr "DEBUG3 - καταγραφή όλων των πληροφοριών απ�
 msgid "These parameters are appended to /etc/ssh/sshd_config."
 msgstr "Αυτοί οι παράμετροι προστίθενται στο /etc/ssh/sshd_config."
 
-msgid "Allow New Files"
-msgstr "Να Επτρέπονται Νέα αρχεία"
+msgid "Password Authentication"
+msgstr "Πιστοποίηση Κωδικών"
 
-msgid "Max. Block Size"
-msgstr "Μεγ. Μέγεθος Block"
+msgid "Keyboard-Interactive Authentication"
+msgstr "Πιστοποίηση με Διαδραστική Χρήση Πληκτρολογίου"
 
-msgid "Umask"
-msgstr "Umask"
+msgid "Public Key Authentication"
+msgstr "Πιστοποίηση Δημόσιου Κλειδιού"
+
+msgid "GSSAPI Authentication"
+msgstr "Πιστοποίηση GSSAPI"
+
+msgid "Root Login"
+msgstr "Σύνδεση root"
+
+msgid "TCP Forwarding"
+msgstr "Προώθηση TCP"
 
 msgid "Allow new files to be created."
 msgstr "Να επιτρέπεται η δημιουργία νέων αρχείων."
@@ -15521,56 +15413,14 @@ msgstr "000"
 msgid "Specifies the username under which the TFTP service should run."
 msgstr "Καθορίζει το όνομα χρήστη με το οποίο θα εκτελείται η υπηρεσία TFTP."
 
-msgid "Peer Port"
-msgstr "Θύρα Peers"
+msgid "Allow New Files"
+msgstr "Να Επτρέπονται Νέα αρχεία"
 
-msgid "Configuration Folder"
-msgstr "Φάκελος Ρυθμίσεων"
+msgid "Max. Block Size"
+msgstr "Μεγ. Μέγεθος Block"
 
-msgid "Incomplete Folder"
-msgstr "Φάκελος μη Ολοκληρωμένων"
-
-msgid "Download Folder"
-msgstr "Φάκελος Λήψης"
-
-msgid "Watch Folder"
-msgstr "Φάκελος Παρακολούθησης"
-
-msgid "Port Forwarding"
-msgstr "Προώθηση Θύρας"
-
-msgid "Peer Exchange"
-msgstr "Ανταλλαγή μεταξύ Peers"
-
-msgid "Distributed Hash Table"
-msgstr "Διανεμημένος Πίνακας Hash"
-
-msgid "Local Peer Discovery"
-msgstr "Αναζήτηση Τοπικών Peer"
-
-msgid "uTP"
-msgstr "uTP"
-
-msgid "User Mask"
-msgstr "Μάσκα Χρήστη"
-
-msgid "Preallocation"
-msgstr "Προκατανομή"
-
-msgid "Message Level"
-msgstr "Επίπεδο Μηνύματος"
-
-msgid "DNS Rebind Protection"
-msgstr "Προστασία DNS Rebind"
-
-msgid "Domain Names"
-msgstr "Ονόματα Τομέων"
-
-msgid "Start Torrents"
-msgstr "Εκκίνηση Torrents"
-
-msgid "Stop Torrents"
-msgstr "Σταμάτημα Torrents"
+msgid "Umask"
+msgstr "Umask"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. The default port is %d."
@@ -15705,11 +15555,56 @@ msgstr ""
 msgid "Stop torrents before stopping service."
 msgstr "Σταμάτημα των torrent πριν σταματήσει η υπηρεσία."
 
-msgid "Work Directory"
-msgstr "Φάκελος Εργασίας"
+msgid "Peer Port"
+msgstr "Θύρα Peers"
 
-msgid "Create Work Directory"
-msgstr "Δημιουργία Φακέλου Εργασίας"
+msgid "Configuration Folder"
+msgstr "Φάκελος Ρυθμίσεων"
+
+msgid "Incomplete Folder"
+msgstr "Φάκελος μη Ολοκληρωμένων"
+
+msgid "Download Folder"
+msgstr "Φάκελος Λήψης"
+
+msgid "Watch Folder"
+msgstr "Φάκελος Παρακολούθησης"
+
+msgid "Port Forwarding"
+msgstr "Προώθηση Θύρας"
+
+msgid "Peer Exchange"
+msgstr "Ανταλλαγή μεταξύ Peers"
+
+msgid "Distributed Hash Table"
+msgstr "Διανεμημένος Πίνακας Hash"
+
+msgid "Local Peer Discovery"
+msgstr "Αναζήτηση Τοπικών Peer"
+
+msgid "uTP"
+msgstr "uTP"
+
+msgid "User Mask"
+msgstr "Μάσκα Χρήστη"
+
+msgid "Preallocation"
+msgstr "Προκατανομή"
+
+msgid "Message Level"
+msgstr "Επίπεδο Μηνύματος"
+
+msgid "DNS Rebind Protection"
+msgstr "Προστασία DNS Rebind"
+
+msgid "Domain Names"
+msgstr "Ονόματα Τομέων"
+
+msgid "Start Torrents"
+msgstr "Εκκίνηση Torrents"
+
+msgid "Stop Torrents"
+msgstr "Σταμάτημα Torrents"
 
 msgid "Location where work files will be stored."
 msgstr "Τοποθεσία στην οποία θα αποθηκεύονται οι φάκελοι εργασίας."
@@ -15717,17 +15612,36 @@ msgstr "Τοποθεσία στην οποία θα αποθηκεύονται �
 msgid "Create work directory if it doesn't exist."
 msgstr "Δημιουργία φακέλου εργασίας εάν δεν υπάρχει."
 
+msgid "Work Directory"
+msgstr "Φάκελος Εργασίας"
+
+msgid "Create Work Directory"
+msgstr "Δημιουργία Φακέλου Εργασίας"
+
+msgid "Name of the WebDAV Record."
+msgstr "Όνομα της εγγραφής WebDAV."
+
 msgid "WebDAV Name"
 msgstr "Όνομα WebDAV"
+
+msgid ""
+"The WebDAV configuration is applied to all folders matching this pattern."
+msgstr ""
+"Οι ρυθμίσεις WebDAV εφαρμόζονται σε όλους τους φακέλους που ταιριάζουν με "
+"αυτό το πρότυπο."
 
 msgid "Folder Pattern"
 msgstr "Πρότυπο Φακέλων"
 
-msgid "Read-Only"
-msgstr "Μόνο για ανάγνωση"
+msgid "Read-Only Access."
+msgstr "Πρόσβαση Μόνο για ανάγνωση"
 
-msgid "Use Sqlite"
-msgstr "Χρήση Sqlite"
+msgid "Use Sqlite for lockings and properties."
+msgstr "Χρήση Sqlite για κλειδώματα και ιδιότητες."
+
+msgid "These parameters will be added to this WebDAV configuration."
+msgstr ""
+"Αυτές οι παράμετροι θα προστεθούν σε αυτή την παραμετροποίηση του WebDAV."
 
 msgid "Add WebDAV Record"
 msgstr "Προσθήκη Εγγραφής WebDAV"
@@ -15768,42 +15682,11 @@ msgstr "Θέλετε να ενεργοποιήσετε τις επιλεγμέν
 msgid "Do you want to toggle selected WebDAV records?"
 msgstr "Θέλετε να μεταβάλλετε τις επιλεγμένες εγγραφές WebDAV;"
 
-msgid "Name of the WebDAV Record."
-msgstr "Όνομα της εγγραφής WebDAV."
+msgid "Read-Only"
+msgstr "Μόνο για ανάγνωση"
 
-msgid ""
-"The WebDAV configuration is applied to all folders matching this pattern."
-msgstr ""
-"Οι ρυθμίσεις WebDAV εφαρμόζονται σε όλους τους φακέλους που ταιριάζουν με "
-"αυτό το πρότυπο."
-
-msgid "Read-Only Access."
-msgstr "Πρόσβαση Μόνο για ανάγνωση"
-
-msgid "Use Sqlite for lockings and properties."
-msgstr "Χρήση Sqlite για κλειδώματα και ιδιότητες."
-
-msgid "These parameters will be added to this WebDAV configuration."
-msgstr ""
-"Αυτές οι παράμετροι θα προστεθούν σε αυτή την παραμετροποίηση του WebDAV."
-
-msgid "Web Service Discovery"
-msgstr "Web Service Discovery"
-
-msgid "IP Address Family"
-msgstr "Οικογένεια Διευθύνσεων IP"
-
-msgid "NETBIOS Hostname"
-msgstr "Όνομα NETBIOS"
-
-msgid "Preserve Case"
-msgstr "Διατήρηση Κεφαλαίων & Μικρών"
-
-msgid "Server Mode"
-msgstr "Λειτουργία Διακομιστή"
-
-msgid "Workgroup Name"
-msgstr "Όνομα Ομάδας Εργασίας"
+msgid "Use Sqlite"
+msgstr "Χρήση Sqlite"
 
 msgid "IPv4 only"
 msgstr "Μόνο IPv4"
@@ -15833,6 +15716,36 @@ msgstr "Επιλέξτε μεταξύ λειτουργίας τομέα και �
 msgid "Set workgroup name"
 msgstr "Ορισμός ονόματος ομάδας εργασίας"
 
+msgid "IP Address Family"
+msgstr "Οικογένεια Διευθύνσεων IP"
+
+msgid "NETBIOS Hostname"
+msgstr "Όνομα NETBIOS"
+
+msgid "Preserve Case"
+msgstr "Διατήρηση Κεφαλαίων & Μικρών"
+
+msgid "Server Mode"
+msgstr "Λειτουργία Διακομιστή"
+
+msgid "Workgroup Name"
+msgstr "Όνομα Ομάδας Εργασίας"
+
+msgid "Web Service Discovery"
+msgstr "Web Service Discovery"
+
+msgid "Protected"
+msgstr "Προστατευμένο"
+
+msgid "Set UID"
+msgstr "Ορισμός UID"
+
+msgid "Snapdir"
+msgstr "Snapdir"
+
+msgid "UTF-8 Only"
+msgstr "Μόνο UTF-8"
+
 msgid "You may enter a description for your reference."
 msgstr "Για δική σας αναφορά μπορείτε να εισάγετε μια περιγραφή."
 
@@ -15860,18 +15773,6 @@ msgstr "Εισάγετε Όνομα Τόμου"
 
 msgid "The name of the ZFS pool."
 msgstr "Το όνομα του ZFS pool."
-
-msgid "Protected"
-msgstr "Προστατευμένο"
-
-msgid "Set UID"
-msgstr "Ορισμός UID"
-
-msgid "Snapdir"
-msgstr "Snapdir"
-
-msgid "UTF-8 Only"
-msgstr "Μόνο UTF-8"
 
 msgid "The following errors were detected"
 msgstr "Εντοπίστηκαν τα ακόλουθα σφάλματα"
@@ -15927,45 +15828,6 @@ msgstr "PCP"
 msgid "Encapsulation Protocol"
 msgstr "Πρωτόκολλο Encapsulation"
 
-msgid "Add VLAN"
-msgstr "Προσθήκη VLAN"
-
-msgid "Edit VLAN"
-msgstr "Επεξεργασία VLAN"
-
-msgid "VLAN is marked for deletion"
-msgstr "Το VLAN έχει σημειωθεί προς διαγραφή."
-
-msgid "VLAN is locked"
-msgstr "Το VLAN είναι κλειδωμένο"
-
-msgid "VLAN is unlocked"
-msgstr "Το VLAN είναι ξεκλείδωτο"
-
-msgid "Delete Selected VLANs"
-msgstr "Διαγραφή Επιλεγμένων VLAN"
-
-msgid "Disable Selected VLANs"
-msgstr "Απενεργοποίηση Επιλεγμένων VLAN"
-
-msgid "Enable Selected VLANs"
-msgstr "Ενεργοποίηση Επιλεγμένων VLAN"
-
-msgid "Toggle Selected VLANs"
-msgstr "Εναλλαγή Λειτουργίας Επιλεγμένων VLAN"
-
-msgid "Do you want to delete selected VLANs?"
-msgstr "Θέλετε να διαγράψετε τα επιλεγμένα VLAN;"
-
-msgid "Do you want to disable selected VLANs?"
-msgstr "Θέλετε να απενεργοποιήσετε τα επιλεγμένα VLAN;"
-
-msgid "Do you want to enable selected VLANs?"
-msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα VLAN;"
-
-msgid "Do you want to toggle selected VLANs?"
-msgstr "Θέλετε να κάνετε εναλλαγή λειτουργίας των επιλεγμένων VLAN;"
-
 msgid "The name of the VLAN interface"
 msgstr "Το όνομα της διεπαφής VLAN."
 
@@ -16017,6 +15879,45 @@ msgstr "802.1Q (προεπιλογή)"
 
 msgid "802.1ad (QinQ)"
 msgstr "802.1ad (QinQ)"
+
+msgid "Add VLAN"
+msgstr "Προσθήκη VLAN"
+
+msgid "Edit VLAN"
+msgstr "Επεξεργασία VLAN"
+
+msgid "VLAN is marked for deletion"
+msgstr "Το VLAN έχει σημειωθεί προς διαγραφή."
+
+msgid "VLAN is locked"
+msgstr "Το VLAN είναι κλειδωμένο"
+
+msgid "VLAN is unlocked"
+msgstr "Το VLAN είναι ξεκλείδωτο"
+
+msgid "Delete Selected VLANs"
+msgstr "Διαγραφή Επιλεγμένων VLAN"
+
+msgid "Disable Selected VLANs"
+msgstr "Απενεργοποίηση Επιλεγμένων VLAN"
+
+msgid "Enable Selected VLANs"
+msgstr "Ενεργοποίηση Επιλεγμένων VLAN"
+
+msgid "Toggle Selected VLANs"
+msgstr "Εναλλαγή Λειτουργίας Επιλεγμένων VLAN"
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "Θέλετε να διαγράψετε τα επιλεγμένα VLAN;"
+
+msgid "Do you want to disable selected VLANs?"
+msgstr "Θέλετε να απενεργοποιήσετε τα επιλεγμένα VLAN;"
+
+msgid "Do you want to enable selected VLANs?"
+msgstr "Θέλετε να ενεργοποιήσετε τα επιλεγμένα VLAN;"
+
+msgid "Do you want to toggle selected VLANs?"
+msgstr "Θέλετε να κάνετε εναλλαγή λειτουργίας των επιλεγμένων VLAN;"
 
 msgid "1"
 msgstr "1"
@@ -16236,27 +16137,6 @@ msgstr "και"
 msgid "Total: %1$s | Allocated: %2$s | Free: %3$s"
 msgstr "Σύνολο: %1$s | Κατανεμημένα: %2$s | Ελεύθερα: %3$s"
 
-msgid "Exported"
-msgstr "Εξήχθη"
-
-msgid "Destroyed"
-msgstr "Καταστράφηκε"
-
-msgid "Spare"
-msgstr "Εφεδρική συσκευή"
-
-msgid "L2 Cache"
-msgstr "L2 Cache"
-
-msgid "Uninitialized"
-msgstr "Μη αρχικοποιημένη"
-
-msgid "Potentially Active"
-msgstr "Δυνητικά Ενεργό"
-
-msgid "System tuning"
-msgstr "Ρύθμιση συστήματος"
-
 msgid "Deleting MBR and partition table"
 msgstr "Διαγραφή MBR και πίνακα κατατμήσεως"
 
@@ -16288,6 +16168,9 @@ msgid ""
 msgstr ""
 "Ο  δίσκος αυτή τη στιγμή  προσαρτημένος. Το σημείο προσάρτησης θα πρέπει να "
 "αφαιρεθεί προσωρινά για να εκτελεστεί η επιλεγμένη εντολή."
+
+msgid "System tuning"
+msgstr "Ρύθμιση συστήματος"
 
 msgid "ZFS Pool Tools"
 msgstr "Εργαλεία ZFS Pool"
@@ -16545,3 +16428,27 @@ msgstr "Αποτυχία εγγραφής του αρχείου στο δίσκ�
 
 msgid "File upload stopped by extension."
 msgstr "Το ανέβασμα του αρχείου διακόπηκε από μια επέκταση."
+
+msgid "Exported"
+msgstr "Εξήχθη"
+
+msgid "Destroyed"
+msgstr "Καταστράφηκε"
+
+msgid "Spare"
+msgstr "Εφεδρική συσκευή"
+
+msgid "L2 Cache"
+msgstr "L2 Cache"
+
+msgid "Uninitialized"
+msgstr "Μη αρχικοποιημένη"
+
+msgid "Potentially Active"
+msgstr "Δυνητικά Ενεργό"
+
+#~ msgid "Be careful with turning on these options."
+#~ msgstr "Να είστε προσεκτικοί όταν ενεργοποιείτε αυτές τις επιλογές."
+
+#~ msgid "SAMBA"
+#~ msgstr "SAMBA"

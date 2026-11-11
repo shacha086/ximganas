@@ -3,7 +3,7 @@
 	grid_toolbox.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -125,14 +125,14 @@ class grid_toolbox extends myt\grid_toolbox {
 		else:
 			$document = new_page($sphere->get_page_title(),$sphere->get_script()->get_scriptname());
 		endif;
-//		add tab navigation
+		//	add tab navigation
 		shared_toolbox::add_tabnav($document);
-//		get areas
+		//	get areas
 		$body = $document->getElementById('main');
 		$pagecontent = $document->getElementById('pagecontent');
-//		create data area
+		//	create data area
 		$content = $pagecontent->add_area_data();
-//		display information, warnings and errors
+		//	display information, warnings and errors
 		$content->
 			ins_input_errors($input_errors)->
 			ins_info_box($savemsg)->
@@ -140,7 +140,7 @@ class grid_toolbox extends myt\grid_toolbox {
 		if(updatenotify_exists($sphere->get_notifier())):
 			$content->ins_config_has_changed_box();
 		endif;
-//		add content
+		//	add content
 		$table = $content->add_table_data_selection();
 		$table->ins_colgroup_with_styles('width',$a_col_width);
 		$thead = $table->addTHEAD();
@@ -198,7 +198,7 @@ class grid_toolbox extends myt\grid_toolbox {
 			add_area_buttons()->
 				ins_cbm_button_enadis($sphere)->
 				ins_cbm_button_delete($sphere);
-//		additional javascript code
+		//	additional javascript code
 		$body->ins_javascript($sphere->get_js());
 		$body->add_js_on_load($sphere->get_js_on_load());
 		$body->add_js_document_ready($sphere->get_js_document_ready());

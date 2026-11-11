@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #	Part of XigmaNAS® (https://www.xigmanas.com).
-#	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+#	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 #	All rights reserved.
 #
 WORKING_DIR="/var/run/rrdgraphs"
@@ -192,7 +192,7 @@ while [ "$1" != "" ]; do
 			;;
 		battery.runtime:)
 			runtime=`echo -e "$2" | awk '{calc=$1/60; print calc}'`
-			;;
+			;;		
 		ups.status:)
 			case "$2" in
 				OL)
@@ -330,7 +330,7 @@ if [ "$RUN_PRO" -eq 1 ]; then
 			'RRA:AVERAGE:0.5:144:1460'
 	fi
 	if [ -f "$FILE" ]; then
-		valnp=`echo -e "$TOP" | awk '/processes:/ {gsub("[,]", ""); {gsub("[:]", " "); print $2" "$1"  "$4" "$3"  "$6" "$5"  "$8" "$7"  "$10" "$9"  "$12" "$11"  "$14" "$13; exit}'`
+		valnp=`echo -e "$TOP" | awk '/processes:/ {gsub("[:,]", ""); print $2" "$1"  "$4" "$3"  "$6" "$5"  "$8" "$7"  "$10" "$9"  "$12" "$11"  "$14" "$13; exit}'`
 		CREATE_PVARS ${valnp}
 		/usr/local/bin/rrdtool update "$FILE" N:"$total":"$running":"$sleeping":"$waiting":"$starting":"$stopped":"$zombie" 2>> /tmp/rrdgraphs-error.log
 	fi

@@ -3,7 +3,7 @@
 	guiconfig.inc
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -821,7 +821,6 @@ function get_headermenu(): array {
 		if($g['platform'] === 'full'):
 			if($g['zroot']):
 				$menu_items[] = ['type' => 'internal','visible' => $isAdminSession,'description' => gettext('Firmware Update'),'link' => '/system_firmware.php'];
-				$menu_items[] = ['type' => 'internal','visible' => $isAdminSession,'description' => gettext('Boot Environments'),'link' => '/system_boot_enviroments.php'];
 			endif;
 			$menu_items[] = ['type' => 'internal','visible' => $isAdminSession,'description' => gettext('Packages'),'link' => '/system_packages.php'];
 		else:

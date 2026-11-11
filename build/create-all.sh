@@ -3,7 +3,7 @@
 # This script is designed to automate the assembly of XigmaNAS® builds.
 #
 # Part of XigmaNAS® (https://www.xigmanas.com).
-# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 # All rights reserved.
 #
 set -x # print
@@ -19,7 +19,7 @@ mkdir -p $XIGMANAS_LOGDIR
 
 # ports to build
 BUILT_PORTS=(arcconf ataidle autosnapshot clog devcpu-data-amd devcpu-data-intel fdisk firefly isboot lcdproc-devel locale mkpw rconf sas2ircu sas3ircu tw_cli)
-INSTALLED_PACKAGES="bash bsnmp-ucd ca_root_nss cdialog dmidecode e2fsprogs-core fusefs-exfat exfat-utils fusefs-ext2 fusefs-ntfs grub2-bhyve gzip icu inadyn iperf3 ipmitool istgt lighttpd mDNSResponder mariadb118-server mariadb118-client minidlna msmtp nano netatalk4 nss_ldap nut-devel open-vm-tools openssh-portable opie pam_ldap pam_mkhomedir php84 php84-pecl-APCu phpMyAdmin-php84 proftpd python311 py311-wsdd rrdtool rsync samba422 dns/samba-nsupdate scponly sipcalc smartmontools spindown sudo syncthing tftp-hpa tmux transmission-cli transmission-web transmission-daemon transmission-utils unison virtualbox-ose-nox11-72 virtualbox-ose-kmod-72 wait_on wol xmlstarlet zoneinfo php84-bcmath php84-bz2 php84-ctype php84-curl php84-dom php84-exif php84-filter php84-ftp php84-gd php84-gettext php84-gmp php84-iconv php84-pecl-imap php84-intl php84-ldap php84-mbstring php84-mysqli php84-opcache php84-pdo php84-pdo_mysql php84-pdo_sqlite php84-pear php84-pecl-APCu php84-pecl-mcrypt php84-session php84-simplexml php84-soap php84-sockets php84-sqlite3 php84-sysvmsg php84-sysvsem php84-sysvshm php84-tokenizer php84-xml php84-zip php84-zlib py311-markdown py311-importlib-metadata py311-zipp py311-rrdtool phpvirtualbox-72-php84" #openzfs
+INSTALLED_PACKAGES="bash bsnmp-ucd ca_root_nss cdialog dmidecode e2fsprogs-core fusefs-exfat exfat-utils fusefs-ext2 fusefs-ntfs grub2-bhyve gzip icu inadyn iperf3 ipmitool istgt lighttpd mDNSResponder mariadb118-server mariadb118-client minidlna msmtp nano netatalk4 nss_ldap nut-devel open-vm-tools openssh-portable opie pam_ldap pam_mkhomedir php84 php84-pecl-APCu phpMyAdmin-php84 proftpd python311 py311-wsdd rrdtool rsync samba422 dns/samba-nsupdate scponly sipcalc smartmontools spindown sudo syncthing tftp-hpa tmux transmission-cli transmission-web transmission-daemon transmission-utils unison virtualbox-ose-nox11-72 virtualbox-ose-kmod-72 wait_on wol xmlstarlet zoneinfo php84-bcmath php84-bz2 php84-ctype php84-curl php84-dom php84-exif php84-filter php84-ftp php84-gd php84-gettext php84-gmp php84-iconv php84-pecl-imap php84-intl php84-ldap php84-mbstring php84-mysqli php84-opcache php84-pdo php84-pdo_mysql php84-pdo_sqlite php84-pear php84-pecl-APCu php84-pecl-mcrypt php84-session php84-simplexml php84-soap php84-sockets php84-sqlite3 php84-sysvmsg php84-sysvsem php84-sysvshm php84-tokenizer php84-xml php84-zip php84-zlib py311-markdown py311-importlib-metadata py311-zipp py311-rrdtool openzfs phpvirtualbox-72-php84"
 
 ### functions ###
 
@@ -76,9 +76,9 @@ sys_upgrade() {
 
     # create/enable pkg base repo if doesn't exit/isn't enabled
     grep enabled /usr/local/etc/pkg/repos/base.conf || echo 'base: {
-    url: "pkg+https://pkg.FreeBSD.org/${ABI}/base_release_${VERSION_MINOR}",
+    url: "pkg+https://pkg.FreeBSD.org/${ABI}/base_release_3",
     mirror_type: "srv",
-    #signature_type: "fingerprints",
+    signature_type: "fingerprints",
     fingerprints: "/usr/share/keys/pkg",
     enabled: yes
     }' >/usr/local/etc/pkg/repos/base.conf
@@ -98,7 +98,7 @@ sys_upgrade() {
     # find security patches. filter unnecessary and current patch-level packages
     ### pkg search -r base -g 'FreeBSD-*p?' | awk '!/-(lib32|dbg|dev|src|tests|mmccam|minimal)-/ {print $1}' | fgrep -v $(uname -r | awk -F- '{ print $1$3}') | xargs pkg install -y -r base
  
-    # upgrade to 15.0-RELEASE
+    # upgrade to 14.2-RELEASE (from 14.1)
     pkg search -r base -g 'FreeBSD-*' | awk '!/-(lib32|dbg|dev|src|tests|mmccam|minimal|man)-/ {print $1}' | xargs pkg install -y -r base
     pkg info | awk '/^FreeBSD-/ { print $1 }' | xargs pkg lock -y
 
@@ -150,12 +150,12 @@ prereq() {
     date; ls -l /boot/kernel/kernel
     sys_upgrade 2>&1 | tee ${XIGMANAS_LOGDIR}/prereq-sys_upgrade.log
 
-    # install kernel source (for isboot)
-    pkg install -yr base FreeBSD-src-sys 2>&1 | tee ${XIGMANAS_LOGDIR}/prereq-sys_upgrade-src-sys.log &
+    # install kernel source
+    pkg install -yr base FreeBSD-src-sys 2>&1 | tee ${XIGMANAS_LOGDIR}/prereq-sys_upgrade-src.log &
 
     # install FreeBSD source (for clog/syslogd)
-    pkg install -yr base FreeBSD-src 2>&1 | tee ${XIGMANAS_LOGDIR}/prereq-sys_upgrade-src.log
-
+    pkg install -yr base FreeBSD-src 2>&1 | tee ${XIGMANAS_LOGDIR}/prereq-sys_upgrade-src.log &
+ 
 
     cd /usr/local/xigmanas/
     #svn co https://svn.code.sf.net/p/xigmanas/code/trunk svn 2>&1 | tee ${XIGMANAS_LOGDIR}/prereq-svn.log
@@ -226,9 +226,9 @@ build() {
 
     ### 8.6 etc/rc.conf for openzfs
     XIGMANAS_LOADER_CONF="$XIGMANAS_ROOTDIR/bootloader/loader.conf"
-    #sysrc -f "$XIGMANAS_LOADER_CONF" zfs_load=NO
-    #sysrc -f "$XIGMANAS_LOADER_CONF" opensolaris_load=NO
-    #sysrc -f "$XIGMANAS_LOADER_CONF" openzfs_load=YES
+    sysrc -f "$XIGMANAS_LOADER_CONF" zfs_load=NO
+    sysrc -f "$XIGMANAS_LOADER_CONF" opensolaris_load=NO
+    sysrc -f "$XIGMANAS_LOADER_CONF" openzfs_load=YES
     #cp /boot/modules/openzfs.ko "$XIGMANAS_ROOTDIR/bootloader/modules/"
 
     ### 9 Modify permissions

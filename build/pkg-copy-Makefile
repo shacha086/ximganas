@@ -25,7 +25,7 @@ XZ_CMD = xz
 TAR = tar
 WRKSRC = /tmp/work-zone
 
-all: pkg-copy phpmyadmin php84-mods mariadb118 vbox py-wsdd minidlna python311 gettext opie #openzfs
+all: pkg-copy phpmyadmin php84-mods mariadb118 vbox py-wsdd minidlna python311 gettext opie openzfs
 pkg-copy:
 
 ### bash/Makefile
@@ -610,6 +610,24 @@ pkg-copy:
 	@${CP} -Rpv ${PREFIX}/libexec/samba ${XIGMANAS_ROOTFS}${PREFIX}/libexec/
 # lib modules
 # ldb/tdb
+
+# lib shared-modules
+	@${CP} -Rpv ${PREFIX}/lib/shared-modules ${XIGMANAS_ROOTFS}${PREFIX}/lib/
+
+# modules ldb
+	for file in tdbbackup tdbdump tdbrestore tdbtool; do \
+		${CP} -pv ${PREFIX}/bin/$${file} ${XIGMANAS_ROOTFS}${PREFIX}/bin; \
+	done
+
+# private
+	@${MKDIR} -p ${XIGMANAS_ROOTFS}${PREFIX}/lib/samba4/private
+	for file in ${PREFIX}/lib/samba4/private/*; do \
+		${CP} -pv $${file} ${XIGMANAS_ROOTFS}${PREFIX}/lib/samba4/private; \
+	done
+# py311-markdown py311-importlib_metadata py311-zipp
+	@${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/markdown ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+	@${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/importlib_metadata ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
+	@${CP} -Rpv ${PREFIX}/lib/python3.11/site-packages/zipp ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages
 
 
 

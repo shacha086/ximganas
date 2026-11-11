@@ -3,7 +3,7 @@
 	disks_zfs_zpool_tools.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -112,7 +112,7 @@ foreach($a_geom_available_provider as $potential_device):
 	endif;
 endforeach;
 arr::sort_key($a_newdev,'name');
-$b_pool = $b_test || (count($a_pool) > 0);
+$b_pool = $b_test || (0 < count($a_pool));
 //	a bit weak:
 $b_add_data = $b_test || ($b_pool && (count($a_newdev) > 0) && (count($a_cfg_newvdev_data) > 0));
 $b_add_cache = $b_test || ($b_pool && (count($a_newdev) > 0));
@@ -162,8 +162,7 @@ $l_command = [
 //	'split' => ['name' => 'activity','value' => 'split','show' => $b_pool && false,'default' => false,'longname' => gettext('Split off a device from mirrored virtual devices')],
 //	'status' => ['name' => 'activity','value' => 'status','show' => true && false,'default' => false,'longname' => gettext('Displays the health status of a pool')],
 	'trim' => ['name' => 'activity','value' => 'trim','show' => $b_pool,'default' => false,'longname' => gettext('Initiate TRIM of free space in a pool')],
-	'upgrade' => ['name' => 'activity','value' => 'upgrade','show' => $b_pool,'default' => false,'longname' => gettext('Upgrade ZFS and add all supported feature flags on a pool')],
-	'enable.encryption' => ['name' => 'activity','value' => 'enable.encryption','show' => $b_pool,'default' => false,'longname' => gettext('Activate encryption feature')]
+	'upgrade' => ['name' => 'activity','value' => 'upgrade','show' => $b_pool,'default' => false,'longname' => gettext('Upgrade ZFS and add all supported feature flags on a pool')]
 ];
 $lcommand = arr::sort_key($l_command,'longname');
 $l_option = [
@@ -285,48 +284,48 @@ $document->render();
 				case 'add.cache':
 //					add a device to a pool as a cache device
 					$subcommand = 'add';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force','test'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force','test'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							add cache: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
 //							one pool required
-							render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+							render_pool_edit($a_pool,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							add cache: select geom device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							html_separator2();
-							html_titleline2(title: gettext('Select Cache Device'));
-							render_newdev_edit(a_items: $a_newdev,format: '1');
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							html_separator2(2);
+							html_titleline2(gettext('Select Cache Device'),2);
+							render_newdev_edit($a_newdev,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							add cache: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Source'));
-							$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Source'),2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -345,59 +344,59 @@ $document->render();
 								foreach($sphere_array['newdev'] as $tmp_device):
 									$a_param[] = escapeshellarg($tmp_device);
 								endforeach;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'add.data':
 //					enhance an existing pool with a predefined vdev (data)
 					$subcommand = 'add';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force','test'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force','test'],$sphere_array['flag']);
  					switch($sphere_array['pageindex']):
 						case 2:
 //							add data: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool,'1',$sphere_array['pool']);
 //							one pool required
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							add data: select new virtual device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							html_separator2();
-							html_titleline2(title: gettext('Select Data Device'));
-							render_newvdev_edit(a_items: $a_cfg_newvdev_data,format: '1');
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							html_separator2(2);
+							html_titleline2(gettext('Select Data Device'),2);
+							render_newvdev_edit($a_cfg_newvdev_data,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							add data: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Source'));
-							$prerequisites_ok &= render_newvdev_view(items: $sphere_array['newvdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Source'),2);
+							$prerequisites_ok &= render_newvdev_view($sphere_array['newvdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							if($prerequisites_ok):
 								$index = arr::search_ex($sphere_array['newvdev'][0],$a_cfg_newvdev_data,'name');
 								if($index === false):
@@ -431,59 +430,59 @@ $document->render();
 								foreach($tmp_devices as $tmp_device):
 									$a_param[] = $tmp_device;
 								endforeach;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'add.log':
 //					add a device to a pool as a log device
 					$subcommand = 'add';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force','test'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force','test'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							add log: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
 //							one pool required
-							render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+							render_pool_edit($a_pool,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							add log: select geom device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							html_separator2();
-							html_titleline2(title: gettext('Select Log Device'));
-							render_newdev_edit(a_items: $a_newdev,format: '1');
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							html_separator2(2);
+							html_titleline2(gettext('Select Log Device'),2);
+							render_newdev_edit($a_newdev,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							add log: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Source'));
-							$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Source'),2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -502,59 +501,59 @@ $document->render();
 								foreach($sphere_array['newdev'] as $tmp_device):
 									$a_param[] = escapeshellarg($tmp_device);
 								endforeach;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'add.spare':
 //					add a device to a pool as a spare device
 					$subcommand = 'add';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force','test'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force','test'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							add spare: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
 //							1 pool required
-							render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+							render_pool_edit($a_pool,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							add spare: select geom device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							html_separator2();
-							html_titleline2(title: gettext('Select Spare Device'));
-							render_newdev_edit(a_items: $a_newdev,format: '1N');
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							html_separator2(2);
+							html_titleline2(gettext('Select Spare Device'),2);
+							render_newdev_edit($a_newdev,'1N');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							add spare: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Source'));
-							$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Source'),2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -573,68 +572,68 @@ $document->render();
 								foreach($sphere_array['newdev'] as $tmp_device):
 									$a_param[] = escapeshellarg($tmp_device);
 								endforeach;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'attach.data':
 //					parameter: force flag, non-raidz vdev, new device
 					$subcommand = 'attach';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force','resilver.sequential','resilver.wait'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force','resilver.sequential','resilver.wait'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							attach data: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_attach_data,format: '1',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_attach_data,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							attach data: select pool device and new device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
 //							limit next query to selected pool
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_device_for_attach_data = $o_zpool->get_pool_devices_for_attach_data();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_device_for_attach_data,format: '1',check_not_present: true);
-							html_separator2();
-							html_titleline2(title: gettext('Select Data Device'));
-							render_newdev_edit(a_items: $a_newdev,format: '1');
+							render_pooldev_edit($a_device_for_attach_data,'1',[],true);
+							html_separator2(2);
+							html_titleline2(gettext('Select Data Device'),2);
+							render_newdev_edit($a_newdev,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							attach data: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
 //							limit next query to selected pool
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_device_for_attach_data = $o_zpool->get_pool_devices_for_attach_data();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_device_for_attach_data);
-							html_separator2();
-							html_titleline2(title: gettext('Source'));
-							$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_device_for_attach_data);
+							html_separator2(2);
+							html_titleline2(gettext('Source'),2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -654,67 +653,67 @@ $document->render();
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
 								$a_param[] = escapeshellarg($sphere_array['newdev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'attach.log':
 //					force flag, non-raidz vdev, vdev, new device
 					$subcommand = 'attach';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							attach log: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_attach_log,format: '1',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_attach_log,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							attach log: select device and new device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_device_for_attach_log = $o_zpool->get_pool_devices_for_attach_log();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_device_for_attach_log,format: '1');
-							html_separator2();
-							html_titleline2(title: gettext('Select Log Device'));
-							render_newdev_edit(a_items: $a_newdev,format: '1');
+							render_pooldev_edit($a_device_for_attach_log,'1');
+							html_separator2(2);
+							html_titleline2(gettext('Select Log Device'),2);
+							render_newdev_edit($a_newdev,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							attach log: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
 //							limit next query to selected pool
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_device_for_attach_log = $o_zpool->get_pool_devices_for_attach_log();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_device_for_attach_log);
-							html_separator2();
-							html_titleline2(title: gettext('Source'));
-							$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_device_for_attach_log);
+							html_separator2(2);
+							html_titleline2(gettext('Source'),2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -728,11 +727,11 @@ $document->render();
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
 								$a_param[] = escapeshellarg($sphere_array['newdev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -742,41 +741,41 @@ $document->render();
 						case 2:
 //							clear: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
 //							one pool only
-							render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+							render_pool_edit($a_pool,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							clear: select pool device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool Device'),2);
+							render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_clear = $o_zpool->get_all_data_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_clear,format: '0',check_not_present: true);
+							render_pooldev_edit($a_pool_device_for_clear,'0');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_clear = $o_zpool->get_all_data_devices();
 							$o_zpool->set_poolname_filter();
 //							0-N devices can be selected, no check for success
-							render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_clear);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_clear);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -786,39 +785,39 @@ $document->render();
 										$a_param[] = escapeshellarg($tmp_device);
 									endforeach;
 								endif;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'destroy':
 					$subcommand = 'destroy';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							destroy: select flags & pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool,format: '1N',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool,'1N',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							destroy: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								foreach($sphere_array['pool'] as $tmp_pool):
@@ -832,14 +831,14 @@ $document->render();
 										endswitch;
 									endforeach;
 									$a_param[] = escapeshellarg($tmp_pool);
-									$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-									render_command_result(result: $result);
+									$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
+									render_command_result($result);
 								endforeach;
 							else:
-								render_command_result(result: $result);
+								render_command_result($result);
 							endif;
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -849,51 +848,51 @@ $document->render();
 						case 2:
 //							detach data: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_detach_data,format: '1',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_detach_data,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							detach data: select pool data device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Data Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Data Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_detach_data = $o_zpool->get_mirrored_data_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_detach_data,format: '1',check_not_present: true);
+							render_pooldev_edit($a_pool_device_for_detach_data,'1',[],true);
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							detach data page 4: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_detach_data = $o_zpool->get_mirrored_data_devices();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_detach_data);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_detach_data);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -903,80 +902,80 @@ $document->render();
 						case 2:
 //							detach log: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_detach_log,format: '1',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_detach_log,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							detach log: select pool device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Log Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Log Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_detach_log = $o_zpool->get_mirrored_log_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_detach_log,format: '1');
+							render_pooldev_edit($a_pool_device_for_detach_log,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							detach log: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_detach_log = $o_zpool->get_mirrored_log_devices();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_detach_log);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_detach_log);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'export':
 //					parameter: force flag, pool
 					$subcommand = 'export';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							export: select flags & pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pools'));
-							render_pool_edit(a_items: $a_pool,format: '1N',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pools'),2);
+							render_pool_edit($a_pool,'1N',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							export: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								foreach($sphere_array['pool'] as $r_pool):
@@ -990,14 +989,14 @@ $document->render();
 										endswitch;
 									endforeach;
 									$a_param[] = escapeshellarg($r_pool);
-									$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-									render_command_result(result: $result);
+									$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
+									render_command_result($result);
 								endforeach;
 							else:
-								render_command_result(result: $result);
+								render_command_result($result);
 							endif;
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1007,52 +1006,52 @@ $document->render();
 						case 2:
 //							history: select pool(s)
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pools'));
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pools'),2);
 //							0..N = checkboxes
-							render_pool_edit(a_items: $a_pool,format: '0N',a_selected_items: $sphere_array['pool']);
+							render_pool_edit($a_pool,'0N',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							history: process
 							if((count($sphere_array['pool']) === 0) || (count($a_pool) === count($sphere_array['pool']))):
 								render_set_start();
-								render_activity_view(activity_longname: $c_activity);
+								render_activity_view($c_activity);
 								$prerequisites_ok = true;
-								html_separator2();
-								html_titleline2(title: gettext('Output'));
+								html_separator2(2);
+								html_titleline2(gettext('Output'),2);
 								$result = $prerequisites_ok ? 0 : 15;
 								if($prerequisites_ok):
 									$a_param = [];
-									$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+									$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 								endif;
-								render_command_result(result: $result);
+								render_command_result($result);
 								render_set_end();
-								render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+								render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							else:
 								$result = 0;
 								render_set_start();
-								render_activity_view(activity_longname: $c_activity);
+								render_activity_view($c_activity);
 								$prerequisites_ok = true;
-								html_separator2();
-								html_titleline2(title: gettext('Output'));
+								html_separator2(2);
+								html_titleline2(gettext('Output'),2);
 								$result = $prerequisites_ok ? 0 : 15;
 								if($prerequisites_ok):
 									foreach($sphere_array['pool'] as $tmp_pool):
 										$result = 0;
 										$a_param = [];
-										render_pool_view(selected_items: $tmp_pool);
+										render_pool_view($tmp_pool);
 										$a_param[] = escapeshellarg($tmp_pool);
-										$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-										render_command_result(result: $result);
+										$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
+										render_command_result($result);
 									endforeach;
 								else:
-									render_command_result(result: $result);
+									render_command_result($result);
 								endif;
 								render_set_end();
-								render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+								render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							endif;
 							break;
 					endswitch;
@@ -1071,24 +1070,24 @@ $document->render();
 						'import.readonly',
 						'destroyed.pools'
 					]);
-					$o_flags = new co_zpool_flags(a_available_keys: $dev_flags,a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags($dev_flags,$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							import page: get flags
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 3:
 //							import page: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
 							$prerequisites_ok = true;
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -1140,11 +1139,11 @@ $document->render();
 									endswitch;
 								endforeach;
 								$a_param[] = '-a';
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1159,24 +1158,24 @@ $document->render();
 						is_dir('/dev') ? 'devlabel' : null,
 						'destroyed.pools'
 					]);
-					$o_flags = new co_zpool_flags(a_available_keys: $dev_flags,a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags($dev_flags,$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							import page: get flags
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 3:
 //							import page: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
 							$prerequisites_ok = true;
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -1217,41 +1216,41 @@ $document->render();
 											break;
 									endswitch;
 								endforeach;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'labelclear':
 //					labelclear wipes zfs information from a disk
 					$subcommand = 'labelclear';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							labelclear: select flags and device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Device'));
-							render_newdev_edit(a_items: $a_newdev,format: '1');
-//							render_newdev_edit(a_items: $o_zpool->get_all_devices(),format: '1');
+							html_separator2(2);
+							html_titleline2(gettext('Select Device'),2);
+							render_newdev_edit($a_newdev,'1');
+//							render_newdev_edit($o_zpool->get_all_devices(),'1');
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 3:
 //							labelclear: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -1270,11 +1269,11 @@ $document->render();
 										$a_param[] = escapeshellarg(sprintf('/dev/%s',$tmp_device));
 									endif;
 								endforeach;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1285,99 +1284,99 @@ $document->render();
 						case 2:
 //							offline data: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_offline_data,format: '1',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_offline_data,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							offline data: select data device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_offline_data = $o_zpool->get_pool_devices_for_offline_data();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_offline_data,format: '1',check_not_present: true);
+							render_pooldev_edit($a_pool_device_for_offline_data,'1',[],true);
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							offline data: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_offline_data = $o_zpool->get_pool_devices_for_offline_data();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_offline_data);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_offline_data);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'online':
 					$subcommand = 'online';
-					$o_flags = new co_zpool_flags(a_available_keys: ['expand'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['expand'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							online data: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_online_data,format: '1',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_online_data,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							online data: select data device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_online_data = $o_zpool->get_pool_devices_for_online_data();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_online_data,format: '1',check_not_present: true);
+							render_pooldev_edit($a_pool_device_for_online_data,'1',[],true);
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							online data: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_online_data = $o_zpool->get_pool_devices_for_online_data();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_online_data);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_online_data);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -1395,11 +1394,11 @@ $document->render();
 								else:
 									$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
 								endif;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1409,35 +1408,35 @@ $document->render();
 						case 2:
 //							reguid page 2: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool,format: '1N',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool,'1N',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								foreach($sphere_array['pool'] as $tmp_pool):
 									$result = 0;
 									$a_param = [];
 									$a_param[] = escapeshellarg($tmp_pool);
-									$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-									render_command_result(result: $result);
+									$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
+									render_command_result($result);
 								endforeach;
 							else:
-								render_command_result(result: $result);
+								render_command_result($result);
 							endif;
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1447,51 +1446,51 @@ $document->render();
 						case 2:
 //							remove cache: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_remove_cache,format: '1',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_remove_cache,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							remove cache: select cache device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Cache Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Cache Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_remove_cache = $o_zpool->get_single_cache_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_remove_cache,format: '1');
+							render_pooldev_edit($a_pool_device_for_remove_cache,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							remove cache: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_remove_cache = $o_zpool->get_single_cache_devices();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_remove_cache);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_remove_cache);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1501,51 +1500,51 @@ $document->render();
 						case 2:
 //							remove log: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_remove_log,format: '1',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_remove_log,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							remove log: select log device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Log Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Log Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_remove_log = $o_zpool->get_single_log_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_remove_log,format: '1');
+							render_pooldev_edit($a_pool_device_for_remove_log,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							remove log: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_remove_log = $o_zpool->get_single_log_devices();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_remove_log);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_remove_log);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1555,87 +1554,87 @@ $document->render();
 						case 2:
 //							remove spare: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_remove_spare,format: '1',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_remove_spare,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							remove spare: select spare device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Spare Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Spare Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_remove_spare = $o_zpool->get_single_spare_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_remove_spare,format: '1');
+							render_pooldev_edit($a_pool_device_for_remove_spare,'1');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 //							remove spare: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_remove_spare = $o_zpool->get_single_spare_devices();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_remove_spare);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_remove_spare);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
 								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
 								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
 				case 'replace':
 //					parameter: force flag, pool, redundant device, new device (optional)
 					$subcommand = 'replace';
-					$o_flags = new co_zpool_flags(a_available_keys: ['force','resilver.sequential','resilver.wait'],a_selected_keys: $sphere_array['flag']);
+					$o_flags = new co_zpool_flags(['force','resilver.sequential','resilver.wait'],$sphere_array['flag']);
 					switch($sphere_array['pageindex']):
 						case 2:
 //							replace data: select flags and pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
-							render_pool_edit(a_items: $a_pool_for_replace_data,format: '1',a_selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
+							render_pool_edit($a_pool_for_replace_data,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],[]);
 							break;
 						case 3:
 //							replace data: select pool device and new device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_available_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							render_zpool_status(param: $sphere_array['pool'][0],b_exec: $b_exec);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool Device'),2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0],$b_exec);
 //							limit next query to selected pool
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_device_for_replace_data = $o_zpool->get_pool_devices_for_replace_data();
 							$o_zpool->set_devicepath_strip_regex('~^/dev/~');
 							$a_spare_devices = $o_zpool->get_all_spare_devices();
 							$o_zpool->set_devicepath_strip_regex();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_device_for_replace_data,format: '1',check_not_present: true);
+							render_pooldev_edit($a_device_for_replace_data,'1',[],true);
 //							add spare devices of selected pool
 							if(!empty($a_spare_devices)):
 								foreach($a_spare_devices as $r_spare_device):
@@ -1644,35 +1643,35 @@ $document->render();
 							endif;
 //							new device is an optional parameter
 							if(!empty($a_newdev)):
-								html_separator2();
-								html_titleline2(title: gettext('Select Data Device'));
+								html_separator2(2);
+								html_titleline2(gettext('Select Data Device'),2);
 //								not mandatory
-								render_newdev_edit(a_items: $a_newdev,format: '0');
+								render_newdev_edit($a_newdev,'0');
 							endif;
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],[]);
 							break;
 						case 4:
 //							replace data: process
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
+							render_activity_view($c_activity);
 							$o_flags->render_selected_keys();
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
 //							limit next query to selected pool
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_device_for_replace_data = $o_zpool->get_pool_devices_for_replace_data();
 							$o_zpool->set_poolname_filter();
-							$prerequisites_ok &= render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_device_for_replace_data);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev'],$a_device_for_replace_data);
 //							display only if a new device has been selected
 							if(!empty($sphere_array['newdev'][0])):
-								html_separator2();
-								html_titleline2(title: gettext('Source'));
-								$prerequisites_ok &= render_newdev_view(items: $sphere_array['newdev']);
+								html_separator2(2);
+								html_titleline2(gettext('Source'),2);
+								$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
 							endif;
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -1698,11 +1697,11 @@ $document->render();
 									$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
 									$a_param[] = escapeshellarg($sphere_array['newdev'][0]);
 								endif;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1718,61 +1717,61 @@ $document->render();
 								$ll_option['stop'] = $l_option['stop'];
 								$ll_option['start']['default'] = true;
 								render_set_start();
-								render_activity_view(activity_longname: $c_activity);
-								render_selector_radio(title: gettext('Options'),a_option: $ll_option,r_option_selected: $sphere_array['option']);
-								html_separator2();
-								html_titleline2(title: gettext('Select Pool'));
-								render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+								render_activity_view($c_activity);
+								render_selector_radio(gettext('Options'),$ll_option,$sphere_array['option']);
+								html_separator2(2);
+								html_titleline2(gettext('Select Pool'),2);
+								render_pool_edit($a_pool,'1',$sphere_array['pool']);
 								render_set_end();
-								render_submit(pageindex: 3,activity: $sphere_array['activity'],a_flag: $sphere_array['flag']);
+								render_submit(3,$sphere_array['activity'],'',[],$sphere_array['flag']);
 								break;
 							case 3:
 //								process
 								switch($sphere_array['option']):
 									case 'start':
 										render_set_start();
-										render_activity_view(activity_longname: $c_activity);
-										render_option_view(option_name: $l_option[$sphere_array['option']]['longname']);
-										html_separator2();
-										html_titleline2(title: gettext('Target'));
-										$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-										html_separator2();
-										html_titleline2(title: gettext('Output'));
+										render_activity_view($c_activity);
+										render_option_view($l_option[$sphere_array['option']]['longname']);
+										html_separator2(2);
+										html_titleline2(gettext('Target'),2);
+										$prerequisites_ok = render_pool_view($sphere_array['pool']);
+										html_separator2(2);
+										html_titleline2(gettext('Output'),2);
 										$result = $prerequisites_ok ? 0 : 15;
 										if($prerequisites_ok):
 											$a_param = [];
 											$a_param[] = escapeshellarg($sphere_array['pool'][0]);
-											$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+											$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 										endif;
-										render_command_result(result: $result);
+										render_command_result($result);
 										render_set_end();
-										render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+										render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 										break;
 									case 'stop':
 										render_set_start();
-										render_activity_view(activity_longname: $c_activity);
-										render_option_view(option_name: $l_option[$sphere_array['option']]['longname']);
-										html_separator2();
-										html_titleline2(title: gettext('Target'));
-										$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-										html_separator2();
-										html_titleline2(title: gettext('Output'));
+										render_activity_view($c_activity);
+										render_option_view($l_option[$sphere_array['option']]['longname']);
+										html_separator2(2);
+										html_titleline2(gettext('Target'),2);
+										$prerequisites_ok = render_pool_view($sphere_array['pool']);
+										html_separator2(2);
+										html_titleline2(gettext('Output'),2);
 										$result = $prerequisites_ok ? 0 : 15;
 										if($prerequisites_ok):
 											$a_param = [];
 											$a_param[] = '-s';
 											$a_param[] = escapeshellarg($sphere_array['pool'][0]);
-											$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+											$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 										endif;
-										render_command_result(result: $result);
+										render_command_result($result);
 										render_set_end();
-										render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+										render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 										break;
 								endswitch;
 								break;
 						endswitch;
 					else:
-						render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool']);
+						render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool']);
 					endif;
 					break;
 				case 'trim':
@@ -1782,40 +1781,40 @@ $document->render();
 						case 2:
 //							trim: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool'));
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool'),2);
 //							one pool only
-							render_pool_edit(a_items: $a_pool,format: '1',a_selected_items: $sphere_array['pool']);
+							render_pool_edit($a_pool,'1',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							trim: select pool device
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pool Device'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pool Device'),2);
+							render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_trim = $o_zpool->get_all_data_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_edit(a_items: $a_pool_device_for_trim,format: '0');
+							render_pooldev_edit($a_pool_device_for_trim,'0');
 							render_set_end();
-							render_submit(pageindex: 4,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(4,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 						case 4:
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							$prerequisites_ok = render_pool_view(selected_items: $sphere_array['pool']);
-							$o_zpool->set_poolname_filter(value: $sphere_array['pool'][0]);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
 							$a_pool_device_for_trim = $o_zpool->get_all_data_devices();
 							$o_zpool->set_poolname_filter();
-							render_pooldev_view(items: $sphere_array['pooldev'],data_devices: $a_pool_device_for_trim);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							render_pooldev_view($sphere_array['pooldev'],$a_pool_device_for_trim);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 								$a_param = [];
@@ -1825,11 +1824,11 @@ $document->render();
 										$a_param[] = escapeshellarg($tmp_device);
 									endforeach;
 								endif;
-								$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
+								$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
 							endif;
-							render_command_result(result: $result);
+							render_command_result($result);
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1840,23 +1839,23 @@ $document->render();
 						case 2:
 //							upgrade page 2: select pool
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pools'));
-							render_pool_edit(a_items: $a_pool,format: '0N',a_selected_items: $sphere_array['pool']);
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Select Pools'),2);
+							render_pool_edit($a_pool,'0N',$sphere_array['pool']);
 							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
+							render_submit(3,$sphere_array['activity'],$sphere_array['option'],[],$sphere_array['flag']);
 							break;
 						case 3:
 //							upgrade page 2: process
 							$prerequisites_ok = true;
 							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gettext('Target'),2);
+							render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gettext('Output'),2);
 							$result = $prerequisites_ok ? 0 : 15;
 							if($prerequisites_ok):
 //								upgrade list of pools
@@ -1865,79 +1864,22 @@ $document->render();
 										$result = 0;
 										$a_param = [];
 										$a_param[] = escapeshellarg($tmp_pool);
-										$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-										render_command_result(result: $result);
+										$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
+										render_command_result($result);
 									endforeach;
 								else:
 //									view feature flags
 //									$result = 0;
 									$a_param = [];
 									$a_param[] = '-v';
-									$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-									render_command_result(result: $result);
+									$result |= render_command_and_execute($subcommand,$a_param,$b_exec);
+									render_command_result($result);
 								endif;
 							else:
-								render_command_result(result: $result);
+								render_command_result($result);
 							endif;
 							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
-							break;
-					endswitch;
-					break;
-				case 'enable.encryption':
-					$subcommand = 'set';
-					$result = 0;
-					switch($sphere_array['pageindex']):
-						case 2:
-//							upgrade page 2: select pool
-							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Select Pools'));
-							render_pool_edit(a_items: $a_pool,format: '0',a_selected_items: $sphere_array['pool']);
-							render_set_end();
-							render_submit(pageindex: 3,activity: $sphere_array['activity'],option: $sphere_array['option'],a_flag: $sphere_array['flag']);
-							break;
-						case 3:
-//							upgrade page 2: process
-							$prerequisites_ok = true;
-							render_set_start();
-							render_activity_view(activity_longname: $c_activity);
-							html_separator2();
-							html_titleline2(title: gettext('Target'));
-							render_pool_view(selected_items: $sphere_array['pool']);
-							html_separator2();
-							html_titleline2(title: gettext('Output'));
-							$result = $prerequisites_ok ? 0 : 15;
-							if($prerequisites_ok):
-//								upgrade list of pools
-								if(count($sphere_array['pool']) > 0):
-									foreach($sphere_array['pool'] as $tmp_pool):
-										$result = 0;
-										$a_param = [];
-										$a_param[] = 'feature@extensible_dataset=enabled'; // default is enabled on this platform
-										$a_param[] = escapeshellarg($tmp_pool);
-										$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-										$a_param = [];
-										$a_param[] = 'feature@bookmarks=enabled'; // default is enabled on this platform
-										$a_param[] = escapeshellarg($tmp_pool);
-										$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-										$a_param = [];
-										$a_param[] = 'feature@bookmark_v2=enabled';
-										$a_param[] = escapeshellarg($tmp_pool);
-										$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-										$a_param = [];
-										$a_param[] = 'feature@encryption=enabled';
-										$a_param[] = escapeshellarg($tmp_pool);
-										$result |= render_command_and_execute(subcommand: $subcommand,a_param: $a_param,b_exec: $b_exec);
-										render_command_result(result: $result);
-									endforeach;
-								endif;
-							else:
-								render_command_result(result: $result);
-							endif;
-							render_set_end();
-							render_submit(pageindex: 1,activity: $sphere_array['activity'],option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+							render_submit(1,$sphere_array['activity'],$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 							break;
 					endswitch;
 					break;
@@ -1946,9 +1888,9 @@ $document->render();
 	endif;
 	if($sphere_array['pageindex'] === 1):
 		render_set_start();
-		render_selector_radio(title: gettext('Activities'),a_option: $l_command,r_option_selected: $sphere_array['activity']);
+		render_selector_radio(gettext('Activities'),$l_command,$sphere_array['activity']);
 		render_set_end();
-		render_submit(pageindex: 2,option: $sphere_array['option'],a_pool: $sphere_array['pool'],a_flag: $sphere_array['flag']);
+		render_submit(2,'',$sphere_array['option'],$sphere_array['pool'],$sphere_array['flag']);
 	endif;
 	include 'formend.inc';
 ?>

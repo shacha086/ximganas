@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XigmaNAS\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@xigmanas.com>\n"
-"POT-Creation-Date: 2025-11-11 18:59+0000\n"
+"POT-Creation-Date: 2025-10-11 14:47+0000\n"
 "PO-Revision-Date: 2025-01-24 15:07+0000\n"
 "Last-Translator: Peter Kovacs <Unknown>\n"
 "Language-Team: XigmaNAS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-18 15:53+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2025-10-11 13:16+0000\n"
+"X-Generator: Launchpad (build bff9b0558f8357613643d9a74c009da18fafa917)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -3965,9 +3965,6 @@ msgid "Upgrade ZFS and add all supported feature flags on a pool"
 msgstr ""
 "ZFS frissítése és összes támogatott tulajdonság hozzáadása az tárolóhoz"
 
-msgid "Activate encryption feature"
-msgstr ""
-
 msgid "Temporary Device"
 msgstr "Átmeneti eszköz"
 
@@ -4395,9 +4392,6 @@ msgstr "Haladó"
 
 msgid "Firmware Update"
 msgstr "Firmware frissítése"
-
-msgid "Boot Environments"
-msgstr ""
 
 msgid "Packages"
 msgstr "Csomagok"
@@ -8321,102 +8315,6 @@ msgstr "Célszerű a konfigurációt titkosítani és biztonságos helyen tárol
 msgid "Reminder Settings"
 msgstr "Emlékeztető beállításai"
 
-msgid "Locked"
-msgstr ""
-
-msgid "Delete Selected Boot Environments"
-msgstr ""
-
-msgid "Do you really want to delete selected boot environments?"
-msgstr ""
-
-msgid "Failed to delete Boot Environment(s)."
-msgstr ""
-
-msgid "Age"
-msgstr ""
-
-msgid "Select"
-msgstr ""
-
-msgid "Boot Environment"
-msgstr ""
-
-msgid "Active"
-msgstr "Aktív"
-
-msgid "Mountpoint"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Failed to create and/or activate Boot Environment."
-msgstr ""
-
-msgid "Failed to create Boot Environment."
-msgstr ""
-
-msgid ""
-"Activate Boot Environment after creation, note that system reboot is "
-"required for this boot environment to take place."
-msgstr ""
-
-msgid ""
-"Append the date in the following format: YYYY-MM-DD-HHMMSS, if the name "
-"field is empty, the date will always be used as the boot environment name."
-msgstr ""
-
-#, php-format
-msgid "For additional information about boot environments and %s,"
-msgstr ""
-
-msgid "Failed to activate Boot Environment."
-msgstr ""
-
-msgid "Failed to rename Boot Environment."
-msgstr ""
-
-msgid "Failed to mount Boot Environment."
-msgstr ""
-
-msgid "Failed to unmount Boot Environment."
-msgstr ""
-
-msgid "Failed to delete Boot Environment."
-msgstr ""
-
-msgid "Edit Boot Environment"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Append the date in the following format: YYYY-MM-DD-HHMMSS."
-msgstr ""
-
-msgid "Force"
-msgstr ""
-
-msgid ""
-"Destroy the boot environment and its origin if any, without confirmation."
-msgstr ""
-
-msgid "No boot environmen information available."
-msgstr ""
-
-msgid "Boot Environment List"
-msgstr ""
-
-msgid "Boot Environment Snapshots"
-msgstr ""
-
 msgid "Add job"
 msgstr "Feladat hozzáadása"
 
@@ -9609,8 +9507,166 @@ msgstr ""
 msgid "HOME"
 msgstr "HOME"
 
+msgid "You are not allowed to use this function."
+msgstr "Ezt a funkciót nem használhatja."
+
+msgid "This file doesn't exist."
+msgstr "Ez a fájl nem létezik."
+
+msgid "You are not allowed to access this file."
+msgstr "Nincs hozzéférése ehhez a fájlhoz."
+
+msgid "Permission-change failed."
+msgstr ""
+
+msgid "Getting permissions failed."
+msgstr ""
+
+msgid "Change permissions"
+msgstr "Jogosultságok megváltoztatása"
+
+msgid "Public"
+msgstr "Nyilvános"
+
+msgid "This item doesn't exist."
+msgstr "Ez az elem nem létezik."
+
+msgid "You are not allowed to access this item."
+msgstr "Nem férhet hozzá ehhez az elemhez."
+
+msgid "Deleting failed."
+msgstr ""
+
+msgid "Unable to open source directory."
+msgstr ""
+
+msgid "Unable to open directory."
+msgstr "A könyvtárat nem lehet megyitni."
+
+msgid "Unable to read directory."
+msgstr "A könyvtár nem olvasható."
+
+msgid "Copy item(s)"
+msgstr "Elemem(ek) másolása"
+
+msgid "Move item(s)"
+msgstr "Elemem(ek) áthelyezése"
+
+#, php-format
+msgid "Copy from /%s to /%s "
+msgstr ""
+
+#, php-format
+msgid "Move from /%s to /%s "
+msgstr ""
+
+msgid "Copy"
+msgstr "Másol"
+
+msgid "Move"
+msgstr "Áthelyez"
+
+msgid "The target directory doesn't exist."
+msgstr "A célkönyvtár nem létezik."
+
+msgid "You are not allowed to access the target directory."
+msgstr "Nem férhet hozzá a célkönyvtárhoz."
+
+msgid "The target directory may not be above the home directory."
+msgstr ""
+
+msgid "You must supply a name."
+msgstr ""
+
+msgid "The target item already exists."
+msgstr "Ez az elem már létezik."
+
+msgid "Copying failed."
+msgstr "Másolás sikertelen."
+
+msgid "Moving failed."
+msgstr "Áthelyezés sikertelen."
+
+msgid "You haven't selected any item(s)."
+msgstr ""
+
+msgid "File saving failed."
+msgstr ""
+
+msgid "This item already exists."
+msgstr "Az elem már létezik."
+
+msgid "File opening failed."
+msgstr "Hiba a fájl megnyitásakor."
+
+msgid "Edit file"
+msgstr "Fájl szerkesztése"
+
+msgid "Wrap text:"
+msgstr "Szöveg tördelése:"
+
+msgid "Reset"
+msgstr "Visszaállítás"
+
+msgid "Are you sure you want to delete selected item(s)?"
+msgstr "Biztos, hogy törölni kell a kijelölt elem(ek)et?"
+
+msgid "CHANGE PERMISSIONS"
+msgstr "JOGOSULTSÁGOK MEGVÁLTOZTATÁSA"
+
+msgid "You are not allowed to access this directory."
+msgstr ""
+
 msgid "Directory"
 msgstr "Mappa"
+
+msgid "UP"
+msgstr "FEL"
+
+msgid "RELOAD"
+msgstr "ÚJRATÖLT"
+
+msgid "SEARCH"
+msgstr "KERESÉS"
+
+msgid "Create"
+msgstr "Létrehozás"
+
+msgid "Modified"
+msgstr "Módosítva"
+
+msgid "Permissions"
+msgstr "Engedélyek"
+
+msgid "Actions"
+msgstr "Műveletek"
+
+msgid "COPY"
+msgstr "MÁSOLÁS"
+
+msgid "MOVE"
+msgstr "MOZGAT"
+
+msgid "DELETE"
+msgstr "TÖRÖL"
+
+msgid "EDIT"
+msgstr "SZERKESZT"
+
+msgid "UNZIP"
+msgstr "UNZIP"
+
+msgid "DOWNLOAD"
+msgstr "LETÖLT"
+
+msgid "Extracting"
+msgstr "Kicsamagolás"
+
+msgid "Unzip"
+msgstr "Unzip"
+
+msgid "Failed to extract archive."
+msgstr ""
 
 msgid "Executable File"
 msgstr ""
@@ -9765,112 +9821,11 @@ msgstr "Powerpoint bemutató"
 msgid "PDF File"
 msgstr "PDF fájl"
 
-msgid "You haven't selected any item(s)."
-msgstr ""
-
-msgid "You are not allowed to use this function."
-msgstr "Ezt a funkciót nem használhatja."
-
-msgid "This file doesn't exist."
-msgstr "Ez a fájl nem létezik."
-
-msgid "You are not allowed to access this file."
-msgstr "Nincs hozzéférése ehhez a fájlhoz."
-
-msgid "Permission-change failed."
-msgstr ""
-
-msgid "Getting permissions failed."
-msgstr ""
-
-msgid "Change permissions"
-msgstr "Jogosultságok megváltoztatása"
-
-msgid "Public"
-msgstr "Nyilvános"
-
-msgid "Copy item(s)"
-msgstr "Elemem(ek) másolása"
-
-msgid "Move item(s)"
-msgstr "Elemem(ek) áthelyezése"
-
-#, php-format
-msgid "Copy from /%s to /%s "
-msgstr ""
-
-#, php-format
-msgid "Move from /%s to /%s "
-msgstr ""
-
-msgid "Copy"
-msgstr "Másol"
-
-msgid "Move"
-msgstr "Áthelyez"
-
-msgid "The target directory doesn't exist."
-msgstr "A célkönyvtár nem létezik."
-
-msgid "You are not allowed to access the target directory."
-msgstr "Nem férhet hozzá a célkönyvtárhoz."
-
-msgid "The target directory may not be above the home directory."
-msgstr ""
-
-msgid "You must supply a name."
-msgstr ""
-
-msgid "This item doesn't exist."
-msgstr "Ez az elem nem létezik."
-
-msgid "You are not allowed to access this item."
-msgstr "Nem férhet hozzá ehhez az elemhez."
-
-msgid "The target item already exists."
-msgstr "Ez az elem már létezik."
-
-msgid "Copying failed."
-msgstr "Másolás sikertelen."
-
-msgid "Moving failed."
-msgstr "Áthelyezés sikertelen."
-
-msgid "Deleting failed."
-msgstr ""
-
 msgid "ERROR(S)"
 msgstr ""
 
 msgid "Go Back"
 msgstr "Vissza"
-
-msgid "File saving failed."
-msgstr ""
-
-msgid "This item already exists."
-msgstr "Az elem már létezik."
-
-msgid "File opening failed."
-msgstr "Hiba a fájl megnyitásakor."
-
-msgid "Edit file"
-msgstr "Fájl szerkesztése"
-
-msgid "Wrap text:"
-msgstr "Szöveg tördelése:"
-
-msgid "Reset"
-msgstr "Visszaállítás"
-
-msgid "Unable to open source directory."
-msgstr ""
-
-msgid "Unable to open directory."
-msgstr "A könyvtárat nem lehet megyitni."
-
-msgid "Unable to read directory."
-msgstr "A könyvtár nem olvasható."
 
 msgid "Directory creation failed."
 msgstr "Hiba a könyvtár létrehozásakor"
@@ -9878,62 +9833,239 @@ msgstr "Hiba a könyvtár létrehozásakor"
 msgid "File creation failed."
 msgstr "Hiba a fájl létrehozásakor"
 
-msgid "Are you sure you want to delete selected item(s)?"
-msgstr "Biztos, hogy törölni kell a kijelölt elem(ek)et?"
+msgid "Dataset Name"
+msgstr "Adatkészlet neve"
 
-msgid "CHANGE PERMISSIONS"
-msgstr "JOGOSULTSÁGOK MEGVÁLTOZTATÁSA"
+msgid ""
+"File System - can be mounted within the standard system namespace and "
+"behaves like other file systems."
+msgstr ""
+"Fájlrendszer - a standard rendszer névtérén belül becsatolható és úgy "
+"viselkedik, mint egy másik fájlrendszer."
 
-msgid "You are not allowed to access this directory."
+msgid "Volume - A logical volume. Can be exported as a raw or block device."
+msgstr ""
+"Kötet - logikai kötet. Nyers adatként vagy blokkeszközként exportálható."
+
+msgid ""
+"Snapshot - A read-only version of a file system or volume at a given point "
+"in time."
+msgstr ""
+"Snapshot - Egy olvasható verzió a fájlrendszerről vagy kötetről az adott "
+"időpontról"
+
+msgid "Bookmark - Creates a bookmark of a given snapshot."
+msgstr "Könyvjelző - Könyvjelző létrehozása az adott snapshothoz."
+
+msgid "Dataset Type"
+msgstr "Adattár típusa"
+
+msgid "Pool Name"
+msgstr "Tároló (pool) neve"
+
+msgid "Clones"
+msgstr "Klónok"
+
+msgid "Compression Ratio"
+msgstr "Tömörítés mértéke"
+
+msgid "Defer Destroy"
+msgstr "Megszüntetés elhalasztása"
+
+msgid "Encryption Root"
+msgstr "Titkosítási gyökér"
+
+msgid "Filesystem Count"
+msgstr "Fájlrendszer számoló"
+
+msgid "GUID"
+msgstr "GUID"
+
+msgid "Key Status"
+msgstr "Kulcs állapot"
+
+msgid "Logical Referenced"
 msgstr ""
 
-msgid "UP"
-msgstr "FEL"
-
-msgid "RELOAD"
-msgstr "ÚJRATÖLT"
-
-msgid "SEARCH"
-msgstr "KERESÉS"
-
-msgid "Create"
-msgstr "Létrehozás"
-
-msgid "Modified"
-msgstr "Módosítva"
-
-msgid "Permissions"
-msgstr "Engedélyek"
-
-msgid "Actions"
-msgstr "Műveletek"
-
-msgid "COPY"
-msgstr "MÁSOLÁS"
-
-msgid "MOVE"
-msgstr "MOZGAT"
-
-msgid "DELETE"
-msgstr "TÖRÖL"
-
-msgid "EDIT"
-msgstr "SZERKESZT"
-
-msgid "UNZIP"
-msgstr "UNZIP"
-
-msgid "DOWNLOAD"
-msgstr "LETÖLT"
-
-msgid "Extracting"
-msgstr "Kicsamagolás"
-
-msgid "Unzip"
-msgstr "Unzip"
-
-msgid "Failed to extract archive."
+msgid "Logical Used"
 msgstr ""
+
+msgid "Mounted"
+msgstr "Felcsatolt"
+
+msgid "Obj Set ID"
+msgstr ""
+
+msgid "Receive Resume Token"
+msgstr ""
+
+msgid "Redact Snaps"
+msgstr ""
+
+msgid "Refcompressratio"
+msgstr ""
+
+msgid "Referenced"
+msgstr "Hivatkozott"
+
+msgid "Snapshot Count"
+msgstr "Pillanatkép számoló"
+
+msgid "Used by Children"
+msgstr ""
+
+msgid "Used by Dataset"
+msgstr "Adathalmazok által használt"
+
+msgid "Used by Refreservation"
+msgstr ""
+
+msgid "Used by Snapshots"
+msgstr "Pillanatképek által használt"
+
+msgid "Userrefs"
+msgstr ""
+
+msgid "Written"
+msgstr "Kiírt"
+
+msgid "Normalization"
+msgstr "Normalizálás"
+
+msgid "UTF-8 File Names"
+msgstr "UTF-8 fájlnevek"
+
+msgid "ACL Type"
+msgstr "ACL Típus"
+
+msgid "Access Time"
+msgstr "Hozzáférési idő"
+
+msgid "Can Mount"
+msgstr "Csatolható"
+
+msgid "Checksum"
+msgstr "Ellenőrző összeg"
+
+msgid "GZIP Compression Level"
+msgstr "GZIP tömörítési szint"
+
+msgid "Zstandard Compression Level"
+msgstr "Zstandard tömörítési szint"
+
+msgid "Fast Zstandard Compression Level"
+msgstr "Fast Zstandard tömörítési szint"
+
+msgid "Copies"
+msgstr "Másolatok"
+
+msgid "Dedup Method"
+msgstr "Egyszeresítés eljárás"
+
+msgid "Dnode Size"
+msgstr "Dnode méret"
+
+msgid "Execute Processes"
+msgstr "Fiolyamatok kibontása"
+
+msgid "Filesystem Limit"
+msgstr "Fájlrendszer limit"
+
+msgid "Jailed"
+msgstr "Jail-ben van"
+
+msgid "Key Format"
+msgstr "Kulcs formátum"
+
+msgid "Key Location"
+msgstr "Kulcs helyzet"
+
+msgid "Logbias"
+msgstr "Logbias"
+
+msgid "Mountpoint Type"
+msgstr "Csatolási típus"
+
+msgid "Non-blocking Mandatory Locks"
+msgstr ""
+
+msgid "Overlay Mount"
+msgstr ""
+
+msgid "PBKDF2 Iterations"
+msgstr ""
+
+msgid "Primary Cache"
+msgstr "Elsődleges gyorsítótár"
+
+msgid "Record Size"
+msgstr "Rekord méret"
+
+msgid "Redundant Metadata"
+msgstr "Redundáns metaadat"
+
+msgid "Refquota"
+msgstr "Hivatkozáskvóta"
+
+msgid "Refquota Type"
+msgstr ""
+
+msgid "Refreservation"
+msgstr "Hivatkozásfoglalás"
+
+msgid "Refreservation Type"
+msgstr ""
+
+msgid "Relatime"
+msgstr "Valós idő"
+
+msgid "Reservation Type"
+msgstr "Foglalási mód"
+
+msgid "Secondary Cache"
+msgstr "Másodlagos gyorsítótár"
+
+msgid "Setuid"
+msgstr ""
+
+msgid "Share NFS Options"
+msgstr "NFS beállitások megosztása"
+
+msgid "Share NFS Type"
+msgstr "NFS tipus megosztása"
+
+msgid "Share SMB Options"
+msgstr "SMB beállitások megosztása"
+
+msgid "Share SMB Type"
+msgstr "SMB tipusok megosztása"
+
+msgid "Snapshot Device Visibility"
+msgstr "Pillanatkép eszköz láthatósága"
+
+msgid "Snapshot Folder Visibility"
+msgstr "Pillanatkép mappa láthatósága"
+
+msgid "Snapshot Limit"
+msgstr "Pillanatkép limit"
+
+msgid "Threshold Small Block Size"
+msgstr ""
+
+msgid "Synchronous Requests Behaviour"
+msgstr ""
+
+msgid "Volume Mode"
+msgstr "Kötetmód"
+
+msgid "Volume Size"
+msgstr "Kötet mérete"
+
+msgid "Virus Scan"
+msgstr "Vírus ellenőrzés"
+
+msgid "No ZFS filesystem information available."
+msgstr "Nincs elérhető ZFS fájlrendszer információ"
 
 msgid "The name of the filesystem."
 msgstr "A fájlrendszer neve"
@@ -9943,9 +10075,6 @@ msgstr "Add meg a fájlrendszer nevét"
 
 msgid "Controls the type of the ZFS dataset."
 msgstr "A ZFS adattár típusát határozza meg."
-
-msgid "Pool Name"
-msgstr "Tároló (pool) neve"
 
 msgid ""
 "Indicates whether the file name matching algorithm used by the filesystem "
@@ -10480,9 +10609,6 @@ msgstr ""
 msgid "System attribute based xattrs"
 msgstr ""
 
-msgid "No ZFS filesystem information available."
-msgstr "Nincs elérhető ZFS fájlrendszer információ"
-
 msgid "Add Filesystem"
 msgstr "Filerendszer felvétele"
 
@@ -10530,234 +10656,6 @@ msgstr "ismeretlen"
 
 msgid "Filesystems"
 msgstr "Fájlrendszerek"
-
-msgid "Dataset Name"
-msgstr "Adatkészlet neve"
-
-msgid ""
-"File System - can be mounted within the standard system namespace and "
-"behaves like other file systems."
-msgstr ""
-"Fájlrendszer - a standard rendszer névtérén belül becsatolható és úgy "
-"viselkedik, mint egy másik fájlrendszer."
-
-msgid "Volume - A logical volume. Can be exported as a raw or block device."
-msgstr ""
-"Kötet - logikai kötet. Nyers adatként vagy blokkeszközként exportálható."
-
-msgid ""
-"Snapshot - A read-only version of a file system or volume at a given point "
-"in time."
-msgstr ""
-"Snapshot - Egy olvasható verzió a fájlrendszerről vagy kötetről az adott "
-"időpontról"
-
-msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr "Könyvjelző - Könyvjelző létrehozása az adott snapshothoz."
-
-msgid "Dataset Type"
-msgstr "Adattár típusa"
-
-msgid "Clones"
-msgstr "Klónok"
-
-msgid "Compression Ratio"
-msgstr "Tömörítés mértéke"
-
-msgid "Defer Destroy"
-msgstr "Megszüntetés elhalasztása"
-
-msgid "Encryption Root"
-msgstr "Titkosítási gyökér"
-
-msgid "Filesystem Count"
-msgstr "Fájlrendszer számoló"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Key Status"
-msgstr "Kulcs állapot"
-
-msgid "Logical Referenced"
-msgstr ""
-
-msgid "Logical Used"
-msgstr ""
-
-msgid "Mounted"
-msgstr "Felcsatolt"
-
-msgid "Obj Set ID"
-msgstr ""
-
-msgid "Receive Resume Token"
-msgstr ""
-
-msgid "Redact Snaps"
-msgstr ""
-
-msgid "Refcompressratio"
-msgstr ""
-
-msgid "Referenced"
-msgstr "Hivatkozott"
-
-msgid "Snapshot Count"
-msgstr "Pillanatkép számoló"
-
-msgid "Used by Children"
-msgstr ""
-
-msgid "Used by Dataset"
-msgstr "Adathalmazok által használt"
-
-msgid "Used by Refreservation"
-msgstr ""
-
-msgid "Used by Snapshots"
-msgstr "Pillanatképek által használt"
-
-msgid "Userrefs"
-msgstr ""
-
-msgid "Written"
-msgstr "Kiírt"
-
-msgid "Normalization"
-msgstr "Normalizálás"
-
-msgid "UTF-8 File Names"
-msgstr "UTF-8 fájlnevek"
-
-msgid "ACL Type"
-msgstr "ACL Típus"
-
-msgid "Access Time"
-msgstr "Hozzáférési idő"
-
-msgid "Can Mount"
-msgstr "Csatolható"
-
-msgid "Checksum"
-msgstr "Ellenőrző összeg"
-
-msgid "GZIP Compression Level"
-msgstr "GZIP tömörítési szint"
-
-msgid "Zstandard Compression Level"
-msgstr "Zstandard tömörítési szint"
-
-msgid "Fast Zstandard Compression Level"
-msgstr "Fast Zstandard tömörítési szint"
-
-msgid "Copies"
-msgstr "Másolatok"
-
-msgid "Dedup Method"
-msgstr "Egyszeresítés eljárás"
-
-msgid "Dnode Size"
-msgstr "Dnode méret"
-
-msgid "Execute Processes"
-msgstr "Fiolyamatok kibontása"
-
-msgid "Filesystem Limit"
-msgstr "Fájlrendszer limit"
-
-msgid "Jailed"
-msgstr "Jail-ben van"
-
-msgid "Key Format"
-msgstr "Kulcs formátum"
-
-msgid "Key Location"
-msgstr "Kulcs helyzet"
-
-msgid "Logbias"
-msgstr "Logbias"
-
-msgid "Mountpoint Type"
-msgstr "Csatolási típus"
-
-msgid "Non-blocking Mandatory Locks"
-msgstr ""
-
-msgid "Overlay Mount"
-msgstr ""
-
-msgid "PBKDF2 Iterations"
-msgstr ""
-
-msgid "Primary Cache"
-msgstr "Elsődleges gyorsítótár"
-
-msgid "Record Size"
-msgstr "Rekord méret"
-
-msgid "Redundant Metadata"
-msgstr "Redundáns metaadat"
-
-msgid "Refquota"
-msgstr "Hivatkozáskvóta"
-
-msgid "Refquota Type"
-msgstr ""
-
-msgid "Refreservation"
-msgstr "Hivatkozásfoglalás"
-
-msgid "Refreservation Type"
-msgstr ""
-
-msgid "Relatime"
-msgstr "Valós idő"
-
-msgid "Reservation Type"
-msgstr "Foglalási mód"
-
-msgid "Secondary Cache"
-msgstr "Másodlagos gyorsítótár"
-
-msgid "Setuid"
-msgstr ""
-
-msgid "Share NFS Options"
-msgstr "NFS beállitások megosztása"
-
-msgid "Share NFS Type"
-msgstr "NFS tipus megosztása"
-
-msgid "Share SMB Options"
-msgstr "SMB beállitások megosztása"
-
-msgid "Share SMB Type"
-msgstr "SMB tipusok megosztása"
-
-msgid "Snapshot Device Visibility"
-msgstr "Pillanatkép eszköz láthatósága"
-
-msgid "Snapshot Folder Visibility"
-msgstr "Pillanatkép mappa láthatósága"
-
-msgid "Snapshot Limit"
-msgstr "Pillanatkép limit"
-
-msgid "Threshold Small Block Size"
-msgstr ""
-
-msgid "Synchronous Requests Behaviour"
-msgstr ""
-
-msgid "Volume Mode"
-msgstr "Kötetmód"
-
-msgid "Volume Size"
-msgstr "Kötet mérete"
-
-msgid "Virus Scan"
-msgstr "Vírus ellenőrzés"
 
 msgid "Show Used/Avail"
 msgstr "Használt/Elérhető megjelenítése"
@@ -10836,6 +10734,51 @@ msgstr ""
 msgid ""
 "When enabled, destroying a dataset will also destroy all dependents "
 "(datasets, snapshots and clones)."
+msgstr ""
+
+msgid "Add Schedule"
+msgstr "Ütemezés felvétele"
+
+msgid "Edit Schedule"
+msgstr ""
+
+msgid "Schedule is marked for deletion"
+msgstr ""
+
+msgid "Schedule is locked"
+msgstr ""
+
+msgid "Schedule is unlocked"
+msgstr ""
+
+msgid "Delete Selected Schedules"
+msgstr ""
+
+msgid "Do you want to delete selected schedules?"
+msgstr ""
+
+msgid "Do you want to disable selected schedules?"
+msgstr ""
+
+msgid "Do you want to enable selected schedules?"
+msgstr ""
+
+msgid "Do you want to toggle selected schedules?"
+msgstr ""
+
+msgid "Invalid"
+msgstr "Érvénytelen"
+
+msgid "Destroy"
+msgstr "Megsemmisítés"
+
+msgid "Create Snapshot"
+msgstr "Pillanatkép létrehozása"
+
+msgid "Destroy Snapshot"
+msgstr "Pillanatkép törlése"
+
+msgid "Scrub Pool"
 msgstr ""
 
 msgid "Lifetime"
@@ -10926,59 +10869,14 @@ msgstr ""
 msgid "Presets"
 msgstr ""
 
-msgid "Add Schedule"
-msgstr "Ütemezés felvétele"
-
-msgid "Edit Schedule"
-msgstr ""
-
-msgid "Schedule is marked for deletion"
-msgstr ""
-
-msgid "Schedule is locked"
-msgstr ""
-
-msgid "Schedule is unlocked"
-msgstr ""
-
-msgid "Delete Selected Schedules"
-msgstr ""
-
-msgid "Do you want to delete selected schedules?"
-msgstr ""
-
-msgid "Do you want to disable selected schedules?"
-msgstr ""
-
-msgid "Do you want to enable selected schedules?"
-msgstr ""
-
-msgid "Do you want to toggle selected schedules?"
-msgstr ""
-
-msgid "Invalid"
-msgstr "Érvénytelen"
-
-msgid "Destroy"
-msgstr "Megsemmisítés"
-
-msgid "Create Snapshot"
-msgstr "Pillanatkép létrehozása"
-
-msgid "Destroy Snapshot"
-msgstr "Pillanatkép törlése"
-
-msgid "Scrub Pool"
-msgstr ""
-
 msgid "Recursively create snapshots of all descendent datasets."
-msgstr ""
-
-msgid "Scrub"
 msgstr ""
 
 msgid "Select pool."
 msgstr "Tároló (pool) kijelölése."
+
+msgid "Scrub"
+msgstr ""
 
 msgid "No ZFS zpool information available."
 msgstr ""
@@ -10996,6 +10894,48 @@ msgstr "Adja meg az azonosítót"
 
 msgid "Enter smartctl pass-through type."
 msgstr "Adja meg a smartctlpass-through típusát."
+
+msgid "Login Name"
+msgstr "Bejelentkezési név"
+
+msgid "Full Name"
+msgstr "Teljes név"
+
+msgid "SHA Password"
+msgstr "SHA jelszó"
+
+msgid "MD4 Password"
+msgstr "MD4 jelszó"
+
+msgid "Shell"
+msgstr "Parancsértelmező"
+
+msgid "Primary Group"
+msgstr "Elsődleges csoport"
+
+msgid "Groups"
+msgstr "Csoportok"
+
+msgid "Timezone"
+msgstr ""
+
+msgid "File Manager Access"
+msgstr "Fájl menedszer hozzáférés"
+
+msgid "Hidden Items"
+msgstr "Rejtett elemek"
+
+msgid "Read Permission"
+msgstr ""
+
+msgid "Create Permission"
+msgstr "Engedély hozzáadása"
+
+msgid "Change Permission"
+msgstr "Hozzáférés megváltoztatása"
+
+msgid "Delete Permission"
+msgstr "Engedély visszavonása"
 
 msgid "Add User Account"
 msgstr "Felhasználói fiók hozzáadása"
@@ -11039,6 +10979,9 @@ msgstr "A kiválasztott felhasználók be-, kikapcsolása"
 msgid "Do you want to toggle selected users?"
 msgstr "Biztos, hogy ki-, bekapcsolod a kiválasztott felhasználókat?"
 
+msgid "Active"
+msgstr "Aktív"
+
 msgid "System User"
 msgstr "Rendszerfelhasználó"
 
@@ -11053,9 +10996,6 @@ msgstr "Add meg a felhasználónevet."
 
 msgid "Enter the full user name."
 msgstr "Add meg a felhasználó teljes nevét."
-
-msgid "Full Name"
-msgstr "Teljes név"
 
 msgid "Set user password."
 msgstr "A felhasználó jelszavának beállítása."
@@ -11143,53 +11083,11 @@ msgstr "Módostásai engedély adása"
 msgid "Grant delete permission"
 msgstr "Törlési engedély adása"
 
-msgid "Login Name"
-msgstr "Bejelentkezési név"
-
-msgid "SHA Password"
-msgstr "SHA jelszó"
-
-msgid "MD4 Password"
-msgstr "MD4 jelszó"
-
-msgid "Shell"
-msgstr "Parancsértelmező"
-
-msgid "Primary Group"
-msgstr "Elsődleges csoport"
-
-msgid "Groups"
-msgstr "Csoportok"
-
-msgid "Timezone"
-msgstr ""
-
-msgid "File Manager Access"
-msgstr "Fájl menedszer hozzáférés"
-
-msgid "Hidden Items"
-msgstr "Rejtett elemek"
-
-msgid "Read Permission"
-msgstr ""
-
-msgid "Create Permission"
-msgstr "Engedély hozzáadása"
-
-msgid "Change Permission"
-msgstr "Hozzáférés megváltoztatása"
-
-msgid "Delete Permission"
-msgstr "Engedély visszavonása"
-
 msgid "Users"
 msgstr "Felhasználók"
 
 msgid "Public Keys"
 msgstr "Nyilvános kulcsok"
-
-msgid "Public Key"
-msgstr "Nyilvános kulcs"
 
 msgid "Add Public Key"
 msgstr "Nyilvános kulcs hozzáadása"
@@ -11233,20 +11131,11 @@ msgstr "Biztos, hogy ki-. bekapcsolod a kiválasztott nyilvános kulcsokat?"
 msgid "Reload"
 msgstr "Újratöltés"
 
+msgid "Public Key"
+msgstr "Nyilvános kulcs"
+
 msgid "Public key information."
 msgstr "Nyilvános kulcs információ"
-
-msgid "Enter group name."
-msgstr "Add meg a csoport nevét."
-
-msgid "Group Name"
-msgstr "Csoportnév"
-
-msgid "Specify the group numeric id."
-msgstr "Add meg a csoport numerikus id-jét"
-
-msgid "The recommended range for the group id is between 1000 and 32000."
-msgstr "A csoport id-jének 1000 és 32000 közötti tartományt javasolunk."
 
 msgid "Add Group"
 msgstr "Csoport hozzáadása"
@@ -11295,6 +11184,18 @@ msgstr "Rendszercsoportok megjelenítése"
 
 msgid "Hide System Groups"
 msgstr "Rendszercsoportok elrejtése"
+
+msgid "Enter group name."
+msgstr "Add meg a csoport nevét."
+
+msgid "Group Name"
+msgstr "Csoportnév"
+
+msgid "Specify the group numeric id."
+msgstr "Add meg a csoport numerikus id-jét"
+
+msgid "The recommended range for the group id is between 1000 and 32000."
+msgstr "A csoport id-jének 1000 és 32000 közötti tartományt javasolunk."
 
 msgid "Enter AD or PDC name."
 msgstr ""
@@ -11699,17 +11600,56 @@ msgstr ""
 msgid "The value of the variable."
 msgstr "A változó értéke."
 
+msgid "Name of the variable."
+msgstr "A változó neve."
+
+msgid "Enter Value"
+msgstr "Adj meg egy értéket"
+
 msgid "Disabled variable names will be removed from /etc/rc.conf."
 msgstr "A kikapcsolt változókat eltávolítjuk a /etc/rf.conf fájlból."
 
 msgid "Enabled options will be added to /etc/rc.conf."
 msgstr "A bekapcsolt változókat hozzáadjuk a /etc/rf.conf fájlhoz."
 
-msgid "Name of the variable."
-msgstr "A változó neve."
+msgid "Button Location"
+msgstr "Gombv elhelyezkedése"
 
-msgid "Enter Value"
-msgstr "Adj meg egy értéket"
+msgid "File Chooser"
+msgstr "Fájlválasztó"
+
+msgid "File Mode"
+msgstr "Fájl mód"
+
+msgid "GUI"
+msgstr "Grafikus felület"
+
+msgid "Navigation Bar"
+msgstr "Navigációs sáv"
+
+msgid "Tabs"
+msgstr ""
+
+msgid "Toggle Mode"
+msgstr "Átkapcsolási mód"
+
+msgid "Navbar Style"
+msgstr "A navigációs sáv neve"
+
+msgid "Binary Prefix"
+msgstr "Bináris előtag"
+
+msgid "Colorful Meters"
+msgstr "Színes kijelzők"
+
+msgid "Skip View Mode"
+msgstr "Megtekintési mód figyelmen kívül hagyása"
+
+msgid "Show Max CPUs"
+msgstr ""
+
+msgid "Diagnostics Information"
+msgstr ""
 
 msgid ""
 "Display action buttons in the scrollable area instead of the footer area."
@@ -11785,52 +11725,19 @@ msgstr ""
 msgid "Set the landing page for the Diagnostics > Information menu."
 msgstr ""
 
-msgid "Button Location"
-msgstr "Gombv elhelyezkedése"
-
-msgid "File Chooser"
-msgstr "Fájlválasztó"
-
-msgid "File Mode"
-msgstr "Fájl mód"
-
-msgid "GUI"
-msgstr "Grafikus felület"
-
-msgid "Navigation Bar"
-msgstr "Navigációs sáv"
-
-msgid "Tabs"
-msgstr ""
-
-msgid "Toggle Mode"
-msgstr "Átkapcsolási mód"
-
-msgid "Navbar Style"
-msgstr "A navigációs sáv neve"
-
-msgid "Binary Prefix"
-msgstr "Bináris előtag"
-
-msgid "Colorful Meters"
-msgstr "Színes kijelzők"
-
-msgid "Skip View Mode"
-msgstr "Megtekintési mód figyelmen kívül hagyása"
-
-msgid "Show Max CPUs"
-msgstr ""
-
-msgid "Diagnostics Information"
+msgid ""
+"Set the number of days until a reminder is shown to backup system "
+"configuration. The default is 28 days. A value of 0 disables the reminder."
 msgstr ""
 
 msgid "Show Interval"
 msgstr "Időköz megjelenítése"
 
-msgid ""
-"Set the number of days until a reminder is shown to backup system "
-"configuration. The default is 28 days. A value of 0 disables the reminder."
-msgstr ""
+msgid "Do you really want to remove the selected item from the list?"
+msgstr "Biztos eltávolítod a kiválasztott elemet a listából?"
+
+msgid "Select item to remove from the list"
+msgstr "Válaszd ki a listáról eltávolítandó elemet."
 
 msgid "Delete Selected Records"
 msgstr "Kijelölt bejegyzések törlése"
@@ -11889,12 +11796,6 @@ msgstr "Bejegyzés módosítása"
 msgid "Record is unlocked"
 msgstr "A bejegyzés zárolását feloldottad"
 
-msgid "Do you really want to remove the selected item from the list?"
-msgstr "Biztos eltávolítod a kiválasztott elemet a listából?"
-
-msgid "Select item to remove from the list"
-msgstr "Válaszd ki a listáról eltávolítandó elemet."
-
 msgid "Service"
 msgstr "Szolgáltatás"
 
@@ -11904,23 +11805,23 @@ msgstr "Nincs meghatározva"
 msgid "The value is invalid."
 msgstr "Az érték érvénytelen."
 
+msgid "Enter additional parameters"
+msgstr "Add meg a további paramétereket"
+
+msgid "No additional parameters"
+msgstr "Egy további paraméter sincs"
+
+msgid "Enter a description for your reference."
+msgstr "Add meg a hivatkozás leírását."
+
 msgid "Network Address"
 msgstr "Hálózati cím"
 
 msgid "Enable Setting"
 msgstr "Beállítás bekapcsolása"
 
-msgid "Enter a description for your reference."
-msgstr "Add meg a hivatkozás leírását."
-
 msgid "IPv4 Address"
 msgstr "IPv4 cím"
-
-msgid "Protect"
-msgstr "Védelem"
-
-msgid "Protect Setting"
-msgstr "Védelem beállításai"
 
 msgid "The UUID of the record."
 msgstr "A bejegyzés UUID-je."
@@ -11931,14 +11832,62 @@ msgstr "Adja meg az univerzálisan egyedi azonosítót"
 msgid "Universally Unique Identifier"
 msgstr "Univerzálisan egyedi azonosító"
 
-msgid "Enter additional parameters"
-msgstr "Add meg a további paramétereket"
+msgid "Protect"
+msgstr "Védelem"
 
-msgid "No additional parameters"
-msgstr "Egy további paraméter sincs"
+msgid "Protect Setting"
+msgstr "Védelem beállításai"
 
 msgid "Autodetect"
 msgstr "Automatikus felismerés"
+
+msgid "Standard Provider"
+msgstr ""
+
+msgid "Custom Provider"
+msgstr ""
+
+msgid "Record Type"
+msgstr ""
+
+msgid "Provider"
+msgstr "Szolgáltató"
+
+msgid "Provider Name"
+msgstr ""
+
+msgid "Host Names"
+msgstr ""
+
+msgid "Wildcard Domain"
+msgstr ""
+
+msgid "Use HTTPS"
+msgstr ""
+
+msgid "Check IP Server"
+msgstr "IP szerver ellenőrzése"
+
+msgid "Check IP Path"
+msgstr "IP útvonal ellenőrzése"
+
+msgid "Check IP using HTTPS"
+msgstr "HTTPS használatának ellenőrzése"
+
+msgid "Check IP Command"
+msgstr "IP parancs ellenőrzése"
+
+msgid "User Agent"
+msgstr ""
+
+msgid "DDNS-Server"
+msgstr ""
+
+msgid "DDNS-Path"
+msgstr ""
+
+msgid "Append my IP"
+msgstr ""
 
 msgid "Add Provider"
 msgstr "Szolgáltató hozzáadása"
@@ -11990,6 +11939,12 @@ msgstr ""
 
 msgid "Unknown Provider"
 msgstr ""
+
+msgid "Providers"
+msgstr ""
+
+msgid "Global Settings"
+msgstr "Globális beállítások"
 
 msgid ""
 "Select \"Custom Provider\" for customizing the DDNS update server details "
@@ -12086,59 +12041,44 @@ msgstr ""
 msgid "These parameters will be added to this provider configuration"
 msgstr ""
 
-msgid "Standard Provider"
+msgid "Verify Address"
 msgstr ""
 
-msgid "Custom Provider"
+msgid "Fake Address"
 msgstr ""
 
-msgid "Record Type"
+msgid "Allow IPv6"
+msgstr "IPv6 engedélyezése"
+
+msgid "Network Interface"
 msgstr ""
 
-msgid "Provider"
-msgstr "Szolgáltató"
-
-msgid "Provider Name"
+msgid "Iterations"
 msgstr ""
 
-msgid "Host Names"
+msgid "Check Interval"
+msgstr "Ellenőrzési időköz"
+
+msgid "Force Update Interval"
 msgstr ""
 
-msgid "Wildcard Domain"
+msgid "Secure SSL"
 msgstr ""
 
-msgid "Use HTTPS"
+msgid "Broken RTC"
+msgstr "Sérült óra informácók (Real Time Clock)"
+
+msgid "CA Trusted Certificates"
+msgstr "Megbízható CA tanusítvány"
+
+msgid "Cache Directory"
+msgstr "Gyorsítótár-könyvtár"
+
+msgid "Startup Delay"
 msgstr ""
 
-msgid "Check IP Server"
-msgstr "IP szerver ellenőrzése"
-
-msgid "Check IP Path"
-msgstr "IP útvonal ellenőrzése"
-
-msgid "Check IP using HTTPS"
-msgstr "HTTPS használatának ellenőrzése"
-
-msgid "Check IP Command"
-msgstr "IP parancs ellenőrzése"
-
-msgid "User Agent"
-msgstr ""
-
-msgid "DDNS-Server"
-msgstr ""
-
-msgid "DDNS-Path"
-msgstr ""
-
-msgid "Append my IP"
-msgstr ""
-
-msgid "Providers"
-msgstr ""
-
-msgid "Global Settings"
-msgstr "Globális beállítások"
+msgid "Log Level"
+msgstr "Naplózás szintje"
 
 msgid ""
 "IP address validation can be disabled by setting this option to false."
@@ -12227,47 +12167,14 @@ msgstr "Hibakeresés"
 msgid "These parameters are appended to the inadyn.conf file."
 msgstr ""
 
-msgid "Verify Address"
-msgstr ""
-
-msgid "Fake Address"
-msgstr ""
-
-msgid "Allow IPv6"
-msgstr "IPv6 engedélyezése"
-
-msgid "Network Interface"
-msgstr ""
-
-msgid "Iterations"
-msgstr ""
-
-msgid "Check Interval"
-msgstr "Ellenőrzési időköz"
-
-msgid "Force Update Interval"
-msgstr ""
-
-msgid "Secure SSL"
-msgstr ""
-
-msgid "Broken RTC"
-msgstr "Sérült óra informácók (Real Time Clock)"
-
-msgid "CA Trusted Certificates"
-msgstr "Megbízható CA tanusítvány"
-
-msgid "Cache Directory"
-msgstr "Gyorsítótár-könyvtár"
-
-msgid "Startup Delay"
-msgstr ""
-
-msgid "Log Level"
-msgstr "Naplózás szintje"
-
 msgid "Media Type"
 msgstr "Médiatípus"
+
+msgid "Media Folders"
+msgstr ""
+
+msgid "Media Folder"
+msgstr "Médiamappa"
 
 msgid "Add Media Folder"
 msgstr "Médiamappa hozzáadása"
@@ -12328,12 +12235,6 @@ msgstr "Képfájlok keresése a mappában."
 
 msgid "Scan folder for video and image files."
 msgstr "Videó- és képfájlok keresése a mappában."
-
-msgid "Media Folders"
-msgstr ""
-
-msgid "Media Folder"
-msgstr "Médiamappa"
 
 msgid "Inotify"
 msgstr "Inotify"
@@ -12458,26 +12359,17 @@ msgstr "Hitelesítési csoport neve"
 msgid "Auth Type"
 msgstr "Hitelesítés típusa"
 
-msgid "No CHAP users found."
-msgstr "Egy CHAP felhasználó sem található."
+msgid "Name of the Auth Group."
+msgstr "A hitelesítési csoport neve"
 
-msgid "Mutual-CHAP"
-msgstr "Kölcsönös-CHAP"
+msgid "Sets the authentication type."
+msgstr "A hitelesítés típusát állítja be."
 
-msgid "No Mutual-CHAP users found."
-msgstr "Egy Kölcsönös-CHAP felhasználó sem található."
+msgid "CHAP-Mutual"
+msgstr "CHAP-kölcsönösség"
 
-msgid "Initiator Name"
-msgstr "Kezdeményező neve"
-
-msgid "No initiator names found."
-msgstr "Egy kezdeményező név sem található."
-
-msgid "Initiator Portal"
-msgstr "Kezdeményező portál"
-
-msgid "No initiator portals found."
-msgstr "Egy kezdeményező portál sem található."
+msgid "These parameters will be added to this auth-group."
+msgstr "Ezeket a paramétereket ehhez a hitelesítő-csoporthoz adjuk hozzá"
 
 msgid "Add Auth Group"
 msgstr "Hitelesítési csoport hozzáadása"
@@ -12524,23 +12416,140 @@ msgstr "Kezdeményező nevek"
 msgid "Initiator Portals"
 msgstr "Kezdeményező portálok"
 
-msgid "Name of the Auth Group."
-msgstr "A hitelesítési csoport neve"
+msgid "No CHAP users found."
+msgstr "Egy CHAP felhasználó sem található."
 
-msgid "Sets the authentication type."
-msgstr "A hitelesítés típusát állítja be."
+msgid "Mutual-CHAP"
+msgstr "Kölcsönös-CHAP"
 
-msgid "CHAP-Mutual"
-msgstr "CHAP-kölcsönösség"
+msgid "No Mutual-CHAP users found."
+msgstr "Egy Kölcsönös-CHAP felhasználó sem található."
 
-msgid "These parameters will be added to this auth-group."
-msgstr "Ezeket a paramétereket ehhez a hitelesítő-csoporthoz adjuk hozzá"
+msgid "Initiator Name"
+msgstr "Kezdeményező neve"
 
-msgid "Name of the LUN."
-msgstr "A LUN neve"
+msgid "No initiator names found."
+msgstr "Egy kezdeményező név sem található."
+
+msgid "Initiator Portal"
+msgstr "Kezdeményező portál"
+
+msgid "No initiator portals found."
+msgstr "Egy kezdeményező portál sem található."
 
 msgid "LUN Name"
 msgstr "LUN neve"
+
+msgid "Backend"
+msgstr "Háttér"
+
+msgid "CTL LUN"
+msgstr "CTL LUN"
+
+msgid "Device ID"
+msgstr "Eszközazonosító"
+
+msgid "Device Type"
+msgstr "Eszköztípus"
+
+msgid "Passthrough Address"
+msgstr "Átmenő cím"
+
+msgid "LUN Vendor"
+msgstr "LUN vendor"
+
+msgid "LUN Product"
+msgstr "LUN termék"
+
+msgid "LUN Revision"
+msgstr "LUN revízió"
+
+msgid "LUN SCSI Name"
+msgstr "LUN SCSI név"
+
+msgid "LUN EUI-64\tidentifier"
+msgstr "LUN EUI-64\tazonosító"
+
+msgid "LUN NAA Identifier"
+msgstr "LUN NAA azonosító"
+
+msgid "LUN UUID"
+msgstr "LUN UUID"
+
+msgid "HA Role"
+msgstr "HA szabály"
+
+msgid "Insecure TPC"
+msgstr "Nem biztonságos TPC"
+
+msgid "Read Cache"
+msgstr "Olvasási gyorsítótár"
+
+msgid "Read Only"
+msgstr "Csak olvasható"
+
+msgid "Reordering"
+msgstr "Újrarendezés"
+
+msgid "Serialize Sequence"
+msgstr "Szekvencia sorba rendezése"
+
+msgid "Physical Block Size"
+msgstr "Fizikai blokkméret"
+
+msgid "Physical Block Offset"
+msgstr "Fizikai blokkoffszet"
+
+msgid "UNMAP Block Size"
+msgstr "UNMAP blokkméret"
+
+msgid "UNMAP Block Offset"
+msgstr "UNMAP blokkoffszet"
+
+msgid "RPM"
+msgstr "fordulat"
+
+msgid "Form Factor"
+msgstr "Formai tényező"
+
+msgid "Provisioning Type"
+msgstr "Ellátás típusa"
+
+msgid "UNMAP"
+msgstr "UNMAP"
+
+msgid "UNMAP Maximum LBA"
+msgstr "UNMAP maximális LBA-ja"
+
+msgid "UNMAP Maximum Descriptors"
+msgstr "UNMAP maximális leírói"
+
+msgid "Write Same Maximum LBA"
+msgstr "Write Same maximális LBA-ja"
+
+msgid "Avail Threshold"
+msgstr "Elérhető köszöbe"
+
+msgid "Used Threshold"
+msgstr "Használt korlátja"
+
+msgid "Pool Avail Threshold"
+msgstr "Tároló elérh korlát"
+
+msgid "Pool Used Threshold"
+msgstr "Tároló használt korlát"
+
+msgid "Threads"
+msgstr "Szálak"
+
+msgid "Additional Options for Block Backend"
+msgstr "Blokkháttér egyéni beállításai lehetőségei"
+
+msgid "Additional Options for RAM Disk Backend"
+msgstr "Memórialemez-háttér egyéni beállításai lehetőségei"
+
+msgid "Name of the LUN."
+msgstr "A LUN neve"
 
 msgid "The CTL backend to use for a given LUN."
 msgstr "A megadott LUN által használt CTL háttér."
@@ -12582,9 +12591,6 @@ msgstr ""
 msgid "The SCSI Device Identification string presented to the initiator."
 msgstr ""
 "A SCSI eszközazonosítási karaktersorozatot megmutatjuk a kérelmezőnek."
-
-msgid "Device ID"
-msgstr "Eszközazonosító"
 
 msgid "Specify the SCSI device type to use when creating the LUN."
 msgstr "Meghatározza a LUN létrehozásakor használandó SCSI eszköz típusát."
@@ -12816,12 +12822,6 @@ msgstr ""
 msgid "These parameters will be added to this lun."
 msgstr "Ezeket a paramétereket ehhez a lun-hoz adjuk hozzá"
 
-msgid "Additional Options for Block Backend"
-msgstr "Blokkháttér egyéni beállításai lehetőségei"
-
-msgid "Additional Options for RAM Disk Backend"
-msgstr "Memórialemez-háttér egyéni beállításai lehetőségei"
-
 msgid "Add LUN"
 msgstr "LUN hozzáadása"
 
@@ -12861,104 +12861,17 @@ msgstr "Biztos, hogy bekapcsolja kiválasztott LUN-okat?"
 msgid "Do you want to toggle selected LUNs?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott LUN-okat?"
 
-msgid "Backend"
-msgstr "Háttér"
+msgid "Listen"
+msgstr "Figyelés"
 
-msgid "CTL LUN"
-msgstr "CTL LUN"
+msgid "No listeners found."
+msgstr "Egy figyelő sem található."
 
-msgid "Device Type"
-msgstr "Eszköztípus"
+msgid "Option"
+msgstr "Beállítás"
 
-msgid "Passthrough Address"
-msgstr "Átmenő cím"
-
-msgid "LUN Vendor"
-msgstr "LUN vendor"
-
-msgid "LUN Product"
-msgstr "LUN termék"
-
-msgid "LUN Revision"
-msgstr "LUN revízió"
-
-msgid "LUN SCSI Name"
-msgstr "LUN SCSI név"
-
-msgid "LUN EUI-64\tidentifier"
-msgstr "LUN EUI-64\tazonosító"
-
-msgid "LUN NAA Identifier"
-msgstr "LUN NAA azonosító"
-
-msgid "LUN UUID"
-msgstr "LUN UUID"
-
-msgid "HA Role"
-msgstr "HA szabály"
-
-msgid "Insecure TPC"
-msgstr "Nem biztonságos TPC"
-
-msgid "Read Cache"
-msgstr "Olvasási gyorsítótár"
-
-msgid "Read Only"
-msgstr "Csak olvasható"
-
-msgid "Reordering"
-msgstr "Újrarendezés"
-
-msgid "Serialize Sequence"
-msgstr "Szekvencia sorba rendezése"
-
-msgid "Physical Block Size"
-msgstr "Fizikai blokkméret"
-
-msgid "Physical Block Offset"
-msgstr "Fizikai blokkoffszet"
-
-msgid "UNMAP Block Size"
-msgstr "UNMAP blokkméret"
-
-msgid "UNMAP Block Offset"
-msgstr "UNMAP blokkoffszet"
-
-msgid "RPM"
-msgstr "fordulat"
-
-msgid "Form Factor"
-msgstr "Formai tényező"
-
-msgid "Provisioning Type"
-msgstr "Ellátás típusa"
-
-msgid "UNMAP"
-msgstr "UNMAP"
-
-msgid "UNMAP Maximum LBA"
-msgstr "UNMAP maximális LBA-ja"
-
-msgid "UNMAP Maximum Descriptors"
-msgstr "UNMAP maximális leírói"
-
-msgid "Write Same Maximum LBA"
-msgstr "Write Same maximális LBA-ja"
-
-msgid "Avail Threshold"
-msgstr "Elérhető köszöbe"
-
-msgid "Used Threshold"
-msgstr "Használt korlátja"
-
-msgid "Pool Avail Threshold"
-msgstr "Tároló elérh korlát"
-
-msgid "Pool Used Threshold"
-msgstr "Tároló használt korlát"
-
-msgid "Threads"
-msgstr "Szálak"
+msgid "No options found."
+msgstr "Egy lehetőség sem található"
 
 msgid "Add Portal Group"
 msgstr "Portál csoport hozzáadása"
@@ -12999,11 +12912,23 @@ msgstr "Biztos, hogy bekapcsolja kiválasztott Portál csoportokat?"
 msgid "Do you want to toggle selected portal groups?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott portál csoportokat?"
 
-msgid "Name of the Portal Group."
-msgstr "A portál csoport neve"
-
 msgid "Portal Group Name"
 msgstr "Portál csoport neve"
+
+msgid "Discovery Filter"
+msgstr "Felderítési szűrés"
+
+msgid "Offload"
+msgstr "Terhelésmentesítés"
+
+msgid "Redirect"
+msgstr "Átirányítás"
+
+msgid "Foreign"
+msgstr "Idegen"
+
+msgid "Name of the Portal Group."
+msgstr "A portál csoport neve"
 
 msgid "These parameters will be added to this portal-group."
 msgstr "Ezeket a paramétereket ehhez a portál-csoporthoz adjuk hozzá"
@@ -13083,30 +13008,6 @@ msgstr ""
 "A portál-csoport egyedi 16 bites címkeértéke. Ha nem állítasz be semmit, "
 "értékét automatikusan határozzuk meg."
 
-msgid "Discovery Filter"
-msgstr "Felderítési szűrés"
-
-msgid "Offload"
-msgstr "Terhelésmentesítés"
-
-msgid "Redirect"
-msgstr "Átirányítás"
-
-msgid "Foreign"
-msgstr "Idegen"
-
-msgid "Listen"
-msgstr "Figyelés"
-
-msgid "Option"
-msgstr "Beállítás"
-
-msgid "No listeners found."
-msgstr "Egy figyelő sem található."
-
-msgid "No options found."
-msgstr "Egy lehetőség sem található"
-
 msgid "Enter user name."
 msgstr "Add meg a felhasználónevet."
 
@@ -13163,6 +13064,12 @@ msgstr "Biztos, hogy engedélyezed a kiválasztott CHAP felhasználókat?"
 msgid "Do you want to toggle selected CHAP users?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott CHAP felhasználókat?"
 
+msgid "Mutual User"
+msgstr "Kölcsönös felhasználó"
+
+msgid "Mutual Secret"
+msgstr "Kölcsönös titok"
+
 msgid "Add Mutual CHAP User"
 msgstr "Kölcsönös CHAP felhasználó hozzáadása"
 
@@ -13214,11 +13121,15 @@ msgstr ""
 msgid "Enter mutual user name."
 msgstr "Add meg a kölcsönös felhasználónevet."
 
-msgid "Mutual User"
-msgstr "Kölcsönös felhasználó"
+msgid "Enter an iSCSI initiator name."
+msgstr "Add meg a iSCSI kezdeményező nevet."
 
-msgid "Mutual Secret"
-msgstr "Kölcsönös titok"
+msgid ""
+"Link initiator-name to auth-groups. An Initiator with this name will be "
+"allowed to connect to the selected auth-groups."
+msgstr ""
+"Kezdeményező-név linkelése hitelesítési csoportokra. Egy kezdeményező evvel "
+"a névvel csatlakozhat majd a kiválasztott hitelesítési csoportokhoz."
 
 msgid "Add Initiator Name"
 msgstr "Kezdeményező nevének hozzáadása"
@@ -13258,16 +13169,6 @@ msgstr "Biztos, hogy engedélyezed a kiválasztott kezdeményező neveket?"
 
 msgid "Do you want to toggle selected initiator names?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott kezdeményező neveket?"
-
-msgid "Enter an iSCSI initiator name."
-msgstr "Add meg a iSCSI kezdeményező nevet."
-
-msgid ""
-"Link initiator-name to auth-groups. An Initiator with this name will be "
-"allowed to connect to the selected auth-groups."
-msgstr ""
-"Kezdeményező-név linkelése hitelesítési csoportokra. Egy kezdeményező evvel "
-"a névvel csatlakozhat majd a kiválasztott hitelesítési csoportokhoz."
 
 msgid "IP Address Prefix"
 msgstr "IP cím előtag"
@@ -13325,9 +13226,6 @@ msgstr ""
 "egyező kezdeményező csatlakozhat majd a kiválasztott hitelesítési "
 "csoportokhoz."
 
-msgid "iSNS Servers"
-msgstr "iSNS szerverek"
-
 msgid "IPv4 or IPv6 address of an iSNS server to register on."
 msgstr "iSNS IPv4, illetve IPV6 címe, melyen regisztráljuk."
 
@@ -13372,6 +13270,9 @@ msgstr "Biztos, hogy bekapcsolod a kiválasztott iSNS szervereket?"
 
 msgid "Do you want to toggle selected iSNS servers?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott iSNS szervereket?"
+
+msgid "iSNS Servers"
+msgstr "iSNS szerverek"
 
 msgid "An IPv4 or IPv6 address to listen on for incoming connections."
 msgstr "A bejövő kapcsolatokat figyelő IPv4 vagy IPv6 cím."
@@ -13549,9 +13450,6 @@ msgstr "A lehetőség értéke."
 msgid "Link this option to selected portal-groups."
 msgstr "Ezen lehetőség linkelése a kiválasztott portál csoportokra."
 
-msgid "Name of the port."
-msgstr "A port neve."
-
 msgid "Port Name"
 msgstr "Port neve"
 
@@ -13594,6 +13492,43 @@ msgstr "Biztos, hogy engedélyezed a kiválasztott portbejegyzéseket?"
 msgid "Do you want to toggle selected port records?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott portbejegyzéseket?"
 
+msgid "Name of the port."
+msgstr "A port neve."
+
+msgid "Alias"
+msgstr "Álnév"
+
+msgid "Name of the target."
+msgstr "A cél neve"
+
+msgid "These parameters will be added to this target."
+msgstr "Ezeket a paramétereket ehhez a célhoz adjuk hozzá"
+
+msgid "Assign a human-readable description to the target."
+msgstr "Ember által olvasható leírás hozzárendelése a célhoz."
+
+msgid "Assign a previously defined authentication group to the target."
+msgstr ""
+"Egy korábban létrehozott hitelesítési csoport hozzárendelése a célhoz."
+
+msgid "Permit access without authentication"
+msgstr "Hitelesítés nélküli elérés tiltása"
+
+msgid "Assign a previously defined portal group to the target."
+msgstr "Egy korábban létrehozott portál csoport hozzárendelése a célhoz."
+
+msgid ""
+"IPv4 or IPv6 address to redirect initiators to. When configured, all "
+"initiators attempting to connect to this target will get redirected using "
+"\"Target moved temporarily\" login response."
+msgstr ""
+"IPv4 vagy IPV6 cím, melyre a kezdeményezőt átirányítjuk. Ha beállítjuk, "
+"akkor az összes kezdeményezőt, aki a célhoz próbál csatlakozni, átirányítjuk "
+"az \"A cél ideiglenesen elköltözött\" bejelentkezési válasszal."
+
+msgid "No ports found."
+msgstr "Egy port sem található"
+
 msgid "Add Target"
 msgstr "Cél hozzáadása"
 
@@ -13632,40 +13567,6 @@ msgstr "Biztos, hogy bekapcsolja kiválasztott célokat?"
 
 msgid "Do you want to toggle selected targets?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott célokat?"
-
-msgid "Name of the target."
-msgstr "A cél neve"
-
-msgid "These parameters will be added to this target."
-msgstr "Ezeket a paramétereket ehhez a célhoz adjuk hozzá"
-
-msgid "Assign a human-readable description to the target."
-msgstr "Ember által olvasható leírás hozzárendelése a célhoz."
-
-msgid "Alias"
-msgstr "Álnév"
-
-msgid "Assign a previously defined authentication group to the target."
-msgstr ""
-"Egy korábban létrehozott hitelesítési csoport hozzárendelése a célhoz."
-
-msgid "Permit access without authentication"
-msgstr "Hitelesítés nélküli elérés tiltása"
-
-msgid "Assign a previously defined portal group to the target."
-msgstr "Egy korábban létrehozott portál csoport hozzárendelése a célhoz."
-
-msgid ""
-"IPv4 or IPv6 address to redirect initiators to. When configured, all "
-"initiators attempting to connect to this target will get redirected using "
-"\"Target moved temporarily\" login response."
-msgstr ""
-"IPv4 vagy IPV6 cím, melyre a kezdeményezőt átirányítjuk. Ha beállítjuk, "
-"akkor az összes kezdeményezőt, aki a célhoz próbál csatlakozni, átirányítjuk "
-"az \"A cél ideiglenesen elköltözött\" bejelentkezési válasszal."
-
-msgid "No ports found."
-msgstr "Egy port sem található"
 
 msgid "Max Processes"
 msgstr "Folyamatok maximális száma"
@@ -13706,44 +13607,35 @@ msgstr "Az iSNS kérések időtúllépése. Az alapértelmezett értéke 5."
 msgid "These parameters will be added to the global section of ctl.conf"
 msgstr "Ezeket a paramétereket a ctl.conf fájl globális részéhez adjuk hozzá"
 
-msgid "Add iSCSI Initiator"
-msgstr "iSCSI Kezdeményező hozzáadása"
+msgid "Target Address"
+msgstr "Cél cím"
 
-msgid "Edit iSCSI Initiator"
-msgstr "iSCSI Kezdeményező módosítás"
+msgid "CHAP Name"
+msgstr "CHAP név"
 
-msgid "iSCSI Initiator is marked for deletion"
-msgstr "Az iSCSI kezdeményezőt megjelölték törlésre"
+msgid "CHAP Secret"
+msgstr "CHAP titok"
 
-msgid "iSCSI Initiator is locked"
-msgstr "Az iSCSI kezdeményező zárolt"
+msgid "Mutual CHAP Name"
+msgstr "Kölcsönös CHAP név"
 
-msgid "iSCSI Initiator is unlocked"
-msgstr "Az iSCSI kezdeményező nincs zárolva"
+msgid "Mutual CHAP Secret"
+msgstr "Kölcsönös CHAP titok"
 
-msgid "Delete Selected iSCSI Initiators"
-msgstr "A kiválasztott  iSCSI Kezdeményezők törlése"
+msgid "Header Digest"
+msgstr "Fejléckivonat"
 
-msgid "Disable Selected iSCSI Initiators"
-msgstr "A kiválasztott  iSCSI Kezdeményezők kikapcsolása"
+msgid "Data Digest"
+msgstr "Adatkivonat"
 
-msgid "Enable Selected iSCSI Initiators"
-msgstr "A kiválasztott  iSCSI Kezdeményezők bekapcsolása"
+msgid "Offload Driver"
+msgstr "Terhelésmentesítő illesztőprogram"
 
-msgid "Toggle Selected iSCSI Initiators"
-msgstr "Kiválasztott iSCSI kezdeményezők átkapcsolása"
+msgid "Session State"
+msgstr "Munkamenet állapota"
 
-msgid "Do you want to delete selected iSCSI initiators?"
-msgstr "Biztos, hogy törlöd a kiválasztott  iSCSI Kezdeményezőket?"
-
-msgid "Do you want to disable selected iSCSI initiators?"
-msgstr "Biztos, hogy kikapcsolod a kiválasztott  iSCSI Kezdeményezőket?"
-
-msgid "Do you want to enable selected iSCSI initiators?"
-msgstr "Biztos, hogy bekapcsolja a kiválasztott  iSCSI Kezdeményezőket?"
-
-msgid "Do you want to toggle selected iSCSI initiators?"
-msgstr "Biztos, hogy átkapcsolja a kiválasztott  iSCSI Kezdeményezőket?"
+msgid "Session Type"
+msgstr "Munkamenet típusa"
 
 msgid "This is a nickname and is for information only."
 msgstr "Ez egy becenév, ami csak tájékoztatásra szolgál."
@@ -13851,35 +13743,44 @@ msgstr ""
 msgid "Discovery"
 msgstr "Felfedezés"
 
-msgid "Target Address"
-msgstr "Cél cím"
+msgid "Add iSCSI Initiator"
+msgstr "iSCSI Kezdeményező hozzáadása"
 
-msgid "CHAP Name"
-msgstr "CHAP név"
+msgid "Edit iSCSI Initiator"
+msgstr "iSCSI Kezdeményező módosítás"
 
-msgid "CHAP Secret"
-msgstr "CHAP titok"
+msgid "iSCSI Initiator is marked for deletion"
+msgstr "Az iSCSI kezdeményezőt megjelölték törlésre"
 
-msgid "Mutual CHAP Name"
-msgstr "Kölcsönös CHAP név"
+msgid "iSCSI Initiator is locked"
+msgstr "Az iSCSI kezdeményező zárolt"
 
-msgid "Mutual CHAP Secret"
-msgstr "Kölcsönös CHAP titok"
+msgid "iSCSI Initiator is unlocked"
+msgstr "Az iSCSI kezdeményező nincs zárolva"
 
-msgid "Header Digest"
-msgstr "Fejléckivonat"
+msgid "Delete Selected iSCSI Initiators"
+msgstr "A kiválasztott  iSCSI Kezdeményezők törlése"
 
-msgid "Data Digest"
-msgstr "Adatkivonat"
+msgid "Disable Selected iSCSI Initiators"
+msgstr "A kiválasztott  iSCSI Kezdeményezők kikapcsolása"
 
-msgid "Offload Driver"
-msgstr "Terhelésmentesítő illesztőprogram"
+msgid "Enable Selected iSCSI Initiators"
+msgstr "A kiválasztott  iSCSI Kezdeményezők bekapcsolása"
 
-msgid "Session State"
-msgstr "Munkamenet állapota"
+msgid "Toggle Selected iSCSI Initiators"
+msgstr "Kiválasztott iSCSI kezdeményezők átkapcsolása"
 
-msgid "Session Type"
-msgstr "Munkamenet típusa"
+msgid "Do you want to delete selected iSCSI initiators?"
+msgstr "Biztos, hogy törlöd a kiválasztott  iSCSI Kezdeményezőket?"
+
+msgid "Do you want to disable selected iSCSI initiators?"
+msgstr "Biztos, hogy kikapcsolod a kiválasztott  iSCSI Kezdeményezőket?"
+
+msgid "Do you want to enable selected iSCSI initiators?"
+msgstr "Biztos, hogy bekapcsolja a kiválasztott  iSCSI Kezdeményezőket?"
+
+msgid "Do you want to toggle selected iSCSI initiators?"
+msgstr "Biztos, hogy átkapcsolja a kiválasztott  iSCSI Kezdeményezőket?"
 
 msgid ""
 "Enter the path of the home directory for databases and configuration files."
@@ -13969,9 +13870,6 @@ msgstr "Maradj csöndben"
 msgid "Security Flavor"
 msgstr "Biztonsági Flavor"
 
-msgid "Root Directory"
-msgstr "Gyökérkönyvtár"
-
 msgid "Map users or map root to the specified user."
 msgstr "A felhasználók vagy a gyökér képzése a kiválasztott felhasználóra."
 
@@ -14049,8 +13947,8 @@ msgstr ""
 "krb5p - Kerberos V5 hitelesítés használata adatintegritás-ellenőrző "
 "összegekkel és adattitkosítással."
 
-msgid "Root Directories"
-msgstr ""
+msgid "Root Directory"
+msgstr "Gyökérkönyvtár"
 
 msgid "Add NFS Root"
 msgstr "NFGS root hozzáadása"
@@ -14091,6 +13989,9 @@ msgstr "Biztos, hogy bekapcsolod a kiválasztott NFS gyökérmappákat?"
 msgid "Do you want to toggle selected NFS root directories?"
 msgstr "Biztos, hogy ki-, bekapcsolod a kiválasztott NFS gyökérmappákat?"
 
+msgid "Root Directories"
+msgstr ""
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -14116,16 +14017,121 @@ msgstr ""
 msgid "These parameters are appended to the exports file."
 msgstr "Ezeket a paramétereket hozzáfűzzük az exportfájlhoz."
 
+msgid "Driver List"
+msgstr "Illesztőprogram-lista"
+
+msgid "UPS Driver List"
+msgstr ""
+
 msgid "Model Name"
 msgstr "Modell neve"
 
 msgid "Model Extra"
 msgstr "Extra Modell"
 
-msgid "Driver List"
-msgstr "Illesztőprogram-lista"
+msgid "Enable AFP"
+msgstr "AFP bekapcsolása"
 
-msgid "UPS Driver List"
+msgid "Create Mask"
+msgstr "Maszk létrehozása"
+
+msgid "Force Group"
+msgstr "Force csoport"
+
+msgid "Force User"
+msgstr "Force felhasználó"
+
+msgid "Shadow Copy Format"
+msgstr "Árnyékmásolat formátuma"
+
+msgid "VFS fruit:encoding"
+msgstr "VFS gyümölcs:kódolás"
+
+msgid "VFS fruit:locking"
+msgstr "VFS gyümölcs:zárolás"
+
+msgid "VFS fruit:metadata"
+msgstr "VFS gyümölcs:metaadat"
+
+msgid "VFS fruit:resource"
+msgstr "VFS gyümölcs:erőforrás"
+
+msgid "VFS fruit:time machine"
+msgstr "VFS gyümölcs:idő gép"
+
+msgid "ZFS ACL"
+msgstr "ZFS ACL"
+
+msgid "Inherit ACL"
+msgstr "ACL öröklődése"
+
+msgid "Alternate Data Streams"
+msgstr "Alternatív adatfolyamok"
+
+msgid "NTFS ACLs"
+msgstr "NTFS ACL-ek"
+
+msgid "Shadow Copy"
+msgstr "Árnyékmásolat"
+
+msgid "Browseable"
+msgstr "Böngészhető"
+
+msgid "Guest Only"
+msgstr ""
+
+msgid "Inherit Permissions"
+msgstr "Jogosultságok örökítése"
+
+msgid "Recycle Bin"
+msgstr "Lomtár"
+
+msgid "Hide Dot Files"
+msgstr "Pontfájlok elrejtése"
+
+msgid "Add Samba Share"
+msgstr "Samba megosztás hozzáadása"
+
+msgid "Edit Samba Share"
+msgstr "Samba megosztás módosítása"
+
+msgid "Samba Share is marked for deletion"
+msgstr "Samba megosztás törlésre megjelölve"
+
+msgid "Samba Share is locked"
+msgstr ""
+
+msgid "Samba Share is unlocked"
+msgstr "A Samba megosztás zárolását feloldottad"
+
+msgid "Delete Selected Samba Shares"
+msgstr "Kijelölt Samba megosztások törlése"
+
+msgid "Disable Selected Samba Shares"
+msgstr "A kijelölt Samba megosztások tiltása"
+
+msgid "Enable Selected Samba Shares"
+msgstr "Az kijelölt Samba megosztások engedélyezése"
+
+msgid "Toggle Selected Samba Shares"
+msgstr ""
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "Biztos, hogy törlöd a kijelölt Samba megosztásokat?"
+
+msgid "Do you want to disable selected Samba shares?"
+msgstr "Valóban tiltani akarod a kijelült Samba megosztásokat?"
+
+msgid "Do you want to enable selected Samba shares?"
+msgstr "Valóban engedélyezni akarod a kijelült Samba megosztásokat?"
+
+msgid "Do you want to toggle selected Samba shares?"
+msgstr "%2$s használt, %3$s elérhető"
+
+msgid "yes"
+msgstr "igen"
+
+msgid "no"
 msgstr ""
 
 #, php-format
@@ -14341,111 +14347,6 @@ msgstr "Adj leírást a megosztáshoz"
 
 msgid "Enter the location of the share"
 msgstr "Add meg a megosztás helyét"
-
-msgid "Add Samba Share"
-msgstr "Samba megosztás hozzáadása"
-
-msgid "Edit Samba Share"
-msgstr "Samba megosztás módosítása"
-
-msgid "Samba Share is marked for deletion"
-msgstr "Samba megosztás törlésre megjelölve"
-
-msgid "Samba Share is locked"
-msgstr ""
-
-msgid "Samba Share is unlocked"
-msgstr "A Samba megosztás zárolását feloldottad"
-
-msgid "Delete Selected Samba Shares"
-msgstr "Kijelölt Samba megosztások törlése"
-
-msgid "Disable Selected Samba Shares"
-msgstr "A kijelölt Samba megosztások tiltása"
-
-msgid "Enable Selected Samba Shares"
-msgstr "Az kijelölt Samba megosztások engedélyezése"
-
-msgid "Toggle Selected Samba Shares"
-msgstr ""
-
-msgid "Do you want to delete selected Samba shares?"
-msgstr "Biztos, hogy törlöd a kijelölt Samba megosztásokat?"
-
-msgid "Do you want to disable selected Samba shares?"
-msgstr "Valóban tiltani akarod a kijelült Samba megosztásokat?"
-
-msgid "Do you want to enable selected Samba shares?"
-msgstr "Valóban engedélyezni akarod a kijelült Samba megosztásokat?"
-
-msgid "Do you want to toggle selected Samba shares?"
-msgstr "%2$s használt, %3$s elérhető"
-
-msgid "yes"
-msgstr "igen"
-
-msgid "no"
-msgstr ""
-
-msgid "Enable AFP"
-msgstr "AFP bekapcsolása"
-
-msgid "Create Mask"
-msgstr "Maszk létrehozása"
-
-msgid "Force Group"
-msgstr "Force csoport"
-
-msgid "Force User"
-msgstr "Force felhasználó"
-
-msgid "Shadow Copy Format"
-msgstr "Árnyékmásolat formátuma"
-
-msgid "VFS fruit:encoding"
-msgstr "VFS gyümölcs:kódolás"
-
-msgid "VFS fruit:locking"
-msgstr "VFS gyümölcs:zárolás"
-
-msgid "VFS fruit:metadata"
-msgstr "VFS gyümölcs:metaadat"
-
-msgid "VFS fruit:resource"
-msgstr "VFS gyümölcs:erőforrás"
-
-msgid "VFS fruit:time machine"
-msgstr "VFS gyümölcs:idő gép"
-
-msgid "ZFS ACL"
-msgstr "ZFS ACL"
-
-msgid "Inherit ACL"
-msgstr "ACL öröklődése"
-
-msgid "Alternate Data Streams"
-msgstr "Alternatív adatfolyamok"
-
-msgid "NTFS ACLs"
-msgstr "NTFS ACL-ek"
-
-msgid "Shadow Copy"
-msgstr "Árnyékmásolat"
-
-msgid "Browseable"
-msgstr "Böngészhető"
-
-msgid "Guest Only"
-msgstr ""
-
-msgid "Inherit Permissions"
-msgstr "Jogosultságok örökítése"
-
-msgid "Recycle Bin"
-msgstr "Lomtár"
-
-msgid "Hide Dot Files"
-msgstr "Pontfájlok elrejtése"
 
 msgid "Workgroup"
 msgstr "Munkacsoport"
@@ -14797,27 +14698,6 @@ msgstr ""
 "A Samba aszinkron módon írja az ennél nagyobb fájlokat (alapértelmezetten "
 "%d)."
 
-msgid "Password Authentication"
-msgstr "Jelszóhitelesítés"
-
-msgid "Keyboard-Interactive Authentication"
-msgstr "Billentyűzet-interaktív hitelesítés"
-
-msgid "Public Key Authentication"
-msgstr "Nyilvános kulcs hitelesítés"
-
-msgid "GSSAPI Authentication"
-msgstr "GSSAPI hitelesítése"
-
-msgid "Root Login"
-msgstr "Root belépés"
-
-msgid "TCP Forwarding"
-msgstr "TCP továbbítás"
-
-msgid "Subsystem"
-msgstr "Alrendszer"
-
 msgid "Port of the SSH service. Leave blank to use the default port."
 msgstr ""
 "Az SSH szolgáltatás portja. Hagyd üresen az alapértelmezett port "
@@ -14868,6 +14748,9 @@ msgstr ""
 "alrendszer kérésére fusson. Hagyd üresen a mezőt az alapértelmezett "
 "beállítások használatához."
 
+msgid "Subsystem"
+msgstr "Alrendszer"
+
 msgid "Using defaults"
 msgstr "Alapértelmezett értékek használata"
 
@@ -14909,14 +14792,23 @@ msgstr "DEBUG - összes hibakeresési információ naplózása"
 msgid "These parameters are appended to /etc/ssh/sshd_config."
 msgstr "Ezeket a paramétereket a /etc/ssh/sshd_config-hoz fűzzük hozzá"
 
-msgid "Allow New Files"
-msgstr "Új fájlok engedélyezése"
+msgid "Password Authentication"
+msgstr "Jelszóhitelesítés"
 
-msgid "Max. Block Size"
-msgstr "Maximális blokkméret"
+msgid "Keyboard-Interactive Authentication"
+msgstr "Billentyűzet-interaktív hitelesítés"
 
-msgid "Umask"
-msgstr "UImaszk"
+msgid "Public Key Authentication"
+msgstr "Nyilvános kulcs hitelesítés"
+
+msgid "GSSAPI Authentication"
+msgstr "GSSAPI hitelesítése"
+
+msgid "Root Login"
+msgstr "Root belépés"
+
+msgid "TCP Forwarding"
+msgstr "TCP továbbítás"
 
 msgid "Allow new files to be created."
 msgstr "Új állományok létrehozásának engedélyezése."
@@ -14984,56 +14876,14 @@ msgstr "000"
 msgid "Specifies the username under which the TFTP service should run."
 msgstr "A TFTP szolgáltatást futtató felhasználó neve."
 
-msgid "Peer Port"
-msgstr "Peer portja"
+msgid "Allow New Files"
+msgstr "Új fájlok engedélyezése"
 
-msgid "Configuration Folder"
-msgstr "Beállítási mappa"
+msgid "Max. Block Size"
+msgstr "Maximális blokkméret"
 
-msgid "Incomplete Folder"
-msgstr ""
-
-msgid "Download Folder"
-msgstr ""
-
-msgid "Watch Folder"
-msgstr ""
-
-msgid "Port Forwarding"
-msgstr "Portátirányítás"
-
-msgid "Peer Exchange"
-msgstr "Peer csere"
-
-msgid "Distributed Hash Table"
-msgstr "Elosztott hash tábla"
-
-msgid "Local Peer Discovery"
-msgstr ""
-
-msgid "uTP"
-msgstr ""
-
-msgid "User Mask"
-msgstr "Felhasználói maszk"
-
-msgid "Preallocation"
-msgstr "Előre lefoglalás"
-
-msgid "Message Level"
-msgstr ""
-
-msgid "DNS Rebind Protection"
-msgstr ""
-
-msgid "Domain Names"
-msgstr ""
-
-msgid "Start Torrents"
-msgstr ""
-
-msgid "Stop Torrents"
-msgstr ""
+msgid "Umask"
+msgstr "UImaszk"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. The default port is %d."
@@ -15152,11 +15002,56 @@ msgstr ""
 msgid "Stop torrents before stopping service."
 msgstr ""
 
-msgid "Work Directory"
-msgstr "Munkamappa"
+msgid "Peer Port"
+msgstr "Peer portja"
 
-msgid "Create Work Directory"
-msgstr "Munkamappa létrehozása"
+msgid "Configuration Folder"
+msgstr "Beállítási mappa"
+
+msgid "Incomplete Folder"
+msgstr ""
+
+msgid "Download Folder"
+msgstr ""
+
+msgid "Watch Folder"
+msgstr ""
+
+msgid "Port Forwarding"
+msgstr "Portátirányítás"
+
+msgid "Peer Exchange"
+msgstr "Peer csere"
+
+msgid "Distributed Hash Table"
+msgstr "Elosztott hash tábla"
+
+msgid "Local Peer Discovery"
+msgstr ""
+
+msgid "uTP"
+msgstr ""
+
+msgid "User Mask"
+msgstr "Felhasználói maszk"
+
+msgid "Preallocation"
+msgstr "Előre lefoglalás"
+
+msgid "Message Level"
+msgstr ""
+
+msgid "DNS Rebind Protection"
+msgstr ""
+
+msgid "Domain Names"
+msgstr ""
+
+msgid "Start Torrents"
+msgstr ""
+
+msgid "Stop Torrents"
+msgstr ""
 
 msgid "Location where work files will be stored."
 msgstr "A munkafájlok tárolásának a helye."
@@ -15164,17 +15059,34 @@ msgstr "A munkafájlok tárolásának a helye."
 msgid "Create work directory if it doesn't exist."
 msgstr "Munkamappa létrehozása, ha nem létezik."
 
+msgid "Work Directory"
+msgstr "Munkamappa"
+
+msgid "Create Work Directory"
+msgstr "Munkamappa létrehozása"
+
+msgid "Name of the WebDAV Record."
+msgstr "A WebDAV bejegyzés megnevezése."
+
 msgid "WebDAV Name"
 msgstr "WebDAV megnevezése"
+
+msgid ""
+"The WebDAV configuration is applied to all folders matching this pattern."
+msgstr ""
+"A mintára illeszkedő összes mappára alkalmazzuk a WebDAV beállításait."
 
 msgid "Folder Pattern"
 msgstr "Mappaminták"
 
-msgid "Read-Only"
-msgstr "Írásvédett"
+msgid "Read-Only Access."
+msgstr "Írásvédett hozzáférés."
 
-msgid "Use Sqlite"
-msgstr "Sqlite használata"
+msgid "Use Sqlite for lockings and properties."
+msgstr "Sqlite használata zárolásokhoz és tulajdonságokhoz."
+
+msgid "These parameters will be added to this WebDAV configuration."
+msgstr "Ezeket a paramétereket ehhez a WebDAV konfigurációhoz adjuk hozzá"
 
 msgid "Add WebDAV Record"
 msgstr "WebDAV bejegyzés hozzáadása"
@@ -15215,40 +15127,11 @@ msgstr "Biztos, hogy engedélyezed a kiválasztott WebDAV bejegyzéseket?"
 msgid "Do you want to toggle selected WebDAV records?"
 msgstr "Biztos, hogy átkapcsolod a kiválasztott WebDAV bejegyzéseket?"
 
-msgid "Name of the WebDAV Record."
-msgstr "A WebDAV bejegyzés megnevezése."
+msgid "Read-Only"
+msgstr "Írásvédett"
 
-msgid ""
-"The WebDAV configuration is applied to all folders matching this pattern."
-msgstr ""
-"A mintára illeszkedő összes mappára alkalmazzuk a WebDAV beállításait."
-
-msgid "Read-Only Access."
-msgstr "Írásvédett hozzáférés."
-
-msgid "Use Sqlite for lockings and properties."
-msgstr "Sqlite használata zárolásokhoz és tulajdonságokhoz."
-
-msgid "These parameters will be added to this WebDAV configuration."
-msgstr "Ezeket a paramétereket ehhez a WebDAV konfigurációhoz adjuk hozzá"
-
-msgid "Web Service Discovery"
-msgstr ""
-
-msgid "IP Address Family"
-msgstr ""
-
-msgid "NETBIOS Hostname"
-msgstr ""
-
-msgid "Preserve Case"
-msgstr ""
-
-msgid "Server Mode"
-msgstr ""
-
-msgid "Workgroup Name"
-msgstr ""
+msgid "Use Sqlite"
+msgstr "Sqlite használata"
 
 msgid "IPv4 only"
 msgstr ""
@@ -15274,6 +15157,36 @@ msgstr ""
 
 msgid "Set workgroup name"
 msgstr ""
+
+msgid "IP Address Family"
+msgstr ""
+
+msgid "NETBIOS Hostname"
+msgstr ""
+
+msgid "Preserve Case"
+msgstr ""
+
+msgid "Server Mode"
+msgstr ""
+
+msgid "Workgroup Name"
+msgstr ""
+
+msgid "Web Service Discovery"
+msgstr ""
+
+msgid "Protected"
+msgstr "Védett"
+
+msgid "Set UID"
+msgstr "UID beállítása"
+
+msgid "Snapdir"
+msgstr "Pillanatkép-mappa"
+
+msgid "UTF-8 Only"
+msgstr "Csak UTF-8"
 
 msgid "You may enter a description for your reference."
 msgstr "Ide írhatod a hivatkozásod leírását."
@@ -15301,18 +15214,6 @@ msgstr "Add meg a kötet nevét"
 
 msgid "The name of the ZFS pool."
 msgstr "A ZFS tároló nevét"
-
-msgid "Protected"
-msgstr "Védett"
-
-msgid "Set UID"
-msgstr "UID beállítása"
-
-msgid "Snapdir"
-msgstr "Pillanatkép-mappa"
-
-msgid "UTF-8 Only"
-msgstr "Csak UTF-8"
 
 msgid "The following errors were detected"
 msgstr "A következő hibákat észleltük"
@@ -15368,45 +15269,6 @@ msgstr ""
 msgid "Encapsulation Protocol"
 msgstr ""
 
-msgid "Add VLAN"
-msgstr "VLAN hozzáadása"
-
-msgid "Edit VLAN"
-msgstr "VLAN módosítása"
-
-msgid "VLAN is marked for deletion"
-msgstr "VLAN törlésre megjelölve"
-
-msgid "VLAN is locked"
-msgstr ""
-
-msgid "VLAN is unlocked"
-msgstr "A VLAN zárolását feloldottad"
-
-msgid "Delete Selected VLANs"
-msgstr "Kijelölt VLAN-ok törlése"
-
-msgid "Disable Selected VLANs"
-msgstr ""
-
-msgid "Enable Selected VLANs"
-msgstr ""
-
-msgid "Toggle Selected VLANs"
-msgstr ""
-
-msgid "Do you want to delete selected VLANs?"
-msgstr "Biztos, hogy törlöd a kijelölt VLAN-okat?"
-
-msgid "Do you want to disable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to enable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to toggle selected VLANs?"
-msgstr ""
-
 msgid "The name of the VLAN interface"
 msgstr ""
 
@@ -15456,6 +15318,45 @@ msgstr "802.1Q (alapértelmezett)"
 
 msgid "802.1ad (QinQ)"
 msgstr "802.1ad (QinQ)"
+
+msgid "Add VLAN"
+msgstr "VLAN hozzáadása"
+
+msgid "Edit VLAN"
+msgstr "VLAN módosítása"
+
+msgid "VLAN is marked for deletion"
+msgstr "VLAN törlésre megjelölve"
+
+msgid "VLAN is locked"
+msgstr ""
+
+msgid "VLAN is unlocked"
+msgstr "A VLAN zárolását feloldottad"
+
+msgid "Delete Selected VLANs"
+msgstr "Kijelölt VLAN-ok törlése"
+
+msgid "Disable Selected VLANs"
+msgstr ""
+
+msgid "Enable Selected VLANs"
+msgstr ""
+
+msgid "Toggle Selected VLANs"
+msgstr ""
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "Biztos, hogy törlöd a kijelölt VLAN-okat?"
+
+msgid "Do you want to disable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to enable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to toggle selected VLANs?"
+msgstr ""
 
 msgid "1"
 msgstr "1"
@@ -15665,27 +15566,6 @@ msgstr "és"
 msgid "Total: %1$s | Allocated: %2$s | Free: %3$s"
 msgstr ""
 
-msgid "Exported"
-msgstr "Exportálva"
-
-msgid "Destroyed"
-msgstr "Megsemmisítve"
-
-msgid "Spare"
-msgstr "Tartalék"
-
-msgid "L2 Cache"
-msgstr "L2 gyorsítótár"
-
-msgid "Uninitialized"
-msgstr "Inicializálatlan"
-
-msgid "Potentially Active"
-msgstr "Potenciálisan aktív"
-
-msgid "System tuning"
-msgstr "Rendszer tuning"
-
 msgid "Deleting MBR and partition table"
 msgstr "MBR és partíciós táblák törlése"
 
@@ -15717,6 +15597,9 @@ msgid ""
 msgstr ""
 "A lemez jelenleg be van csatolva! A lemezt ideiglenesen lecsatoljuk a "
 "kiválasztott parancs futtatásához."
+
+msgid "System tuning"
+msgstr "Rendszer tuning"
 
 msgid "ZFS Pool Tools"
 msgstr "ZFS tárolóeszközök"
@@ -15972,3 +15855,27 @@ msgstr "A fájl lemezre írása sikertelen."
 
 msgid "File upload stopped by extension."
 msgstr "Fájl feltöltés leállt."
+
+msgid "Exported"
+msgstr "Exportálva"
+
+msgid "Destroyed"
+msgstr "Megsemmisítve"
+
+msgid "Spare"
+msgstr "Tartalék"
+
+msgid "L2 Cache"
+msgstr "L2 gyorsítótár"
+
+msgid "Uninitialized"
+msgstr "Inicializálatlan"
+
+msgid "Potentially Active"
+msgstr "Potenciálisan aktív"
+
+#~ msgid "Be careful with turning on these options."
+#~ msgstr "Ezen lehetőségek bekapcsolásával óvatosan bánjon."
+
+#~ msgid "SAMBA"
+#~ msgstr "SAMBA"

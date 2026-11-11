@@ -3,7 +3,7 @@
 	tui.inc
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Copyright (c) 2006-2008 Volker Theile (votdev@gmx.de)

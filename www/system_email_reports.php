@@ -3,7 +3,7 @@
 	system_email_report.php.
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -102,7 +102,7 @@ if($_POST):
 		if(isset($_POST['SendReportNow']) && $_POST['SendReportNow']):
 //			send an email status report now.
 			$retval = @report_send_mail();
-			if($retval == 0):
+			if(0 == $retval):
 				$savemsg = gtext('Status report successfully sent.');
 			else:
 				$failmsg = gtext('Failed to send status report.') . ' ' . '<a href="diag_log.php">' . gtext('Please check the log files') . '.</a>';

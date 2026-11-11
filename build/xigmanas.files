@@ -1,6 +1,6 @@
 #
 # Part of XigmaNAS® (https://www.xigmanas.com).
-# Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+# Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 # All rights reserved.
 #
 # Files required for Building World.
@@ -1239,9 +1239,7 @@ usr/sbin/iscsid
 
 # XXX need move to ports
 # pkg -- a utility for manipulating packages
-usr/sbin/pkg
 usr/local/sbin/pkg
-usr/local/sbin/pkg-static
 etc/pkg/FreeBSD.conf
 #usr/share/keys/pkg/revoked/*
 usr/share/keys/pkg/trusted/*

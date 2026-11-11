@@ -3,7 +3,7 @@
 	license.php
 
 	Part of XigmaNAS® (https://www.xigmanas.com).
-	Copyright © 2018-2026 XigmaNAS® <info@xigmanas.com>.
+	Copyright © 2018-2025 XigmaNAS® <info@xigmanas.com>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -287,7 +287,7 @@ $thead = $table->addTHEAD();
 $tbody = $table->addTBODY(['class' => 'donothighlight']);
 $thead->ins_titleline(gettext('License'),$n_col_width);
 $td = $tbody->addTR()->addTDwC('lcebl');
-$td->addP([],'<strong>XigmaNAS® is copyright © 2018-2026 XigmaNAS® (<a href="mailto:info@xigmanas.com">info@xigmanas.com</a>).<br />All Rights Reserved.</strong>');
+$td->addP([],'<strong>XigmaNAS® is copyright © 2018-2025 XigmaNAS® (<a href="mailto:info@xigmanas.com">info@xigmanas.com</a>).<br />All Rights Reserved.</strong>');
 $td->addP([],'<strong>XigmaNAS is a registered trademark of Michael Zoon (<a href="mailto:zoon01@xigmanas.com">zoon01@xigmanas.com</a>).<br />All Rights Reserved.</strong>');
 $td->addP([],'The compilation of software, code and documentation known as XigmaNAS® is distributed under the following terms:');
 $td->addP([],'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:');

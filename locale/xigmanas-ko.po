@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XigmaNAS\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@xigmanas.com>\n"
-"POT-Creation-Date: 2025-11-11 18:59+0000\n"
+"POT-Creation-Date: 2025-10-11 14:47+0000\n"
 "PO-Revision-Date: 2018-07-06 10:26+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: XigmaNAS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2025-11-18 15:53+0000\n"
-"X-Generator: Launchpad (build 1d08ffb47b836b8a4c9a0f11318dfdea7420ab6d)\n"
+"X-Launchpad-Export-Date: 2025-10-11 13:16+0000\n"
+"X-Generator: Launchpad (build bff9b0558f8357613643d9a74c009da18fafa917)\n"
 "Language: ko\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -3748,9 +3748,6 @@ msgstr ""
 msgid "Upgrade ZFS and add all supported feature flags on a pool"
 msgstr "ZFS 업그레이드 및 풀에서 지원 가능한 모든 기능 플래그 추가"
 
-msgid "Activate encryption feature"
-msgstr ""
-
 msgid "Temporary Device"
 msgstr "임시 장치"
 
@@ -4152,9 +4149,6 @@ msgstr "고급"
 
 msgid "Firmware Update"
 msgstr "펌웨어 업데이트"
-
-msgid "Boot Environments"
-msgstr ""
 
 msgid "Packages"
 msgstr "패키지"
@@ -7860,102 +7854,6 @@ msgstr "설정을 암호화하고 안전한 장소에 보관하시길 권장합�
 msgid "Reminder Settings"
 msgstr ""
 
-msgid "Locked"
-msgstr ""
-
-msgid "Delete Selected Boot Environments"
-msgstr ""
-
-msgid "Do you really want to delete selected boot environments?"
-msgstr ""
-
-msgid "Failed to delete Boot Environment(s)."
-msgstr ""
-
-msgid "Age"
-msgstr ""
-
-msgid "Select"
-msgstr ""
-
-msgid "Boot Environment"
-msgstr ""
-
-msgid "Active"
-msgstr "활성"
-
-msgid "Mountpoint"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Failed to create and/or activate Boot Environment."
-msgstr ""
-
-msgid "Failed to create Boot Environment."
-msgstr ""
-
-msgid ""
-"Activate Boot Environment after creation, note that system reboot is "
-"required for this boot environment to take place."
-msgstr ""
-
-msgid ""
-"Append the date in the following format: YYYY-MM-DD-HHMMSS, if the name "
-"field is empty, the date will always be used as the boot environment name."
-msgstr ""
-
-#, php-format
-msgid "For additional information about boot environments and %s,"
-msgstr ""
-
-msgid "Failed to activate Boot Environment."
-msgstr ""
-
-msgid "Failed to rename Boot Environment."
-msgstr ""
-
-msgid "Failed to mount Boot Environment."
-msgstr ""
-
-msgid "Failed to unmount Boot Environment."
-msgstr ""
-
-msgid "Failed to delete Boot Environment."
-msgstr ""
-
-msgid "Edit Boot Environment"
-msgstr ""
-
-msgid "Rename"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Append the date in the following format: YYYY-MM-DD-HHMMSS."
-msgstr ""
-
-msgid "Force"
-msgstr ""
-
-msgid ""
-"Destroy the boot environment and its origin if any, without confirmation."
-msgstr ""
-
-msgid "No boot environmen information available."
-msgstr ""
-
-msgid "Boot Environment List"
-msgstr ""
-
-msgid "Boot Environment Snapshots"
-msgstr ""
-
 msgid "Add job"
 msgstr "작업 추가"
 
@@ -9087,8 +8985,166 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
+msgid "You are not allowed to use this function."
+msgstr ""
+
+msgid "This file doesn't exist."
+msgstr ""
+
+msgid "You are not allowed to access this file."
+msgstr ""
+
+msgid "Permission-change failed."
+msgstr ""
+
+msgid "Getting permissions failed."
+msgstr ""
+
+msgid "Change permissions"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "This item doesn't exist."
+msgstr ""
+
+msgid "You are not allowed to access this item."
+msgstr ""
+
+msgid "Deleting failed."
+msgstr ""
+
+msgid "Unable to open source directory."
+msgstr ""
+
+msgid "Unable to open directory."
+msgstr ""
+
+msgid "Unable to read directory."
+msgstr ""
+
+msgid "Copy item(s)"
+msgstr ""
+
+msgid "Move item(s)"
+msgstr ""
+
+#, php-format
+msgid "Copy from /%s to /%s "
+msgstr ""
+
+#, php-format
+msgid "Move from /%s to /%s "
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "The target directory doesn't exist."
+msgstr ""
+
+msgid "You are not allowed to access the target directory."
+msgstr ""
+
+msgid "The target directory may not be above the home directory."
+msgstr ""
+
+msgid "You must supply a name."
+msgstr ""
+
+msgid "The target item already exists."
+msgstr ""
+
+msgid "Copying failed."
+msgstr ""
+
+msgid "Moving failed."
+msgstr ""
+
+msgid "You haven't selected any item(s)."
+msgstr ""
+
+msgid "File saving failed."
+msgstr ""
+
+msgid "This item already exists."
+msgstr ""
+
+msgid "File opening failed."
+msgstr ""
+
+msgid "Edit file"
+msgstr ""
+
+msgid "Wrap text:"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Are you sure you want to delete selected item(s)?"
+msgstr ""
+
+msgid "CHANGE PERMISSIONS"
+msgstr ""
+
+msgid "You are not allowed to access this directory."
+msgstr ""
+
 msgid "Directory"
 msgstr "디렉터리"
+
+msgid "UP"
+msgstr ""
+
+msgid "RELOAD"
+msgstr ""
+
+msgid "SEARCH"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Modified"
+msgstr "수정됨"
+
+msgid "Permissions"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "COPY"
+msgstr ""
+
+msgid "MOVE"
+msgstr ""
+
+msgid "DELETE"
+msgstr ""
+
+msgid "EDIT"
+msgstr ""
+
+msgid "UNZIP"
+msgstr ""
+
+msgid "DOWNLOAD"
+msgstr ""
+
+msgid "Extracting"
+msgstr ""
+
+msgid "Unzip"
+msgstr ""
+
+msgid "Failed to extract archive."
+msgstr ""
 
 msgid "Executable File"
 msgstr ""
@@ -9243,111 +9299,10 @@ msgstr ""
 msgid "PDF File"
 msgstr ""
 
-msgid "You haven't selected any item(s)."
-msgstr ""
-
-msgid "You are not allowed to use this function."
-msgstr ""
-
-msgid "This file doesn't exist."
-msgstr ""
-
-msgid "You are not allowed to access this file."
-msgstr ""
-
-msgid "Permission-change failed."
-msgstr ""
-
-msgid "Getting permissions failed."
-msgstr ""
-
-msgid "Change permissions"
-msgstr ""
-
-msgid "Public"
-msgstr ""
-
-msgid "Copy item(s)"
-msgstr ""
-
-msgid "Move item(s)"
-msgstr ""
-
-#, php-format
-msgid "Copy from /%s to /%s "
-msgstr ""
-
-#, php-format
-msgid "Move from /%s to /%s "
-msgstr ""
-
-msgid "Copy"
-msgstr ""
-
-msgid "Move"
-msgstr ""
-
-msgid "The target directory doesn't exist."
-msgstr ""
-
-msgid "You are not allowed to access the target directory."
-msgstr ""
-
-msgid "The target directory may not be above the home directory."
-msgstr ""
-
-msgid "You must supply a name."
-msgstr ""
-
-msgid "This item doesn't exist."
-msgstr ""
-
-msgid "You are not allowed to access this item."
-msgstr ""
-
-msgid "The target item already exists."
-msgstr ""
-
-msgid "Copying failed."
-msgstr ""
-
-msgid "Moving failed."
-msgstr ""
-
-msgid "Deleting failed."
-msgstr ""
-
 msgid "ERROR(S)"
 msgstr ""
 
 msgid "Go Back"
-msgstr ""
-
-msgid "File saving failed."
-msgstr ""
-
-msgid "This item already exists."
-msgstr ""
-
-msgid "File opening failed."
-msgstr ""
-
-msgid "Edit file"
-msgstr ""
-
-msgid "Wrap text:"
-msgstr ""
-
-msgid "Reset"
-msgstr ""
-
-msgid "Unable to open source directory."
-msgstr ""
-
-msgid "Unable to open directory."
-msgstr ""
-
-msgid "Unable to read directory."
 msgstr ""
 
 msgid "Directory creation failed."
@@ -9356,61 +9311,233 @@ msgstr ""
 msgid "File creation failed."
 msgstr ""
 
-msgid "Are you sure you want to delete selected item(s)?"
+msgid "Dataset Name"
 msgstr ""
 
-msgid "CHANGE PERMISSIONS"
+msgid ""
+"File System - can be mounted within the standard system namespace and "
+"behaves like other file systems."
+msgstr "파일 시스템 - 표준 시스템 이름공간에 탑제될 수 있고 다른 파일 시스템처럼 동작합니다."
+
+msgid "Volume - A logical volume. Can be exported as a raw or block device."
+msgstr "볼륨 - 논리 볼륨. RAW 또는 블록 장치로 내보내기 될 수 있습니다."
+
+msgid ""
+"Snapshot - A read-only version of a file system or volume at a given point "
+"in time."
 msgstr ""
 
-msgid "You are not allowed to access this directory."
+msgid "Bookmark - Creates a bookmark of a given snapshot."
 msgstr ""
 
-msgid "UP"
+msgid "Dataset Type"
+msgstr "데이터셋 형태"
+
+msgid "Pool Name"
 msgstr ""
 
-msgid "RELOAD"
+msgid "Clones"
 msgstr ""
 
-msgid "SEARCH"
+msgid "Compression Ratio"
 msgstr ""
 
-msgid "Create"
+msgid "Defer Destroy"
 msgstr ""
 
-msgid "Modified"
-msgstr "수정됨"
-
-msgid "Permissions"
+msgid "Encryption Root"
 msgstr ""
 
-msgid "Actions"
+msgid "Filesystem Count"
 msgstr ""
 
-msgid "COPY"
+msgid "GUID"
 msgstr ""
 
-msgid "MOVE"
+msgid "Key Status"
 msgstr ""
 
-msgid "DELETE"
+msgid "Logical Referenced"
 msgstr ""
 
-msgid "EDIT"
+msgid "Logical Used"
 msgstr ""
 
-msgid "UNZIP"
+msgid "Mounted"
 msgstr ""
 
-msgid "DOWNLOAD"
+msgid "Obj Set ID"
 msgstr ""
 
-msgid "Extracting"
+msgid "Receive Resume Token"
 msgstr ""
 
-msgid "Unzip"
+msgid "Redact Snaps"
 msgstr ""
 
-msgid "Failed to extract archive."
+msgid "Refcompressratio"
+msgstr ""
+
+msgid "Referenced"
+msgstr ""
+
+msgid "Snapshot Count"
+msgstr ""
+
+msgid "Used by Children"
+msgstr ""
+
+msgid "Used by Dataset"
+msgstr ""
+
+msgid "Used by Refreservation"
+msgstr ""
+
+msgid "Used by Snapshots"
+msgstr ""
+
+msgid "Userrefs"
+msgstr ""
+
+msgid "Written"
+msgstr ""
+
+msgid "Normalization"
+msgstr "정규화"
+
+msgid "UTF-8 File Names"
+msgstr ""
+
+msgid "ACL Type"
+msgstr ""
+
+msgid "Access Time"
+msgstr "접근 시간"
+
+msgid "Can Mount"
+msgstr "탑제 가능"
+
+msgid "Checksum"
+msgstr "검사합"
+
+msgid "GZIP Compression Level"
+msgstr ""
+
+msgid "Zstandard Compression Level"
+msgstr ""
+
+msgid "Fast Zstandard Compression Level"
+msgstr ""
+
+msgid "Copies"
+msgstr "복본"
+
+msgid "Dedup Method"
+msgstr "중복 제거 방법"
+
+msgid "Dnode Size"
+msgstr ""
+
+msgid "Execute Processes"
+msgstr ""
+
+msgid "Filesystem Limit"
+msgstr ""
+
+msgid "Jailed"
+msgstr "갇힘 (Jailed)"
+
+msgid "Key Format"
+msgstr ""
+
+msgid "Key Location"
+msgstr ""
+
+msgid "Logbias"
+msgstr "Logbias"
+
+msgid "Mountpoint Type"
+msgstr ""
+
+msgid "Non-blocking Mandatory Locks"
+msgstr ""
+
+msgid "Overlay Mount"
+msgstr ""
+
+msgid "PBKDF2 Iterations"
+msgstr ""
+
+msgid "Primary Cache"
+msgstr "주 캐시"
+
+msgid "Record Size"
+msgstr ""
+
+msgid "Redundant Metadata"
+msgstr "중복 메타데이터"
+
+msgid "Refquota"
+msgstr "참조 쿼터"
+
+msgid "Refquota Type"
+msgstr ""
+
+msgid "Refreservation"
+msgstr "참조 예약"
+
+msgid "Refreservation Type"
+msgstr ""
+
+msgid "Relatime"
+msgstr ""
+
+msgid "Reservation Type"
+msgstr ""
+
+msgid "Secondary Cache"
+msgstr "보조 캐시"
+
+msgid "Setuid"
+msgstr ""
+
+msgid "Share NFS Options"
+msgstr ""
+
+msgid "Share NFS Type"
+msgstr ""
+
+msgid "Share SMB Options"
+msgstr ""
+
+msgid "Share SMB Type"
+msgstr ""
+
+msgid "Snapshot Device Visibility"
+msgstr ""
+
+msgid "Snapshot Folder Visibility"
+msgstr ""
+
+msgid "Snapshot Limit"
+msgstr ""
+
+msgid "Threshold Small Block Size"
+msgstr ""
+
+msgid "Synchronous Requests Behaviour"
+msgstr ""
+
+msgid "Volume Mode"
+msgstr "볼륨 모드"
+
+msgid "Volume Size"
+msgstr "볼륨 크기"
+
+msgid "Virus Scan"
+msgstr ""
+
+msgid "No ZFS filesystem information available."
 msgstr ""
 
 msgid "The name of the filesystem."
@@ -9421,9 +9548,6 @@ msgstr ""
 
 msgid "Controls the type of the ZFS dataset."
 msgstr "ZFS 데이터셋의 형태를 제어합니다."
-
-msgid "Pool Name"
-msgstr ""
 
 msgid ""
 "Indicates whether the file name matching algorithm used by the filesystem "
@@ -9941,9 +10065,6 @@ msgstr ""
 msgid "System attribute based xattrs"
 msgstr ""
 
-msgid "No ZFS filesystem information available."
-msgstr ""
-
 msgid "Add Filesystem"
 msgstr ""
 
@@ -9990,229 +10111,6 @@ msgid "unknown"
 msgstr ""
 
 msgid "Filesystems"
-msgstr ""
-
-msgid "Dataset Name"
-msgstr ""
-
-msgid ""
-"File System - can be mounted within the standard system namespace and "
-"behaves like other file systems."
-msgstr "파일 시스템 - 표준 시스템 이름공간에 탑제될 수 있고 다른 파일 시스템처럼 동작합니다."
-
-msgid "Volume - A logical volume. Can be exported as a raw or block device."
-msgstr "볼륨 - 논리 볼륨. RAW 또는 블록 장치로 내보내기 될 수 있습니다."
-
-msgid ""
-"Snapshot - A read-only version of a file system or volume at a given point "
-"in time."
-msgstr ""
-
-msgid "Bookmark - Creates a bookmark of a given snapshot."
-msgstr ""
-
-msgid "Dataset Type"
-msgstr "데이터셋 형태"
-
-msgid "Clones"
-msgstr ""
-
-msgid "Compression Ratio"
-msgstr ""
-
-msgid "Defer Destroy"
-msgstr ""
-
-msgid "Encryption Root"
-msgstr ""
-
-msgid "Filesystem Count"
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-msgid "Key Status"
-msgstr ""
-
-msgid "Logical Referenced"
-msgstr ""
-
-msgid "Logical Used"
-msgstr ""
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Obj Set ID"
-msgstr ""
-
-msgid "Receive Resume Token"
-msgstr ""
-
-msgid "Redact Snaps"
-msgstr ""
-
-msgid "Refcompressratio"
-msgstr ""
-
-msgid "Referenced"
-msgstr ""
-
-msgid "Snapshot Count"
-msgstr ""
-
-msgid "Used by Children"
-msgstr ""
-
-msgid "Used by Dataset"
-msgstr ""
-
-msgid "Used by Refreservation"
-msgstr ""
-
-msgid "Used by Snapshots"
-msgstr ""
-
-msgid "Userrefs"
-msgstr ""
-
-msgid "Written"
-msgstr ""
-
-msgid "Normalization"
-msgstr "정규화"
-
-msgid "UTF-8 File Names"
-msgstr ""
-
-msgid "ACL Type"
-msgstr ""
-
-msgid "Access Time"
-msgstr "접근 시간"
-
-msgid "Can Mount"
-msgstr "탑제 가능"
-
-msgid "Checksum"
-msgstr "검사합"
-
-msgid "GZIP Compression Level"
-msgstr ""
-
-msgid "Zstandard Compression Level"
-msgstr ""
-
-msgid "Fast Zstandard Compression Level"
-msgstr ""
-
-msgid "Copies"
-msgstr "복본"
-
-msgid "Dedup Method"
-msgstr "중복 제거 방법"
-
-msgid "Dnode Size"
-msgstr ""
-
-msgid "Execute Processes"
-msgstr ""
-
-msgid "Filesystem Limit"
-msgstr ""
-
-msgid "Jailed"
-msgstr "갇힘 (Jailed)"
-
-msgid "Key Format"
-msgstr ""
-
-msgid "Key Location"
-msgstr ""
-
-msgid "Logbias"
-msgstr "Logbias"
-
-msgid "Mountpoint Type"
-msgstr ""
-
-msgid "Non-blocking Mandatory Locks"
-msgstr ""
-
-msgid "Overlay Mount"
-msgstr ""
-
-msgid "PBKDF2 Iterations"
-msgstr ""
-
-msgid "Primary Cache"
-msgstr "주 캐시"
-
-msgid "Record Size"
-msgstr ""
-
-msgid "Redundant Metadata"
-msgstr "중복 메타데이터"
-
-msgid "Refquota"
-msgstr "참조 쿼터"
-
-msgid "Refquota Type"
-msgstr ""
-
-msgid "Refreservation"
-msgstr "참조 예약"
-
-msgid "Refreservation Type"
-msgstr ""
-
-msgid "Relatime"
-msgstr ""
-
-msgid "Reservation Type"
-msgstr ""
-
-msgid "Secondary Cache"
-msgstr "보조 캐시"
-
-msgid "Setuid"
-msgstr ""
-
-msgid "Share NFS Options"
-msgstr ""
-
-msgid "Share NFS Type"
-msgstr ""
-
-msgid "Share SMB Options"
-msgstr ""
-
-msgid "Share SMB Type"
-msgstr ""
-
-msgid "Snapshot Device Visibility"
-msgstr ""
-
-msgid "Snapshot Folder Visibility"
-msgstr ""
-
-msgid "Snapshot Limit"
-msgstr ""
-
-msgid "Threshold Small Block Size"
-msgstr ""
-
-msgid "Synchronous Requests Behaviour"
-msgstr ""
-
-msgid "Volume Mode"
-msgstr "볼륨 모드"
-
-msgid "Volume Size"
-msgstr "볼륨 크기"
-
-msgid "Virus Scan"
 msgstr ""
 
 msgid "Show Used/Avail"
@@ -10280,6 +10178,51 @@ msgstr ""
 msgid ""
 "When enabled, destroying a dataset will also destroy all dependents "
 "(datasets, snapshots and clones)."
+msgstr ""
+
+msgid "Add Schedule"
+msgstr ""
+
+msgid "Edit Schedule"
+msgstr ""
+
+msgid "Schedule is marked for deletion"
+msgstr ""
+
+msgid "Schedule is locked"
+msgstr ""
+
+msgid "Schedule is unlocked"
+msgstr ""
+
+msgid "Delete Selected Schedules"
+msgstr ""
+
+msgid "Do you want to delete selected schedules?"
+msgstr ""
+
+msgid "Do you want to disable selected schedules?"
+msgstr ""
+
+msgid "Do you want to enable selected schedules?"
+msgstr ""
+
+msgid "Do you want to toggle selected schedules?"
+msgstr ""
+
+msgid "Invalid"
+msgstr ""
+
+msgid "Destroy"
+msgstr ""
+
+msgid "Create Snapshot"
+msgstr ""
+
+msgid "Destroy Snapshot"
+msgstr ""
+
+msgid "Scrub Pool"
 msgstr ""
 
 msgid "Lifetime"
@@ -10366,58 +10309,13 @@ msgstr ""
 msgid "Presets"
 msgstr ""
 
-msgid "Add Schedule"
-msgstr ""
-
-msgid "Edit Schedule"
-msgstr ""
-
-msgid "Schedule is marked for deletion"
-msgstr ""
-
-msgid "Schedule is locked"
-msgstr ""
-
-msgid "Schedule is unlocked"
-msgstr ""
-
-msgid "Delete Selected Schedules"
-msgstr ""
-
-msgid "Do you want to delete selected schedules?"
-msgstr ""
-
-msgid "Do you want to disable selected schedules?"
-msgstr ""
-
-msgid "Do you want to enable selected schedules?"
-msgstr ""
-
-msgid "Do you want to toggle selected schedules?"
-msgstr ""
-
-msgid "Invalid"
-msgstr ""
-
-msgid "Destroy"
-msgstr ""
-
-msgid "Create Snapshot"
-msgstr ""
-
-msgid "Destroy Snapshot"
-msgstr ""
-
-msgid "Scrub Pool"
-msgstr ""
-
 msgid "Recursively create snapshots of all descendent datasets."
 msgstr ""
 
-msgid "Scrub"
+msgid "Select pool."
 msgstr ""
 
-msgid "Select pool."
+msgid "Scrub"
 msgstr ""
 
 msgid "No ZFS zpool information available."
@@ -10433,6 +10331,48 @@ msgid "Enter Identifier"
 msgstr "식별자 입력"
 
 msgid "Enter smartctl pass-through type."
+msgstr ""
+
+msgid "Login Name"
+msgstr ""
+
+msgid "Full Name"
+msgstr "전체 이름"
+
+msgid "SHA Password"
+msgstr ""
+
+msgid "MD4 Password"
+msgstr ""
+
+msgid "Shell"
+msgstr "셸"
+
+msgid "Primary Group"
+msgstr "기본 그룹"
+
+msgid "Groups"
+msgstr "그룹"
+
+msgid "Timezone"
+msgstr ""
+
+msgid "File Manager Access"
+msgstr ""
+
+msgid "Hidden Items"
+msgstr ""
+
+msgid "Read Permission"
+msgstr ""
+
+msgid "Create Permission"
+msgstr ""
+
+msgid "Change Permission"
+msgstr ""
+
+msgid "Delete Permission"
 msgstr ""
 
 msgid "Add User Account"
@@ -10477,6 +10417,9 @@ msgstr ""
 msgid "Do you want to toggle selected users?"
 msgstr ""
 
+msgid "Active"
+msgstr "활성"
+
 msgid "System User"
 msgstr ""
 
@@ -10491,9 +10434,6 @@ msgstr ""
 
 msgid "Enter the full user name."
 msgstr ""
-
-msgid "Full Name"
-msgstr "전체 이름"
 
 msgid "Set user password."
 msgstr ""
@@ -10578,52 +10518,10 @@ msgstr ""
 msgid "Grant delete permission"
 msgstr ""
 
-msgid "Login Name"
-msgstr ""
-
-msgid "SHA Password"
-msgstr ""
-
-msgid "MD4 Password"
-msgstr ""
-
-msgid "Shell"
-msgstr "셸"
-
-msgid "Primary Group"
-msgstr "기본 그룹"
-
-msgid "Groups"
-msgstr "그룹"
-
-msgid "Timezone"
-msgstr ""
-
-msgid "File Manager Access"
-msgstr ""
-
-msgid "Hidden Items"
-msgstr ""
-
-msgid "Read Permission"
-msgstr ""
-
-msgid "Create Permission"
-msgstr ""
-
-msgid "Change Permission"
-msgstr ""
-
-msgid "Delete Permission"
-msgstr ""
-
 msgid "Users"
 msgstr "사용자"
 
 msgid "Public Keys"
-msgstr ""
-
-msgid "Public Key"
 msgstr ""
 
 msgid "Add Public Key"
@@ -10668,19 +10566,10 @@ msgstr ""
 msgid "Reload"
 msgstr ""
 
+msgid "Public Key"
+msgstr ""
+
 msgid "Public key information."
-msgstr ""
-
-msgid "Enter group name."
-msgstr ""
-
-msgid "Group Name"
-msgstr ""
-
-msgid "Specify the group numeric id."
-msgstr ""
-
-msgid "The recommended range for the group id is between 1000 and 32000."
 msgstr ""
 
 msgid "Add Group"
@@ -10729,6 +10618,18 @@ msgid "Show System Groups"
 msgstr ""
 
 msgid "Hide System Groups"
+msgstr ""
+
+msgid "Enter group name."
+msgstr ""
+
+msgid "Group Name"
+msgstr ""
+
+msgid "Specify the group numeric id."
+msgstr ""
+
+msgid "The recommended range for the group id is between 1000 and 32000."
 msgstr ""
 
 msgid "Enter AD or PDC name."
@@ -11127,16 +11028,55 @@ msgstr ""
 msgid "The value of the variable."
 msgstr "변수의 값."
 
+msgid "Name of the variable."
+msgstr "변수의 이름."
+
+msgid "Enter Value"
+msgstr ""
+
 msgid "Disabled variable names will be removed from /etc/rc.conf."
 msgstr ""
 
 msgid "Enabled options will be added to /etc/rc.conf."
 msgstr ""
 
-msgid "Name of the variable."
-msgstr "변수의 이름."
+msgid "Button Location"
+msgstr "버튼 위치"
 
-msgid "Enter Value"
+msgid "File Chooser"
+msgstr ""
+
+msgid "File Mode"
+msgstr ""
+
+msgid "GUI"
+msgstr ""
+
+msgid "Navigation Bar"
+msgstr ""
+
+msgid "Tabs"
+msgstr ""
+
+msgid "Toggle Mode"
+msgstr "모드 전환"
+
+msgid "Navbar Style"
+msgstr ""
+
+msgid "Binary Prefix"
+msgstr "이진 접미사"
+
+msgid "Colorful Meters"
+msgstr ""
+
+msgid "Skip View Mode"
+msgstr "보기 모드 건너뛰기"
+
+msgid "Show Max CPUs"
+msgstr ""
+
+msgid "Diagnostics Information"
 msgstr ""
 
 msgid ""
@@ -11209,52 +11149,19 @@ msgstr ""
 msgid "Set the landing page for the Diagnostics > Information menu."
 msgstr ""
 
-msgid "Button Location"
-msgstr "버튼 위치"
-
-msgid "File Chooser"
-msgstr ""
-
-msgid "File Mode"
-msgstr ""
-
-msgid "GUI"
-msgstr ""
-
-msgid "Navigation Bar"
-msgstr ""
-
-msgid "Tabs"
-msgstr ""
-
-msgid "Toggle Mode"
-msgstr "모드 전환"
-
-msgid "Navbar Style"
-msgstr ""
-
-msgid "Binary Prefix"
-msgstr "이진 접미사"
-
-msgid "Colorful Meters"
-msgstr ""
-
-msgid "Skip View Mode"
-msgstr "보기 모드 건너뛰기"
-
-msgid "Show Max CPUs"
-msgstr ""
-
-msgid "Diagnostics Information"
+msgid ""
+"Set the number of days until a reminder is shown to backup system "
+"configuration. The default is 28 days. A value of 0 disables the reminder."
 msgstr ""
 
 msgid "Show Interval"
 msgstr ""
 
-msgid ""
-"Set the number of days until a reminder is shown to backup system "
-"configuration. The default is 28 days. A value of 0 disables the reminder."
-msgstr ""
+msgid "Do you really want to remove the selected item from the list?"
+msgstr "리스트에서 선택된 항목을 정말로 삭제하시겠습니까?"
+
+msgid "Select item to remove from the list"
+msgstr "리스트에서 지울 항목을 선택하십시오"
 
 msgid "Delete Selected Records"
 msgstr "선택된 항목 삭제"
@@ -11313,12 +11220,6 @@ msgstr "항목 수정"
 msgid "Record is unlocked"
 msgstr "항목 잠금 해제됨"
 
-msgid "Do you really want to remove the selected item from the list?"
-msgstr "리스트에서 선택된 항목을 정말로 삭제하시겠습니까?"
-
-msgid "Select item to remove from the list"
-msgstr "리스트에서 지울 항목을 선택하십시오"
-
 msgid "Service"
 msgstr "서비스"
 
@@ -11328,23 +11229,23 @@ msgstr ""
 msgid "The value is invalid."
 msgstr "값이 올바르지 않음."
 
+msgid "Enter additional parameters"
+msgstr ""
+
+msgid "No additional parameters"
+msgstr ""
+
+msgid "Enter a description for your reference."
+msgstr "참고하기 위한 설명 입력"
+
 msgid "Network Address"
 msgstr ""
 
 msgid "Enable Setting"
 msgstr "설정 사용"
 
-msgid "Enter a description for your reference."
-msgstr "참고하기 위한 설명 입력"
-
 msgid "IPv4 Address"
 msgstr ""
-
-msgid "Protect"
-msgstr "보호"
-
-msgid "Protect Setting"
-msgstr "보호 설정"
 
 msgid "The UUID of the record."
 msgstr "항목의 UUID."
@@ -11355,14 +11256,62 @@ msgstr "전역 고유 식별자 입력"
 msgid "Universally Unique Identifier"
 msgstr "범용 고유 식별자"
 
-msgid "Enter additional parameters"
-msgstr ""
+msgid "Protect"
+msgstr "보호"
 
-msgid "No additional parameters"
-msgstr ""
+msgid "Protect Setting"
+msgstr "보호 설정"
 
 msgid "Autodetect"
 msgstr "자동 감지"
+
+msgid "Standard Provider"
+msgstr ""
+
+msgid "Custom Provider"
+msgstr ""
+
+msgid "Record Type"
+msgstr ""
+
+msgid "Provider"
+msgstr "공급자"
+
+msgid "Provider Name"
+msgstr ""
+
+msgid "Host Names"
+msgstr ""
+
+msgid "Wildcard Domain"
+msgstr ""
+
+msgid "Use HTTPS"
+msgstr ""
+
+msgid "Check IP Server"
+msgstr ""
+
+msgid "Check IP Path"
+msgstr ""
+
+msgid "Check IP using HTTPS"
+msgstr ""
+
+msgid "Check IP Command"
+msgstr ""
+
+msgid "User Agent"
+msgstr ""
+
+msgid "DDNS-Server"
+msgstr ""
+
+msgid "DDNS-Path"
+msgstr ""
+
+msgid "Append my IP"
+msgstr ""
 
 msgid "Add Provider"
 msgstr ""
@@ -11413,6 +11362,12 @@ msgid "Undefined Type"
 msgstr ""
 
 msgid "Unknown Provider"
+msgstr ""
+
+msgid "Providers"
+msgstr ""
+
+msgid "Global Settings"
 msgstr ""
 
 msgid ""
@@ -11510,59 +11465,44 @@ msgstr ""
 msgid "These parameters will be added to this provider configuration"
 msgstr ""
 
-msgid "Standard Provider"
+msgid "Verify Address"
 msgstr ""
 
-msgid "Custom Provider"
+msgid "Fake Address"
 msgstr ""
 
-msgid "Record Type"
+msgid "Allow IPv6"
 msgstr ""
 
-msgid "Provider"
-msgstr "공급자"
-
-msgid "Provider Name"
+msgid "Network Interface"
 msgstr ""
 
-msgid "Host Names"
+msgid "Iterations"
 msgstr ""
 
-msgid "Wildcard Domain"
+msgid "Check Interval"
 msgstr ""
 
-msgid "Use HTTPS"
+msgid "Force Update Interval"
 msgstr ""
 
-msgid "Check IP Server"
+msgid "Secure SSL"
 msgstr ""
 
-msgid "Check IP Path"
+msgid "Broken RTC"
 msgstr ""
 
-msgid "Check IP using HTTPS"
+msgid "CA Trusted Certificates"
 msgstr ""
 
-msgid "Check IP Command"
+msgid "Cache Directory"
 msgstr ""
 
-msgid "User Agent"
+msgid "Startup Delay"
 msgstr ""
 
-msgid "DDNS-Server"
-msgstr ""
-
-msgid "DDNS-Path"
-msgstr ""
-
-msgid "Append my IP"
-msgstr ""
-
-msgid "Providers"
-msgstr ""
-
-msgid "Global Settings"
-msgstr ""
+msgid "Log Level"
+msgstr "로그 수준"
 
 msgid ""
 "IP address validation can be disabled by setting this option to false."
@@ -11651,46 +11591,13 @@ msgstr "디버그"
 msgid "These parameters are appended to the inadyn.conf file."
 msgstr ""
 
-msgid "Verify Address"
-msgstr ""
-
-msgid "Fake Address"
-msgstr ""
-
-msgid "Allow IPv6"
-msgstr ""
-
-msgid "Network Interface"
-msgstr ""
-
-msgid "Iterations"
-msgstr ""
-
-msgid "Check Interval"
-msgstr ""
-
-msgid "Force Update Interval"
-msgstr ""
-
-msgid "Secure SSL"
-msgstr ""
-
-msgid "Broken RTC"
-msgstr ""
-
-msgid "CA Trusted Certificates"
-msgstr ""
-
-msgid "Cache Directory"
-msgstr ""
-
-msgid "Startup Delay"
-msgstr ""
-
-msgid "Log Level"
-msgstr "로그 수준"
-
 msgid "Media Type"
+msgstr ""
+
+msgid "Media Folders"
+msgstr ""
+
+msgid "Media Folder"
 msgstr ""
 
 msgid "Add Media Folder"
@@ -11751,12 +11658,6 @@ msgid "Scan folder for image files."
 msgstr ""
 
 msgid "Scan folder for video and image files."
-msgstr ""
-
-msgid "Media Folders"
-msgstr ""
-
-msgid "Media Folder"
 msgstr ""
 
 msgid "Inotify"
@@ -11871,25 +11772,16 @@ msgstr ""
 msgid "Auth Type"
 msgstr ""
 
-msgid "No CHAP users found."
+msgid "Name of the Auth Group."
 msgstr ""
 
-msgid "Mutual-CHAP"
+msgid "Sets the authentication type."
 msgstr ""
 
-msgid "No Mutual-CHAP users found."
+msgid "CHAP-Mutual"
 msgstr ""
 
-msgid "Initiator Name"
-msgstr "초기자 이름"
-
-msgid "No initiator names found."
-msgstr ""
-
-msgid "Initiator Portal"
-msgstr ""
-
-msgid "No initiator portals found."
+msgid "These parameters will be added to this auth-group."
 msgstr ""
 
 msgid "Add Auth Group"
@@ -11937,22 +11829,139 @@ msgstr ""
 msgid "Initiator Portals"
 msgstr ""
 
-msgid "Name of the Auth Group."
+msgid "No CHAP users found."
 msgstr ""
 
-msgid "Sets the authentication type."
+msgid "Mutual-CHAP"
 msgstr ""
 
-msgid "CHAP-Mutual"
+msgid "No Mutual-CHAP users found."
 msgstr ""
 
-msgid "These parameters will be added to this auth-group."
+msgid "Initiator Name"
+msgstr "초기자 이름"
+
+msgid "No initiator names found."
 msgstr ""
 
-msgid "Name of the LUN."
+msgid "Initiator Portal"
+msgstr ""
+
+msgid "No initiator portals found."
 msgstr ""
 
 msgid "LUN Name"
+msgstr ""
+
+msgid "Backend"
+msgstr ""
+
+msgid "CTL LUN"
+msgstr ""
+
+msgid "Device ID"
+msgstr ""
+
+msgid "Device Type"
+msgstr ""
+
+msgid "Passthrough Address"
+msgstr ""
+
+msgid "LUN Vendor"
+msgstr ""
+
+msgid "LUN Product"
+msgstr ""
+
+msgid "LUN Revision"
+msgstr ""
+
+msgid "LUN SCSI Name"
+msgstr ""
+
+msgid "LUN EUI-64\tidentifier"
+msgstr ""
+
+msgid "LUN NAA Identifier"
+msgstr ""
+
+msgid "LUN UUID"
+msgstr ""
+
+msgid "HA Role"
+msgstr ""
+
+msgid "Insecure TPC"
+msgstr ""
+
+msgid "Read Cache"
+msgstr ""
+
+msgid "Read Only"
+msgstr "읽기 전용"
+
+msgid "Reordering"
+msgstr ""
+
+msgid "Serialize Sequence"
+msgstr ""
+
+msgid "Physical Block Size"
+msgstr ""
+
+msgid "Physical Block Offset"
+msgstr ""
+
+msgid "UNMAP Block Size"
+msgstr ""
+
+msgid "UNMAP Block Offset"
+msgstr ""
+
+msgid "RPM"
+msgstr ""
+
+msgid "Form Factor"
+msgstr ""
+
+msgid "Provisioning Type"
+msgstr ""
+
+msgid "UNMAP"
+msgstr ""
+
+msgid "UNMAP Maximum LBA"
+msgstr ""
+
+msgid "UNMAP Maximum Descriptors"
+msgstr ""
+
+msgid "Write Same Maximum LBA"
+msgstr ""
+
+msgid "Avail Threshold"
+msgstr ""
+
+msgid "Used Threshold"
+msgstr ""
+
+msgid "Pool Avail Threshold"
+msgstr ""
+
+msgid "Pool Used Threshold"
+msgstr ""
+
+msgid "Threads"
+msgstr ""
+
+msgid "Additional Options for Block Backend"
+msgstr ""
+
+msgid "Additional Options for RAM Disk Backend"
+msgstr ""
+
+msgid "Name of the LUN."
 msgstr ""
 
 msgid "The CTL backend to use for a given LUN."
@@ -11992,9 +12001,6 @@ msgid "Global numeric identifier to use for a given LUN inside CTL."
 msgstr ""
 
 msgid "The SCSI Device Identification string presented to the initiator."
-msgstr ""
-
-msgid "Device ID"
 msgstr ""
 
 msgid "Specify the SCSI device type to use when creating the LUN."
@@ -12195,12 +12201,6 @@ msgstr ""
 msgid "These parameters will be added to this lun."
 msgstr ""
 
-msgid "Additional Options for Block Backend"
-msgstr ""
-
-msgid "Additional Options for RAM Disk Backend"
-msgstr ""
-
 msgid "Add LUN"
 msgstr ""
 
@@ -12240,103 +12240,16 @@ msgstr ""
 msgid "Do you want to toggle selected LUNs?"
 msgstr ""
 
-msgid "Backend"
+msgid "Listen"
 msgstr ""
 
-msgid "CTL LUN"
+msgid "No listeners found."
 msgstr ""
 
-msgid "Device Type"
-msgstr ""
+msgid "Option"
+msgstr "옵션"
 
-msgid "Passthrough Address"
-msgstr ""
-
-msgid "LUN Vendor"
-msgstr ""
-
-msgid "LUN Product"
-msgstr ""
-
-msgid "LUN Revision"
-msgstr ""
-
-msgid "LUN SCSI Name"
-msgstr ""
-
-msgid "LUN EUI-64\tidentifier"
-msgstr ""
-
-msgid "LUN NAA Identifier"
-msgstr ""
-
-msgid "LUN UUID"
-msgstr ""
-
-msgid "HA Role"
-msgstr ""
-
-msgid "Insecure TPC"
-msgstr ""
-
-msgid "Read Cache"
-msgstr ""
-
-msgid "Read Only"
-msgstr "읽기 전용"
-
-msgid "Reordering"
-msgstr ""
-
-msgid "Serialize Sequence"
-msgstr ""
-
-msgid "Physical Block Size"
-msgstr ""
-
-msgid "Physical Block Offset"
-msgstr ""
-
-msgid "UNMAP Block Size"
-msgstr ""
-
-msgid "UNMAP Block Offset"
-msgstr ""
-
-msgid "RPM"
-msgstr ""
-
-msgid "Form Factor"
-msgstr ""
-
-msgid "Provisioning Type"
-msgstr ""
-
-msgid "UNMAP"
-msgstr ""
-
-msgid "UNMAP Maximum LBA"
-msgstr ""
-
-msgid "UNMAP Maximum Descriptors"
-msgstr ""
-
-msgid "Write Same Maximum LBA"
-msgstr ""
-
-msgid "Avail Threshold"
-msgstr ""
-
-msgid "Used Threshold"
-msgstr ""
-
-msgid "Pool Avail Threshold"
-msgstr ""
-
-msgid "Pool Used Threshold"
-msgstr ""
-
-msgid "Threads"
+msgid "No options found."
 msgstr ""
 
 msgid "Add Portal Group"
@@ -12378,10 +12291,22 @@ msgstr ""
 msgid "Do you want to toggle selected portal groups?"
 msgstr ""
 
-msgid "Name of the Portal Group."
+msgid "Portal Group Name"
 msgstr ""
 
-msgid "Portal Group Name"
+msgid "Discovery Filter"
+msgstr ""
+
+msgid "Offload"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Foreign"
+msgstr ""
+
+msgid "Name of the Portal Group."
 msgstr ""
 
 msgid "These parameters will be added to this portal-group."
@@ -12440,30 +12365,6 @@ msgid ""
 "generated automatically."
 msgstr ""
 
-msgid "Discovery Filter"
-msgstr ""
-
-msgid "Offload"
-msgstr ""
-
-msgid "Redirect"
-msgstr ""
-
-msgid "Foreign"
-msgstr ""
-
-msgid "Listen"
-msgstr ""
-
-msgid "Option"
-msgstr "옵션"
-
-msgid "No listeners found."
-msgstr ""
-
-msgid "No options found."
-msgstr ""
-
 msgid "Enter user name."
 msgstr ""
 
@@ -12517,6 +12418,12 @@ msgstr ""
 msgid "Do you want to toggle selected CHAP users?"
 msgstr ""
 
+msgid "Mutual User"
+msgstr ""
+
+msgid "Mutual Secret"
+msgstr ""
+
 msgid "Add Mutual CHAP User"
 msgstr ""
 
@@ -12564,10 +12471,12 @@ msgstr ""
 msgid "Enter mutual user name."
 msgstr ""
 
-msgid "Mutual User"
+msgid "Enter an iSCSI initiator name."
 msgstr ""
 
-msgid "Mutual Secret"
+msgid ""
+"Link initiator-name to auth-groups. An Initiator with this name will be "
+"allowed to connect to the selected auth-groups."
 msgstr ""
 
 msgid "Add Initiator Name"
@@ -12607,14 +12516,6 @@ msgid "Do you want to enable selected initiator names?"
 msgstr ""
 
 msgid "Do you want to toggle selected initiator names?"
-msgstr ""
-
-msgid "Enter an iSCSI initiator name."
-msgstr ""
-
-msgid ""
-"Link initiator-name to auth-groups. An Initiator with this name will be "
-"allowed to connect to the selected auth-groups."
 msgstr ""
 
 msgid "IP Address Prefix"
@@ -12670,9 +12571,6 @@ msgid ""
 "will be allowed to connect to the selected auth-groups."
 msgstr ""
 
-msgid "iSNS Servers"
-msgstr ""
-
 msgid "IPv4 or IPv6 address of an iSNS server to register on."
 msgstr ""
 
@@ -12716,6 +12614,9 @@ msgid "Do you want to enable selected iSNS servers?"
 msgstr ""
 
 msgid "Do you want to toggle selected iSNS servers?"
+msgstr ""
+
+msgid "iSNS Servers"
 msgstr ""
 
 msgid "An IPv4 or IPv6 address to listen on for incoming connections."
@@ -12892,9 +12793,6 @@ msgstr ""
 msgid "Link this option to selected portal-groups."
 msgstr ""
 
-msgid "Name of the port."
-msgstr ""
-
 msgid "Port Name"
 msgstr ""
 
@@ -12937,6 +12835,39 @@ msgstr ""
 msgid "Do you want to toggle selected port records?"
 msgstr ""
 
+msgid "Name of the port."
+msgstr ""
+
+msgid "Alias"
+msgstr ""
+
+msgid "Name of the target."
+msgstr ""
+
+msgid "These parameters will be added to this target."
+msgstr ""
+
+msgid "Assign a human-readable description to the target."
+msgstr ""
+
+msgid "Assign a previously defined authentication group to the target."
+msgstr ""
+
+msgid "Permit access without authentication"
+msgstr ""
+
+msgid "Assign a previously defined portal group to the target."
+msgstr ""
+
+msgid ""
+"IPv4 or IPv6 address to redirect initiators to. When configured, all "
+"initiators attempting to connect to this target will get redirected using "
+"\"Target moved temporarily\" login response."
+msgstr ""
+
+msgid "No ports found."
+msgstr ""
+
 msgid "Add Target"
 msgstr ""
 
@@ -12976,36 +12907,6 @@ msgstr ""
 msgid "Do you want to toggle selected targets?"
 msgstr ""
 
-msgid "Name of the target."
-msgstr ""
-
-msgid "These parameters will be added to this target."
-msgstr ""
-
-msgid "Assign a human-readable description to the target."
-msgstr ""
-
-msgid "Alias"
-msgstr ""
-
-msgid "Assign a previously defined authentication group to the target."
-msgstr ""
-
-msgid "Permit access without authentication"
-msgstr ""
-
-msgid "Assign a previously defined portal group to the target."
-msgstr ""
-
-msgid ""
-"IPv4 or IPv6 address to redirect initiators to. When configured, all "
-"initiators attempting to connect to this target will get redirected using "
-"\"Target moved temporarily\" login response."
-msgstr ""
-
-msgid "No ports found."
-msgstr ""
-
 msgid "Max Processes"
 msgstr ""
 
@@ -13039,43 +12940,34 @@ msgstr ""
 msgid "These parameters will be added to the global section of ctl.conf"
 msgstr ""
 
-msgid "Add iSCSI Initiator"
+msgid "Target Address"
+msgstr "대상 주소"
+
+msgid "CHAP Name"
 msgstr ""
 
-msgid "Edit iSCSI Initiator"
+msgid "CHAP Secret"
 msgstr ""
 
-msgid "iSCSI Initiator is marked for deletion"
+msgid "Mutual CHAP Name"
 msgstr ""
 
-msgid "iSCSI Initiator is locked"
+msgid "Mutual CHAP Secret"
 msgstr ""
 
-msgid "iSCSI Initiator is unlocked"
+msgid "Header Digest"
 msgstr ""
 
-msgid "Delete Selected iSCSI Initiators"
+msgid "Data Digest"
 msgstr ""
 
-msgid "Disable Selected iSCSI Initiators"
+msgid "Offload Driver"
 msgstr ""
 
-msgid "Enable Selected iSCSI Initiators"
+msgid "Session State"
 msgstr ""
 
-msgid "Toggle Selected iSCSI Initiators"
-msgstr ""
-
-msgid "Do you want to delete selected iSCSI initiators?"
-msgstr ""
-
-msgid "Do you want to disable selected iSCSI initiators?"
-msgstr ""
-
-msgid "Do you want to enable selected iSCSI initiators?"
-msgstr ""
-
-msgid "Do you want to toggle selected iSCSI initiators?"
+msgid "Session Type"
 msgstr ""
 
 msgid "This is a nickname and is for information only."
@@ -13162,34 +13054,43 @@ msgstr ""
 msgid "Discovery"
 msgstr ""
 
-msgid "Target Address"
-msgstr "대상 주소"
-
-msgid "CHAP Name"
+msgid "Add iSCSI Initiator"
 msgstr ""
 
-msgid "CHAP Secret"
+msgid "Edit iSCSI Initiator"
 msgstr ""
 
-msgid "Mutual CHAP Name"
+msgid "iSCSI Initiator is marked for deletion"
 msgstr ""
 
-msgid "Mutual CHAP Secret"
+msgid "iSCSI Initiator is locked"
 msgstr ""
 
-msgid "Header Digest"
+msgid "iSCSI Initiator is unlocked"
 msgstr ""
 
-msgid "Data Digest"
+msgid "Delete Selected iSCSI Initiators"
 msgstr ""
 
-msgid "Offload Driver"
+msgid "Disable Selected iSCSI Initiators"
 msgstr ""
 
-msgid "Session State"
+msgid "Enable Selected iSCSI Initiators"
 msgstr ""
 
-msgid "Session Type"
+msgid "Toggle Selected iSCSI Initiators"
+msgstr ""
+
+msgid "Do you want to delete selected iSCSI initiators?"
+msgstr ""
+
+msgid "Do you want to disable selected iSCSI initiators?"
+msgstr ""
+
+msgid "Do you want to enable selected iSCSI initiators?"
+msgstr ""
+
+msgid "Do you want to toggle selected iSCSI initiators?"
 msgstr ""
 
 msgid ""
@@ -13275,9 +13176,6 @@ msgstr ""
 msgid "Security Flavor"
 msgstr ""
 
-msgid "Root Directory"
-msgstr ""
-
 msgid "Map users or map root to the specified user."
 msgstr ""
 
@@ -13339,7 +13237,7 @@ msgid ""
 "data encryption."
 msgstr ""
 
-msgid "Root Directories"
+msgid "Root Directory"
 msgstr ""
 
 msgid "Add NFS Root"
@@ -13381,6 +13279,9 @@ msgstr ""
 msgid "Do you want to toggle selected NFS root directories?"
 msgstr ""
 
+msgid "Root Directories"
+msgstr ""
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -13404,16 +13305,121 @@ msgstr ""
 msgid "These parameters are appended to the exports file."
 msgstr ""
 
+msgid "Driver List"
+msgstr "드라이버 목록"
+
+msgid "UPS Driver List"
+msgstr ""
+
 msgid "Model Name"
 msgstr "모델명"
 
 msgid "Model Extra"
 msgstr "추가 모델"
 
-msgid "Driver List"
-msgstr "드라이버 목록"
+msgid "Enable AFP"
+msgstr ""
 
-msgid "UPS Driver List"
+msgid "Create Mask"
+msgstr "마스크 생성"
+
+msgid "Force Group"
+msgstr ""
+
+msgid "Force User"
+msgstr ""
+
+msgid "Shadow Copy Format"
+msgstr "쉐도 복사본 형식"
+
+msgid "VFS fruit:encoding"
+msgstr ""
+
+msgid "VFS fruit:locking"
+msgstr ""
+
+msgid "VFS fruit:metadata"
+msgstr ""
+
+msgid "VFS fruit:resource"
+msgstr ""
+
+msgid "VFS fruit:time machine"
+msgstr ""
+
+msgid "ZFS ACL"
+msgstr "ZFS ACL"
+
+msgid "Inherit ACL"
+msgstr "ACL 상속"
+
+msgid "Alternate Data Streams"
+msgstr "대체 데이터 스트림"
+
+msgid "NTFS ACLs"
+msgstr "NTFS ACL들"
+
+msgid "Shadow Copy"
+msgstr "쉐도 복사본"
+
+msgid "Browseable"
+msgstr "검색 가능 여부"
+
+msgid "Guest Only"
+msgstr ""
+
+msgid "Inherit Permissions"
+msgstr "허가권 상속"
+
+msgid "Recycle Bin"
+msgstr "휴지통"
+
+msgid "Hide Dot Files"
+msgstr "점파일(역주: .으로 시작되는 파일명의 파일들) 숨기기"
+
+msgid "Add Samba Share"
+msgstr "Samba 공유 추가"
+
+msgid "Edit Samba Share"
+msgstr "Samba 공유 수정"
+
+msgid "Samba Share is marked for deletion"
+msgstr "Samba 공유 삭제 표시됨"
+
+msgid "Samba Share is locked"
+msgstr ""
+
+msgid "Samba Share is unlocked"
+msgstr "Samba 공유 잠금 해제됨"
+
+msgid "Delete Selected Samba Shares"
+msgstr "선택된 Samba 공유 삭제"
+
+msgid "Disable Selected Samba Shares"
+msgstr ""
+
+msgid "Enable Selected Samba Shares"
+msgstr ""
+
+msgid "Toggle Selected Samba Shares"
+msgstr ""
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "선택된 Samba 공유를 삭제하시겠습니까?"
+
+msgid "Do you want to disable selected Samba shares?"
+msgstr ""
+
+msgid "Do you want to enable selected Samba shares?"
+msgstr ""
+
+msgid "Do you want to toggle selected Samba shares?"
+msgstr ""
+
+msgid "yes"
+msgstr ""
+
+msgid "no"
 msgstr ""
 
 #, php-format
@@ -13598,111 +13604,6 @@ msgstr ""
 
 msgid "Enter the location of the share"
 msgstr ""
-
-msgid "Add Samba Share"
-msgstr "Samba 공유 추가"
-
-msgid "Edit Samba Share"
-msgstr "Samba 공유 수정"
-
-msgid "Samba Share is marked for deletion"
-msgstr "Samba 공유 삭제 표시됨"
-
-msgid "Samba Share is locked"
-msgstr ""
-
-msgid "Samba Share is unlocked"
-msgstr "Samba 공유 잠금 해제됨"
-
-msgid "Delete Selected Samba Shares"
-msgstr "선택된 Samba 공유 삭제"
-
-msgid "Disable Selected Samba Shares"
-msgstr ""
-
-msgid "Enable Selected Samba Shares"
-msgstr ""
-
-msgid "Toggle Selected Samba Shares"
-msgstr ""
-
-msgid "Do you want to delete selected Samba shares?"
-msgstr "선택된 Samba 공유를 삭제하시겠습니까?"
-
-msgid "Do you want to disable selected Samba shares?"
-msgstr ""
-
-msgid "Do you want to enable selected Samba shares?"
-msgstr ""
-
-msgid "Do you want to toggle selected Samba shares?"
-msgstr ""
-
-msgid "yes"
-msgstr ""
-
-msgid "no"
-msgstr ""
-
-msgid "Enable AFP"
-msgstr ""
-
-msgid "Create Mask"
-msgstr "마스크 생성"
-
-msgid "Force Group"
-msgstr ""
-
-msgid "Force User"
-msgstr ""
-
-msgid "Shadow Copy Format"
-msgstr "쉐도 복사본 형식"
-
-msgid "VFS fruit:encoding"
-msgstr ""
-
-msgid "VFS fruit:locking"
-msgstr ""
-
-msgid "VFS fruit:metadata"
-msgstr ""
-
-msgid "VFS fruit:resource"
-msgstr ""
-
-msgid "VFS fruit:time machine"
-msgstr ""
-
-msgid "ZFS ACL"
-msgstr "ZFS ACL"
-
-msgid "Inherit ACL"
-msgstr "ACL 상속"
-
-msgid "Alternate Data Streams"
-msgstr "대체 데이터 스트림"
-
-msgid "NTFS ACLs"
-msgstr "NTFS ACL들"
-
-msgid "Shadow Copy"
-msgstr "쉐도 복사본"
-
-msgid "Browseable"
-msgstr "검색 가능 여부"
-
-msgid "Guest Only"
-msgstr ""
-
-msgid "Inherit Permissions"
-msgstr "허가권 상속"
-
-msgid "Recycle Bin"
-msgstr "휴지통"
-
-msgid "Hide Dot Files"
-msgstr "점파일(역주: .으로 시작되는 파일명의 파일들) 숨기기"
 
 msgid "Workgroup"
 msgstr "작업 그룹"
@@ -14027,27 +13928,6 @@ msgid ""
 "this value. (%d by default)."
 msgstr "Samba는 요청 크기가 이 값보다 클 경우 파일에 비동기식으로 씁니다(기본 값은 %d)."
 
-msgid "Password Authentication"
-msgstr "암호 인증"
-
-msgid "Keyboard-Interactive Authentication"
-msgstr ""
-
-msgid "Public Key Authentication"
-msgstr ""
-
-msgid "GSSAPI Authentication"
-msgstr ""
-
-msgid "Root Login"
-msgstr ""
-
-msgid "TCP Forwarding"
-msgstr "TCP 포워드"
-
-msgid "Subsystem"
-msgstr "하위시스템"
-
 msgid "Port of the SSH service. Leave blank to use the default port."
 msgstr ""
 
@@ -14092,6 +13972,9 @@ msgid ""
 "settings."
 msgstr ""
 
+msgid "Subsystem"
+msgstr "하위시스템"
+
 msgid "Using defaults"
 msgstr ""
 
@@ -14131,14 +14014,23 @@ msgstr ""
 msgid "These parameters are appended to /etc/ssh/sshd_config."
 msgstr ""
 
-msgid "Allow New Files"
-msgstr "새 파일 허용"
+msgid "Password Authentication"
+msgstr "암호 인증"
 
-msgid "Max. Block Size"
-msgstr "최대 블록 크기"
+msgid "Keyboard-Interactive Authentication"
+msgstr ""
 
-msgid "Umask"
-msgstr "Umask"
+msgid "Public Key Authentication"
+msgstr ""
+
+msgid "GSSAPI Authentication"
+msgstr ""
+
+msgid "Root Login"
+msgstr ""
+
+msgid "TCP Forwarding"
+msgstr "TCP 포워드"
 
 msgid "Allow new files to be created."
 msgstr "새 파일 생성 허용."
@@ -14198,56 +14090,14 @@ msgstr ""
 msgid "Specifies the username under which the TFTP service should run."
 msgstr ""
 
-msgid "Peer Port"
-msgstr "피어 포트"
+msgid "Allow New Files"
+msgstr "새 파일 허용"
 
-msgid "Configuration Folder"
-msgstr ""
+msgid "Max. Block Size"
+msgstr "최대 블록 크기"
 
-msgid "Incomplete Folder"
-msgstr ""
-
-msgid "Download Folder"
-msgstr ""
-
-msgid "Watch Folder"
-msgstr ""
-
-msgid "Port Forwarding"
-msgstr "포트 포워딩"
-
-msgid "Peer Exchange"
-msgstr "피어 교체"
-
-msgid "Distributed Hash Table"
-msgstr "분산 해시 테이블"
-
-msgid "Local Peer Discovery"
-msgstr ""
-
-msgid "uTP"
-msgstr ""
-
-msgid "User Mask"
-msgstr "사용자 마스크"
-
-msgid "Preallocation"
-msgstr "선할당"
-
-msgid "Message Level"
-msgstr ""
-
-msgid "DNS Rebind Protection"
-msgstr ""
-
-msgid "Domain Names"
-msgstr ""
-
-msgid "Start Torrents"
-msgstr ""
-
-msgid "Stop Torrents"
-msgstr ""
+msgid "Umask"
+msgstr "Umask"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. The default port is %d."
@@ -14364,10 +14214,55 @@ msgstr ""
 msgid "Stop torrents before stopping service."
 msgstr ""
 
-msgid "Work Directory"
-msgstr "작업 디렉터리"
+msgid "Peer Port"
+msgstr "피어 포트"
 
-msgid "Create Work Directory"
+msgid "Configuration Folder"
+msgstr ""
+
+msgid "Incomplete Folder"
+msgstr ""
+
+msgid "Download Folder"
+msgstr ""
+
+msgid "Watch Folder"
+msgstr ""
+
+msgid "Port Forwarding"
+msgstr "포트 포워딩"
+
+msgid "Peer Exchange"
+msgstr "피어 교체"
+
+msgid "Distributed Hash Table"
+msgstr "분산 해시 테이블"
+
+msgid "Local Peer Discovery"
+msgstr ""
+
+msgid "uTP"
+msgstr ""
+
+msgid "User Mask"
+msgstr "사용자 마스크"
+
+msgid "Preallocation"
+msgstr "선할당"
+
+msgid "Message Level"
+msgstr ""
+
+msgid "DNS Rebind Protection"
+msgstr ""
+
+msgid "Domain Names"
+msgstr ""
+
+msgid "Start Torrents"
+msgstr ""
+
+msgid "Stop Torrents"
 msgstr ""
 
 msgid "Location where work files will be stored."
@@ -14376,16 +14271,32 @@ msgstr ""
 msgid "Create work directory if it doesn't exist."
 msgstr "작업 디렉터리가 존재하지 않으면 생성합니다."
 
+msgid "Work Directory"
+msgstr "작업 디렉터리"
+
+msgid "Create Work Directory"
+msgstr ""
+
+msgid "Name of the WebDAV Record."
+msgstr ""
+
 msgid "WebDAV Name"
+msgstr ""
+
+msgid ""
+"The WebDAV configuration is applied to all folders matching this pattern."
 msgstr ""
 
 msgid "Folder Pattern"
 msgstr ""
 
-msgid "Read-Only"
+msgid "Read-Only Access."
 msgstr ""
 
-msgid "Use Sqlite"
+msgid "Use Sqlite for lockings and properties."
+msgstr ""
+
+msgid "These parameters will be added to this WebDAV configuration."
 msgstr ""
 
 msgid "Add WebDAV Record"
@@ -14427,38 +14338,10 @@ msgstr ""
 msgid "Do you want to toggle selected WebDAV records?"
 msgstr ""
 
-msgid "Name of the WebDAV Record."
+msgid "Read-Only"
 msgstr ""
 
-msgid ""
-"The WebDAV configuration is applied to all folders matching this pattern."
-msgstr ""
-
-msgid "Read-Only Access."
-msgstr ""
-
-msgid "Use Sqlite for lockings and properties."
-msgstr ""
-
-msgid "These parameters will be added to this WebDAV configuration."
-msgstr ""
-
-msgid "Web Service Discovery"
-msgstr ""
-
-msgid "IP Address Family"
-msgstr ""
-
-msgid "NETBIOS Hostname"
-msgstr ""
-
-msgid "Preserve Case"
-msgstr ""
-
-msgid "Server Mode"
-msgstr ""
-
-msgid "Workgroup Name"
+msgid "Use Sqlite"
 msgstr ""
 
 msgid "IPv4 only"
@@ -14486,6 +14369,36 @@ msgstr ""
 msgid "Set workgroup name"
 msgstr ""
 
+msgid "IP Address Family"
+msgstr ""
+
+msgid "NETBIOS Hostname"
+msgstr ""
+
+msgid "Preserve Case"
+msgstr ""
+
+msgid "Server Mode"
+msgstr ""
+
+msgid "Workgroup Name"
+msgstr ""
+
+msgid "Web Service Discovery"
+msgstr ""
+
+msgid "Protected"
+msgstr ""
+
+msgid "Set UID"
+msgstr "UID 설정"
+
+msgid "Snapdir"
+msgstr "Snapdir"
+
+msgid "UTF-8 Only"
+msgstr "UTF-8 전용"
+
 msgid "You may enter a description for your reference."
 msgstr ""
 
@@ -14510,18 +14423,6 @@ msgstr ""
 
 msgid "The name of the ZFS pool."
 msgstr ""
-
-msgid "Protected"
-msgstr ""
-
-msgid "Set UID"
-msgstr "UID 설정"
-
-msgid "Snapdir"
-msgstr "Snapdir"
-
-msgid "UTF-8 Only"
-msgstr "UTF-8 전용"
 
 msgid "The following errors were detected"
 msgstr "다음 오류들이 발견됨"
@@ -14575,45 +14476,6 @@ msgstr ""
 msgid "Encapsulation Protocol"
 msgstr ""
 
-msgid "Add VLAN"
-msgstr "VLAN 추가"
-
-msgid "Edit VLAN"
-msgstr "VLAN 수정"
-
-msgid "VLAN is marked for deletion"
-msgstr "VLAN 삭제 표시됨"
-
-msgid "VLAN is locked"
-msgstr ""
-
-msgid "VLAN is unlocked"
-msgstr "VLAN 잠금 해제됨"
-
-msgid "Delete Selected VLANs"
-msgstr "선택된 VLAN 삭제"
-
-msgid "Disable Selected VLANs"
-msgstr ""
-
-msgid "Enable Selected VLANs"
-msgstr ""
-
-msgid "Toggle Selected VLANs"
-msgstr ""
-
-msgid "Do you want to delete selected VLANs?"
-msgstr "선택된 VLAN을 삭제하시겠습니까?"
-
-msgid "Do you want to disable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to enable selected VLANs?"
-msgstr ""
-
-msgid "Do you want to toggle selected VLANs?"
-msgstr ""
-
 msgid "The name of the VLAN interface"
 msgstr ""
 
@@ -14662,6 +14524,45 @@ msgid "802.1Q (default)"
 msgstr ""
 
 msgid "802.1ad (QinQ)"
+msgstr ""
+
+msgid "Add VLAN"
+msgstr "VLAN 추가"
+
+msgid "Edit VLAN"
+msgstr "VLAN 수정"
+
+msgid "VLAN is marked for deletion"
+msgstr "VLAN 삭제 표시됨"
+
+msgid "VLAN is locked"
+msgstr ""
+
+msgid "VLAN is unlocked"
+msgstr "VLAN 잠금 해제됨"
+
+msgid "Delete Selected VLANs"
+msgstr "선택된 VLAN 삭제"
+
+msgid "Disable Selected VLANs"
+msgstr ""
+
+msgid "Enable Selected VLANs"
+msgstr ""
+
+msgid "Toggle Selected VLANs"
+msgstr ""
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "선택된 VLAN을 삭제하시겠습니까?"
+
+msgid "Do you want to disable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to enable selected VLANs?"
+msgstr ""
+
+msgid "Do you want to toggle selected VLANs?"
 msgstr ""
 
 msgid "1"
@@ -14862,27 +14763,6 @@ msgstr "그리고"
 msgid "Total: %1$s | Allocated: %2$s | Free: %3$s"
 msgstr ""
 
-msgid "Exported"
-msgstr "내보내기 됨"
-
-msgid "Destroyed"
-msgstr "제거됨"
-
-msgid "Spare"
-msgstr "예비"
-
-msgid "L2 Cache"
-msgstr "L2 캐시"
-
-msgid "Uninitialized"
-msgstr "초기화 되지 않음"
-
-msgid "Potentially Active"
-msgstr "잠제적 활성화"
-
-msgid "System tuning"
-msgstr "시스템 미세 조정"
-
 msgid "Deleting MBR and partition table"
 msgstr "MBR과 분할 영역 테이블 삭제 중"
 
@@ -14912,6 +14792,9 @@ msgid ""
 "The disk is currently mounted! The mount point will be removed temporarily "
 "to perform selected command."
 msgstr "디스크가 현재 탑재 되어 있습니다! 선택된 명령을 수행하기 위해 탑재 지점이 일시적으로 제거될 것입니다."
+
+msgid "System tuning"
+msgstr "시스템 미세 조정"
 
 msgid "ZFS Pool Tools"
 msgstr "ZFS 풀 도구"
@@ -15163,3 +15046,24 @@ msgstr "파일을 디스크에 기록하는 데에 실패했습니다."
 
 msgid "File upload stopped by extension."
 msgstr "확장자에 의해 파일 업로드가 정지했습니다."
+
+msgid "Exported"
+msgstr "내보내기 됨"
+
+msgid "Destroyed"
+msgstr "제거됨"
+
+msgid "Spare"
+msgstr "예비"
+
+msgid "L2 Cache"
+msgstr "L2 캐시"
+
+msgid "Uninitialized"
+msgstr "초기화 되지 않음"
+
+msgid "Potentially Active"
+msgstr "잠제적 활성화"
+
+#~ msgid "Be careful with turning on these options."
+#~ msgstr "이 옵션들을 켤 때 주의하십시오."
