@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+set -eE -o pipefail
+
+root=/usr/local/xigmanas
+source="$root/svn"
+state="$root/state"
+cd "$source"
+. .ci/freebsd.env
+mkdir -p "$state" "$root/work/pkg" "$root/artifacts"
+
+trap 'rc=$?; printf "%s\n" "$rc" > "$state/exit-code"; exit "$rc"' EXIT
+
+clone_at() {
+  local url="$1" revision="$2" destination="$3"
+  if [[ "$(git -C "$destination" rev-parse HEAD 2>/dev/null || true)" != "$revision" ]]; then
+    touch "$state/dirty"
+    mkdir -p "$destination"
+    if [[ ! -d "$destination/.git" ]]; then
+      git -C "$destination" init
+      git -C "$destination" remote add origin "$url"
+    fi
+    git -C "$destination" fetch --depth 1 origin "$revision"
+    git -C "$destination" checkout --force --detach FETCH_HEAD
+  fi
+}
+
+clone_at https://github.com/freebsd/freebsd-src.git "$FREEBSD_SRC_REV" /usr/src
+clone_at https://github.com/freebsd/freebsd-ports.git "$FREEBSD_PORTS_REV" /usr/ports
+ln -sfn /usr/src/sys /sys
+
+cp "$source/build/make.conf" /etc/make.conf
+cat >> /etc/make.conf <<'MAKECONF'
+BATCH=yes
+ALLOW_UNSUPPORTED_SYSTEM=yes
+DISABLE_VULNERABILITIES=yes
+DEFAULT_VERSIONS+=python=3.11 python3=3.11
+CCACHE_DIR=/var/cache/ccache
+WITH_CCACHE_BUILD=yes
+MAKE_JOBS_NUMBER=4
+MAKECONF
+export BATCH=yes ASSUME_ALWAYS_YES=yes IGNORE_OSVERSION=yes
+export CCACHE_DIR=/var/cache/ccache
+if [[ "${CI_MODE:-build}" == environment ]]; then
+  touch "$state/dirty"
+  printf 'Environment ready: src=%s ports=%s\n' "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV"
+  exit 0
+fi
+
+# Upstream supplies the filesystem and image assembly logic. Do not enter its
+# menus or call update_svn: the Git checkout is the only XigmaNAS source.
+set +e
+. "$source/build/functions.inc"
+set -e
+svn_revision="$(sed -n 's/.*"revision": *"\([^"]*\)".*/\1/p' "$source/.ci/svn-import.json")"
+XIGMANAS_REVISION="${svn_revision}-git${BUILD_SHA:0:8}"
+export XIGMANAS_REVISION
+printf 'XIGMANAS_REVISION=%s\n' "$XIGMANAS_REVISION" >> "$source/build/ports/xigmanas.mk"
+
+# Upstream intentionally unmounts not-yet-mounted temporary filesystems and
+# repeats directory creation during image assembly.
+umount() { command umount "$@" || true; }
+mkdir() { command mkdir -p "$@"; }
+create_checksum_file() {
+  (cd "$root" && find . -maxdepth 1 -type f \
+    \( -name '*.iso' -o -name '*.img.gz' -o -name '*.img.xz' -o -name '*.txz' \) \
+    -exec sha512 {} + > SHA512-CHECKSUM)
+}
+
+input_hash() {
+  git -C "$source" ls-tree -r HEAD -- "$@" | sha256 -q
+}
+kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
+  "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
+ports_key="$(printf '%s\n%s\n' "$FREEBSD_PORTS_REV" \
+  "$(input_hash build/ports build/make.conf)" | sha256 -q)"
+
+if [[ "$(cat "$state/rootfs-sha" 2>/dev/null || true)" != "$BUILD_SHA" ]]; then
+  chflags -R noschg "$root/rootfs" "$root/bootloader" 2>/dev/null || true
+  rm -rf "$root/rootfs" "$root/bootloader" "$root/artifacts"
+  mkdir -p "$root/artifacts"
+  create_rootfs
+  build_world
+  rm -f "$state"/installed-*
+  printf '%s\n' "$BUILD_SHA" > "$state/rootfs-sha"
+fi
+
+if [[ "$(cat "$state/kernel-key" 2>/dev/null || true)" != "$kernel_key" ]]; then
+  touch "$state/dirty"
+  git -C /usr/src reset --hard "$FREEBSD_SRC_REV"
+  git -C /usr/src clean -fd
+  for patch in "$source"/build/kernel-patches/*; do
+    [[ -f "$patch/pkg-state" ]] || continue
+    [[ "$(tr '[:lower:]' '[:upper:]' < "$patch/pkg-state")" == ON ]] || continue
+    make -C "$patch" install
+  done
+  cp "$source/build/kernel-config/$XIGMANAS_KERNCONF" "/sys/$XIGMANAS_ARCH/conf/"
+  if [[ "$(cat "$state/kernel-working-key" 2>/dev/null || true)" != "$kernel_key" ]]; then
+    rm -rf "$XIGMANAS_OBJDIRPREFIX"
+    printf '%s\n' "$kernel_key" > "$state/kernel-working-key"
+  fi
+  env MAKEOBJDIRPREFIX="$XIGMANAS_OBJDIRPREFIX" \
+    make -C /usr/src -j4 buildkernel KERNCONF="$XIGMANAS_KERNCONF" \
+    WITH_CCACHE_BUILD=yes NO_KERNELCLEAN=yes
+  env MAKEOBJDIRPREFIX="$XIGMANAS_OBJDIRPREFIX" \
+    make -C /usr/src installkernel KERNCONF="$XIGMANAS_KERNCONF" KODIR=/boot/kernel
+  printf '%s\n' "$kernel_key" > "$state/kernel-key"
+fi
+compress_kernel
+install_kernel_modules
+
+if [[ "$(cat "$state/ports-key" 2>/dev/null || true)" != "$ports_key" ]]; then
+  touch "$state/dirty"
+  for port in "$source"/build/ports/*; do
+    [[ -d "$port/work" ]] && make -C "$port" clean
+  done
+  rm -f "$state"/built-* "$state"/installed-*
+  base-ports
+  make -C "$source/build/ports/options"
+  printf '%s\n' "$ports_key" > "$state/ports-key"
+fi
+
+for port in "$source"/build/ports/*; do
+  [[ -f "$port/pkg-state" ]] || continue
+  [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
+  name="${port##*/}"
+  echo "===== XigmaNAS port: $name ====="
+  if [[ ! -f "$state/built-$name" ]]; then
+    touch "$state/dirty"
+    make -C "$port" build
+    touch "$state/built-$name"
+  fi
+done
+
+cp -p /var/db/pkg/local.sqlite "$root/work/pkg/local.sqlite"
+for port in "$source"/build/ports/*; do
+  [[ -f "$port/pkg-state" ]] || continue
+  [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
+  name="${port##*/}"
+  if [[ ! -f "$state/installed-$name" ]]; then
+    rm -f "$port"/work/.install_done.* "$port"/work/.stage_done.*
+    env PKG_DBDIR="$root/work/pkg" FORCE_PKG_REGISTER=1 make -C "$port" install
+    touch "$state/installed-$name"
+  fi
+done
+
+"$source/build/xigmanas-create-bootdir.sh" -f -m "$root/bootloader"
+add_libs
+"$source/build/xigmanas-modify-permissions.sh" "$root/rootfs"
+use_svn
+create_all_images
+create_checksum_file
+find "$root" -maxdepth 1 -type f \
+  \( -name '*.iso' -o -name '*.img.gz' -o -name '*.img.xz' -o -name '*.txz' \
+  -o -name '*CHECKSUM' \) -exec cp -p {} "$root/artifacts/" \;
+test -n "$(find "$root/artifacts" -name '*.iso' -size +100M)"
+test -n "$(find "$root/artifacts" -name '*.img.xz' -size +10M)"
+printf 'git_sha=%s\nsvn_revision=%s\nfreebsd_src=%s\nfreebsd_ports=%s\n' \
+  "$BUILD_SHA" "$svn_revision" "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV" \
+  > "$root/artifacts/build-info.txt"
+ccache --show-stats

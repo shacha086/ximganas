@@ -1,0 +1,161 @@
+name: Build XigmaNAS
+run-name: XigmaNAS 14.3 | ${{ inputs.mode || 'build' }} | slice ${{ inputs.slice || '1' }}
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - .ci/README.md
+      - .github/workflows/import.yml
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Prepare the cached environment, or build all images
+        type: choice
+        options: [build, environment]
+        default: build
+      source_sha:
+        description: Exact source commit for an automatic continuation (normally empty)
+        type: string
+        default: ''
+      slice:
+        description: Continuation number (normally leave at 1)
+        type: string
+        default: '1'
+  workflow_run:
+    workflows: [Import XigmaNAS SVN]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: xigmanas-build-main
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    env:
+      CI_MODE: ${{ inputs.mode || 'build' }}
+      SLICE: ${{ inputs.slice || '1' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_sha || (github.event_name == 'push' && github.sha) || 'main' }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Validate inputs and identify compatible environment
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$SLICE" =~ ^[1-9][0-9]?$ ]] && (( SLICE <= 12 ))
+          test -f .ci/svn-import.json
+          test -f build/functions.inc
+          echo "BUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "short_sha=$(git rev-parse --short=8 HEAD)" >> "$GITHUB_OUTPUT"
+          key="$(cat .ci/freebsd.env .ci/prepare.sh | sha256sum | cut -c1-16)"
+          echo "cache_key=fb143-v1-$key" >> "$GITHUB_OUTPUT"
+      - name: Reclaim runner disk for the FreeBSD build
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+          test -c /dev/kvm
+      - name: Start cached FreeBSD 14.3 toolchain
+        id: vm
+        uses: vmactions/freebsd-vm@811efaaac0668df8bfb8308c3ec997b5ab50037b
+        with:
+          release: '14.3'
+          arch: x86_64
+          mem: 12288
+          cpu: 4
+          sync: rsync
+          copyback: false
+          cache-after-prepare: true
+          cache-after-prepare-key-suffix: ${{ hashFiles('.ci/prepare.sh') }}
+          prepare: sh .ci/prepare.sh
+          run: |
+            uname -a
+            df -h
+      - name: Restore durable build checkpoint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .ci/checkpoint.sh restore '${{ steps.meta.outputs.cache_key }}'
+      - name: Synchronize the exact Git checkout into the build tree
+        shell: bash
+        run: |
+          ssh freebsd 'mkdir -p /usr/local/xigmanas/svn'
+          rsync -a --chown=0:0 --delete --exclude='**/work/' --exclude='build/ports/xigmanas.mk' \
+            ./ freebsd:/usr/local/xigmanas/svn/
+          ssh freebsd "test \"\$(git -C /usr/local/xigmanas/svn rev-parse HEAD)\" = '$BUILD_SHA'"
+      - name: Build or resume on the FreeBSD machine
+        id: compile
+        shell: bash
+        run: |
+          mkdir -p diagnostics artifacts
+          set +e
+          set -o pipefail
+          ssh freebsd "env BUILD_SHA='$BUILD_SHA' CI_MODE='$CI_MODE' \
+            timeout -k 60 12600 /usr/local/bin/bash /usr/local/xigmanas/svn/.ci/build.sh" \
+            2>&1 | tee diagnostics/build.log
+          rc="${PIPESTATUS[0]}"
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "Build exit code: $rc" >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+      - name: Save expensive work, including partial builds
+        if: always() && steps.compile.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .ci/checkpoint.sh save '${{ steps.meta.outputs.cache_key }}'
+      - name: Collect images and build diagnostics
+        if: always() && steps.vm.outcome == 'success'
+        shell: bash
+        run: |
+          mkdir -p diagnostics artifacts
+          ssh freebsd 'uname -a; df -h; ccache --show-stats' > diagnostics/environment.txt
+          rsync -a freebsd:/usr/local/xigmanas/state/ diagnostics/state/
+          if [[ '${{ steps.compile.outputs.rc }}' == 0 && "$CI_MODE" == build ]]; then
+            rsync -a freebsd:/usr/local/xigmanas/artifacts/ artifacts/
+            test -n "$(find artifacts -name '*.iso' -print -quit)"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: diagnostics/
+          if-no-files-found: warn
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
+        with:
+          name: xigmanas-amd64-${{ steps.meta.outputs.short_sha }}
+          path: artifacts/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - name: Continue before the hosted runner time limit
+        if: success() && steps.compile.outputs.rc == '124'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if (( SLICE >= 12 )); then
+            echo "::error::Build exceeded 12 slices. Inspect diagnostics before continuing manually."
+            exit 1
+          fi
+          gh workflow run build.yml --ref main \
+            -f mode="$CI_MODE" -f source_sha="$BUILD_SHA" -f slice="$((SLICE + 1))"
+          echo "Checkpoint saved; continuation $((SLICE + 1)) dispatched." >> "$GITHUB_STEP_SUMMARY"
+      - name: Report a genuine build failure
+        if: always() && steps.compile.outputs.rc != '' && steps.compile.outputs.rc != '0' && steps.compile.outputs.rc != '124'
+        run: |
+          echo "::error::FreeBSD build failed with code ${{ steps.compile.outputs.rc }}. See diagnostics."
+          exit 1
