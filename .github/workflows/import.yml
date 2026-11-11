@@ -45,8 +45,11 @@ jobs:
           fi
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends subversion
+          # Resolve the old tree through the current branch's copy history.
+          svn info --non-interactive -r "$SVN_REVISION" "$SVN_URL@HEAD"
           svn checkout --non-interactive --ignore-externals -r "$SVN_REVISION" \
-            "$SVN_URL@$SVN_REVISION" "$RUNNER_TEMP/svn-source"
+            "$SVN_URL@HEAD" "$RUNNER_TEMP/svn-source"
+          test "$(tr -d '\r\n' < "$RUNNER_TEMP/svn-source/etc/prd.version")" = 14.3.0.5
           rsync -a --delete --exclude='.svn/' --exclude='.git/' \
             --exclude='.github/' --exclude='.ci/' \
             "$RUNNER_TEMP/svn-source/" ./
