@@ -29,7 +29,9 @@ jobs:
           set -euo pipefail
           [[ "$JOB_ID" =~ ^[0-9]+$ ]]
           repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
-          gh api "repos/$repository/actions/jobs/$JOB_ID/logs" > job.log
+          curl --fail --silent --show-error --location --retry 3 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/$repository/actions/jobs/$JOB_ID/logs" > job.log
           tail -n 300 job.log > feedback.log
           marker="$(cat /proc/sys/kernel/random/uuid)"
           echo "::stop-commands::$marker"

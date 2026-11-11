@@ -161,16 +161,22 @@ jobs:
         run: |
           repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
           latest="$(gh api "repos/$repository/git/ref/heads/main" --jq .object.sha)"
+          continuation_sha="$BUILD_SHA"
           if [[ "$latest" != "$BUILD_SHA" ]]; then
-            echo "Checkpoint saved. A newer main commit takes precedence over this continuation." >> "$GITHUB_STEP_SUMMARY"
-            exit 0
+            ignored_only="$(gh api "repos/$repository/compare/$BUILD_SHA...$latest" \
+              --jq 'all(.files[]; .filename == ".ci/README.md" or .filename == ".github/workflows/import.yml" or .filename == ".github/workflows/diagnostics.yml")')"
+            if [[ "$ignored_only" != true ]]; then
+              echo "Checkpoint saved. A newer source commit takes precedence over this continuation." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            continuation_sha="$latest"
           fi
           if (( SLICE >= 12 )); then
             echo "::error::Build exceeded 12 slices. Inspect diagnostics before continuing manually."
             exit 1
           fi
           gh workflow run build.yml --ref main --repo "$repository" \
-            -f mode="$CI_MODE" -f source_sha="$BUILD_SHA" -f slice="$((SLICE + 1))"
+            -f mode="$CI_MODE" -f source_sha="$continuation_sha" -f slice="$((SLICE + 1))"
           echo "Checkpoint saved; continuation $((SLICE + 1)) dispatched." >> "$GITHUB_STEP_SUMMARY"
       - name: Report a genuine build failure
         if: always() && steps.compile.outputs.rc != '' && steps.compile.outputs.rc != '0' && steps.compile.outputs.rc != '124'
