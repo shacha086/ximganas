@@ -3,12 +3,13 @@ set -euo pipefail
 
 operation="${1:?restore or save}"
 key="${2:?cache compatibility key}"
+repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
 directory="${RUNNER_TEMP:?}/xigmanas-checkpoint"
 prefix="ci-cache-${key}-"
 mkdir -p "$directory"
 
 if [[ "$operation" == restore ]]; then
-  release="$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases?per_page=100" \
+  release="$(gh api --paginate "repos/$repository/releases?per_page=100" \
     --jq ".[] | select(.draft == false and (.tag_name | startswith(\"$prefix\"))) |
     select(any(.assets[]; .name == \"manifest.json\")) | [.created_at,.tag_name] | @tsv" \
     | sort -r | head -n 1 | cut -f 2)"
@@ -16,7 +17,7 @@ if [[ "$operation" == restore ]]; then
     echo "No compatible checkpoint. Bootstrapping on the Actions VM."
     exit 0
   fi
-  gh release download "$release" --repo "$GITHUB_REPOSITORY" --dir "$directory"
+  gh release download "$release" --repo "$repository" --dir "$directory"
   (cd "$directory" && sha256sum -c SHA256SUMS)
   cat "$directory"/state.tar.zst.* | zstd -dc |
     ssh freebsd 'tar -xpf - -C /'
@@ -42,21 +43,21 @@ jq -n --arg key "$key" --arg sha "$BUILD_SHA" \
   --arg run "$GITHUB_RUN_ID" \
   '{format:1,key:$key,source_sha:$sha,run_id:$run}' > "$directory/manifest.json"
 tag="${prefix}${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-gh release create "$tag" --repo "$GITHUB_REPOSITORY" \
+gh release create "$tag" --repo "$repository" \
   --target "$BUILD_SHA" --draft --prerelease --latest=false \
   --title "CI cache: FreeBSD 14.3 ($GITHUB_RUN_ID)" \
   --notes "Machine-generated build checkpoint, not an installable XigmaNAS release."
 for asset in "$directory"/state.tar.zst.* "$directory/SHA256SUMS" "$directory/manifest.json"; do
-  gh release upload "$tag" "$asset" --repo "$GITHUB_REPOSITORY"
+  gh release upload "$tag" "$asset" --repo "$repository"
 done
-gh release edit "$tag" --draft=false --repo "$GITHUB_REPOSITORY"
+gh release edit "$tag" --draft=false --repo "$repository"
 echo "Saved checkpoint $tag" >> "$GITHUB_STEP_SUMMARY"
 
 # Retain two completed generations, and only delete our own compatible caches.
-gh api --paginate "repos/$GITHUB_REPOSITORY/releases?per_page=100" \
+gh api --paginate "repos/$repository/releases?per_page=100" \
   --jq ".[] | select(.draft == false and (.tag_name | startswith(\"$prefix\"))) |
   [.created_at,.tag_name] | @tsv" |
   sort -r | tail -n +3 | cut -f 2 |
   while IFS= read -r old; do
-    gh release delete "$old" --cleanup-tag --yes --repo "$GITHUB_REPOSITORY"
+    gh release delete "$old" --cleanup-tag --yes --repo "$repository"
   done

@@ -1,0 +1,44 @@
+name: Read Build Failure
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/diagnostics.yml]
+  workflow_dispatch:
+    inputs:
+      job_id:
+        description: Completed Actions job whose final log section should be inspected
+        type: string
+        default: '130714204548'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  diagnostics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Read the final log section on the Actions machine
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_ID: ${{ inputs.job_id || '130714204548' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$JOB_ID" =~ ^[0-9]+$ ]]
+          repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
+          gh api "repos/$repository/actions/jobs/$JOB_ID/logs" > job.log
+          tail -n 300 job.log > feedback.log
+          marker="$(cat /proc/sys/kernel/random/uuid)"
+          echo "::stop-commands::$marker"
+          cat feedback.log
+          echo "::$marker::"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: failure-feedback-${{ github.run_id }}
+          path: feedback.log
+          if-no-files-found: warn
+          retention-days: 7

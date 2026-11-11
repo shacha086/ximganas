@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - .ci/README.md
       - .github/workflows/import.yml
+      - .github/workflows/diagnostics.yml
   workflow_dispatch:
     inputs:
       mode:
@@ -115,7 +116,8 @@ jobs:
         if: always() && steps.compile.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash .ci/checkpoint.sh save '${{ steps.meta.outputs.cache_key }}'
+        shell: bash
+        run: bash .ci/checkpoint.sh save '${{ steps.meta.outputs.cache_key }}' 2>&1 | tee diagnostics/checkpoint.log
       - name: Collect images and build diagnostics
         if: always() && steps.vm.outcome == 'success'
         shell: bash
@@ -157,7 +159,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          latest="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)"
+          repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
+          latest="$(gh api "repos/$repository/git/ref/heads/main" --jq .object.sha)"
           if [[ "$latest" != "$BUILD_SHA" ]]; then
             echo "Checkpoint saved. A newer main commit takes precedence over this continuation." >> "$GITHUB_STEP_SUMMARY"
             exit 0
@@ -166,7 +169,7 @@ jobs:
             echo "::error::Build exceeded 12 slices. Inspect diagnostics before continuing manually."
             exit 1
           fi
-          gh workflow run build.yml --ref main \
+          gh workflow run build.yml --ref main --repo "$repository" \
             -f mode="$CI_MODE" -f source_sha="$BUILD_SHA" -f slice="$((SLICE + 1))"
           echo "Checkpoint saved; continuation $((SLICE + 1)) dispatched." >> "$GITHUB_STEP_SUMMARY"
       - name: Report a genuine build failure
