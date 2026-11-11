@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Prepare the cached environment, or build all images
+        description: Prepare the cached environment, or build the LiveCD ISO
         type: choice
         options: [build, environment]
         default: build
@@ -59,6 +59,7 @@ jobs:
           [[ "$SLICE" =~ ^[1-9][0-9]?$ ]] && (( SLICE <= 12 ))
           test -f .ci/svn-import.json
           test -f build/functions.inc
+          test "$(jq -r .revision .ci/svn-import.json)" = 10566
           echo "BUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           echo "short_sha=$(git rev-parse --short=8 HEAD)" >> "$GITHUB_OUTPUT"
           key="$(cat .ci/freebsd.env .ci/prepare.sh | sha256sum | cut -c1-16)"
@@ -124,7 +125,7 @@ jobs:
           rsync -a freebsd:/usr/local/xigmanas/state/ diagnostics/state/
           if [[ '${{ steps.compile.outputs.rc }}' == 0 && "$CI_MODE" == build ]]; then
             rsync -a freebsd:/usr/local/xigmanas/artifacts/ artifacts/
-            test -n "$(find artifacts -name '*.iso' -print -quit)"
+            test -n "$(find artifacts -name '*-LiveCD-*.iso' -print -quit)"
           fi
       - uses: actions/upload-artifact@v4
         if: always()
@@ -136,7 +137,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
         with:
-          name: xigmanas-amd64-${{ steps.meta.outputs.short_sha }}
+          name: xigmanas-LiveCD-amd64-${{ steps.meta.outputs.short_sha }}
           path: artifacts/
           if-no-files-found: error
           compression-level: 0

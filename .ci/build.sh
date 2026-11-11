@@ -57,12 +57,31 @@ export XIGMANAS_REVISION
 printf 'XIGMANAS_REVISION=%s\n' "$XIGMANAS_REVISION" >> "$source/build/ports/xigmanas.mk"
 
 # Upstream intentionally unmounts not-yet-mounted temporary filesystems and
-# repeats directory creation during image assembly.
+# repeats directory and symlink creation during image assembly.
 umount() { command umount "$@" || true; }
 mkdir() { command mkdir -p "$@"; }
+ln() { command ln -f "$@"; }
+ldd() {
+  # Upstream scans scripts, static executables, and data as well as ELF files.
+  case "$(file -b "${@: -1}")" in
+    *ELF*"dynamically linked"*|*ELF*"shared object"*) command ldd "$@" ;;
+    *) return 0 ;;
+  esac
+}
+install() {
+  local argument
+  for argument in "$@"; do
+    if [[ "$argument" == /boot/modules/openzfs.ko && ! -f "$argument" ]]; then
+      echo "Skipping optional openzfs.ko; the base ZFS module is included."
+      return 0
+    fi
+  done
+  command install "$@"
+}
+trap 'printf "Build failed at line %s: %s\n" "$LINENO" "$BASH_COMMAND" >&2' ERR
 create_checksum_file() {
   (cd "$root" && find . -maxdepth 1 -type f \
-    \( -name '*.iso' -o -name '*.img.gz' -o -name '*.img.xz' -o -name '*.txz' \) \
+    -name '*-LiveCD-*.iso' \
     -exec sha512 {} + > SHA512-CHECKSUM)
 }
 
@@ -147,14 +166,14 @@ done
 add_libs
 "$source/build/xigmanas-modify-permissions.sh" "$root/rootfs"
 use_svn
-create_all_images
+unset TINY_ISO
+create_iso
 create_checksum_file
 find "$root" -maxdepth 1 -type f \
-  \( -name '*.iso' -o -name '*.img.gz' -o -name '*.img.xz' -o -name '*.txz' \
-  -o -name '*CHECKSUM' \) -exec cp -p {} "$root/artifacts/" \;
-test -n "$(find "$root/artifacts" -name '*.iso' -size +100M)"
-test -n "$(find "$root/artifacts" -name '*.img.xz' -size +10M)"
-printf 'git_sha=%s\nsvn_revision=%s\nfreebsd_src=%s\nfreebsd_ports=%s\n' \
+  \( -name '*-LiveCD-*.iso' -o -name 'SHA512-CHECKSUM' \) \
+  -exec cp -p {} "$root/artifacts/" \;
+test -n "$(find "$root/artifacts" -name '*-LiveCD-*.iso' -size +100M)"
+printf 'target=LiveCD-ISO\ngit_sha=%s\nsvn_revision=%s\nfreebsd_src=%s\nfreebsd_ports=%s\n' \
   "$BUILD_SHA" "$svn_revision" "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV" \
   > "$root/artifacts/build-info.txt"
 ccache --show-stats

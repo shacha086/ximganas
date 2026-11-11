@@ -21,31 +21,43 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Import once, without overwriting Git patches
+      - name: Import SVN r10566, then keep Git authoritative
         env:
           SVN_URL: https://svn.code.sf.net/p/xigmanas/code/branches/14.3.0.5/
+          SVN_REVISION: '10566'
         shell: bash
         run: |
           set -euo pipefail
-          if test -f .ci/svn-import.json || test -f build/make.sh; then
-            echo "Source is already imported. Git is authoritative; skipping SVN."
+          current="$(jq -r '.revision // empty' .ci/svn-import.json 2>/dev/null || true)"
+          if [[ "$current" == "$SVN_REVISION" ]]; then
+            echo "SVN r$SVN_REVISION is already imported. Preserving all Git patches."
             exit 0
+          fi
+          if test -f build/make.sh; then
+            # The requested one-time switch is allowed only before source patches.
+            test "$current" = 10655
+            original=3e71042914b90653237b0348c0d35b8efef5ea32
+            git fetch --depth=1 origin "$original"
+            if ! git diff --quiet "$original" HEAD -- . ':(exclude).ci' ':(exclude).github'; then
+              echo "::error::Git source patches exist. Refusing to overwrite them during the SVN revision switch."
+              exit 1
+            fi
           fi
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends subversion
-          revision="$(svn info --non-interactive --show-item revision "$SVN_URL")"
-          svn checkout --non-interactive --ignore-externals -r "$revision" \
-            "$SVN_URL" "$RUNNER_TEMP/svn-source"
-          rsync -a --exclude='.svn/' --exclude='.git/' --exclude='.github/' \
+          svn checkout --non-interactive --ignore-externals -r "$SVN_REVISION" \
+            "$SVN_URL@$SVN_REVISION" "$RUNNER_TEMP/svn-source"
+          rsync -a --delete --exclude='.svn/' --exclude='.git/' \
+            --exclude='.github/' --exclude='.ci/' \
             "$RUNNER_TEMP/svn-source/" ./
           mkdir -p .ci
-          jq -n --arg url "$SVN_URL" --arg revision "$revision" \
+          jq -n --arg url "$SVN_URL" --arg revision "$SVN_REVISION" \
             '{url:$url,revision:$revision}' > .ci/svn-import.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add --all
           git diff --cached --quiet && exit 0
-          git commit -m "Import XigmaNAS 14.3.0.5 from SVN r$revision"
+          git commit -m "Import XigmaNAS 14.3.0.5 from SVN r$SVN_REVISION"
           git push origin "HEAD:${GITHUB_REF_NAME}"
           echo "## SVN import" >> "$GITHUB_STEP_SUMMARY"
-          echo "Imported revision $revision. Future builds use Git, not SVN." >> "$GITHUB_STEP_SUMMARY"
+          echo "Imported revision $SVN_REVISION. Future builds use Git, not SVN." >> "$GITHUB_STEP_SUMMARY"
