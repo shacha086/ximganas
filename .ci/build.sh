@@ -86,6 +86,7 @@ create_checksum_file() {
 }
 
 . "$source/.ci/port-cache.sh"
+. "$source/.ci/powerman.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -141,6 +142,9 @@ for port in "$source"/build/ports/*; do
   [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
   name="${port##*/}"
   echo "===== XigmaNAS port: $name ====="
+  if [[ "$name" == nut-devel ]]; then
+    prepare_powerman
+  fi
   prepare_port_cache "$port" "$ports_key"
   port_started=$SECONDS
   port_cache=hit
@@ -148,6 +152,10 @@ for port in "$source"/build/ports/*; do
     port_cache=miss
     touch "$state/dirty"
     make -C "$port" build
+    if [[ "$name" == nut-devel ]]; then
+      test -x /usr/local/bin/pm
+      pkg which /usr/local/bin/pm
+    fi
     touch "$state/built-$name"
   fi
   printf 'TIMING port=%s cache=%s seconds=%s\n' "$name" "$port_cache" "$((SECONDS - port_started))"

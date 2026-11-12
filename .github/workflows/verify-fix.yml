@@ -1,0 +1,26 @@
+name: Verify Powerman Fix
+
+on:
+  push:
+    branches: [ci/build-maintenance]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check shell syntax
+        run: |
+          for script in .ci/build.sh .ci/port-cache.sh .ci/powerman.sh .ci/tests/*.sh; do
+            bash -n "$script"
+          done
+      - name: Check existing cache behavior
+        run: bash .ci/tests/port-cache.sh
+      - name: Check powerman fix and isolated invalidation
+        run: bash .ci/tests/powerman.sh
