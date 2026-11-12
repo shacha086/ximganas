@@ -1,0 +1,10 @@
+diff --git a/net/libpfctl/distinfo b/net/libpfctl/distinfo
+--- a/net/libpfctl/distinfo
++++ b/net/libpfctl/distinfo
+@@ -1,4 +1,6 @@
+ TIMESTAMP = 1746177054
++SHA256 (libpfctl-14.3_4.tar.gz) = 0dba9d47cb5990e3029641bca9958925f20b091456bb7fe140ce1f4e9e2c30ce
++SIZE (libpfctl-14.3_4.tar.gz) = 11678
+ SHA256 (libpfctl-14.4_4.tar.gz) = 07b91d4d39a69724d642d51db44e9124f2d57b715c5420e1f2cd6193a73a8d12
+ SIZE (libpfctl-14.4_4.tar.gz) = 11687
+ SHA256 (libpfctl-14.5_4.tar.gz) = 6518f4015b1365ad49eb1c20921597f7bba10a69140acf3ebd50c62b083fa5ec

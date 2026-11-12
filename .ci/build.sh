@@ -87,6 +87,7 @@ create_checksum_file() {
 
 . "$source/.ci/port-cache.sh"
 . "$source/.ci/powerman.sh"
+. "$source/.ci/libpfctl.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -144,6 +145,8 @@ for port in "$source"/build/ports/*; do
   echo "===== XigmaNAS port: $name ====="
   if [[ "$name" == nut-devel ]]; then
     prepare_powerman
+  elif [[ "$name" == open-vm-tools ]]; then
+    prepare_libpfctl
   fi
   prepare_port_cache "$port" "$ports_key"
   port_started=$SECONDS
