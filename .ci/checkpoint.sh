@@ -61,7 +61,7 @@ fi
 # Stream out of the guest: do not require a second archive-sized guest disk.
 ssh freebsd "sh '$GITHUB_WORKSPACE/.ci/export-state.sh'" |
   zstd -T2 -3 |
-  split -b 1500M -d -a 3 - "$directory/state.tar.zst."
+  split -b "${CHECKPOINT_CHUNK_SIZE:-1500M}" -d -a 3 - "$directory/state.tar.zst."
 (cd "$directory" && sha256sum state.tar.zst.* > SHA256SUMS)
 jq -n --arg key "$key" --arg sha "$BUILD_SHA" \
   --arg run "$GITHUB_RUN_ID" \

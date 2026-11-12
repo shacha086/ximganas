@@ -1,0 +1,171 @@
+name: Cache Backup Restore Test
+run-name: Cache round-trip | release and emergency cache | ${{ github.run_id }}
+
+on:
+  push:
+    branches: [ci/cache-roundtrip]
+    paths:
+      - .github/workflows/cache-roundtrip.yml
+      - .ci/cache-roundtrip.sh
+      - .ci/checkpoint.sh
+      - .ci/export-state.sh
+      - .ci/restore-accounts.sh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: cache-roundtrip
+  cancel-in-progress: false
+
+env:
+  CACHE_KEY: roundtrip-fb143-${{ github.run_id }}-${{ github.run_attempt }}
+  EMERGENCY_KEY: checkpoint-roundtrip-${{ github.run_id }}-${{ github.run_attempt }}
+  BUILD_SHA: 9d5b09ad8a28e69db300c1dbcf66b449f020b1fd
+
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check release creation permission
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .ci/checkpoint.sh preflight "$CACHE_KEY"
+      - name: Start the cached toolchain and seed test state without compiling
+        uses: vmactions/freebsd-vm@811efaaac0668df8bfb8308c3ec997b5ab50037b
+        with:
+          release: '14.3'
+          arch: x86_64
+          mem: 2048
+          cpu: 2
+          sync: rsync
+          copyback: false
+          cache-after-prepare: true
+          cache-after-prepare-key-suffix: ${{ hashFiles('.ci/prepare.sh') }}
+          prepare: sh .ci/prepare.sh
+          run: env TEST_RUN_ID='${{ github.run_id }}' sh .ci/cache-roundtrip.sh seed
+      - name: Save a real multi-part checkpoint with an old source SHA
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHECKPOINT_CHUNK_SIZE: 32M
+        shell: bash
+        run: bash .ci/checkpoint.sh save "$CACHE_KEY" 2>&1 | tee cache-save.log
+      - name: Check archive integrity and excluded paths
+        shell: bash
+        run: |
+          directory="$RUNNER_TEMP/xigmanas-checkpoint"
+          (cd "$directory" && sha256sum -c SHA256SUMS)
+          test "$(find "$directory" -name 'state.tar.zst.*' | wc -l)" -gt 1
+          cat "$directory"/state.tar.zst.* | zstd -dc | tar -tf - > archive-entries.txt
+          grep -Fx 'usr/obj/cache-roundtrip/payload.bin' archive-entries.txt
+          if grep -E '(^|/)\.ssh(/|$)|^usr/local/etc/ssh(/|$)|^usr/local/xigmanas/artifacts(/|$)|^etc/(master\.passwd|passwd|pwd\.db|spwd\.db)$' archive-entries.txt; then
+            echo 'Secret or output exclusion failed.'
+            exit 1
+          fi
+          jq -e --arg sha "$BUILD_SHA" '.source_sha == $sha' "$directory/manifest.json"
+          echo 'PASS: real multi-part export, SHA256 verification, exclusions, old-source manifest' >> "$GITHUB_STEP_SUMMARY"
+      - name: Save the same archive to the emergency cache
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/xigmanas-checkpoint
+          key: ${{ env.EMERGENCY_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cache-backup-feedback-${{ github.run_id }}
+          path: |
+            cache-save.log
+            archive-entries.txt
+            ${{ runner.temp }}/xigmanas-checkpoint/manifest.json
+            ${{ runner.temp }}/xigmanas-checkpoint/SHA256SUMS
+          retention-days: 7
+
+  restore:
+    needs: backup
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Start a fresh FreeBSD machine without the seeded state
+        uses: vmactions/freebsd-vm@811efaaac0668df8bfb8308c3ec997b5ab50037b
+        with:
+          release: '14.3'
+          arch: x86_64
+          mem: 2048
+          cpu: 2
+          sync: rsync
+          copyback: false
+          cache-after-prepare: true
+          cache-after-prepare-key-suffix: ${{ hashFiles('.ci/prepare.sh') }}
+          prepare: sh .ci/prepare.sh
+          run: test ! -e /usr/obj/cache-roundtrip/payload.bin
+      - name: Download and restore the release checkpoint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          bash .ci/checkpoint.sh restore "$CACHE_KEY" 2>&1 | tee restore-release.log
+          ssh freebsd "sh '$GITHUB_WORKSPACE/.ci/cache-roundtrip.sh' verify" 2>&1 | tee -a restore-release.log
+          echo 'PASS: release restored and validated on a fresh FreeBSD machine' >> "$GITHUB_STEP_SUMMARY"
+      - name: Remove only this test release and its fixture files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
+          gh release delete "ci-cache-${CACHE_KEY}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            --cleanup-tag --yes --repo "$repository"
+          ssh freebsd "sh '$GITHUB_WORKSPACE/.ci/cache-roundtrip.sh' clear"
+      - name: Retrieve the emergency cache from the previous machine
+        id: emergency
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/xigmanas-checkpoint
+          key: ${{ env.EMERGENCY_KEY }}
+          fail-on-cache-miss: true
+      - name: Restore without a release and verify every fixture again
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          test '${{ steps.emergency.outputs.cache-hit }}' = true
+          bash .ci/checkpoint.sh restore "$CACHE_KEY" 2>&1 | tee restore-emergency.log
+          grep -F "Restored Actions fallback checkpoint from run $GITHUB_RUN_ID" "$GITHUB_STEP_SUMMARY"
+          ssh freebsd "sh '$GITHUB_WORKSPACE/.ci/cache-roundtrip.sh' verify" 2>&1 | tee -a restore-emergency.log
+          echo 'PASS: emergency cache restored and validated with the release unavailable' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cache-restore-feedback-${{ github.run_id }}
+          path: restore-*.log
+          retention-days: 7
+
+  cleanup:
+    if: always()
+    needs: [backup, restore]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Remove only the disposable test release and emergency entry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
+          tag="ci-cache-${CACHE_KEY}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          if gh release view "$tag" --repo "$repository" >/dev/null 2>&1; then
+            gh release delete "$tag" --cleanup-tag --yes --repo "$repository"
+          fi
+          cache_id="$(gh cache list --repo "$repository" --ref "$GITHUB_REF" \
+            --key "$EMERGENCY_KEY" --json id,key --jq ".[] | select(.key == \"$EMERGENCY_KEY\") | .id")"
+          if [[ -n "$cache_id" ]]; then
+            gh cache delete "$cache_id" --repo "$repository"
+          fi
