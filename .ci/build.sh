@@ -89,6 +89,7 @@ create_checksum_file() {
 . "$source/.ci/powerman.sh"
 . "$source/.ci/libpfctl.sh"
 . "$source/.ci/open-vm-tools.sh"
+. "$source/.ci/lmdb.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -149,6 +150,8 @@ for port in "$source"/build/ports/*; do
   elif [[ "$name" == open-vm-tools ]]; then
     prepare_libpfctl
     prepare_open_vm_tools
+  elif [[ "$name" == samba422 ]]; then
+    prepare_lmdb
   fi
   prepare_port_cache "$port" "$ports_key"
   port_started=$SECONDS
