@@ -9,7 +9,7 @@ on:
       job_id:
         description: Completed Actions job whose final log section should be inspected
         type: string
-        default: '130733497246'
+        default: '130793966906'
 
 permissions:
   contents: write
@@ -28,15 +28,39 @@ jobs:
           set -euo pipefail
           repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
           echo "Canonical repository: $repository"
-          release_id="$(gh api --method POST "repos/$repository/releases" \
-            -f tag_name="ci-cache-permission-probe-$GITHUB_RUN_ID" \
-            -f target_commitish="$GITHUB_SHA" -F draft=true --jq .id)"
-          gh api --method DELETE "repos/$repository/releases/$release_id"
-          echo "Creating and deleting a draft checkpoint succeeded."
+          branch="$(gh api "repos/$repository" --jq .default_branch)"
+          if release_id="$(gh api --method POST "repos/$repository/releases" \
+            -f tag_name="ci-cache-old-sha-probe-$GITHUB_RUN_ID" \
+            -f target_commitish=9d5b09ad8a28e69db300c1dbcf66b449f020b1fd \
+            -F draft=true --jq .id)"; then
+            gh api --method DELETE "repos/$repository/releases/$release_id"
+            echo "Old-SHA probe unexpectedly succeeded."
+          else
+            echo "Old-SHA checkpoint creation reproduced the permission failure."
+          fi
+          tag="ci-cache-permission-probe-$GITHUB_RUN_ID"
+          trap 'gh release delete "$tag" --cleanup-tag --yes --repo "$repository" || true' EXIT
+          printf 'checkpoint permission roundtrip\n' > probe.txt
+          sha256sum probe.txt > SHA256SUMS
+          gh release create "$tag" --repo "$repository" --target "$branch" \
+            --draft --prerelease --latest=false --title 'Temporary CI permission probe' \
+            probe.txt SHA256SUMS
+          gh release edit "$tag" --repo "$repository" --target "$branch" --draft=false
+          gh release download "$tag" --repo "$repository" --dir restored
+          (cd restored && sha256sum -c SHA256SUMS)
+          echo "Default-branch create/upload/publish/download/checksum succeeded."
+      - name: Inspect all legacy process-group calls in Firefly on Actions
+        shell: bash
+        run: |
+          curl --fail --location --retry 3 \
+            https://distcache.FreeBSD.org/ports-distfiles/mt-daapd-svn-1696.tar.gz \
+            -o firefly.tar.gz
+          tar -xzf firefly.tar.gz
+          grep -Rn -E 'setpgrp[[:space:]]*\(' mt-daapd-svn-1696/src
       - name: Read the final log section on the Actions machine
         env:
           GH_TOKEN: ${{ github.token }}
-          JOB_ID: ${{ inputs.job_id || '130733497246' }}
+          JOB_ID: ${{ inputs.job_id || '130793966906' }}
         shell: bash
         run: |
           set -euo pipefail
