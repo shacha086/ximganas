@@ -1,7 +1,7 @@
 PORTNAME=		exfat
 DISTVERSIONPREFIX= v
 PORTVERSION=	   1.4.0
-PORTREVISION=	   0
+PORTREVISION=	   1
 CATEGORIES=	   filesystems
 PKGNAMEPREFIX=	fusefs-
 
@@ -19,9 +19,9 @@ LIB_DEPENDS=	libublio.so:devel/libublio
 USE_GITHUB=     yes
 GH_ACCOUNT=     relan
 
-USES=		autoreconf fuse
+USES=		autoreconf fuse:3 pkgconfig
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include -DUSE_UBLIO
+CPPFLAGS+=	-I${LOCALBASE}/include/fuse3 -I${LOCALBASE}/include -DUSE_UBLIO -D_FILE_OFFSET_BITS=64
 LDFLAGS+=	-L${LOCALBASE}/lib
 LIBS+=		-lublio
 
