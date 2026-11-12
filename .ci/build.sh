@@ -79,7 +79,11 @@ install() {
   done
   command install "$@"
 }
-trap 'printf "Build failed at line %s: %s\n" "$LINENO" "$BASH_COMMAND" >&2' ERR
+trap 'rc=$?
+  printf "Build failed at line %s: %s\n" "$LINENO" "$BASH_COMMAND" >&2
+  swapinfo -h >&2 || true
+  dmesg | tail -50 >&2 || true
+  exit "$rc"' ERR
 create_checksum_file() {
   # The upstream builders call this separately; hash each artifact once below.
   return 0
@@ -159,6 +163,11 @@ for port in "$source"/build/ports/*; do
   if [[ ! -f "$state/built-$name" ]]; then
     port_cache=miss
     touch "$state/dirty"
+    if [[ "$name" == vbox ]]; then
+      # Finish the memory-heavy dependency without cleaning its cached objects.
+      echo 'CACHE llvm19: resuming with one compiler job.'
+      make -C /usr/ports/devel/llvm19 install MAKE_JOBS_NUMBER=1
+    fi
     make -C "$port" build
     if [[ "$name" == nut-devel ]]; then
       test -x /usr/local/bin/pm
