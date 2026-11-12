@@ -52,9 +52,15 @@ jobs:
       - name: Inspect all legacy process-group calls in Firefly on Actions
         shell: bash
         run: |
-          curl --fail --location --retry 3 \
-            https://distcache.FreeBSD.org/ports-distfiles/mt-daapd-svn-1696.tar.gz \
-            -o firefly.tar.gz
+          for mirror in https://distfiles.macports.org/mt-daapd \
+            https://ftp.momo-i.org/pub/other \
+            https://src.fedoraproject.org/repo/pkgs/mt-daapd/mt-daapd-svn-1696.tar.gz/42ba1f432bb88e18a8cb4ce0fc52eb64; do
+            if curl --fail --location --max-time 45 \
+              "$mirror/mt-daapd-svn-1696.tar.gz" -o firefly.tar.gz; then
+              break
+            fi
+          done
+          echo '9c3f1fc4d46391286ec8572c3080bb28d681ea6b1afe3ba51ffadf2eb7cfa344  firefly.tar.gz' | sha256sum -c -
           tar -xzf firefly.tar.gz
           grep -Rn -E 'setpgrp[[:space:]]*\(' mt-daapd-svn-1696/src
       - name: Read the final log section on the Actions machine

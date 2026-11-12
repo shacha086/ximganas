@@ -65,6 +65,10 @@ jobs:
           echo "short_sha=$(git rev-parse --short=8 HEAD)" >> "$GITHUB_OUTPUT"
           key="$(cat .ci/freebsd.env .ci/prepare.sh | sha256sum | cut -c1-16)"
           echo "cache_key=fb143-v1-$key" >> "$GITHUB_OUTPUT"
+      - name: Verify durable checkpoint permission before expensive work
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .ci/checkpoint.sh preflight '${{ steps.meta.outputs.cache_key }}'
       - name: Reclaim runner disk for the FreeBSD build
         shell: bash
         run: |
@@ -87,6 +91,12 @@ jobs:
           run: |
             uname -a
             df -h
+      - name: Recover an emergency checkpoint after a failed release upload
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/xigmanas-checkpoint
+          key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-
       - name: Restore durable build checkpoint
         env:
           GH_TOKEN: ${{ github.token }}
@@ -113,11 +123,18 @@ jobs:
           echo "Build exit code: $rc" >> "$GITHUB_STEP_SUMMARY"
           exit 0
       - name: Save expensive work, including partial builds
+        id: checkpoint
         if: always() && steps.compile.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: bash .ci/checkpoint.sh save '${{ steps.meta.outputs.cache_key }}' 2>&1 | tee diagnostics/checkpoint.log
+      - name: Preserve the archive if the release service rejects an upload
+        if: always() && steps.checkpoint.outcome == 'failure' && steps.checkpoint.outputs.archive_ready == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/xigmanas-checkpoint
+          key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Collect images and build diagnostics
         if: always() && steps.vm.outcome == 'success'
         shell: bash

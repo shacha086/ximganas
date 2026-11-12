@@ -46,6 +46,12 @@ inside the VM. It is not published as a separate artifact.
 - Each compatible generation retains the latest two complete checkpoints.
   Large archives are split into assets smaller than 2 GB. SHA256 hashes
   are checked before restoring them.
+- Release tags anchor storage on the current default branch; `manifest.json`
+  records the actual built source commit. This avoids stale-commit workflow
+  permission failures when new commits arrive during compilation.
+- Release creation permission is checked before expensive work. Failed release
+  uploads additionally save the compressed archive to an emergency Actions cache.
+  Restoration selects the newer compatible release or emergency checkpoint.
 
 Checkpoints are public release assets. They contain generated build files,
 installed dependency binaries, and build configuration. They must never
@@ -64,7 +70,7 @@ does not start more slices. Stale continuation jobs are skipped before
 entering the build queue.
 
 The runner's hard time limit, infrastructure loss, or a failed checkpoint
-upload cannot guarantee preservation of the current slice. The previous
+upload and emergency-cache failure cannot guarantee preservation of the current slice. The previous
 published checkpoint remains available. Failed or incomplete uploads remain
 drafts and are never selected for restoration.
 
