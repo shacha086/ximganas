@@ -40,7 +40,15 @@ inside the VM. It is not published as a separate artifact.
   package database remain cached.
 - A source-only patch reuses the kernel and built ports, then assembles a
   fresh image. Kernel configuration or patch changes rebuild the kernel.
-  Changes under `build/ports` or `build/make.conf` rebuild the custom ports.
+  Each custom port has its own input fingerprint: changing one recipe,
+  distinfo, or patch invalidates only that port, including partial work.
+  Shared options, base-port overlays, bundled distfiles, build metadata,
+  or the effective make configuration invalidate all custom ports.
+- Restored legacy checkpoints are fingerprinted before the new Git checkout
+  replaces their source metadata, preserving completed and partial builds.
+  Each port and the kernel log cache hits and elapsed build time.
+- The compiler cache has an 8 GB limit. Root filesystem assembly remains
+  fresh for each source commit so removed files cannot leak into new images.
 - `freebsd.env` pins both FreeBSD source and ports commits. Changing those
   pins or `prepare.sh` starts a new compatible checkpoint generation.
 - Each compatible generation retains the latest two complete checkpoints.

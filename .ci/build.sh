@@ -40,6 +40,7 @@ MAKE_JOBS_NUMBER=4
 MAKECONF
 export BATCH=yes ASSUME_ALWAYS_YES=yes IGNORE_OSVERSION=yes
 export CCACHE_DIR=/var/cache/ccache
+ccache --max-size 8G
 if [[ "${CI_MODE:-build}" == environment ]]; then
   touch "$state/dirty"
   printf 'Environment ready: src=%s ports=%s\n' "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV"
@@ -84,13 +85,11 @@ create_checksum_file() {
   return 0
 }
 
-input_hash() {
-  git -C "$source" ls-tree -r HEAD -- "$@" | sha256 -q
-}
+. "$source/.ci/port-cache.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
-ports_key="$(printf '%s\n%s\n' "$FREEBSD_PORTS_REV" \
-  "$(input_hash build/ports build/make.conf)" | sha256 -q)"
+seed_legacy_port_cache
+ports_key="$(ports_common_key)"
 
 if [[ "$(cat "$state/rootfs-sha" 2>/dev/null || true)" != "$BUILD_SHA" ]]; then
   chflags -R noschg "$root/rootfs" "$root/bootloader" 2>/dev/null || true
@@ -102,7 +101,10 @@ if [[ "$(cat "$state/rootfs-sha" 2>/dev/null || true)" != "$BUILD_SHA" ]]; then
   printf '%s\n' "$BUILD_SHA" > "$state/rootfs-sha"
 fi
 
+kernel_started=$SECONDS
+kernel_cache=hit
 if [[ "$(cat "$state/kernel-key" 2>/dev/null || true)" != "$kernel_key" ]]; then
+  kernel_cache=miss
   touch "$state/dirty"
   git -C /usr/src reset --hard "$FREEBSD_SRC_REV"
   git -C /usr/src clean -fd
@@ -123,18 +125,15 @@ if [[ "$(cat "$state/kernel-key" 2>/dev/null || true)" != "$kernel_key" ]]; then
     make -C /usr/src installkernel KERNCONF="$XIGMANAS_KERNCONF" KODIR=/boot/kernel
   printf '%s\n' "$kernel_key" > "$state/kernel-key"
 fi
+printf 'TIMING kernel cache=%s seconds=%s\n' "$kernel_cache" "$((SECONDS - kernel_started))"
 compress_kernel
 install_kernel_modules
 
-if [[ "$(cat "$state/ports-key" 2>/dev/null || true)" != "$ports_key" ]]; then
+if [[ "$(cat "$state/ports-common-key" 2>/dev/null || true)" != "$ports_key" ]]; then
   touch "$state/dirty"
-  for port in "$source"/build/ports/*; do
-    [[ -d "$port/work" ]] && make -C "$port" clean
-  done
-  rm -f "$state"/built-* "$state"/installed-*
   base-ports
   make -C "$source/build/ports/options"
-  printf '%s\n' "$ports_key" > "$state/ports-key"
+  printf '%s\n' "$ports_key" > "$state/ports-common-key"
 fi
 
 for port in "$source"/build/ports/*; do
@@ -142,11 +141,16 @@ for port in "$source"/build/ports/*; do
   [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
   name="${port##*/}"
   echo "===== XigmaNAS port: $name ====="
+  prepare_port_cache "$port" "$ports_key"
+  port_started=$SECONDS
+  port_cache=hit
   if [[ ! -f "$state/built-$name" ]]; then
+    port_cache=miss
     touch "$state/dirty"
     make -C "$port" build
     touch "$state/built-$name"
   fi
+  printf 'TIMING port=%s cache=%s seconds=%s\n' "$name" "$port_cache" "$((SECONDS - port_started))"
 done
 
 if [[ "$(cat "$state/pkg-db-sha" 2>/dev/null || true)" != "$BUILD_SHA" ]]; then

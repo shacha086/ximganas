@@ -33,7 +33,24 @@ permissions:
   actions: write
 
 jobs:
+  cache-tests:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (inputs.source_sha == '' || inputs.source_sha == github.sha) &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_sha || (github.event_name == 'push' && github.sha) || 'main' }}
+          persist-credentials: false
+      - name: Test port cache invalidation and legacy checkpoint migration
+        run: bash .ci/tests/port-cache.sh
   build:
+    needs: cache-tests
     if: >-
       github.ref == 'refs/heads/main' &&
       (inputs.source_sha == '' || inputs.source_sha == github.sha) &&
@@ -104,6 +121,8 @@ jobs:
       - name: Synchronize the exact Git checkout into the build tree
         shell: bash
         run: |
+          ssh freebsd "/usr/local/bin/bash '$GITHUB_WORKSPACE/.ci/port-cache.sh' seed \
+            /usr/local/xigmanas/svn /usr/local/xigmanas/state"
           ssh freebsd 'mkdir -p /usr/local/xigmanas/svn'
           rsync -a --chown=0:0 --delete --exclude='**/work/' --exclude='build/ports/xigmanas.mk' \
             ./ freebsd:/usr/local/xigmanas/svn/
