@@ -1,0 +1,11 @@
+diff --git a/sysutils/powerman/Makefile b/sysutils/powerman/Makefile
+--- a/sysutils/powerman/Makefile
++++ b/sysutils/powerman/Makefile
+@@ -25,6 +25,6 @@ TEST_DEPENDS=	bash:shells/bash \
+ 		valgrind:devel/valgrind
+ 
+-USES=		libtool localbase perl5 shebangfix
++USES=		gmake libtool localbase perl5 shebangfix
+ USE_LDCONFIG=	yes
+ USE_PERL5=	build
+ USE_RC_SUBR=	${PORTNAME}

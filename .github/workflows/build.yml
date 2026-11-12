@@ -49,6 +49,8 @@ jobs:
           persist-credentials: false
       - name: Test port cache invalidation and legacy checkpoint migration
         run: bash .ci/tests/port-cache.sh
+      - name: Test powerman GNU make fix and isolated cache invalidation
+        run: bash .ci/tests/powerman.sh
   build:
     needs: cache-tests
     if: >-
