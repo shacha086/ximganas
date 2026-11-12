@@ -17,7 +17,7 @@ NO_LICENSES_DIALOGS=	yes
 LICENSE=	MPL20
 #LICENSE_FILE=	${WRKSRC}/${PORTNAME}/LICENSE
 
-USES=		cpe go:1.24,modules
+USES=		cpe go:1.24+,modules
 BINS=		syncthing stdiscosrv strelaysrv strelaypoolsrv
 
 CONFLICTS_INSTALL=	syncthing1
