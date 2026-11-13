@@ -25,5 +25,25 @@ prepare_samba_nsupdate() {
     make -C /usr/ports/dns/bind-tools clean NOCLEANDEPENDS=yes || return $?
     echo 'CACHE bind-tools: selected MIT GSSAPI for authenticated DNS updates.'
   fi
+
+  options=/var/db/ports/devel_protobuf-c/options
+  settings=$'OPTIONS_FILE_UNSET+=DOXYGEN\nOPTIONS_FILE_UNSET+=DOCS'
+  current="$(grep -E '^OPTIONS_FILE_(SET|UNSET)\+=(DOXYGEN|DOCS)$' \
+    "$options" 2>/dev/null || true)"
+  if [[ "$current" != "$settings" ]]; then
+    mkdir -p "${options%/*}"
+    touch "$options"
+    sed -i '' -E '/^OPTIONS_FILE_(SET|UNSET)\+=(DOXYGEN|DOCS)$/d' "$options"
+    printf '%s\n' "$settings" >> "$options"
+    touch "$state/dirty"
+    make -C /usr/ports/devel/protobuf-c clean NOCLEANDEPENDS=yes || return $?
+    echo 'CACHE protobuf-c: disabled optional API documentation.'
+  fi
+
+  # Register real runtime tools in the host database before its image copy.
+  if [[ ! -x /usr/local/bin/nsupdate ]]; then
+    touch "$state/dirty"
+    make -C /usr/ports/dns/bind-tools install || return $?
+  fi
   echo 'CACHE samba: migrated nsupdate runtime dependency; retaining compiled objects.'
 }
