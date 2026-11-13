@@ -13,7 +13,7 @@ NO_BUILD?=	yes
 NO_PKG_REGISTER?=	yes
 # Set default target to execute when a port is calling a dependency.
 #ALWAYS_BUILD_DEPENDS=	yes
-DEPENDS_TARGET=	clean build stage
+DEPENDS_TARGET=	build stage
 
 BUILD_DEPENDS=	${NONEXISTENT}:filesystems/ntfs
 
@@ -34,7 +34,7 @@ do-install:
 # kernel
 	@${CP} -pv /boot/kernel/fusefs.ko ${XIGMANAS_ROOTFS}/boot/kernel
 # lib
-	@${INSTALL_PROGRAM} -v ${PORTSDIR}/filesystems/ntfs/work/ntfs-3g_ntfsprogs-2022.10.3/libntfs-3g/.libs/libntfs-3g.so ${XIGMANAS_ROOTFS}/usr/local/lib
+	@${INSTALL_PROGRAM} -v ${PORTSDIR}/filesystems/ntfs/work/ntfs-3g*/libntfs-3g/.libs/libntfs-3g.so ${XIGMANAS_ROOTFS}/usr/local/lib
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/filesystems/ntfs/work/ntfs-3g*/libntfs-3g/.libs/libntfs-3g.so.89 ${XIGMANAS_ROOTFS}/usr/local/lib
 # link
 	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${XIGMANAS_ROOTFS}/sbin/mount_ntfs
