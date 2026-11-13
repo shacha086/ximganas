@@ -9,7 +9,7 @@ MAINTAINER=		zoon01@xigmanas.com
 DISTFILES=
 NO_BUILD=		yes
 NO_PKG_REGISTER=	yes
-DEPENDS_TARGET=	clean build stage
+DEPENDS_TARGET=	build stage
 
 BUILD_DEPENDS=	${NONEXISTENT}:emulators/virtualbox-ose-72
 BUILD_DEPENDS+=	${NONEXISTENT}:emulators/virtualbox-ose-kmod-72

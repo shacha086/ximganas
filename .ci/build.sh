@@ -95,6 +95,7 @@ create_checksum_file() {
 . "$source/.ci/open-vm-tools.sh"
 . "$source/.ci/lmdb.sh"
 . "$source/.ci/cups.sh"
+. "$source/.ci/virtualbox.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -166,6 +167,7 @@ for port in "$source"/build/ports/*; do
     touch "$state/dirty"
     if [[ "$name" == vbox ]]; then
       prepare_cups
+      prepare_virtualbox
       if ! pkg info -e llvm19; then
         # Finish the memory-heavy dependency without cleaning its cached objects.
         echo 'CACHE llvm19: resuming with one compiler job.'
