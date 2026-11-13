@@ -8,7 +8,27 @@ cd "$source"
 . .ci/freebsd.env
 mkdir -p "$state" "$root/work/pkg" "$root/artifacts"
 
-trap 'rc=$?; printf "%s\n" "$rc" > "$state/exit-code"; exit "$rc"' EXIT
+package_state() {
+  pkg query -a '%n-%v:%o' | LC_ALL=C sort | sha256 -q
+}
+
+packages_before="$(package_state)"
+finish_build() {
+  local rc=$? packages_after
+  trap - EXIT
+  if packages_after="$(package_state)"; then
+    if [[ "$packages_after" != "$packages_before" ]]; then
+      touch "$state/dirty"
+      echo 'CACHE packages: installed build dependencies changed.'
+    fi
+  else
+    touch "$state/dirty"
+    echo 'CACHE packages: cannot compare installed dependencies; preserving state.'
+  fi
+  printf '%s\n' "$rc" > "$state/exit-code"
+  exit "$rc"
+}
+trap finish_build EXIT
 
 clone_at() {
   local url="$1" revision="$2" destination="$3"
@@ -28,6 +48,7 @@ clone_at https://github.com/freebsd/freebsd-src.git "$FREEBSD_SRC_REV" /usr/src
 clone_at https://github.com/freebsd/freebsd-ports.git "$FREEBSD_PORTS_REV" /usr/ports
 ln -sfn /usr/src/sys /sys
 
+make_conf_before="$(sha256 -q /etc/make.conf 2>/dev/null || true)"
 cp "$source/build/make.conf" /etc/make.conf
 cat >> /etc/make.conf <<'MAKECONF'
 BATCH=yes
@@ -38,11 +59,13 @@ CCACHE_DIR=/var/cache/ccache
 WITH_CCACHE_BUILD=yes
 MAKE_JOBS_NUMBER=4
 MAKECONF
+if [[ "$(sha256 -q /etc/make.conf)" != "$make_conf_before" ]]; then
+  touch "$state/dirty"
+fi
 export BATCH=yes ASSUME_ALWAYS_YES=yes IGNORE_OSVERSION=yes
 export CCACHE_DIR=/var/cache/ccache
 ccache --max-size 8G
 if [[ "${CI_MODE:-build}" == environment ]]; then
-  touch "$state/dirty"
   printf 'Environment ready: src=%s ports=%s\n' "$FREEBSD_SRC_REV" "$FREEBSD_PORTS_REV"
   exit 0
 fi
@@ -207,7 +230,7 @@ for port in "$source"/build/ports/*; do
   [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
   name="${port##*/}"
   if [[ ! -f "$state/installed-$name" ]]; then
-    touch "$state/dirty"
+    # Image copies and their private package database are not new compiled state.
     rm -f "$port"/work/.install_done.* "$port"/work/.stage_done.*
     env PKG_DBDIR="$root/work/pkg" FORCE_PKG_REGISTER=1 make -C "$port" install
     touch "$state/installed-$name"

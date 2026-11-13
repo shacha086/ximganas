@@ -17,7 +17,8 @@ Successful builds publish two separate artifacts:
 - `xigmanas-LiveUSB-GPT-amd64-<commit>`: the GPT LiveUSB `.img.gz` disk image.
 
 Each includes its own SHA512 checksums and `build-info.txt`. Artifacts expire
-after 14 days. Diagnostics are retained for 7 days.
+after 14 days. Images are uploaded before checkpoint backup, so they can be
+downloaded while backup is still running. Diagnostics are retained for 7 days.
 
 The workflow can also be started manually. Leave `source_sha` empty and
 `slice` at `1`. Select `environment` to prepare and cache the toolchain
@@ -35,9 +36,13 @@ inside the VM. It is not published as a separate artifact.
 - Durable `ci-cache-*` prereleases store FreeBSD source, the ports tree,
   downloaded distfiles, installed build dependencies, compiler cache,
   kernel objects, and resumable XigmaNAS port work directories.
-- Expensive state is saved even when compilation fails. Completed dependency
-  work directories are discarded after installation; their binaries and
-  package database remain cached.
+- Expensive state is saved even when compilation fails, but explicit workflow
+  cancellation stops backup and skips its fallback and diagnostic uploads.
+  Image assembly alone does not mark the compiled cache as changed. Backups
+  are skipped unless reusable source, build configuration, dependencies,
+  kernel, or port work changed; partial compilation still marks them changed.
+  Installed dependency work directories are discarded unless image assembly
+  needs their output; their binaries and package database remain cached.
 - A source-only patch reuses the kernel and built ports, then assembles a
   fresh image. Kernel configuration or patch changes rebuild the kernel.
   Each custom port has its own input fingerprint: changing one recipe,
