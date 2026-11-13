@@ -1,7 +1,36 @@
 diff --git a/build/functions.inc b/build/functions.inc
 --- a/build/functions.inc
 +++ b/build/functions.inc
-@@ -638,3 +638,3 @@
+@@ -572,13 +572,5 @@
+ 
+-	# Make mfsroot to have the size of the XIGMANAS_MFSROOT_SIZE variable
+-	dd if=/dev/zero of=$XIGMANAS_WORKINGDIR/mdlocal-mini bs=1k seek=$(expr ${XIGMANAS_MDLOCAL_MINI_SIZE} \* 1024) count=0
+-	# Configure this file as a memory disk
+-	md=$(mdconfig -a -t vnode -f $XIGMANAS_WORKINGDIR/mdlocal-mini)
+-	# Format memory disk using UFS
+-	newfs -S $XIGMANAS_IMGFMT_SECTOR -b $XIGMANAS_IMGFMT_BSIZE -f $XIGMANAS_IMGFMT_FSIZE -O2 -o space -m 0 -U -t /dev/${md}
+-	# Umount memory disk (if already used)
+-	umount $XIGMANAS_TMPDIR >/dev/null 2>&1
+-	# Mount memory disk
+-	mkdir -p ${XIGMANAS_TMPDIR}/usr/local
+-	mount /dev/${md} ${XIGMANAS_TMPDIR}/usr/local
++	local XIGMANAS_TMPDIR
++	XIGMANAS_TMPDIR="$(mktemp -d "$XIGMANAS_WORKINGDIR/mdlocal-mini.XXXXXX")"
++	mkdir -p "$XIGMANAS_TMPDIR/usr/local"
+ 
+@@ -593,3 +585,3 @@
+ 		# Copy required libraries
+-		for j in $(ldd $XIGMANAS_ROOTFS/$d/$b | cut -w -f 4 | grep /usr/local | sed -e '/:/d' -e 's/^\///'); do
++		for j in $(ldd -f "%p\n" "$XIGMANAS_ROOTFS/$d/$b" | sed -n 's,^/usr/local/,usr/local/,p'); do
+ 			d=$(dirname $j)
+@@ -632,9 +624,6 @@
+ 
+-	# Umount memory disk
+-	umount $XIGMANAS_TMPDIR/usr/local
+-	# Detach memory disk
+-	mdconfig -d -u ${md}
++	pack_mini_image
+ 
  	echo "Compressing mdlocal-mini"
 -	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/image.bin
 +	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/mdlocal-mini

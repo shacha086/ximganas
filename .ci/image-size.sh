@@ -33,6 +33,25 @@ configure_image_sizes() {
     "$XIGMANAS_MFSROOT_SIZE" "$XIGMANAS_MDLOCAL_SIZE" "$local_kib"
 }
 
+pack_mini_image() {
+  local kib md mountdir
+  kib="$(du -sk "$XIGMANAS_TMPDIR/usr/local" | awk '{print $1}')"
+  XIGMANAS_MDLOCAL_MINI_SIZE="$(image_size_mib "$kib" "$XIGMANAS_MDLOCAL_MINI_SIZE")"
+  dd if=/dev/zero of="$XIGMANAS_WORKINGDIR/mdlocal-mini" bs=1k \
+    seek="$((XIGMANAS_MDLOCAL_MINI_SIZE * 1024))" count=0
+  md="$(mdconfig -a -t vnode -f "$XIGMANAS_WORKINGDIR/mdlocal-mini")"
+  newfs -S "$XIGMANAS_IMGFMT_SECTOR" -b "$XIGMANAS_IMGFMT_BSIZE" \
+    -f "$XIGMANAS_IMGFMT_FSIZE" -O2 -o space -m 0 -U -t "/dev/$md"
+  mountdir="$(mktemp -d "$XIGMANAS_WORKINGDIR/mdlocal-mini-mount.XXXXXX")"
+  mount "/dev/$md" "$mountdir"
+  tar -cf - -C "$XIGMANAS_TMPDIR/usr/local" . | tar -xpf - -C "$mountdir"
+  umount "$mountdir"
+  mdconfig -d -u "$md"
+  cd "$XIGMANAS_WORKINGDIR"
+  rm -rf -- "$XIGMANAS_TMPDIR" "$mountdir"
+  printf 'IMAGE capacity mini=%sMiB payload=%sKiB\n' "$XIGMANAS_MDLOCAL_MINI_SIZE" "$kib"
+}
+
 size_embedded_image() {
   local payload_bytes boot_kib
   payload_bytes=$(($(stat -f '%z' "$XIGMANAS_WORKINGDIR/mfsroot.gz") +
