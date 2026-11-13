@@ -4879,7 +4879,7 @@ msgid "Information & Manuals"
 msgstr "资讯和手册"
 
 msgid "IRC XigmaNAS"
-msgstr "IRC XigmaNAS"
+msgstr "IRC XenoNAS"
 
 msgid "NOT YET AVAILABLE"
 msgstr "尚未公布"

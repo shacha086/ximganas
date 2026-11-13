@@ -632,10 +632,10 @@ function config_upgrade_0dot9() {
 	global $config;
 
 	arr::make_branch($config,'system');
-	$config['system']['hostname'] = 'xigmanas';
+	$config['system']['hostname'] = 'xenonas';
 	arr::make_branch($config,'samba');
-	$config['samba']['netbiosname'] = 'xigmanas';
-	$config['samba']['serverdesc'] = 'XigmaNAS® Server';
+	$config['samba']['netbiosname'] = 'xenonas';
+	$config['samba']['serverdesc'] = 'XenoNAS® Server';
 }
 /**
  *	Upgrade configuration from version 1.0
@@ -1465,9 +1465,9 @@ function config_upgrade_37() {
 	if(array_key_exists('motd',$grid_system) && is_string($grid_system['motd'])):
 		$helpinghand = base64_decode($grid_system['motd']);
 	else:
-		$helpinghand = 'Welcome to XigmaNAS!' . "\n";
+		$helpinghand = 'Welcome to XenoNAS!' . "\n";
 	endif;
-	$grid_system['motd'] = base64_encode(str_ireplace('NAS4Free','XigmaNAS',$helpinghand));
+	$grid_system['motd'] = base64_encode(str_ireplace('NAS4Free','XenoNAS',$helpinghand));
 }
 /**
  *	Upgrade configuration from version 38

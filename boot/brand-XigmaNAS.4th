@@ -40,7 +40,7 @@
 	1+ \ increase y for next time we're called
 ;
 
-: brand ( x y -- ) \ "XigmaNAS" [wide] logo in B/W (6 rows x 50 columns)
+: brand ( x y -- ) \ "XenoNAS" [wide] logo in B/W (6 rows x 50 columns)
 
 	framebuffer? if
 		s" term-putimage" sfind if
@@ -54,12 +54,11 @@
 		then
 	then
 
-	s" __  ___                       _   _    _    ____  " brand+
-	s" \ \/ (_) __ _ _ __ ___   __ _| \ | |  / \  / ___| " brand+
-	s"  \  /| |/ _` | '_ ` _ \ / _` |  \| | / _ \ \___ \ " brand+
-	s"  /  \| | (_| | | | | | | (_| | |\  |/ ___ \ ___) |" brand+
-	s" /_/\_\_|\__, |_| |_| |_|\__,_|_| \_/_/   \_\____/ " brand+
-	s"         |___/                                     " brand+
+	s"  __  __                  _   _    _    ____  " brand+
+	s"  \ \/ /___ _ __   ___   | \ | |  / \  / ___| " brand+
+	s"   \  // _ \ '_ \ / _ \  |  \| | / _ \ \___ \ " brand+
+	s"   /  \  __/ | | | (_) | | |\  |/ ___ \ ___) |" brand+
+	s"  /_/\_\\__|_| |_|\___/  |_| \_/_/   \_\____/ " brand+
 
 	2drop
 ;

@@ -4,7 +4,7 @@
 	<version>53</version>
 	<lastchange></lastchange>
 	<system>
-		<hostname>xigmanas</hostname>
+		<hostname>xenonas</hostname>
 		<domain>internal</domain>
 		<dnsserver></dnsserver>
 		<ipv6dnsserver></ipv6dnsserver>
@@ -975,9 +975,9 @@
 	</mounts>
 	<samba>
 		<!-- <enable/> -->
-		<netbiosname>xigmanas</netbiosname>
+		<netbiosname>xenonas</netbiosname>
 		<workgroup>WORKGROUP</workgroup>
-		<serverdesc>XigmaNAS Server</serverdesc>
+		<serverdesc>XenoNAS Server</serverdesc>
 		<security>user</security>
 		<maxprotocol>SMB3</maxprotocol>
 		<guestaccount>ftp</guestaccount>
@@ -1233,7 +1233,7 @@
 		<rescaninterval>3600</rescaninterval>
 		<scantype>0</scantype>
 		<dbdir></dbdir>
-		<admin_pw>xigmanas</admin_pw>
+		<admin_pw>xenonas</admin_pw>
 	</daap>
 	<bittorrent>
 		<!--
@@ -1249,7 +1249,7 @@
 		<configdir></configdir>
 		<authrequired/>
 		<username>admin</username>
-		<password>xigmanas</password>
+		<password>xenonas</password>
 		<pex/>
 		<dht/>
 		<preallocation>1</preallocation>

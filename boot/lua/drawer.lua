@@ -279,7 +279,7 @@ local function drawbox()
 	local y = menu_position.y - 1
 	local w = frame_size.w
 	local menu_header = loader.getenv("loader_menu_title") or
-	    "Welcome to XigmaNAS"
+	    "Welcome to XenoNAS"
 	local menu_header_align = loader.getenv("loader_menu_title_align")
 	local menu_header_x
 
@@ -409,12 +409,11 @@ local function drawitem(func)
 end
 
 xigmanas_brand = {
-" __  ___                       _   _    _    ____  ",
-" \\ \\/ (_) __ _ _ __ ___   __ _| \\ | |  / \\  / ___| ",
-"  \\  /| |/ _` | '_ ` _ \\ / _` |  \\| | / _ \\ \\___ \\ ",
-"  /  \\| | (_| | | | | | | (_| | |\\  |/ ___ \\ ___) |",
-" /_/\\_\\_|\\__, |_| |_| |_|\\__,_|_| \\_/_/   \\_\\____/ ",
-"         |___/                                     "
+" __  __                  _   _    _    ____  ",
+" \\ \\/ /___ _ __   ___   | \\ | |  / \\  / ___| ",
+"  \\  // _ \\ '_ \\ / _ \\  |  \\| | / _ \\ \\___ \\ ",
+"  /  \\  __/ | | | (_) | | |\\  |/ ___ \\ ___) |",
+" /_/\\_\\\\___|_| |_|\\___/  |_| \\_/_/   \\_\\____/ "
 }
 none = {""}
 

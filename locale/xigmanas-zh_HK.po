@@ -4837,7 +4837,7 @@ msgid "Information & Manuals"
 msgstr "資訊和手冊"
 
 msgid "IRC XigmaNAS"
-msgstr ""
+msgstr "IRC XenoNAS"
 
 msgid "NOT YET AVAILABLE"
 msgstr "尚未公佈"

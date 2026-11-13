@@ -54,7 +54,7 @@ $g = [
 	'xml_rootobj' => 'xigmanas',
 	'debug' => false,
 	'latest_config' => '53',
-	'default_passwd' => 'xigmanas',
+	'default_passwd' => 'xenonas',
 	'default_ip' => '192.168.1.250',
 	'zroot' => false
 ];
