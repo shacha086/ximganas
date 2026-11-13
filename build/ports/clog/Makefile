@@ -32,12 +32,15 @@ do-build:
 
 	@${MAKE} -C /usr/src/usr.bin/syslogd
 	@${MAKE} -C /usr/src/usr.bin/clog
+	# Keep install inputs outside the source tree cleaned by kernel rebuilds.
+	@${CP} /usr/src/usr.bin/syslogd/syslogd ${WRKDIR}/syslogd
+	@${CP} /usr/src/usr.bin/clog/clog ${WRKDIR}/clog
 
 do-install:
 # XigmaNAS® Install
 	@echo "Start install to ${XIGMANAS_ROOTFS}"
-	@${INSTALL_PROGRAM} -v /usr/src/usr.bin/syslogd/syslogd ${XIGMANAS_ROOTFS}/usr/sbin
-	@${INSTALL_PROGRAM} -v /usr/src/usr.bin/clog/clog ${XIGMANAS_ROOTFS}/usr/sbin
+	@${INSTALL_PROGRAM} -v ${WRKDIR}/syslogd ${XIGMANAS_ROOTFS}/usr/sbin
+	@${INSTALL_PROGRAM} -v ${WRKDIR}/clog ${XIGMANAS_ROOTFS}/usr/sbin
 # XigmaNAS® end install
 	@echo "End install to ${XIGMANAS_ROOTFS}"
 
