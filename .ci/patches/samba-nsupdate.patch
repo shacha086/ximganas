@@ -1,0 +1,19 @@
+diff --git a/build/ports/samba422/Makefile b/build/ports/samba422/Makefile
+--- a/build/ports/samba422/Makefile
++++ b/build/ports/samba422/Makefile
+@@ -327,5 +327,5 @@
+ MDNSRESPONDER_LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
+ MDNSRESPONDER_VARS=		SAMBA4_SERVICES+=mdnsd
+ ##############################################################################
+-NSUPDATE_RUN_DEPENDS=		samba-nsupdate:dns/samba-nsupdate
++NSUPDATE_RUN_DEPENDS=		nsupdate:dns/bind-tools
+ ##############################################################################
+@@ -692,6 +692,7 @@
+ 	${INSTALL_SCRIPT} -v ${STAGEDIR}${PREFIX}/sbin/${file} ${XIGMANAS_ROOTFS}${PREFIX}/sbin
+ .endfor
+ # add samba-nsupdate
+-	${CP} -Rpv ${PREFIX}/bin/samba-nsupdate ${XIGMANAS_ROOTFS}${PREFIX}/bin
++	${INSTALL_PROGRAM} -v ${PREFIX}/bin/nsupdate ${XIGMANAS_ROOTFS}${PREFIX}/bin
++	${LN} -fsv nsupdate ${XIGMANAS_ROOTFS}${PREFIX}/bin/samba-nsupdate
+ # python
+ 	${CP} -Rpv ${STAGEDIR}${PREFIX}/lib/python3.11/site-packages/$${file} ${XIGMANAS_ROOTFS}${PREFIX}/lib/python3.11/site-packages; \

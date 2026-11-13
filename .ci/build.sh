@@ -97,6 +97,7 @@ create_checksum_file() {
 . "$source/.ci/cups.sh"
 . "$source/.ci/virtualbox.sh"
 . "$source/.ci/dependency-cache.sh"
+. "$source/.ci/samba.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -159,6 +160,7 @@ for port in "$source"/build/ports/*; do
     prepare_open_vm_tools
   elif [[ "$name" == samba422 ]]; then
     prepare_lmdb
+    prepare_samba_nsupdate
   fi
   prepare_port_cache "$port" "$ports_key"
   port_started=$SECONDS
@@ -203,6 +205,7 @@ for port in "$source"/build/ports/*; do
   [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
   name="${port##*/}"
   if [[ ! -f "$state/installed-$name" ]]; then
+    touch "$state/dirty"
     rm -f "$port"/work/.install_done.* "$port"/work/.stage_done.*
     env PKG_DBDIR="$root/work/pkg" FORCE_PKG_REGISTER=1 make -C "$port" install
     touch "$state/installed-$name"
