@@ -124,6 +124,32 @@ jobs:
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           echo "Build exit code: $rc" >> "$GITHUB_STEP_SUMMARY"
           exit 0
+      - name: Collect completed images before checkpoint backup
+        id: images
+        if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
+        shell: bash
+        run: |
+          rsync -a freebsd:/usr/local/xigmanas/artifacts/ artifacts/
+          test -n "$(find artifacts -name '*-LiveCD-*.iso' -print -quit)"
+          test -n "$(find artifacts -name '*-LiveUSB-GPT-*.img.gz' -print -quit)"
+      - name: Upload LiveCD before checkpoint backup
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() && steps.images.outcome == 'success' }}
+        with:
+          name: xigmanas-LiveCD-amd64-${{ steps.meta.outputs.short_sha }}
+          path: artifacts/LiveCD/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - name: Upload LiveUSB before checkpoint backup
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() && steps.images.outcome == 'success' }}
+        with:
+          name: xigmanas-LiveUSB-GPT-amd64-${{ steps.meta.outputs.short_sha }}
+          path: artifacts/LiveUSB-GPT/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
       - name: Save expensive work, including partial builds
         id: checkpoint
         if: always() && steps.compile.outcome == 'success'
@@ -137,18 +163,13 @@ jobs:
         with:
           path: ${{ runner.temp }}/xigmanas-checkpoint
           key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
-      - name: Collect images and build diagnostics
+      - name: Collect build diagnostics
         if: always() && steps.vm.outcome == 'success'
         shell: bash
         run: |
           mkdir -p diagnostics artifacts
           ssh freebsd 'uname -a; df -h; ccache --show-stats' > diagnostics/environment.txt
           rsync -a freebsd:/usr/local/xigmanas/state/ diagnostics/state/
-          if [[ '${{ steps.compile.outputs.rc }}' == 0 && "$CI_MODE" == build ]]; then
-            rsync -a freebsd:/usr/local/xigmanas/artifacts/ artifacts/
-            test -n "$(find artifacts -name '*-LiveCD-*.iso' -print -quit)"
-            test -n "$(find artifacts -name '*-LiveUSB-GPT-*.img.gz' -print -quit)"
-          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -156,22 +177,6 @@ jobs:
           path: diagnostics/
           if-no-files-found: warn
           retention-days: 7
-      - uses: actions/upload-artifact@v4
-        if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
-        with:
-          name: xigmanas-LiveCD-amd64-${{ steps.meta.outputs.short_sha }}
-          path: artifacts/LiveCD/
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 14
-      - uses: actions/upload-artifact@v4
-        if: success() && steps.compile.outputs.rc == '0' && env.CI_MODE == 'build'
-        with:
-          name: xigmanas-LiveUSB-GPT-amd64-${{ steps.meta.outputs.short_sha }}
-          path: artifacts/LiveUSB-GPT/
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 14
       - name: Continue before the hosted runner time limit
         if: success() && steps.compile.outputs.rc == '124'
         env:
