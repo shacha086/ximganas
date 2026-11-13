@@ -1,9 +1,9 @@
-name: Build XigmaNAS
-run-name: XigmaNAS 14.3 | ${{ inputs.mode || 'build' }} | slice ${{ inputs.slice || '1' }}
+name: Build XigmaNAS Overlay
+run-name: XigmaNAS overlay | ${{ inputs.mode || 'build' }} | slice ${{ inputs.slice || '1' }}
 
 on:
   push:
-    branches: [main]
+    branches: [cache-overlay]
     paths-ignore:
       - .ci/README.md
       - .github/workflows/import.yml
@@ -23,10 +23,6 @@ on:
         description: Continuation number (normally leave at 1)
         type: string
         default: '1'
-  workflow_run:
-    workflows: [Import XigmaNAS SVN]
-    types: [completed]
-    branches: [main]
 
 permissions:
   contents: write
@@ -35,11 +31,10 @@ permissions:
 jobs:
   build:
     if: >-
-      github.ref == 'refs/heads/main' &&
-      (inputs.source_sha == '' || inputs.source_sha == github.sha) &&
-      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+      github.ref == 'refs/heads/cache-overlay' &&
+      (inputs.source_sha == '' || inputs.source_sha == github.sha)
     concurrency:
-      group: xigmanas-build-main
+      group: xigmanas-build-cache-overlay
       cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 350
@@ -49,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.source_sha || (github.event_name == 'push' && github.sha) || 'main' }}
+          ref: ${{ inputs.source_sha || github.sha }}
           fetch-depth: 1
           persist-credentials: false
       - name: Validate inputs and identify compatible environment
@@ -68,7 +63,7 @@ jobs:
       - name: Verify durable checkpoint permission before expensive work
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash .ci/checkpoint.sh preflight '${{ steps.meta.outputs.cache_key }}'
+        run: bash .ci/checkpoint-overlay.sh preflight '${{ steps.meta.outputs.cache_key }}'
       - name: Reclaim runner disk for the FreeBSD build
         shell: bash
         run: |
@@ -94,13 +89,13 @@ jobs:
       - name: Recover an emergency checkpoint after a failed release upload
         uses: actions/cache/restore@v4
         with:
-          path: ${{ runner.temp }}/xigmanas-checkpoint
-          key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-
+          path: ${{ runner.temp }}/xigmanas-overlay-checkpoint
+          key: overlay-fallback-${{ steps.meta.outputs.cache_key }}-cache-overlay-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: overlay-fallback-${{ steps.meta.outputs.cache_key }}-cache-overlay-
       - name: Restore durable build checkpoint
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash .ci/checkpoint.sh restore '${{ steps.meta.outputs.cache_key }}'
+        run: bash .ci/checkpoint-overlay.sh restore '${{ steps.meta.outputs.cache_key }}'
       - name: Synchronize the exact Git checkout into the build tree
         shell: bash
         run: |
@@ -156,13 +151,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
-        run: bash .ci/checkpoint.sh save '${{ steps.meta.outputs.cache_key }}' 2>&1 | tee diagnostics/checkpoint.log
+        run: bash .ci/checkpoint-overlay.sh save '${{ steps.meta.outputs.cache_key }}' 2>&1 | tee diagnostics/checkpoint.log
       - name: Preserve the archive if the release service rejects an upload
         if: ${{ !cancelled() && steps.checkpoint.outcome == 'failure' && steps.checkpoint.outputs.archive_ready == 'true' }}
         uses: actions/cache/save@v4
         with:
-          path: ${{ runner.temp }}/xigmanas-checkpoint
-          key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/xigmanas-overlay-checkpoint
+          key: overlay-fallback-${{ steps.meta.outputs.cache_key }}-cache-overlay-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Collect build diagnostics
         if: ${{ !cancelled() && steps.vm.outcome == 'success' }}
         shell: bash
@@ -184,7 +179,7 @@ jobs:
         shell: bash
         run: |
           repository="$(gh api "repos/$GITHUB_REPOSITORY" --jq .full_name)"
-          latest="$(gh api "repos/$repository/git/ref/heads/main" --jq .object.sha)"
+          latest="$(gh api "repos/$repository/git/ref/heads/cache-overlay" --jq .object.sha)"
           continuation_sha="$BUILD_SHA"
           if [[ "$latest" != "$BUILD_SHA" ]]; then
             ignored_only="$(gh api "repos/$repository/compare/$BUILD_SHA...$latest" \
@@ -199,7 +194,7 @@ jobs:
             echo "::error::Build exceeded 12 slices. Inspect diagnostics before continuing manually."
             exit 1
           fi
-          gh workflow run build.yml --ref main --repo "$repository" \
+          gh workflow run build.yml --ref cache-overlay --repo "$repository" \
             -f mode="$CI_MODE" -f source_sha="$continuation_sha" -f slice="$((SLICE + 1))"
           echo "Checkpoint saved; continuation $((SLICE + 1)) dispatched." >> "$GITHUB_STEP_SUMMARY"
       - name: Report a genuine build failure

@@ -1,5 +1,29 @@
 # XigmaNAS 14.3 CI
 
+## Overlay Branch
+
+`cache-overlay` experiments with file-level checkpoint layers using the real
+LiveCD and LiveUSB build, without adding a separate test suite.
+It has its own build queue, release namespace, and emergency-cache keys.
+The first run copies an existing compatible full checkpoint into an isolated
+base release once; it does not rebuild those cached components. This protects
+the base from main's independent two-generation cleanup.
+
+Each restore applies the base followed by its overlays and takes a local
+metadata inventory before the build. Size, nanosecond modification/change
+times, file type, ownership, flags, and link target detect changes within that
+same VM; files are not considered changed merely because a new VM restored
+them. Each overlay contains changed files and explicit removals, including
+directory/file replacements. Rootfs, generated images, checkout metadata,
+and image-only installation markers are excluded from new layers.
+
+Unchanged reusable state skips backup. A chain compacts after eight overlays
+or when accumulated compressed overlays reach half of its base size.
+Cleanup retains the latest two heads and every ancestor they reference.
+Draft/incomplete uploads are not restored; failed uploads retain the existing
+emergency-cache fallback. A fresh runner still downloads the base and all
+layers, but subsequent saves upload only the changed layer.
+
 The repository uses SVN **r10566** from the `14.3.0.5` branch. The imported
 revision and URL are recorded in `svn-import.json`. The import workflow
 preserves Git patches once r10566 is imported. The one-time switch from
