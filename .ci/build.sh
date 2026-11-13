@@ -94,6 +94,7 @@ create_checksum_file() {
 . "$source/.ci/libpfctl.sh"
 . "$source/.ci/open-vm-tools.sh"
 . "$source/.ci/lmdb.sh"
+. "$source/.ci/cups.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -164,9 +165,14 @@ for port in "$source"/build/ports/*; do
     port_cache=miss
     touch "$state/dirty"
     if [[ "$name" == vbox ]]; then
-      # Finish the memory-heavy dependency without cleaning its cached objects.
-      echo 'CACHE llvm19: resuming with one compiler job.'
-      make -C /usr/ports/devel/llvm19 install MAKE_JOBS_NUMBER=1
+      prepare_cups
+      if ! pkg info -e llvm19; then
+        # Finish the memory-heavy dependency without cleaning its cached objects.
+        echo 'CACHE llvm19: resuming with one compiler job.'
+        make -C /usr/ports/devel/llvm19 install MAKE_JOBS_NUMBER=1
+      else
+        echo 'CACHE llvm19: retaining the installed dependency.'
+      fi
     fi
     make -C "$port" build
     if [[ "$name" == nut-devel ]]; then
