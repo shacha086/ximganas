@@ -1,10 +1,13 @@
 #!/bin/sh
 set -eu
 
-# Installed dependency binaries and the compiler cache replace disposable
-# dependency work trees. Keep every custom XigmaNAS port's work/stage intact.
+# NAS wrappers still copy files from some installed dependencies' work/stage.
+# Retain those as well as every custom port's work tree.
 find /usr/ports -type d -name work -prune -print |
 while IFS= read -r work; do
+  if grep -qxF "$work" /usr/local/xigmanas/state/required-workdirs 2>/dev/null; then
+    continue
+  fi
   if find "$work" -maxdepth 1 -name '.install_done.*' | grep -q .; then
     rm -rf "$work"
   fi

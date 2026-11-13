@@ -96,6 +96,7 @@ create_checksum_file() {
 . "$source/.ci/lmdb.sh"
 . "$source/.ci/cups.sh"
 . "$source/.ci/virtualbox.sh"
+. "$source/.ci/dependency-cache.sh"
 kernel_key="$(printf '%s\n%s\n' "$FREEBSD_SRC_REV" \
   "$(input_hash build/kernel-config build/kernel-patches)" | sha256 -q)"
 seed_legacy_port_cache
@@ -184,6 +185,13 @@ for port in "$source"/build/ports/*; do
     touch "$state/built-$name"
   fi
   printf 'TIMING port=%s cache=%s seconds=%s\n' "$name" "$port_cache" "$((SECONDS - port_started))"
+done
+
+touch "$state/required-workdirs"
+for port in "$source"/build/ports/*; do
+  [[ -f "$port/pkg-state" ]] || continue
+  [[ "$(tr '[:lower:]' '[:upper:]' < "$port/pkg-state")" == ON ]] || continue
+  prepare_dependency_cache "$port"
 done
 
 if [[ "$(cat "$state/pkg-db-sha" 2>/dev/null || true)" != "$BUILD_SHA" ]]; then
