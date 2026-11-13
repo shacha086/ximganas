@@ -1,0 +1,22 @@
+diff --git a/build/functions.inc b/build/functions.inc
+--- a/build/functions.inc
++++ b/build/functions.inc
+@@ -638,3 +638,3 @@
+ 	echo "Compressing mdlocal-mini"
+-	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/image.bin
++	xz -${XIGMANAS_COMPLEVEL}v -T $XIGMANAS_XZ_THREADS -M $XIGMANAS_XZ_MEM_LIMIT $XIGMANAS_WORKINGDIR/mdlocal-mini
+ 	[ -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files ] && rm -f $XIGMANAS_WORKINGDIR/mdlocal-mini.files
+@@ -743,6 +743,7 @@
+ 	echo "===> Generating tempory $XIGMANAS_TMPDIR folder"
+ 	mkdir $XIGMANAS_TMPDIR
+ 	create_mfsroot;
++	size_embedded_image
+ 
+ 	echo "===> Creating Empty image File"
+ 	dd if=/dev/zero of=${XIGMANAS_WORKINGDIR}/image.bin bs=512 seek=$(expr ${XIGMANAS_IMG_SIZE_SEC}) count=0
+@@ -752,5 +753,3 @@
+ 	diskinfo -v ${md}
+ 
+-	IMGSIZEM=470
+-
+ 	# create 1MB aligned MBR image

@@ -49,6 +49,8 @@ fi
 
 # Upstream supplies the filesystem and image assembly logic. Do not enter its
 # menus or call update_svn: the Git checkout is the only XigmaNAS source.
+. "$source/.ci/image-size.sh"
+prepare_image_builder
 set +e
 . "$source/build/functions.inc"
 set -e
@@ -216,6 +218,7 @@ done
 add_libs
 "$source/build/xigmanas-modify-permissions.sh" "$root/rootfs"
 use_svn
+configure_image_sizes
 unset TINY_ISO
 create_iso
 create_usb_gpt
