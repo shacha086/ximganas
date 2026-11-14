@@ -10,7 +10,7 @@
 		<ipv6dnsserver></ipv6dnsserver>
 		<dnsallowoverride/>
 		<username>admin</username>
-		<password>$6$guXYYSsWKt2W4KN6$jVm2hMRISeZc7zem2JS.Fi/AOFG2EherIZ2tsPIdn85D1fLkMzfA875R/GSmcp3xxq.WVMp872G0xQ0MLWBD70</password>
+		<password>$6$guXYYSsWKt2W4KN6$wZh2VujAa5.ZzgY0DigYD26qTo3jZF3BTTeJah8hHh2aauHjC63f4Z0mBI4swl/iLwlYPar1w8b9NgtG3vtSF/</password>
 		<timezone>Etc/UTC</timezone>
 		<datetimeformat>l F d H:i:s T Y</datetimeformat>
 		<language>auto</language>
