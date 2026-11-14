@@ -51,7 +51,7 @@ LCDd_mkconf()
 		-o 'ReportLevel=2' -n \
 		-o 'User=nobody' -n \
 		-o 'Hello="    Welcome to"' -n \
-		-o 'Hello=" XigmaNAS Server"' -n \
+		-o 'Hello=" XenoNAS Server"' -n \
 		-v "concat('WaitTime=', //lcdproc/waittime)" -n \
 		-v "concat('TitleSpeed=', //lcdproc/titlespeed)" -n \
 		-o 'ToggleRotateKey=Enter' -n \
@@ -60,7 +60,7 @@ LCDd_mkconf()
 		-o '#ScrollUpKey=Up' -n \
 		-o '#ScrollDownKey=Down' -n \
 		-o 'GoodBye=" Thank You For Using"' -n \
-		-o 'GoodBye="      XigmaNAS"' -n \
+		-o 'GoodBye="      XenoNAS"' -n \
 		-m "//xigmanas/lcdproc/auxparam" \
 			-v "." -n \
 		-b \

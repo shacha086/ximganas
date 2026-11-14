@@ -34,7 +34,7 @@
 		-->
 		<!-- The message of the day has to be encoded otherwise line breaks
 		will get lost because of the PHP XML parser. -->
-		<motd>V2VsY29tZSB0byBYaWdtYU5BUyEK</motd>
+		<motd>V2VsY29tZSB0byBYZW5vTkFTIQo=</motd>
 		<!--
 		<disableconsolemenu/>
 		<enableserialconsole/>
