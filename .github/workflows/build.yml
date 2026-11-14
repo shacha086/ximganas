@@ -68,7 +68,7 @@ jobs:
       - name: Verify durable checkpoint permission before expensive work
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash .ci/checkpoint.sh preflight '${{ steps.meta.outputs.cache_key }}'
+        run: bash .ci/checkpoint-overlay.sh preflight '${{ steps.meta.outputs.cache_key }}'
       - name: Reclaim runner disk for the FreeBSD build
         shell: bash
         run: |
@@ -94,13 +94,13 @@ jobs:
       - name: Recover an emergency checkpoint after a failed release upload
         uses: actions/cache/restore@v4
         with:
-          path: ${{ runner.temp }}/xigmanas-checkpoint
-          key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-
+          path: ${{ runner.temp }}/xigmanas-overlay-checkpoint
+          key: overlay-fallback-${{ steps.meta.outputs.cache_key }}-main-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: overlay-fallback-${{ steps.meta.outputs.cache_key }}-main-
       - name: Restore durable build checkpoint
         env:
           GH_TOKEN: ${{ github.token }}
-        run: bash .ci/checkpoint.sh restore '${{ steps.meta.outputs.cache_key }}'
+        run: bash .ci/checkpoint-overlay.sh restore '${{ steps.meta.outputs.cache_key }}'
       - name: Synchronize the exact Git checkout into the build tree
         shell: bash
         run: |
@@ -156,13 +156,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
-        run: bash .ci/checkpoint.sh save '${{ steps.meta.outputs.cache_key }}' 2>&1 | tee diagnostics/checkpoint.log
+        run: bash .ci/checkpoint-overlay.sh save '${{ steps.meta.outputs.cache_key }}' 2>&1 | tee diagnostics/checkpoint.log
       - name: Preserve the archive if the release service rejects an upload
         if: ${{ !cancelled() && steps.checkpoint.outcome == 'failure' && steps.checkpoint.outputs.archive_ready == 'true' }}
         uses: actions/cache/save@v4
         with:
-          path: ${{ runner.temp }}/xigmanas-checkpoint
-          key: checkpoint-fallback-${{ steps.meta.outputs.cache_key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/xigmanas-overlay-checkpoint
+          key: overlay-fallback-${{ steps.meta.outputs.cache_key }}-main-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Collect build diagnostics
         if: ${{ !cancelled() && steps.vm.outcome == 'success' }}
         shell: bash

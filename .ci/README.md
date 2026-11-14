@@ -1,5 +1,32 @@
 # XigmaNAS 14.3 CI
 
+## Overlay Checkpoints
+
+`main` uses file-level checkpoint layers for the real LiveCD and LiveUSB build,
+without adding a separate test suite. Checkpoint releases and emergency-cache
+keys are isolated by branch, so the earlier `cache-overlay` experiment remains
+separate. The first main run copies an existing compatible full checkpoint into
+an independent base release once; it does not rebuild those cached components.
+This protects the base from legacy full-checkpoint cleanup. If no compatible
+checkpoint exists, the build bootstraps normally and saves its first full base.
+
+Each restore applies the base followed by its overlays and takes a local
+metadata inventory before the build. Size, nanosecond modification/change
+times, file type, ownership, flags, and link target detect changes within that
+same VM; files are not considered changed merely because a new VM restored
+them. Each overlay contains changed files and explicit removals, including
+directory/file replacements. Rootfs, generated images, checkout metadata,
+and image-only installation markers are excluded from new layers.
+
+Unchanged reusable state skips backup. A chain compacts after eight overlays
+or when accumulated compressed overlays reach half of its base size.
+Cleanup retains the latest two heads and every ancestor they reference.
+Draft/incomplete uploads are not restored; failed uploads retain the existing
+emergency-cache fallback. A fresh runner still downloads the base and all
+layers, but subsequent saves upload only the changed layer.
+Recovered emergency layers are published before accepting further children,
+so a later restore never depends on an unpublished parent.
+
 The repository uses SVN **r10566** from the `14.3.0.5` branch. The imported
 revision and URL are recorded in `svn-import.json`. The import workflow
 preserves Git patches once r10566 is imported. The one-time switch from
@@ -33,7 +60,7 @@ inside the VM. It is not published as a separate artifact.
 ## Cached Work
 
 - The VM action caches its download, host packages, and prepared toolchain.
-- Durable `ci-cache-*` prereleases store FreeBSD source, the ports tree,
+- Durable `ci-overlay-*` prereleases store FreeBSD source, the ports tree,
   downloaded distfiles, installed build dependencies, compiler cache,
   kernel objects, and resumable XigmaNAS port work directories.
 - Expensive state is saved even when compilation fails, but explicit workflow
@@ -56,7 +83,7 @@ inside the VM. It is not published as a separate artifact.
   fresh for each source commit so removed files cannot leak into new images.
 - `freebsd.env` pins both FreeBSD source and ports commits. Changing those
   pins or `prepare.sh` starts a new compatible checkpoint generation.
-- Each compatible generation retains the latest two complete checkpoints.
+- Each compatible generation retains the latest two heads and their ancestors.
   Large archives are split into assets smaller than 2 GB. SHA256 hashes
   are checked before restoring them.
 - Release tags anchor storage on the current default branch; `manifest.json`
@@ -96,3 +123,6 @@ the security and compatibility limitations of that branch.
 `build.sh` uses the upstream filesystem, port, bootloader, and image
 assembly routines without entering interactive menus or updating SVN.
 After the initial import, Git is the only source of XigmaNAS patches.
+The kernel uses the repository's `XIGMANAS-<arch>` configuration and stable
+`/usr/obj/xigmanas` object directory independently of the display product name.
+Existing matching kernel checkpoints remain valid after a branding change.

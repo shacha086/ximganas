@@ -77,6 +77,9 @@ prepare_image_builder
 set +e
 . "$source/build/functions.inc"
 set -e
+# The kernel config and object directory are internal identities, not branding.
+XIGMANAS_KERNCONF="XIGMANAS-${XIGMANAS_ARCH}"
+XIGMANAS_OBJDIRPREFIX=/usr/obj/xigmanas
 svn_revision="$(sed -n 's/.*"revision": *"\([^"]*\)".*/\1/p' "$source/.ci/svn-import.json")"
 XIGMANAS_REVISION="${svn_revision}-git${BUILD_SHA:0:8}"
 export XIGMANAS_REVISION
